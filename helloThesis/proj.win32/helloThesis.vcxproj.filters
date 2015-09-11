@@ -10,6 +10,33 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Menu">
+      <UniqueIdentifier>{cbe50f88-35b5-48ad-8c16-df40cbdf5398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Menu\StartMenu">
+      <UniqueIdentifier>{27a6fb9a-97a0-4f9f-99a9-fdae3fad52b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PlayGame">
+      <UniqueIdentifier>{de49f96d-7b03-47c7-a3d2-2a73dc30f756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\MapMaking">
+      <UniqueIdentifier>{b4039de4-4dd1-4d56-b3bc-02028be20c8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Sound">
+      <UniqueIdentifier>{08345f24-4f9e-4242-802f-c266c5b19fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\database">
+      <UniqueIdentifier>{7471202f-db09-48c5-89a7-ee49d370e76c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util">
+      <UniqueIdentifier>{cf9329dc-c826-447c-a4af-efef954303cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\File">
+      <UniqueIdentifier>{acb00f08-3c79-4911-8677-cb52b556f837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\Language">
+      <UniqueIdentifier>{f6c7145c-8891-47dc-8e13-d9e6a0aa8cc3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -18,8 +45,29 @@
     <ClCompile Include="..\Classes\AppDelegate.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src</Filter>
+    <ClCompile Include="..\Classes\DBContext.cpp">
+      <Filter>src\database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>src\Menu\StartMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene.cpp">
+      <Filter>src\PlayGame</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SoundManager.cpp">
+      <Filter>src\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FileUtil.cpp">
+      <Filter>src\Util\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Translator.cpp">
+      <Filter>src\Util\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MapMakingScene.cpp">
+      <Filter>src\MapMaking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility.cpp">
+      <Filter>src\Util</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -29,8 +77,29 @@
     <ClInclude Include="..\Classes\AppDelegate.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src</Filter>
+    <ClInclude Include="..\Classes\DBContext.h">
+      <Filter>src\database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
+      <Filter>src\Menu\StartMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene.h">
+      <Filter>src\PlayGame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SoundManager.h">
+      <Filter>src\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FileUtil.h">
+      <Filter>src\Util\File</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Translator.h">
+      <Filter>src\Util\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MapMakingScene.h">
+      <Filter>src\MapMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility.h">
+      <Filter>src\Util</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
