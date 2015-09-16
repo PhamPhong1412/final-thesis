@@ -14,7 +14,7 @@ void DBContext::set(const char* key, std::string value){
 	context->flush();
 }
 
-boolean DBContext::keyExist(const char* key){
+GLboolean DBContext::keyExist(const char* key){
 	return !context->getStringForKey(key).empty();
 }
 

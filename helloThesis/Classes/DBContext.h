@@ -15,7 +15,7 @@ public:
 
 	static std::string get(const char* key);
 	static void set(const char* key, std::string value);
-	static boolean keyExist(const char* key);
+	static GLboolean keyExist(const char* key);
 	static void del(const char* key);
 };
 

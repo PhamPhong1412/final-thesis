@@ -73,9 +73,15 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     register_all_packages();
 
+	auto fileUtils = FileUtils::getInstance();
+	std::vector<std::string> searchPaths;
+
+	searchPaths.push_back("language");
+
+	fileUtils->setSearchPaths(searchPaths);
+	DBContext::init();
     // create a scene. it's an autorelease object
     auto scene = MainMenuScene::createScene();
-
     // run
     director->runWithScene(scene);
 

@@ -25,9 +25,6 @@
     <Filter Include="src\Sound">
       <UniqueIdentifier>{08345f24-4f9e-4242-802f-c266c5b19fe6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\database">
-      <UniqueIdentifier>{7471202f-db09-48c5-89a7-ee49d370e76c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Util">
       <UniqueIdentifier>{cf9329dc-c826-447c-a4af-efef954303cb}</UniqueIdentifier>
     </Filter>
@@ -36,6 +33,15 @@
     </Filter>
     <Filter Include="src\Util\Language">
       <UniqueIdentifier>{f6c7145c-8891-47dc-8e13-d9e6a0aa8cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\database">
+      <UniqueIdentifier>{7471202f-db09-48c5-89a7-ee49d370e76c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PlayGame\main game">
+      <UniqueIdentifier>{3a6cb97a-91ff-4c6e-8bc3-64d60f54c8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PlayGame\main game\layers">
+      <UniqueIdentifier>{8b964ded-1df2-4124-94c6-37a97c15b373}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,13 +52,10 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\DBContext.cpp">
-      <Filter>src\database</Filter>
+      <Filter>src\Util\database</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MainMenuScene.cpp">
       <Filter>src\Menu\StartMenu</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\MainGameScene.cpp">
-      <Filter>src\PlayGame</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SoundManager.cpp">
       <Filter>src\Sound</Filter>
@@ -69,6 +72,12 @@
     <ClCompile Include="..\Classes\Utility.cpp">
       <Filter>src\Util</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene.cpp">
+      <Filter>src\PlayGame\main game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
+      <Filter>src\PlayGame\main game\layers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -78,13 +87,10 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\DBContext.h">
-      <Filter>src\database</Filter>
+      <Filter>src\Util\database</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainMenuScene.h">
       <Filter>src\Menu\StartMenu</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\MainGameScene.h">
-      <Filter>src\PlayGame</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SoundManager.h">
       <Filter>src\Sound</Filter>
@@ -100,6 +106,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Utility.h">
       <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LangDefine.h">
+      <Filter>src\Util\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene.h">
+      <Filter>src\PlayGame\main game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameBackgroundLayer.h">
+      <Filter>src\PlayGame\main game\layers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

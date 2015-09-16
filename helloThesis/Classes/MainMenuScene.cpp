@@ -29,13 +29,14 @@ bool MainMenuScene::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-
+	std::string s = "abdf \t fwef";
+	Utility::stringSplit(s, "\t");
 	//TTFConfig config_font96("Marker Felt.ttf", 96);
 	//Label* startGame = Label::createWithTTF(config_font96, "Start game!");
 	//startGame->setPosition(Vec2(1,1));
 	//this->addChild(startGame);
 
-	MenuItemFont* playGame = MenuItemFont::create("Play", CC_CALLBACK_1(MainMenuScene::menuPlayCallback, this));
+	MenuItemFont* playGame = MenuItemFont::create(Translator::inst()->translate(START_GAME_BUTTON), CC_CALLBACK_1(MainMenuScene::menuPlayCallback, this));
 	playGame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2));
 
 	MenuItemFont* makeMap = MenuItemFont::create("Map", CC_CALLBACK_1(MainMenuScene::menuMakeMapCallback, this));
@@ -60,8 +61,8 @@ void MainMenuScene::menuPlayCallback(cocos2d::Ref* pSender){
 }
 
 void MainMenuScene::menuMakeMapCallback(cocos2d::Ref* pSender){
-	auto mapMakingScene = MapMakingScene::createScene();
-	Director::getInstance()->replaceScene(mapMakingScene);
+	//auto mapMakingScene = MapMakingScene::createScene();
+	//Director::getInstance()->replaceScene(mapMakingScene);
 }
 
 void MainMenuScene::menuSettingCallback(cocos2d::Ref* pSender){

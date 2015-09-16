@@ -3,12 +3,10 @@
 
 
 #include "cocos2d.h"
-#include "cocos-ext.h"
-
+#include "extensions\GUI\CCScrollView\CCScrollView.h"
+//#include "ui\CocosGUI.h"
 using namespace cocos2d;
-using namespace extension;
-
-USING_NS_CC;
+using namespace cocos2d::extension;
 
 class MapMakingScene : public Layer
 {
@@ -17,7 +15,7 @@ private:
 public:
     
     static cocos2d::Scene* createScene();
-    ScrollView *scrollView;
+	cocos2d::extension::ScrollView *scrollView;
     Layer *scrollContainer;
     
     virtual bool init();

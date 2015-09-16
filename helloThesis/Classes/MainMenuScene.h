@@ -5,6 +5,8 @@
 #include "cocos2d.h"
 #include "MainGameScene.h"
 #include "MapMakingScene.h"
+#include "Utility.h"
+#include "Translator.h"
 USING_NS_CC;
 
 class MainMenuScene : public Layer
