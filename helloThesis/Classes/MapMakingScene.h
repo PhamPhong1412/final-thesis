@@ -3,23 +3,33 @@
 
 
 #include "cocos2d.h"
-#include "extensions\GUI\CCScrollView\CCScrollView.h"
-//#include "ui\CocosGUI.h"
-using namespace cocos2d;
-using namespace cocos2d::extension;
+#include "ui/CocosGUI.h"
+
+
+using namespace cocos2d::ui;
+using namespace std;
+USING_NS_CC;
 
 class MapMakingScene : public Layer
 {
 private:
-    
+    bool mCheckRootItem;
+    Sprite *map;
+    int tile_size;
+    float mScaleValue;
 public:
-    
+    cocos2d::Size visibleSize;
     static cocos2d::Scene* createScene();
-	cocos2d::extension::ScrollView *scrollView;
-    Layer *scrollContainer;
-    
+    ScrollView *mScrollMapView;
+    ListView *mListButonView;
+    int mMang2Chieu[100][100];
     virtual bool init();
+    bool onTouchBegan(Touch *touch, Event *event);
     
+    void selectedItemListViewEvent(Ref *sender, ui::ListView::EventType type);
+    
+    void zoomOut(cocos2d::Ref* pSender);
+    void zoomIn(cocos2d::Ref *pSender);
     CREATE_FUNC(MapMakingScene);
 };
 
