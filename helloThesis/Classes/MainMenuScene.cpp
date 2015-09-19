@@ -30,7 +30,7 @@ bool MainMenuScene::init()
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	std::string s = "abdf \t fwef";
-	Utility::stringSplit(s, "\t");
+	Utility::splitString(s, "\t");
 	//TTFConfig config_font96("Marker Felt.ttf", 96);
 	//Label* startGame = Label::createWithTTF(config_font96, "Start game!");
 	//startGame->setPosition(Vec2(1,1));

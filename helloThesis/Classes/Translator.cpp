@@ -20,7 +20,7 @@ Translator::Translator(){
 
 	std::vector<std::string> linePart;
 	for (std::string line : FileUtil::read(fileName)){
-		linePart = Utility::stringSplit(line, "::");
+		linePart = Utility::splitString(line, "::");
 		this->data[linePart.at(0)] = linePart.at(1);
 	}
 }

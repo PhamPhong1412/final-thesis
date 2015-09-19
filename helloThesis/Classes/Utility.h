@@ -9,7 +9,7 @@ class Utility
 private:
 
 public:
-	static std::vector<std::string> stringSplit(std::string string, std::string delim);
+	static std::vector<std::string> splitString(std::string string, std::string delim);
 };
 
 #endif

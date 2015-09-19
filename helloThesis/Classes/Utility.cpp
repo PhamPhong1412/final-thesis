@@ -1,6 +1,6 @@
 #include "Utility.h"
 
-std::vector<std::string> Utility::stringSplit(std::string string, std::string  delim){
+std::vector<std::string> Utility::splitString(std::string string, std::string  delim){
 	char str[1024];
 	std::vector<std::string> result;
 	std::strcpy(str, string.c_str());

@@ -43,6 +43,15 @@
     <Filter Include="src\PlayGame\main game\layers">
       <UniqueIdentifier>{8b964ded-1df2-4124-94c6-37a97c15b373}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\PlayGame\main game\layers\background">
+      <UniqueIdentifier>{f83844cd-acdf-4d33-98a2-c033f1c135cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\PlayGame\main game\layers\object">
+      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMap">
+      <UniqueIdentifier>{d9a81e2a-0530-47dd-9e03-fef7b5fd11b3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,7 +85,13 @@
       <Filter>src\PlayGame\main game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
-      <Filter>src\PlayGame\main game\layers</Filter>
+      <Filter>src\PlayGame\main game\layers\background</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameObjectLayer.cpp">
+      <Filter>src\PlayGame\main game\layers\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMap.cpp">
+      <Filter>src\GameMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +129,16 @@
       <Filter>src\PlayGame\main game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameBackgroundLayer.h">
-      <Filter>src\PlayGame\main game\layers</Filter>
+      <Filter>src\PlayGame\main game\layers\background</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMap.h">
+      <Filter>src\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameConfig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameObjectLayer.h">
+      <Filter>src\PlayGame\main game\layers\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

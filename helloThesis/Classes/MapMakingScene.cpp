@@ -49,7 +49,7 @@ bool MapMakingScene::init()
     
     
     for (auto itemRoot : mMapItem) {
-        
+
     }
      
     

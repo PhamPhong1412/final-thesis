@@ -25,22 +25,15 @@ bool MainGameScene::init()
 	{
 		return false;
 	}
+	this->gameMap = new GameMap();
+	gameMap->load("test");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-
-	//TTFConfig config_font96("Marker Felt.ttf", 96);
-	//Label* startGame = Label::createWithTTF(config_font96, "Start game!");
-	//startGame->setPosition(Vec2(1,1));
-	//this->addChild(startGame);
-
-	MenuItemFont* quit = MenuItemFont::create("éo chơi nữa", CC_CALLBACK_1(MainGameScene::menuPlayCallback, this));
-	quit->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2));
-
-	Menu *mainMenu = Menu::create(quit, nullptr);
-	mainMenu->setPosition(Vec2(0, 0));
-	this->addChild(mainMenu);
+	GameBackgroundLayer* backgroundLayder = new GameBackgroundLayer();
+	backgroundLayder->init(gameMap->backgroundName, gameMap->background);
+	this->addChild(backgroundLayder);
 
 	return true;
 }

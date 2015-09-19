@@ -148,6 +148,8 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
     <ClCompile Include="..\Classes\DBContext.cpp" />
     <ClCompile Include="..\Classes\FileUtil.cpp" />
+    <ClCompile Include="..\Classes\GameMap.cpp" />
+    <ClCompile Include="..\Classes\GameObjectLayer.cpp" />
     <ClCompile Include="..\Classes\MainGameScene.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
     <ClCompile Include="..\Classes\MapMakingScene.cpp" />
@@ -161,6 +163,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GameBackgroundLayer.h" />
     <ClInclude Include="..\Classes\DBContext.h" />
     <ClInclude Include="..\Classes\FileUtil.h" />
+    <ClInclude Include="..\Classes\GameConfig.h" />
+    <ClInclude Include="..\Classes\GameMap.h" />
+    <ClInclude Include="..\Classes\GameObjectLayer.h" />
     <ClInclude Include="..\Classes\LangDefine.h" />
     <ClInclude Include="..\Classes\MainGameScene.h" />
     <ClInclude Include="..\Classes\MainMenuScene.h" />

@@ -9,12 +9,14 @@
 #endif
 
 #include "cocos2d.h"
+#include "GameBackgroundLayer.h"
+#include "GameMap.h"
 USING_NS_CC;
 
 class MainGameScene : public Layer
 {
 private:
-
+	GameMap* gameMap;
 public:
 
 	static cocos2d::Scene* createScene();
