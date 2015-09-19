@@ -22,7 +22,7 @@ public:
     static cocos2d::Scene* createScene();
     ScrollView *mScrollMapView;
     ListView *mListButonView;
-    int mMang2Chieu[100][100];
+    string mMang2Chieu[100][100];
     virtual bool init();
     bool onTouchBegan(Touch *touch, Event *event);
     

@@ -33,12 +33,12 @@ bool MapMakingScene::init()
     mScaleValue = 1.0f;
     
     
-    tile_size = 60;
-    auto numberTileWidth = 15;
-    auto numberTileHeight = 15;
+    tile_size = 32;
+    auto numberTileWidth = 95;
+    auto numberTileHeight = 95;
     for (int i = 0; i < numberTileWidth; i++) {
         for (int j = 0 ; j < numberTileHeight; j++) {
-            mMang2Chieu[i][j]=0;
+            mMang2Chieu[i][j]="0";
         }
     }
     
@@ -53,7 +53,7 @@ bool MapMakingScene::init()
         ui::Button *button = ui::Button::create("CloseNormal.png","CloseSelected.png");
         mListButonView->pushBackCustomItem(button);
     }
-    mListButonView->addEventListener(CC_CALLBACK_2(MapMakingScene::selectedItemListViewEvent, this));
+	mListButonView->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemListViewEvent, this));
     addChild(mListButonView);
     
     mScrollMapView = ui::ScrollView::create();
