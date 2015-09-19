@@ -18,9 +18,10 @@ private:
     int tile_size;
     float mScaleValue;
     int mCurrentRootItem;
-    string mCurrentName;
-    
+    string mCurrentNameChild;
+    string mCurrentNameRoot;
 public:
+    
     std::map< std::string, std::vector<std::string> > mMapItem {
         {"castle.png", {"signExit.png", "castleCenter.png","castleCliffLeft.png","castleCliffLeftAlt.png","castleCliffRight.png","castleCliffRightAlt.png","castleHalf.png"}},
         {"boxItem.png", {"signExit.png", "boxCoin_disabled.png","boxCoin.png","boxCoinAlt.png","boxEmpty.png","boxExplosive.png","boxWarning.png"}},
@@ -41,7 +42,7 @@ public:
     void onTouchMoved(Touch *touch, Event *event);
     
     void selectedItemListViewEvent(Ref *sender, ui::ListView::EventType type);
-    
+    string getNameWithNumber(int number);
     void zoomOut(cocos2d::Ref* pSender);
     void zoomIn(cocos2d::Ref *pSender);
     CREATE_FUNC(MapMakingScene);

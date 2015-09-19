@@ -24,7 +24,8 @@ bool MapMakingScene::init()
     {
         return false;
     }
-    mCurrentName = "";
+    mCurrentNameRoot = "";
+    mCurrentNameChild = "";
     mCheckRootItem = true;
     
     visibleSize = Director::getInstance()->getVisibleSize();
@@ -46,17 +47,12 @@ bool MapMakingScene::init()
     mListButonView->setClippingEnabled(false);
     mListButonView->setPosition(Vec2(0,origin.y));
     mListButonView->setContentSize(Size(visibleSize.width/10,visibleSize.height));
-    
-    
-    for (auto itemRoot : mMapItem) {
 
+    for (auto itemRoot : mMapItem) {
+        ui::ImageView *button = ui::ImageView::create(itemRoot.first);
+        button->setTouchEnabled(true);
+        mListButonView->pushBackCustomItem(button);
     }
-     
-    
-//    for (int i = 0; i < mListRoot->length(); i++) {
-//        ui::Button *button = ui::Button::create(mListRoot[i]);
-//        mListButonView->pushBackCustomItem(button);
-//    }
     
     mListButonView->setItemsMargin(10);
 	mListButonView->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemListViewEvent, this));
@@ -117,24 +113,23 @@ bool MapMakingScene::init()
 void MapMakingScene::selectedItemListViewEvent(Ref *sender, ui::ListView::EventType type)
 {
     ui::ListView *listView = static_cast<ui::ListView *>(sender);
-    
+    std::vector<std::string> tVectorNameChildItem;
     switch (type) {
         case ui::ListView::EventType::ON_SELECTED_ITEM_START:
             
             break;
         case ui::ListView::EventType::ON_SELECTED_ITEM_END:
             if (mCheckRootItem) {
-                CCLOG("go to child item with index root = %d",(int)listView->getCurSelectedIndex());
+                CCLOG("go to child item with index root = %ld",listView->getCurSelectedIndex());
+                
+               tVectorNameChildItem = mMapItem.find(MapMakingScene::getNameWithNumber((int)listView->getCurSelectedIndex()))->second;
                 
                 mCheckRootItem = false;
-                mCurrentRootItem = (int)listView->getCurSelectedIndex();
             }
             else
             {
                 if (listView->getCurSelectedIndex() != 0) {
-                    CCLOG("index Child = %d",(int)listView->getCurSelectedIndex());
-                    
-                    
+                    CCLOG("index Child = %ld",listView->getCurSelectedIndex());
                 }
                 else
                 {
@@ -147,6 +142,44 @@ void MapMakingScene::selectedItemListViewEvent(Ref *sender, ui::ListView::EventT
         default:
             break;
     }
+    
+    listView->removeAllChildren();
+    for (int i = 0 ; i < tVectorNameChildItem.size(); i++) {
+        ui::ImageView *button = ui::ImageView::create(tVectorNameChildItem[i]);
+        button->setTouchEnabled(true);
+        listView->pushBackCustomItem(button);
+    }
+}
+
+string MapMakingScene::getNameWithNumber(int number)
+{
+    string rName="";
+    switch (number) {
+        case 0:
+            rName ="castle.png";
+            break;
+        case 1:
+            rName ="boxItem.png";
+            break;
+        case 2:
+            rName ="fence.png";
+            break;
+        case 3:
+            rName ="signRight.png";
+            break;
+        case 4:
+            rName ="tochLit.png";
+            break;
+        case 5:
+            rName ="liquidWaterTop_mid.png";
+            break;
+        case 6:
+            rName ="stoneHalf.png";
+            break;
+        default:
+            break;
+    }
+    return rName;
 }
 
 bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
