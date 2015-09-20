@@ -42,22 +42,38 @@ bool MapMakingScene::init()
         }
     }
     
-    mListButonView = ui::ListView::create();
-    mListButonView->setDirection(ui::ScrollView::Direction::VERTICAL);
-    mListButonView->setClippingEnabled(false);
-    mListButonView->setPosition(Vec2(0,origin.y));
-    mListButonView->setContentSize(Size(visibleSize.width/10,visibleSize.height));
-
-    for (auto itemRoot : mMapItem) {
-        ui::ImageView *button = ui::ImageView::create(itemRoot.first);
-        button->setTouchEnabled(true);
-        mListButonView->pushBackCustomItem(button);
+    mListButtonChild = ui::ListView::create();
+    mListButtonChild->setDirection(ui::ScrollView::Direction::VERTICAL);
+    mListButtonChild->setClippingEnabled(false);
+    mListButtonChild->setPosition(Vec2(0,origin.y));
+    mListButtonChild->setContentSize(Size(visibleSize.width/10,visibleSize.height));
+    mListButtonChild->setItemsMargin(10);
+    mListButtonChild->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemChildListEvent, this));
+    mListButtonChild->setBackGroundImageScale9Enabled(true);
+    mListButtonChild->setScrollBarEnabled(false);
+    mListButtonChild->setBackGroundImage("bg_castle.png");
+    mListButtonChild->setVisible(false);
+    addChild(mListButtonChild);
+    
+    
+    
+    mListButonRoot = ui::ListView::create();
+    mListButonRoot->setDirection(ui::ScrollView::Direction::VERTICAL);
+    mListButonRoot->setClippingEnabled(false);
+    mListButonRoot->setPosition(Vec2(0,origin.y));
+    mListButonRoot->setContentSize(Size(visibleSize.width/10,visibleSize.height));
+    for (int i =0 ; i<mMapItem.size() ; i++) {
+        ui::Button *button = ui::Button::create(getNameWithNumber(i));
+        mListButonRoot->pushBackCustomItem(button);
     }
     
-    mListButonView->setItemsMargin(10);
-	mListButonView->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemListViewEvent, this));
-    mListButonView->setScrollBarEnabled(false);
-    addChild(mListButonView);
+    mListButonRoot->setItemsMargin(10);
+	mListButonRoot->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemRootListEvent, this));
+    mListButonRoot->setScrollBarEnabled(false);
+    mListButonRoot->setBackGroundImageScale9Enabled(true);
+    mListButonRoot->setBackGroundImage("bg_castle.png");
+    addChild(mListButonRoot);
+    
     
     mScrollMapView = ui::ScrollView::create();
     mScrollMapView->setDirection(ui::ScrollView::Direction::BOTH);
@@ -110,10 +126,10 @@ bool MapMakingScene::init()
     return true;
 }
 
-void MapMakingScene::selectedItemListViewEvent(Ref *sender, ui::ListView::EventType type)
+void MapMakingScene::selectedItemRootListEvent(Ref *sender, ui::ListView::EventType type)
 {
     ui::ListView *listView = static_cast<ui::ListView *>(sender);
-    std::vector<std::string> tVectorNameChildItem;
+    
     switch (type) {
         case ui::ListView::EventType::ON_SELECTED_ITEM_START:
             
@@ -121,21 +137,15 @@ void MapMakingScene::selectedItemListViewEvent(Ref *sender, ui::ListView::EventT
         case ui::ListView::EventType::ON_SELECTED_ITEM_END:
             if (mCheckRootItem) {
                 CCLOG("go to child item with index root = %ld",listView->getCurSelectedIndex());
-                
+                mListButtonChild->removeAllChildren();
                tVectorNameChildItem = mMapItem.find(MapMakingScene::getNameWithNumber((int)listView->getCurSelectedIndex()))->second;
-                
+                for (int i = 0 ; i < tVectorNameChildItem.size(); i++) {
+                    ui::Button *button = ui::Button::create(tVectorNameChildItem[i]);
+                    mListButtonChild->pushBackCustomItem(button);
+                }
+                listView->setVisible(false);
+                mListButtonChild->setVisible(true);
                 mCheckRootItem = false;
-            }
-            else
-            {
-                if (listView->getCurSelectedIndex() != 0) {
-                    CCLOG("index Child = %ld",listView->getCurSelectedIndex());
-                }
-                else
-                {
-                    mCheckRootItem = true;
-                    CCLOG("Return Root item");
-                }
             }
             break;
             
@@ -143,14 +153,36 @@ void MapMakingScene::selectedItemListViewEvent(Ref *sender, ui::ListView::EventT
             break;
     }
     
-    listView->removeAllChildren();
-    for (int i = 0 ; i < tVectorNameChildItem.size(); i++) {
-        ui::ImageView *button = ui::ImageView::create(tVectorNameChildItem[i]);
-        button->setTouchEnabled(true);
-        listView->pushBackCustomItem(button);
-    }
+   
 }
 
+void MapMakingScene::selectedItemChildListEvent(Ref *sender, ui::ListView::EventType type)
+{
+    ui::ListView *listView = static_cast<ui::ListView *>(sender);
+    switch (type) {
+        case ui::ListView::EventType::ON_SELECTED_ITEM_START:
+            
+            break;
+        case ui::ListView::EventType::ON_SELECTED_ITEM_END:
+          
+            if (listView->getCurSelectedIndex() != 0) {
+                CCLOG("index Child = %ld",listView->getCurSelectedIndex());
+                mCurrentNameChild = tVectorNameChildItem[(int)listView->getCurSelectedIndex()];
+            }
+            else
+            {
+                mCheckRootItem = true;
+                CCLOG("Return Root item");
+                listView->setVisible(false);
+                mListButonRoot->setVisible(true);
+            }
+            
+            break;
+            
+        default:
+            break;
+    }
+}
 string MapMakingScene::getNameWithNumber(int number)
 {
     string rName="";
@@ -192,9 +224,9 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
             int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
             int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
             CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-            auto tSprite = Sprite::create("HelloWorld.png");
+            auto tSprite = Sprite::create(mCurrentNameChild);
             tSprite->setAnchorPoint(Vec2(0,0));
-            tSprite->setScale(0.3);
+            tSprite->setScale(70/tSprite->getBoundingBox().size.width);
             tSprite->setPosition(numberWidth*tile_size, numberHeight*tile_size);
             mScrollMapView->addChild(tSprite);
         }
@@ -212,9 +244,9 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
             int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
             int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
             CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-            auto tSprite = Sprite::create("HelloWorld.png");
+            auto tSprite = Sprite::create(mCurrentNameChild);
             tSprite->setAnchorPoint(Vec2(0,0));
-            tSprite->setScale(0.3);
+            tSprite->setScale(70/tSprite->getBoundingBox().size.width);
             tSprite->setPosition(numberWidth*tile_size, numberHeight*tile_size);
             mScrollMapView->addChild(tSprite);
         }
