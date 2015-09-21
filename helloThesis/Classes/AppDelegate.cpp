@@ -77,6 +77,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	std::vector<std::string> searchPaths;
 
 	searchPaths.push_back("language");
+	searchPaths.push_back("image/small/background");
 
 	fileUtils->setSearchPaths(searchPaths);
 	DBContext::init();

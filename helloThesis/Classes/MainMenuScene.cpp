@@ -31,11 +31,10 @@ bool MainMenuScene::init()
 
 	std::string s = "abdf \t fwef";
 	Utility::splitString(s, "\t");
-	//TTFConfig config_font96("Marker Felt.ttf", 96);
-	//Label* startGame = Label::createWithTTF(config_font96, "Start game!");
-	//startGame->setPosition(Vec2(1,1));
-	//this->addChild(startGame);
 
+	std::vector<string*>* a = new std::vector<string*>();
+	string t[4] = { "signExit.png", "st.png", "signExit.png", "signExit.png" };
+	a->push_back(t);
 	MenuItemFont* playGame = MenuItemFont::create(Translator::inst()->translate(START_GAME_BUTTON), CC_CALLBACK_1(MainMenuScene::menuPlayCallback, this));
 	playGame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2));
 
@@ -61,8 +60,8 @@ void MainMenuScene::menuPlayCallback(cocos2d::Ref* pSender){
 }
 
 void MainMenuScene::menuMakeMapCallback(cocos2d::Ref* pSender){
-	auto mapMakingScene = MapMakingScene::createScene();
-	Director::getInstance()->replaceScene(mapMakingScene);
+	//auto mapMakingScene = MapMakingScene::createScene();
+	//Director::getInstance()->replaceScene(mapMakingScene);
 }
 
 void MainMenuScene::menuSettingCallback(cocos2d::Ref* pSender){
