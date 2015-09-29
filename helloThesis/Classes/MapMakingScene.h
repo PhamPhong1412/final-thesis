@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include "ui/CocosGUI.h"
 #include <map>
+#include <list>
 
 using namespace cocos2d::ui;
 using namespace std;
@@ -19,7 +20,6 @@ private:
     float mScaleValue;
     int mCurrentRootItem;
     string mCurrentNameChild;
-    string mCurrentNameRoot;
 public:
     
     std::map< std::string, std::vector<std::string> > mMapItem {
@@ -31,7 +31,7 @@ public:
         {"liquidWaterTop_mid.png", {"signExit.png", "liquidWaterTop_mid.png","liquidWaterTop.png","liquidWater.png","liquidLavaTop.png","liquidLavaTop_mid.png","liquidLava.png"}},
         {"stoneHalf.png", {"signExit.png", "stoneHalf.png","stoneHalfLeft.png","stoneHalfMid.png","stoneHalfRight.png","stoneHillLeft2.png","stoneHillRight2.png","stoneMid.png"}}
     };
-   
+    
     cocos2d::Size visibleSize;
     static cocos2d::Scene* createScene();
     
@@ -48,8 +48,9 @@ public:
     void selectedItemRootListEvent(Ref *sender, ui::ListView::EventType type);
     void selectedItemChildListEvent(Ref *sender, ui::ListView::EventType type);
     string getNameWithNumber(int number);
-    void zoomOut(cocos2d::Ref* pSender);
-    void zoomIn(cocos2d::Ref *pSender);
+    
+    void startRemove(cocos2d::Ref* pSender);
+    void startInsert(cocos2d::Ref *pSender);
     CREATE_FUNC(MapMakingScene);
 };
 

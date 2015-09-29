@@ -1,5 +1,12 @@
 #include "MapMakingScene.h"
+enum States
+{
+    Move,
+    Remove,
+    Insert
+};
 
+States mCurrentState;
 Scene* MapMakingScene::createScene()
 {
     // 'scene' is an autorelease object
@@ -24,13 +31,13 @@ bool MapMakingScene::init()
     {
         return false;
     }
-    mCurrentNameRoot = "";
+    
+    mCurrentState = Move;
     mCurrentNameChild = "";
     mCheckRootItem = true;
     
     visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
-    //SETUP SCROLL CONTAINER
     mScaleValue = 1.0f;
     
     tile_size = 70;
@@ -42,6 +49,7 @@ bool MapMakingScene::init()
         }
     }
     
+    // SETUP LIST VIEW CHILD
     mListButtonChild = ui::ListView::create();
     mListButtonChild->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButtonChild->setClippingEnabled(false);
@@ -56,7 +64,7 @@ bool MapMakingScene::init()
     addChild(mListButtonChild);
     
     
-    
+    // SETUP LISTVIEW ROOT
     mListButonRoot = ui::ListView::create();
     mListButonRoot->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButonRoot->setClippingEnabled(false);
@@ -74,7 +82,7 @@ bool MapMakingScene::init()
     mListButonRoot->setBackGroundImage("bg_castle.png");
     addChild(mListButonRoot);
     
-    
+    // SETUP SCROLL VIEW
     mScrollMapView = ui::ScrollView::create();
     mScrollMapView->setDirection(ui::ScrollView::Direction::BOTH);
     mScrollMapView->setContentSize(Size(visibleSize.width + origin.x, visibleSize.height + origin.y));
@@ -101,19 +109,29 @@ bool MapMakingScene::init()
     
     mScrollMapView->addChild(draw_node, -1);
     mScrollMapView->setSwallowTouches(false);
-   
     
-    auto settingItem = MenuItemImage::create(
-                                             "box.png",
-                                             "boxItem.png",
-                                             CC_CALLBACK_1(MapMakingScene::zoomIn, this));
     
-    Vec2 settingButtonPos = Vec2(Vec2(origin.x +visibleSize.width,origin.y + visibleSize.height - 30));
-    settingItem->setAnchorPoint(Vec2(1,1));
-    settingItem->setPosition(settingButtonPos);
-
+    // Button Remove, Insert
+    auto mRemoveOnButton = MenuItemImage::create("boxCoinAlt.png","boxCoin_disabled.png");
+    auto mRemoveOffButton = MenuItemImage::create("boxCoin_disabled.png","boxCoinAlt.png");
+    Vec2 tRemoveButtonPos = Vec2(Vec2(origin.x +visibleSize.width,origin.y + visibleSize.height - 120));
+    
+    auto tRemoveButton = MenuItemToggle::createWithCallback(CC_CALLBACK_1(MapMakingScene::startRemove, this), mRemoveOffButton, mRemoveOnButton, NULL);
+    tRemoveButton->setAnchorPoint(Vec2(1,1));
+    tRemoveButton->setPosition(tRemoveButtonPos);
+    
+    auto mInsertOnButton = MenuItemImage::create("box.png","boxItem.png");
+    auto mInsertOffButton = MenuItemImage::create("boxItem.png","box.png");
+    Vec2 tInsertButtonPos = Vec2(Vec2(origin.x +visibleSize.width,origin.y + visibleSize.height - 30));
+    
+    auto tInsertButton = MenuItemToggle::createWithCallback(CC_CALLBACK_1(MapMakingScene::startInsert, this), mInsertOffButton, mInsertOnButton, NULL);
+    tInsertButton->setAnchorPoint(Vec2(1,1));
+    tInsertButton->setPosition(tInsertButtonPos);
+    
     cocos2d::Vector<MenuItem*> items;
-    items.pushBack(settingItem);
+    items.pushBack(tRemoveButton);
+    items.pushBack(tInsertButton);
+    
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
@@ -219,17 +237,50 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
     if (!mScrollMapView->isTouchEnabled()) {
         
         Vec2 origin = Director::getInstance()->getVisibleOrigin();
-        if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size >= 0)
-        {
-            int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
-            int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
-            CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-            auto tSprite = Sprite::create(mCurrentNameChild);
-            tSprite->setAnchorPoint(Vec2(0,0));
-            tSprite->setScale(70/tSprite->getBoundingBox().size.width);
-            tSprite->setPosition(numberWidth*tile_size, numberHeight*tile_size);
-            mScrollMapView->addChild(tSprite);
+        
+        switch (mCurrentState) {
+            case Insert:
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size >= 0)
+                {
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
+                    int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
+                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    
+                    
+                    string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
+                    auto temp = mScrollMapView->getChildByName(tName);
+                    if (temp!=NULL) {
+                        mScrollMapView->removeChild(temp);
+                    }
+                    auto tSprite = Sprite::create(mCurrentNameChild);
+                    tSprite->setName(tName);
+                    tSprite->setAnchorPoint(Vec2(0,0));
+                    tSprite->setScale(70/tSprite->getBoundingBox().size.width);
+                    tSprite->setPosition(numberWidth*tile_size, numberHeight*tile_size);
+                    mScrollMapView->addChild(tSprite);
+                }
+                break;
+            case Remove:
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size >= 0)
+                {
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
+                    int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
+                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
+                    auto tSprite = mScrollMapView->getChildByName(tName);
+                    if (tSprite!=NULL){
+                        mScrollMapView->removeChild(tSprite);
+                    }
+                    
+                }
+                break;
+            case Move:
+                break;
+            default:
+                break;
         }
+        
+
     }
 
     return true;
@@ -238,30 +289,64 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
 void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
 {
     if (!mScrollMapView->isTouchEnabled()) {
-        Vec2 origin = Director::getInstance()->getVisibleOrigin();
-        if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size >= 0)
-        {
-            int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
-            int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
-            CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-            auto tSprite = Sprite::create(mCurrentNameChild);
-            tSprite->setAnchorPoint(Vec2(0,0));
-            tSprite->setScale(70/tSprite->getBoundingBox().size.width);
-            tSprite->setPosition(numberWidth*tile_size, numberHeight*tile_size);
-            mScrollMapView->addChild(tSprite);
+       Vec2 origin = Director::getInstance()->getVisibleOrigin();
+        
+        switch (mCurrentState) {
+            case Insert:
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size >= 0)
+                {
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
+                    int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
+                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
+                    auto temp = mScrollMapView->getChildByName(tName);
+                    if (temp!=NULL) {
+                        mScrollMapView->removeChild(temp);
+                    }
+                    
+                    auto tSprite = Sprite::create(mCurrentNameChild);
+                    tSprite->setName(tName);
+                    tSprite->setAnchorPoint(Vec2(0,0));
+                    tSprite->setScale(70/tSprite->getBoundingBox().size.width);
+                    tSprite->setPosition(numberWidth*tile_size, numberHeight*tile_size);
+                    mScrollMapView->addChild(tSprite);
+                }
+                break;
+            case Remove:
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size >= 0)
+                {
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
+                    int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
+                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
+                    auto tSprite = mScrollMapView->getChildByName(tName);
+                    if (tSprite!=NULL){
+                        mScrollMapView->removeChild(tSprite);
+                    }
+                    
+                }
+                break;
+            case Move:
+                break;
+            default:
+                break;
         }
+        
     }
 }
 
-void MapMakingScene::zoomIn(cocos2d::Ref *pSender)
+void MapMakingScene::startInsert(cocos2d::Ref *pSender)
 {
+    mCurrentState = Insert;
     mScrollMapView->setTouchEnabled(!mScrollMapView->isTouchEnabled());
+    CCLOG("Insert");
 }
 
-void MapMakingScene::zoomOut(cocos2d::Ref *pSender)
+void MapMakingScene::startRemove(cocos2d::Ref *pSender)
 {
-    //mScaleValue += 0.1f;
-    //map->setScale(mScaleValue);
+    CCLOG("Remove");
+    mCurrentState = Remove;
+    mScrollMapView->setTouchEnabled(!mScrollMapView->isTouchEnabled());
 }
 
 
