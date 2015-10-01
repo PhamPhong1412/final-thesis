@@ -57,8 +57,8 @@ void MainMenuScene::menuPlayCallback(cocos2d::Ref* pSender){
 }
 
 void MainMenuScene::menuMakeMapCallback(cocos2d::Ref* pSender){
-	//auto mapMakingScene = MapMakingScene::createScene();
-	//Director::getInstance()->replaceScene(mapMakingScene);
+	auto mapMakingScene = MapMakingScene::createScene();
+	Director::getInstance()->replaceScene(mapMakingScene);
 }
 
 void MainMenuScene::menuSettingCallback(cocos2d::Ref* pSender){
