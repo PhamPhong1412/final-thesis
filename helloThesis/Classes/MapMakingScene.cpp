@@ -33,22 +33,38 @@ bool MapMakingScene::init()
     }
     
     mCurrentState = Move;
-    mCurrentNameChild = "";
+    mCurrentNameChild = "boxCoinAlt.png";
     mCheckRootItem = true;
     
     visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     mScaleValue = 1.0f;
     
+    vector<string> tTemp0 = {"signExit.png", "castle.png","castleCenter.png","castleCliffLeft.png","castleCliffLeftAlt.png","castleCliffRight.png","castleCliffRightAlt.png","castleHalf.png"};
+    vector<string> tTemp1 = {"signExit.png", "boxItem.png","boxCoin_disabled.png","boxCoin.png","boxCoinAlt.png","boxEmpty.png","boxExplosive.png","boxWarning.png","lock_blue.png","lock_green.png","lock_red.png","lock_yellow.png"};
+    vector<string> tTemp2 = {"signExit.png", "fence.png","door_closedMid.png","door_closedTop.png","fenceBroken.png","door_openTop.png","door_openMid.png","ladder_top.png","ladder_mid.png"};
+    vector<string> tTemp3 = {"signExit.png", "signRight.png","signLeft.png","signRight.png","sign.png"};
+    vector<string> tTemp4 = {"signExit.png", "tochLit.png","torch.png","tochLit2.png","window.png"};
+    vector<string> tTemp5 = {"signExit.png", "liquidWaterTop_mid.png","liquidWaterTop.png","liquidWater.png","liquidLavaTop.png","liquidLavaTop_mid.png","liquidLava.png"};
+    vector<string> tTemp6 = {"signExit.png", "stoneHalf.png","stoneHalfLeft.png","stoneHalfMid.png","stoneHalfRight.png","stoneHillLeft2.png","stoneHillRight2.png","stoneMid.png"};
+    
+    mMapNameItem.push_back(tTemp0);
+    mMapNameItem.push_back(tTemp1);
+    mMapNameItem.push_back(tTemp2);
+    mMapNameItem.push_back(tTemp3);
+    mMapNameItem.push_back(tTemp4);
+    mMapNameItem.push_back(tTemp5);
+    mMapNameItem.push_back(tTemp6);
+    
     tile_size = 70;
-    auto numberTileWidth = 40;
+    auto numberTileWidth = 200;
     auto numberTileHeight = 60;
     for (int i = 0; i < numberTileWidth; i++) {
+        mVector2Chieu.push_back(vector<string>());
         for (int j = 0 ; j < numberTileHeight; j++) {
-            //mMang2Chieu[i][j]="1";
+            mVector2Chieu[i].push_back("0");
         }
     }
-    
     // SETUP LIST VIEW CHILD
     mListButtonChild = ui::ListView::create();
     mListButtonChild->setDirection(ui::ScrollView::Direction::VERTICAL);
@@ -70,7 +86,7 @@ bool MapMakingScene::init()
     mListButonRoot->setClippingEnabled(false);
     mListButonRoot->setPosition(Vec2(0,origin.y));
     mListButonRoot->setContentSize(Size(visibleSize.width/10,visibleSize.height));
-    for (int i =0 ; i<mMapItem.size() ; i++) {
+    for (int i =0 ; i<mMapNameItem.size() ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
         mListButonRoot->pushBackCustomItem(button);
     }
@@ -88,7 +104,7 @@ bool MapMakingScene::init()
     mScrollMapView->setContentSize(Size(visibleSize.width + origin.x, visibleSize.height + origin.y));
     mScrollMapView->setInnerContainerSize(Size(tile_size*numberTileWidth + visibleSize.width/10 + origin.x, tile_size*numberTileHeight + origin.y));
     mScrollMapView->setPosition(Vec2(visibleSize.width/10,origin.y));
-    mScrollMapView->setScrollBarEnabled(false);
+    mScrollMapView->setScrollBarEnabled(true);
     mScrollMapView->setBackGroundImage("bg.png");
     mScrollMapView->setBackGroundImageScale9Enabled(true);
     addChild(mScrollMapView);
@@ -156,7 +172,7 @@ void MapMakingScene::selectedItemRootListEvent(Ref *sender, ui::ListView::EventT
             if (mCheckRootItem) {
                 CCLOG("go to child item with index root = %ld",listView->getCurSelectedIndex());
                 mListButtonChild->removeAllChildren();
-               tVectorNameChildItem = mMapItem.find(MapMakingScene::getNameWithNumber((int)listView->getCurSelectedIndex()))->second;
+                tVectorNameChildItem = mMapNameItem[(int)listView->getCurSelectedIndex()];
                 for (int i = 0 ; i < tVectorNameChildItem.size(); i++) {
                     ui::Button *button = ui::Button::create(tVectorNameChildItem[i]);
                     mListButtonChild->pushBackCustomItem(button);
@@ -244,7 +260,7 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                 {
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
-                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     
                     
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
@@ -265,7 +281,7 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                 {
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
-                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto tSprite = mScrollMapView->getChildByName(tName);
                     if (tSprite!=NULL){
@@ -297,7 +313,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                 {
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
-                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto temp = mScrollMapView->getChildByName(tName);
                     if (temp!=NULL) {
@@ -317,7 +333,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                 {
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - visibleSize.width/10)/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
-                    CCLOG("Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+                    CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto tSprite = mScrollMapView->getChildByName(tName);
                     if (tSprite!=NULL){
