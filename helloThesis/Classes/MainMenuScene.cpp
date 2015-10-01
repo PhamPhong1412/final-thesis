@@ -32,9 +32,6 @@ bool MainMenuScene::init()
 	std::string s = "abdf \t fwef";
 	Utility::splitString(s, "\t");
 
-	std::vector<string*>* a = new std::vector<string*>();
-	string t[4] = { "signExit.png", "st.png", "signExit.png", "signExit.png" };
-	a->push_back(t);
 	MenuItemFont* playGame = MenuItemFont::create(Translator::inst()->translate(START_GAME_BUTTON), CC_CALLBACK_1(MainMenuScene::menuPlayCallback, this));
 	playGame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2));
 

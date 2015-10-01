@@ -35,6 +35,10 @@ bool MainGameScene::init()
 	backgroundLayder->init(gameMap->backgroundName, gameMap->background);
 	this->addChild(backgroundLayder);
 
+	auto gamePlayLayer = GamePlayLayer::create();
+	//gamePlayLayer->init();
+	this->addChild(gamePlayLayer);
+
 	return true;
 }
 

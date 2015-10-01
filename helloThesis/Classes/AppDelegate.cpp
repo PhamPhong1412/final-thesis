@@ -78,6 +78,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	searchPaths.push_back("language");
 	searchPaths.push_back("image/small/background");
+	searchPaths.push_back("cocosStudio");
 
 	fileUtils->setSearchPaths(searchPaths);
 	DBContext::init();

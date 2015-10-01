@@ -1,15 +1,9 @@
 #ifndef _MAIN_GAME_SCENE_H_
 #define _MAIN_GAME_SCENE_H_
 
-#if ENABLE_PHYSICS_BOX2D_DETECT
-#include "../../Box2DTestBed/GLES-Render.h"
-#include "Box2D/Box2D.h"
-#elif ENABLE_PHYSICS_CHIPMUNK_DETECT
-#include "chipmunk.h"
-#endif
-
 #include "cocos2d.h"
 #include "GameBackgroundLayer.h"
+#include "GamePlayLayer.h"
 #include "GameMap.h"
 USING_NS_CC;
 

@@ -25,7 +25,6 @@ bool GameBackgroundLayer::init(std::string backgroundName, std::vector<std::stri
 				Sprite* object = Sprite::create(backgroundObjects->at(i)[j] + ".png");
 				object->setPosition(Vec2(j*TILE_SIZE + TILE_SIZE / 2, i*TILE_SIZE + TILE_SIZE / 2));
 				this->addChild(object);
-
 			}
 
 		}

@@ -52,6 +52,15 @@
     <Filter Include="src\GameMap">
       <UniqueIdentifier>{d9a81e2a-0530-47dd-9e03-fef7b5fd11b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\box2d">
+      <UniqueIdentifier>{188c30df-dead-40a4-83b8-932f6a648f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject">
+      <UniqueIdentifier>{9d176073-072d-473a-a399-7fdcadaa5635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Runner">
+      <UniqueIdentifier>{80302e3a-c7c0-49dd-bb07-4382e4ee9126}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -87,11 +96,38 @@
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
       <Filter>src\PlayGame\main game\layers\background</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GameObjectLayer.cpp">
-      <Filter>src\PlayGame\main game\layers\object</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameMap.cpp">
       <Filter>src\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Global.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Integration.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Layer.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Node.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2PhysicsBody.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GLES-Render.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Runner.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AnimatedSprite.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Global.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GamePlayLayer.cpp">
+      <Filter>src\PlayGame\main game\layers\object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -137,7 +173,34 @@
     <ClInclude Include="..\Classes\GameConfig.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GameObjectLayer.h">
+    <ClInclude Include="..\Classes\b2Global.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Integration.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Layer.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Node.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2PhysicsBody.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GLES-Render.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Runner.h">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AnimatedSprite.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Global.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GamePlayLayer.h">
       <Filter>src\PlayGame\main game\layers\object</Filter>
     </ClInclude>
   </ItemGroup>
