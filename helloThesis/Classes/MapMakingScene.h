@@ -19,7 +19,10 @@ private:
     int tile_size;
     float mScaleValue;
     int mCurrentRootItem;
+    int numberTileWidth;
+    int numberTileHeight;
     string mCurrentNameChild;
+    string mMapSave;
 public:
     
     cocos2d::Size visibleSize;
@@ -41,6 +44,7 @@ public:
     void selectedItemChildListEvent(Ref *sender, ui::ListView::EventType type);
     string getNameWithNumber(int number);
     
+    void saveMap(cocos2d::Ref* pSender);
     void startRemove(cocos2d::Ref* pSender);
     void startInsert(cocos2d::Ref *pSender);
     CREATE_FUNC(MapMakingScene);
