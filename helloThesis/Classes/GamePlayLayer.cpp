@@ -6,7 +6,7 @@ bool GamePlayLayer::init()
 {
 	if (!b2Layer::init())
 	{
-		return false;
+//		return false;
 	}
 	
 	Size visibleSize = Director::getInstance()->getVisibleSize();
@@ -39,7 +39,7 @@ void GamePlayLayer::update(float delta){
 	if (tmp){
 		this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(10.0f, 0));
 	}
-	Director::getInstance()->setp
+//	Director::getInstance()->setp
 	//mRunner->ve
 }
 
@@ -117,8 +117,8 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 
 #pragma region touch even
 void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
-	//tmp = !tmp;
-	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 100));
+	tmp = !tmp;
+//	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 100));
 }
 
 void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)

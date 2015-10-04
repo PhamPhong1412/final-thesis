@@ -2,7 +2,7 @@
 #define __B2_PHYSICS_BODY_H__
 
 #include "cocos2d.h"
-#include "Box2D/Box2D.h"
+#include <external/Box2D/Box2D.h>
 #include "Global.h"
 
 USING_NS_CC;
@@ -32,7 +32,7 @@ private:
 	void setShapeAndMaterial(b2Shape* shape, const b2PhysicsMaterial &material);
 protected:
 	//init physic shape body
-	void initBox(const Size &size, const b2PhysicsMaterial &material);
+    void initBox(const cocos2d::Size &size, const b2PhysicsMaterial &material);
 	void initChain(b2Vec2 * vertices, int32 count, const b2PhysicsMaterial &material);
 	void initChain2(const b2Vec2 * vertices, int32 count, const b2PhysicsMaterial &material);
 	void initPolygon(b2Vec2 * vertices, int32 count, const b2PhysicsMaterial &material);
@@ -47,7 +47,7 @@ public:
 	~b2PhysicsBody();
 
 	//create a box Body
-	static b2PhysicsBody* createBox(const Size &size, const b2PhysicsMaterial &material);
+	static b2PhysicsBody* createBox(const cocos2d::Size &size, const b2PhysicsMaterial &material);
 	//Create a chain Body, using normal Position
 	static b2PhysicsBody* createChain(b2Vec2 * vertices, int32 count, const b2PhysicsMaterial &material);
 	//create a chain Body, using b2 position(normal position / PTM_RATIO)

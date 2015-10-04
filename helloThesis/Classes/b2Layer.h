@@ -2,7 +2,15 @@
 #define __PHYSICS_LAYER_H__
 
 #include "cocos2d.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
+#include <external/Box2D/Box2D.h>
+
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+
 #include "Box2D\Box2D.h"
+
+#endif
 #include "GLES-Render.h"
 #include "Global.h"
 #include "AnimatedSprite.h"
