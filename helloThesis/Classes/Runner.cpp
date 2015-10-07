@@ -6,6 +6,7 @@ bool Runner::init(){
 	mAnimation->play("walk", true);
 	mBody->runAction(mAnimation);
 	mBody->setPosition(0, 0);
+	mBody->setTag(TAG_OBJECT_PLAYER_BODY);
 	this->addChild(mBody);
 
 	//int num = 3;
@@ -22,20 +23,11 @@ bool Runner::init(){
 	b2PhysicBody->setBodyType(b2_dynamicBody);
 	this->setb2PhysicsBody(b2PhysicBody);
 
-	auto contactListener = EventListenerPhysicsContact::create();
-	contactListener->onContactBegin = CC_CALLBACK_1(Runner::onContactBegin, this);
-	this->setTag(1);
-	
+	this->setTag(TAG_OBJECT_PLAYER);
 
 	return true;
 }
 
-bool Runner::onContactBegin(PhysicsContact& contact){
-	auto a = contact.getShapeA()->getBody()->getNode();
-	auto b = contact.getShapeB()->getBody()->getNode();
-	int aTag = a->getTag();
-	int bTag = b->getTag();
-	return true;
+void Runner::collideGround(Node* groundNode){
+
 }
-
-

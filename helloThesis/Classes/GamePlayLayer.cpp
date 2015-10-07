@@ -16,10 +16,10 @@ bool GamePlayLayer::init()
 	//mRunner->setPosition(200, 500);
 	this->addChild(mRunner);
 	mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 0));
-	initTiles();
-	//createTiles(100, 100);
-	//createTiles(100, 300);
-	createSlope(500, true);
+	//initTiles();
+	createTiles(100, 100);
+	createTiles(100, 300);
+	//createSlope(500, true);
 
 	auto onTouchListener = EventListenerTouchAllAtOnce::create();
 	onTouchListener->onTouchesBegan = CC_CALLBACK_2(GamePlayLayer::onTouchesBegan, this);
@@ -29,6 +29,9 @@ bool GamePlayLayer::init()
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(onTouchListener, this);
 
 	this->scheduleUpdate();
+
+	Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
+	this->runAction(cocos2d::Follow::create(mRunner, Rect::ZERO));
 
 	return true;
 }
@@ -72,6 +75,7 @@ void GamePlayLayer::initTiles(){
 void GamePlayLayer::createTiles(float xLoc, float yLoc){
 	Sprite* sprite = Sprite::create("castle.png");
 	b2Node* b2Tiles = b2Node::create();
+	b2Tiles->setTag(TAG_OBJECT_GROUND);
 	b2Tiles->addChild(sprite);
 
 	b2Vec2 verts[] = {
@@ -96,7 +100,9 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 		if (!direction){
 			sprite->setFlippedX(true);
 		}
-		b2Node* b2Tiles = b2Node::create();
+		b2Node* b2Tiles = new b2Node();
+		b2Tiles->init();
+		b2Tiles->setTag(TAG_OBJECT_GROUND);
 		b2Tiles->addChild(sprite);
 		int num = 2;
 		b2Vec2 verts[] = {
@@ -115,10 +121,10 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 	
 }
 
-#pragma region touch even
+#pragma region touch event
 void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
-	tmp = !tmp;
-//	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 100));
+	//tmp = !tmp;
+	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 100));
 }
 
 void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)
@@ -136,4 +142,64 @@ void GamePlayLayer::onTouchesCancelled(const std::vector<Touch*>& touches, cocos
 	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(20.0f, 0));
 
 }
+#pragma endregion
+
+#pragma region collision and response
+
+void GamePlayLayer::BeginContact(b2Contact* contact)
+{
+	auto nodeA = (Node*)contact->GetFixtureA()->GetBody()->GetUserData();
+	auto nodeB = (Node*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+	if (nodeA && nodeB)
+	{
+		int aTag = nodeA->getTag();
+		int bTag = nodeB->getTag();
+
+		if (aTag == TAG_OBJECT_PLAYER)
+		{
+			switch (bTag)
+			{
+			case TAG_OBJECT_GROUND:{
+									   this->mRunner->collideGround(nodeB);
+									   break;
+			}
+			default:
+				break;
+			}
+		}
+		else
+		{
+			if (bTag == TAG_OBJECT_PLAYER)
+			{
+				switch (aTag)
+				{
+				case TAG_OBJECT_GROUND:{
+										   this->mRunner->collideGround(nodeA);
+										   break;
+
+				}
+				default:
+					break;
+				}
+			}
+		}
+	}
+}
+
+
+void GamePlayLayer::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
+{
+	//return true;
+}
+
+void GamePlayLayer::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
+{
+}
+
+void GamePlayLayer::EndContact(b2Contact* contact)
+{
+
+}
+
 #pragma endregion

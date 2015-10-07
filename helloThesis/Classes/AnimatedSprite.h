@@ -2,7 +2,7 @@
 #define __B2_ANIMATED_SPRITE_H__
 
 #include "cocos2d.h"
-#include "Global.h"
+#include "GameConfig.h"
 #include "b2PhysicsBody.h"
 #include "b2Integration.h"
 

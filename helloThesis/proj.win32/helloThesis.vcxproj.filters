@@ -61,6 +61,9 @@
     <Filter Include="src\GameObject\Runner">
       <UniqueIdentifier>{80302e3a-c7c0-49dd-bb07-4382e4ee9126}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameObject\NewFilter1">
+      <UniqueIdentifier>{0f709c0d-d74c-4752-a86a-dba92bc57454}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -121,9 +124,6 @@
       <Filter>src\GameObject\Runner</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AnimatedSprite.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\Global.cpp">
       <Filter>src\box2d</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamePlayLayer.cpp">
@@ -198,9 +198,6 @@
       <Filter>src\GameObject\Runner</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AnimatedSprite.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\Global.h">
       <Filter>src\box2d</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamePlayLayer.h">

@@ -5,13 +5,11 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 
 #include <external/Box2D/Box2D.h>
-
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-
 #include "Box2D\Box2D.h"
-
 #endif
-#include "Global.h"
+
+#include "GameConfig.h"
 
 USING_NS_CC;
 
