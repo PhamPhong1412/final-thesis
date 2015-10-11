@@ -41,12 +41,12 @@ bool LoginScene::init()
 }
 
 void LoginScene::menuPlayCallback(cocos2d::Ref* pSender){
-	cocos2d::network::HttpRequest* request = new cocos2d::network::HttpRequest();
-	request->setUrl("127.0.0.1");
-	request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
-	//request->setResponseCallback(CC_CALLBACK_0(cocos2d::network::HttpResponse::getHttpRequest, this));
-	request->setTag("loadGame");
-	cocos2d::network::HttpClient::getInstance()->send(request);
-	request->release();
+	//cocos2d::network::HttpRequest* request = new cocos2d::network::HttpRequest();
+	//request->setUrl("127.0.0.1");
+	//request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
+	////request->setResponseCallback(CC_CALLBACK_0(cocos2d::network::HttpResponse::getHttpRequest, this));
+	//request->setTag("loadGame");
+	//cocos2d::network::HttpClient::getInstance()->send(request);cd
+	//request->release();
 }
 

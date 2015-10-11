@@ -32,7 +32,7 @@ bool MapMakingScene::init()
     {
         return false;
     }
-    
+	dkm();
     mCurrentState = Move;
     mCurrentNameChild = "1,1.png";
     mMapSave = "";
@@ -432,4 +432,6 @@ void MapMakingScene::startRemove(cocos2d::Ref *pSender)
     mScrollMapView->setTouchEnabled(!mScrollMapView->isTouchEnabled());
 }
 
-
+void dkm(){
+	CCLog("fdsf");
+}

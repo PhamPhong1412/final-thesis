@@ -1,5 +1,4 @@
 #include "b2PhysicsBody.h"
-#include "Global.h"
 
 b2PhysicsBody::b2PhysicsBody()
 {

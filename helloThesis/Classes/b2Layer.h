@@ -12,7 +12,7 @@
 
 #endif
 #include "GLES-Render.h"
-#include "Global.h"
+#include "GameConfig.h"
 #include "AnimatedSprite.h"
 #include "b2Integration.h"
 #include <unordered_set>
