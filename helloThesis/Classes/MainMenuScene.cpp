@@ -52,8 +52,10 @@ bool MainMenuScene::init()
 }
 
 void MainMenuScene::menuPlayCallback(cocos2d::Ref* pSender){
-	auto gameScene = MainGameScene::createScene();
-	Director::getInstance()->replaceScene(gameScene);
+	//auto gameScene = MainGameScene::createScene();
+	//Director::getInstance()->replaceScene(gameScene);
+	auto loginScene = LoginScene::createScene();
+	Director::getInstance()->replaceScene(loginScene);
 }
 
 void MainMenuScene::menuMakeMapCallback(cocos2d::Ref* pSender){

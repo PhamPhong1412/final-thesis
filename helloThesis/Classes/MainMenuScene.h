@@ -7,6 +7,7 @@
 #include "MapMakingScene.h"
 #include "Utility.h"
 #include "Translator.h"
+#include "LoginScene.h"
 USING_NS_CC;
 
 class MainMenuScene : public Layer

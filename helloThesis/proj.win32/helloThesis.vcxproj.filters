@@ -10,21 +10,6 @@
     <Filter Include="src">
       <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Menu">
-      <UniqueIdentifier>{cbe50f88-35b5-48ad-8c16-df40cbdf5398}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Menu\StartMenu">
-      <UniqueIdentifier>{27a6fb9a-97a0-4f9f-99a9-fdae3fad52b8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\PlayGame">
-      <UniqueIdentifier>{de49f96d-7b03-47c7-a3d2-2a73dc30f756}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\MapMaking">
-      <UniqueIdentifier>{b4039de4-4dd1-4d56-b3bc-02028be20c8f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Sound">
-      <UniqueIdentifier>{08345f24-4f9e-4242-802f-c266c5b19fe6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Util">
       <UniqueIdentifier>{cf9329dc-c826-447c-a4af-efef954303cb}</UniqueIdentifier>
     </Filter>
@@ -36,18 +21,6 @@
     </Filter>
     <Filter Include="src\Util\database">
       <UniqueIdentifier>{7471202f-db09-48c5-89a7-ee49d370e76c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\PlayGame\main game">
-      <UniqueIdentifier>{3a6cb97a-91ff-4c6e-8bc3-64d60f54c8a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\PlayGame\main game\layers">
-      <UniqueIdentifier>{8b964ded-1df2-4124-94c6-37a97c15b373}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\PlayGame\main game\layers\background">
-      <UniqueIdentifier>{f83844cd-acdf-4d33-98a2-c033f1c135cf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\PlayGame\main game\layers\object">
-      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameMap">
       <UniqueIdentifier>{d9a81e2a-0530-47dd-9e03-fef7b5fd11b3}</UniqueIdentifier>
@@ -64,6 +37,39 @@
     <Filter Include="src\GameObject\NewFilter1">
       <UniqueIdentifier>{0f709c0d-d74c-4752-a86a-dba92bc57454}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scenes">
+      <UniqueIdentifier>{2a139b42-f07a-4682-bb58-90bef3bff881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame">
+      <UniqueIdentifier>{de49f96d-7b03-47c7-a3d2-2a73dc30f756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game">
+      <UniqueIdentifier>{3a6cb97a-91ff-4c6e-8bc3-64d60f54c8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers">
+      <UniqueIdentifier>{8b964ded-1df2-4124-94c6-37a97c15b373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\background">
+      <UniqueIdentifier>{f83844cd-acdf-4d33-98a2-c033f1c135cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\object">
+      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Menu">
+      <UniqueIdentifier>{cbe50f88-35b5-48ad-8c16-df40cbdf5398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Menu\StartMenu">
+      <UniqueIdentifier>{27a6fb9a-97a0-4f9f-99a9-fdae3fad52b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\MapMaking">
+      <UniqueIdentifier>{b4039de4-4dd1-4d56-b3bc-02028be20c8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\Sound">
+      <UniqueIdentifier>{08345f24-4f9e-4242-802f-c266c5b19fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Login">
+      <UniqueIdentifier>{e0a0a049-07c7-4a84-9a2d-920cff95a44a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -76,10 +82,10 @@
       <Filter>src\Util\database</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MainMenuScene.cpp">
-      <Filter>src\Menu\StartMenu</Filter>
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\SoundManager.cpp">
-      <Filter>src\Sound</Filter>
+      <Filter>src\Util\Sound</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\FileUtil.cpp">
       <Filter>src\Util\File</Filter>
@@ -88,16 +94,16 @@
       <Filter>src\Util\Language</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MapMakingScene.cpp">
-      <Filter>src\MapMaking</Filter>
+      <Filter>src\Scenes\MapMaking</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\Utility.cpp">
       <Filter>src\Util</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\MainGameScene.cpp">
-      <Filter>src\PlayGame\main game</Filter>
+      <Filter>src\Scenes\PlayGame\main game</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
-      <Filter>src\PlayGame\main game\layers\background</Filter>
+      <Filter>src\Scenes\PlayGame\main game\layers\background</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameMap.cpp">
       <Filter>src\GameMap</Filter>
@@ -127,10 +133,13 @@
       <Filter>src\box2d</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GamePlayLayer.cpp">
-      <Filter>src\PlayGame\main game\layers\object</Filter>
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameConfig.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoginScene.cpp">
+      <Filter>src\Scenes\Login</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -144,10 +153,10 @@
       <Filter>src\Util\database</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainMenuScene.h">
-      <Filter>src\Menu\StartMenu</Filter>
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SoundManager.h">
-      <Filter>src\Sound</Filter>
+      <Filter>src\Util\Sound</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\FileUtil.h">
       <Filter>src\Util\File</Filter>
@@ -156,7 +165,7 @@
       <Filter>src\Util\Language</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MapMakingScene.h">
-      <Filter>src\MapMaking</Filter>
+      <Filter>src\Scenes\MapMaking</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\Utility.h">
       <Filter>src\Util</Filter>
@@ -165,10 +174,10 @@
       <Filter>src\Util\Language</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\MainGameScene.h">
-      <Filter>src\PlayGame\main game</Filter>
+      <Filter>src\Scenes\PlayGame\main game</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameBackgroundLayer.h">
-      <Filter>src\PlayGame\main game\layers\background</Filter>
+      <Filter>src\Scenes\PlayGame\main game\layers\background</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GameMap.h">
       <Filter>src\GameMap</Filter>
@@ -201,7 +210,10 @@
       <Filter>src\box2d</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\GamePlayLayer.h">
-      <Filter>src\PlayGame\main game\layers\object</Filter>
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoginScene.h">
+      <Filter>src\Scenes\Login</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

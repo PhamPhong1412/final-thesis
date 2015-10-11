@@ -1,5 +1,6 @@
 #ifndef _GAME_PLAY_LAYER_H__
 #define _GAME_PLAY_LAYER_H__
+#include <iostream>
 
 #include "cocos2d.h"
 #include "b2Layer.h"
