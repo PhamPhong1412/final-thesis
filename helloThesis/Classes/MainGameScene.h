@@ -5,6 +5,7 @@
 #include "GameBackgroundLayer.h"
 #include "GamePlayLayer.h"
 #include "GameMap.h"
+#include "DBContext.h"
 USING_NS_CC;
 
 class MainGameScene : public Layer

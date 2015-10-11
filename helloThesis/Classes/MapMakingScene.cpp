@@ -401,7 +401,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
 void MapMakingScene::saveMap(cocos2d::Ref *pSender)
 {
     mMapSave = "";
-    mMapSave = to_string(numberTileWidth)+"\n"+to_string(numberTileHeight)+"\n";
+    mMapSave = to_string(numberTileWidth)+"\n"+to_string(numberTileHeight)+"\n" +"\dkm";
     
     for (int i = numberTileHeight-1 ; i>=0; i--) {
         for (int j = 0; j<numberTileWidth; j++) {
@@ -416,7 +416,10 @@ void MapMakingScene::saveMap(cocos2d::Ref *pSender)
     }
     
     cocos2d::log("%s", mMapSave.c_str());
-    
+	DBContext::set("map_test", mMapSave.c_str());
+
+	auto gameScene = MainGameScene::createScene();
+	Director::getInstance()->replaceScene(gameScene);
 }
 
 void MapMakingScene::startInsert(cocos2d::Ref *pSender)

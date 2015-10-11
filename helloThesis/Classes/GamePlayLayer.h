@@ -6,19 +6,21 @@
 #include "b2Layer.h"
 #include "Runner.h"
 #include "GameConfig.h"
+#include "Utility.h"
 USING_NS_CC;
 
 class GamePlayLayer : public b2Layer
 {
 private: 
-
+	std::string mMap;
 public:
 
-	virtual bool init();
+	virtual bool init(std::string map);
 	void update(float delta);
 	void initTiles();
 	void createTiles(float xloc, float yLoc);
 	void createSlope(float xLoc, bool direction);
+	void addTile(std::string tileName, float xLoc, float yLoc);
 
 	//touches event
 	void onTouchesBegan(const std::vector<Touch*>& touches, Event  *event);
@@ -32,7 +34,7 @@ public:
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 
-	CREATE_FUNC(GamePlayLayer);
+	//CREATE_FUNC(GamePlayLayer);
 	CC_SYNTHESIZE(Runner*, mRunner, Runner);
 };
 

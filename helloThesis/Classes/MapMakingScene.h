@@ -6,6 +6,8 @@
 #include "ui/CocosGUI.h"
 #include <map>
 #include <list>
+#include "DBContext.h"
+#include "MainGameScene.h"
 
 using namespace cocos2d::ui;
 using namespace std;

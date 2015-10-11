@@ -2,7 +2,7 @@
 
 // on "init" you need to initialize your instance
 bool tmp = false;
-bool GamePlayLayer::init()
+bool GamePlayLayer::init(std::string map)
 {
 	if (!b2Layer::init())
 	{
@@ -10,16 +10,35 @@ bool GamePlayLayer::init()
 	}
 	
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-
+	this->mMap = map;
 	mRunner = Runner::create();
 	mRunner->setb2Position(100, 200);
-	//mRunner->setPosition(200, 500);
 	this->addChild(mRunner);
 	mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 0));
-	//initTiles();
-	createTiles(100, 100);
-	createTiles(100, 300);
-	//createSlope(500, true);
+
+	std::vector<std::string> part = Utility::splitString(map, "\dkm");
+
+	std::vector<std::string> widthHeight = Utility::splitString(part.at(0), "\n");
+	int nTilesWidth = std::stoi(widthHeight.at(0));
+	int nTilesHeight = std::stoi(widthHeight.at(1));
+
+	float x, y;
+	float tileSize = 70 / GameConfig::scale;
+	std::vector<std::string> objectData = Utility::splitString(part.at(1), "\n");
+	for (int i = 0; i < nTilesHeight; i++){
+		y = (nTilesHeight - i - 1) * tileSize;
+		std::vector<std::string> currentLineData = Utility::splitString(objectData.at(i), ";");
+		for (int j = 0; j < nTilesWidth; j++){
+			std::string tileName = currentLineData.at(j);
+			if (tileName == "0")
+				continue;
+			x = j * tileSize;
+			addTile(tileName, x, y);
+		}
+	}
+	
+	//createTiles(100, 100);
+	//createTiles(100, 300);
 
 	auto onTouchListener = EventListenerTouchAllAtOnce::create();
 	onTouchListener->onTouchesBegan = CC_CALLBACK_2(GamePlayLayer::onTouchesBegan, this);
@@ -30,8 +49,8 @@ bool GamePlayLayer::init()
 
 	this->scheduleUpdate();
 
-	Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
-	this->runAction(cocos2d::Follow::create(mRunner, Rect::ZERO));
+	//Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
+	//this->runAction(cocos2d::Follow::create(mRunner, Rect::ZERO));
 
 	return true;
 }
@@ -119,6 +138,26 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 		this->addChild(b2Tiles);
 	}
 	
+}
+
+void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
+	Sprite* sprite = Sprite::create(tileName + ".png");
+	b2Node* b2Tiles = b2Node::create();
+	b2Tiles->setTag(TAG_OBJECT_GROUND);
+	b2Tiles->addChild(sprite);
+
+	b2Vec2 verts[] = {
+		b2Vec2(-sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+		b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2)
+	};
+
+	auto b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
+		b2PhysicsMaterial(0, 0, 0.5));
+	b2PhysicBody->setBodyType(b2_staticBody);
+	b2Tiles->setb2PhysicsBody(b2PhysicBody);
+	b2Tiles->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
+	b2Tiles->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
+	this->addChild(b2Tiles);
 }
 
 #pragma region touch event

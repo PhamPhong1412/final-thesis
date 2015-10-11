@@ -35,12 +35,13 @@ bool MainGameScene::init()
 	//backgroundLayder->init(gameMap->backgroundName, gameMap->background);
 	//this->addChild(backgroundLayder);
 
-	auto gamePlayLayer = GamePlayLayer::create();
+	//auto gamePlayLayer = GamePlayLayer::create();
+	auto gamePlayLayer = new GamePlayLayer();
 
-	//auto gamePlayLayer = new GamePlayLayer();
-	//gamePlayLayer->init();
+	std::string test = DBContext::get("map_test");
+
+	gamePlayLayer->init(test);
 	this->addChild(gamePlayLayer);
-
 	return true;
 }
 
