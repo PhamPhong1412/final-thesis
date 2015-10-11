@@ -32,7 +32,7 @@ bool MapMakingScene::init()
     {
         return false;
     }
-	dkm();
+
     mCurrentState = Move;
     mCurrentNameChild = "1,1.png";
     mMapSave = "";
@@ -94,7 +94,7 @@ bool MapMakingScene::init()
         for (int j = 0 ; j < numberTileWidth; j++) {
             if (i == 0) {
                 
-                mVector2Chieu[i].push_back("0:1,1");
+                mVector2Chieu[i].push_back("1,1");
                 string tName =to_string(i) + "+" + to_string(j);
                 auto tSprite = Sprite::create("1,1.png");
                 tSprite->setName(tName);
@@ -106,7 +106,7 @@ bool MapMakingScene::init()
             }
             else
             {
-                mVector2Chieu[i].push_back("0:0");
+                mVector2Chieu[i].push_back("0");
             }
         }
     }
@@ -304,7 +304,7 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                     if (i != std::string::npos)
                         tNameFile.erase(i, tPng.length());
                     
-                    mVector2Chieu[numberHeight][numberWidth] = "0:" + tNameFile;
+                    mVector2Chieu[numberHeight][numberWidth] =  tNameFile;
                     
                     tSprite->setName(tName);
                     tSprite->setAnchorPoint(Vec2(0,0));
@@ -323,7 +323,7 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                     auto tSprite = mScrollMapView->getChildByName(tName);
                     if (tSprite!=NULL){
                         mScrollMapView->removeChild(tSprite);
-                        mVector2Chieu[numberHeight][numberWidth] = "0:0";
+                        mVector2Chieu[numberHeight][numberWidth] = "0";
                     }
                     
                 }
@@ -366,7 +366,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                     if (i != std::string::npos)
                         tNameFile.erase(i, tPng.length());
                     
-                    mVector2Chieu[numberHeight][numberWidth] = "0:" +  tNameFile;
+                    mVector2Chieu[numberHeight][numberWidth] = tNameFile;
                     tSprite->setName(tName);
                     tSprite->setAnchorPoint(Vec2(0,0));
                     tSprite->setScale(70/tSprite->getBoundingBox().size.width);
@@ -384,7 +384,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                     auto tSprite = mScrollMapView->getChildByName(tName);
                     if (tSprite!=NULL){
                         mScrollMapView->removeChild(tSprite);
-                        mVector2Chieu[numberHeight][numberWidth] = "0:0";
+                        mVector2Chieu[numberHeight][numberWidth] = "0";
                     }
                     
                 }
@@ -410,12 +410,13 @@ void MapMakingScene::saveMap(cocos2d::Ref *pSender)
             }
             else
             {
-               mMapSave += mVector2Chieu[i][j]+"\t";
+               mMapSave += mVector2Chieu[i][j]+";";
             }
         }
     }
     
     cocos2d::log("%s", mMapSave.c_str());
+    
 }
 
 void MapMakingScene::startInsert(cocos2d::Ref *pSender)
@@ -430,8 +431,4 @@ void MapMakingScene::startRemove(cocos2d::Ref *pSender)
     CCLOG("Remove");
     mCurrentState = Remove;
     mScrollMapView->setTouchEnabled(!mScrollMapView->isTouchEnabled());
-}
-
-void dkm(){
-	CCLog("fdsf");
 }

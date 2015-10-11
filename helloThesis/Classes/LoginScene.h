@@ -2,7 +2,13 @@
 #define _LOGIN_SCENE_H_
 
 #include "cocos2d.h"
-#include "network\HttpClient.h"
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    #include <network/HttpClient.h>
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+
+    #include "network\HttpClient.h"
+#endif
+
 USING_NS_CC;
 
 class LoginScene : public Layer
