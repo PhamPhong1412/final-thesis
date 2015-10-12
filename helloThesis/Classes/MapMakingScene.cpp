@@ -62,7 +62,7 @@ bool MapMakingScene::init()
     listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
     listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
-    initCreateMapView();
+    // initCreateMapView();
     return true;
 }
 
@@ -89,9 +89,9 @@ void MapMakingScene::initScrollMapView()
 {
     mScrollMapView = ui::ScrollView::create();
     mScrollMapView->setDirection(ui::ScrollView::Direction::BOTH);
-    mScrollMapView->setContentSize(Size(visibleSize.width -tile_size + origin.x, visibleSize.height + origin.y));
+    mScrollMapView->setContentSize(Size(visibleSize.width - tile_size - 20 + origin.x, visibleSize.height + origin.y));
     mScrollMapView->setInnerContainerSize(Size(tile_size*numberTileWidth + origin.x, tile_size*numberTileHeight + origin.y));
-    mScrollMapView->setPosition(Vec2(tile_size+origin.x,origin.y));
+    mScrollMapView->setPosition(Vec2(tile_size+origin.x + 20,origin.y));
     mScrollMapView->setScrollBarEnabled(true);
     mScrollMapView->setBackGroundImage("bg.png");
     mScrollMapView->setBackGroundImageScale9Enabled(true);
@@ -119,7 +119,7 @@ void MapMakingScene::initScrollMapView()
             if (i == 0) {
                 
                 mVector2Chieu[i].push_back("1,1");
-                string tName =to_string(i) + "+" + to_string(j);
+                string tName =to_string(j) + "+" + to_string(i);
                 auto tSprite = Sprite::create("1,1.png");
                 tSprite->setName(tName);
                 tSprite->setAnchorPoint(Vec2(0,0));
@@ -140,16 +140,15 @@ void MapMakingScene::initScrollMapView()
 void MapMakingScene::initCreateMapView()
 {
     auto mySprite = Sprite::create("Windown1.png");
-    mySprite->setAnchorPoint(Vec2(0,1));
-    mySprite->setPosition(Point((visibleSize.width / 2) + origin.x, visibleSize.height +origin.y));
-//    mySprite->setOpacity(100.0f);
+    mySprite->setAnchorPoint(Vec2(0.5,1));
+    mySprite->setPosition(Point((visibleSize.width / 2) + origin.x, visibleSize.height+ mySprite->getContentSize().height + origin.y));
+    mySprite->setOpacity(10.0f);
     this->addChild(mySprite);
     
-    auto moveBy = MoveBy::create( 2, Vec2(0, mySprite->getContentSize().height ));
-    auto fadeTo = FadeTo::create(2.0f, 120.0f);
+    auto moveBy = MoveBy::create(2.0f, Vec2(0, -mySprite->getContentSize().height ));
+    auto fadeTo = FadeTo::create(2.0f, 255.0f);
     
     auto mySpawn = Spawn::createWithTwoActions(moveBy, fadeTo);
-    
     
     mySprite->runAction(mySpawn);
 }
@@ -160,12 +159,12 @@ void MapMakingScene::initListChild()
     mListButtonChild->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButtonChild->setClippingEnabled(false);
     mListButtonChild->setPosition(Vec2(0,origin.y));
-    mListButtonChild->setContentSize(Size(tile_size/GameConfig::scale + origin.x,visibleSize.height));
+    mListButtonChild->setContentSize(Size(tile_size + origin.x + 20,visibleSize.height));
     mListButtonChild->setItemsMargin(10);
     mListButtonChild->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemChildListEvent, this));
-    mListButtonChild->setBackGroundImageScale9Enabled(true);
+    mListButtonChild->setBackGroundColorType(cocos2d::ui::LayoutBackGroundColorType::SOLID);
     mListButtonChild->setScrollBarEnabled(false);
-    //    mListButtonChild->setBackGroundImage("bg_castle.png");
+    mListButtonChild->setBackGroundColor(Color3B( 0, 255, 0));
     mListButtonChild->setVisible(false);
     addChild(mListButtonChild);
 }
@@ -176,7 +175,7 @@ void MapMakingScene::initListRoot()
     mListButonRoot->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButonRoot->setClippingEnabled(false);
     mListButonRoot->setPosition(Vec2(0,origin.y));
-    mListButonRoot->setContentSize(Size(tile_size/GameConfig::scale + origin.x,visibleSize.height));
+    mListButonRoot->setContentSize(Size(tile_size+ origin.x + 20,visibleSize.height));
     for (int i =0 ; i<mMapNameItem.size() ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
         button->setScale(GameConfig::scale);
@@ -185,9 +184,9 @@ void MapMakingScene::initListRoot()
     
     mListButonRoot->setItemsMargin(10);
     mListButonRoot->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemRootListEvent, this));
+    mListButonRoot->setBackGroundColorType(cocos2d::ui::LayoutBackGroundColorType::SOLID);
     mListButonRoot->setScrollBarEnabled(false);
-    mListButonRoot->setBackGroundImageScale9Enabled(true);
-    //    mListButonRoot->setBackGroundImage("bg_castle.png");
+    mListButonRoot->setBackGroundColor(Color3B( 0, 255, 0));
     addChild(mListButonRoot);
 
 }
