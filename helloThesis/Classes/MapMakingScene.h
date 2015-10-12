@@ -32,6 +32,7 @@ private:
 public:
     
     cocos2d::Size visibleSize;
+    cocos2d::Vec2 origin;
     static cocos2d::Scene* createScene();
     
     vector<vector<string>> mMapNameItem;
@@ -54,6 +55,15 @@ public:
     void startMove(cocos2d::Ref *pSender);
     void startRemove(cocos2d::Ref* pSender);
     void startInsert(cocos2d::Ref *pSender);
+    
+    // LOCAL FUNCION
+    void initCreateMapView();
+    void initListItem();
+    void initButton();
+    void initScrollMapView();
+    void initListChild();
+    void initListRoot();
+    
     CREATE_FUNC(MapMakingScene);
 };
 

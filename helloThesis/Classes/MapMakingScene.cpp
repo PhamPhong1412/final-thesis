@@ -40,10 +40,34 @@ bool MapMakingScene::init()
     mCheckRootItem = true;
     
     mCurrentState = Move;
+    tile_size = 70;
+    numberTileWidth = 20;
+    numberTileHeight = 10;
     
     visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    origin = Director::getInstance()->getVisibleOrigin();
     
+    // INIT LOCAL DATA
+    initListItem();
+    // SETUP SCROLL VIEW
+    initScrollMapView();
+    // SETUP LIST VIEW CHILD
+    initListChild();
+    // SETUP LISTVIEW ROOT
+    initListRoot();
+    // Button Remove, Insert, Move
+    initButton();
+    
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
+    listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
+    initCreateMapView();
+    return true;
+}
+
+void MapMakingScene::initListItem()
+{
     vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2.png","2,1.png","2,2.png","castleCliffRightAlt.png","castleHalf.png"};
     vector<string> tTemp1 = {"signExit.png", "boxItem.png","boxCoin_disabled.png","boxCoin.png","boxCoinAlt.png","boxEmpty.png","boxExplosive.png","boxWarning.png","lock_blue.png","lock_green.png","lock_red.png","lock_yellow.png"};
     vector<string> tTemp2 = {"signExit.png", "fence.png","door_closedMid.png","door_closedTop.png","fenceBroken.png","door_openTop.png","door_openMid.png","ladder_top.png","ladder_mid.png"};
@@ -59,12 +83,10 @@ bool MapMakingScene::init()
     mMapNameItem.push_back(tTemp4);
     mMapNameItem.push_back(tTemp5);
     mMapNameItem.push_back(tTemp6);
-    
-    tile_size = 70;
-    numberTileWidth = 20;
-    numberTileHeight = 10;
-    
-    // SETUP SCROLL VIEW
+}
+
+void MapMakingScene::initScrollMapView()
+{
     mScrollMapView = ui::ScrollView::create();
     mScrollMapView->setDirection(ui::ScrollView::Direction::BOTH);
     mScrollMapView->setContentSize(Size(visibleSize.width -tile_size + origin.x, visibleSize.height + origin.y));
@@ -104,7 +126,7 @@ bool MapMakingScene::init()
                 tSprite->setScale( GameConfig::scale);
                 tSprite->setPosition(j*tile_size, i*tile_size);
                 mScrollMapView->addChild(tSprite);
-
+                
             }
             else
             {
@@ -112,8 +134,28 @@ bool MapMakingScene::init()
             }
         }
     }
+
+}
+
+void MapMakingScene::initCreateMapView()
+{
+    auto mySprite = Sprite::create("Windown1.png");
+    mySprite->setAnchorPoint(Vec2(0,1));
+    mySprite->setPosition(Point((visibleSize.width / 2) + origin.x, visibleSize.height +origin.y));
+//    mySprite->setOpacity(100.0f);
+    this->addChild(mySprite);
     
-    // SETUP LIST VIEW CHILD
+    auto moveBy = MoveBy::create( 2, Vec2(0, mySprite->getContentSize().height ));
+    auto fadeTo = FadeTo::create(2.0f, 120.0f);
+    
+    auto mySpawn = Spawn::createWithTwoActions(moveBy, fadeTo);
+    
+    
+    mySprite->runAction(mySpawn);
+}
+
+void MapMakingScene::initListChild()
+{
     mListButtonChild = ui::ListView::create();
     mListButtonChild->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButtonChild->setClippingEnabled(false);
@@ -123,11 +165,13 @@ bool MapMakingScene::init()
     mListButtonChild->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemChildListEvent, this));
     mListButtonChild->setBackGroundImageScale9Enabled(true);
     mListButtonChild->setScrollBarEnabled(false);
-//    mListButtonChild->setBackGroundImage("bg_castle.png");
+    //    mListButtonChild->setBackGroundImage("bg_castle.png");
     mListButtonChild->setVisible(false);
     addChild(mListButtonChild);
-    
-    // SETUP LISTVIEW ROOT
+}
+
+void MapMakingScene::initListRoot()
+{
     mListButonRoot = ui::ListView::create();
     mListButonRoot->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButonRoot->setClippingEnabled(false);
@@ -140,14 +184,16 @@ bool MapMakingScene::init()
     }
     
     mListButonRoot->setItemsMargin(10);
-	mListButonRoot->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemRootListEvent, this));
+    mListButonRoot->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemRootListEvent, this));
     mListButonRoot->setScrollBarEnabled(false);
     mListButonRoot->setBackGroundImageScale9Enabled(true);
-//    mListButonRoot->setBackGroundImage("bg_castle.png");
+    //    mListButonRoot->setBackGroundImage("bg_castle.png");
     addChild(mListButonRoot);
-    
 
-    // Button Remove, Insert, Move
+}
+
+void MapMakingScene::initButton()
+{
     Vec2 tMoveButtonPos = Vec2(Vec2(origin.x +visibleSize.width,origin.y + visibleSize.height ));
     
     mMoveButton = MenuItemImage::create("MoveSelected.png","MoveNormal.png",CC_CALLBACK_1(MapMakingScene::startMove,this));
@@ -157,7 +203,7 @@ bool MapMakingScene::init()
     mMoveButton->setPosition(tMoveButtonPos);
     
     Vec2 tRemoveButtonPos = Vec2(Vec2(origin.x +visibleSize.width,origin.y + visibleSize.height - tile_size - 10));
-
+    
     mRemoveButton = MenuItemImage::create("RemoveSelected.png","RemoveNormal.png",CC_CALLBACK_1(MapMakingScene::startRemove,this));
     mRemoveButton->setAnchorPoint(Vec2(1,1));
     mRemoveButton->setScale(tile_size/mRemoveButton->getNormalImage()->getContentSize().width);
@@ -188,14 +234,7 @@ bool MapMakingScene::init()
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
-    
-    
-    auto listener = EventListenerTouchOneByOne::create();
-    listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan,this);
-    listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
-    
-    return true;
+
 }
 
 void MapMakingScene::selectedItemRootListEvent(Ref *sender, ui::ListView::EventType type)
