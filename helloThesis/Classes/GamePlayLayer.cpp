@@ -16,7 +16,7 @@ bool GamePlayLayer::init(std::string map)
 	this->addChild(mRunner);
 	mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 0));
 
-	std::vector<std::string> part = Utility::splitString(map, "\dkm");
+	std::vector<std::string> part = Utility::splitString(map, "dkm");
 
 	std::vector<std::string> widthHeight = Utility::splitString(part.at(0), "\n");
 	int nTilesWidth = std::stoi(widthHeight.at(0));
@@ -123,7 +123,7 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 		b2Tiles->init();
 		b2Tiles->setTag(TAG_OBJECT_GROUND);
 		b2Tiles->addChild(sprite);
-		int num = 2;
+
 		b2Vec2 verts[] = {
 			b2Vec2(dir*sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
 			//b2Vec2(dir*sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
@@ -141,22 +141,45 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 }
 
 void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
-	Sprite* sprite = Sprite::create(tileName + ".png");
-	b2Node* b2Tiles = b2Node::create();
-	b2Tiles->setTag(TAG_OBJECT_GROUND);
-	b2Tiles->addChild(sprite);
+    if (tileName == "0")
+        return;
+   
+    std::vector<std::string> tTypeObject = Utility::splitString(tileName, ",");
+    Sprite* sprite = Sprite::create(tileName + ".png");
+    b2Node* b2Tiles = b2Node::create();
+    b2Tiles->setTag(TAG_OBJECT_GROUND);
+    b2Tiles->addChild(sprite);
+    std::string tType = tTypeObject[1];
+    
+    b2PhysicsBody *b2PhysicBody;
+    
+    if (tType == "1") {
+        b2Vec2 verts[] = {
+            b2Vec2(-sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+            b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2)
+        };
+        b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
+                                                       b2PhysicsMaterial(0, 0, 0.5));
+        b2PhysicBody->setBodyType(b2_staticBody);
+        b2Tiles->setb2PhysicsBody(b2PhysicBody);
+        b2Tiles->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
+        b2Tiles->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
+    }
+    else if(tType == "2")
+    {
+        b2Vec2 verts[] = {
+            b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+            b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
+        };
+        b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
+                                                       b2PhysicsMaterial(0, 0, 1));
+        
+        b2PhysicBody->setBodyType(b2_staticBody);
+        b2Tiles->setb2PhysicsBody(b2PhysicBody);
+        b2Tiles->setPosition(xLoc ,  yLoc + sprite->getContentSize().height / 2);
+        b2Tiles->setb2Position(xLoc , yLoc + sprite->getContentSize().height / 2);
+    }
 
-	b2Vec2 verts[] = {
-		b2Vec2(-sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
-		b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2)
-	};
-
-	auto b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
-		b2PhysicsMaterial(0, 0, 0.5));
-	b2PhysicBody->setBodyType(b2_staticBody);
-	b2Tiles->setb2PhysicsBody(b2PhysicBody);
-	b2Tiles->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
-	b2Tiles->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
 	this->addChild(b2Tiles);
 }
 

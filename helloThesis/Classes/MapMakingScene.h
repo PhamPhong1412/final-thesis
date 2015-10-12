@@ -25,6 +25,10 @@ private:
     int numberTileHeight;
     string mCurrentNameChild;
     string mMapSave;
+    
+    MenuItemImage *mMoveButton;
+    MenuItemImage *mInsertButton;
+    MenuItemImage *mRemoveButton;
 public:
     
     cocos2d::Size visibleSize;
@@ -34,7 +38,7 @@ public:
     vector<string> tVectorNameChildItem;
     
     vector<vector<string>> mVector2Chieu;
-    
+
     ScrollView *mScrollMapView;
     ListView *mListButtonChild;
     ListView *mListButonRoot;
@@ -47,6 +51,7 @@ public:
     string getNameWithNumber(int number);
     
     void saveMap(cocos2d::Ref* pSender);
+    void startMove(cocos2d::Ref *pSender);
     void startRemove(cocos2d::Ref* pSender);
     void startInsert(cocos2d::Ref *pSender);
     CREATE_FUNC(MapMakingScene);
