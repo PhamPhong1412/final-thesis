@@ -85,6 +85,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	searchPaths.push_back("image/small/background");
 	searchPaths.push_back("cocosStudio");
 	searchPaths.push_back("tiles");
+	searchPaths.push_back("Button");
 
 	fileUtils->setSearchPaths(searchPaths);
 	DBContext::init();

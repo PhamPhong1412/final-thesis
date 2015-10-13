@@ -41,8 +41,8 @@ bool MapMakingScene::init()
     
     mCurrentState = Move;
     tile_size = 70;
-    numberTileWidth = 20;
-    numberTileHeight = 10;
+    numberTileWidth = 40;
+    numberTileHeight = 30;
     
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
@@ -294,6 +294,7 @@ void MapMakingScene::selectedItemChildListEvent(Ref *sender, ui::ListView::Event
             break;
     }
 }
+
 string MapMakingScene::getNameWithNumber(int number)
 {
     string rName="";
@@ -451,7 +452,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
 void MapMakingScene::saveMap(cocos2d::Ref *pSender)
 {
     mMapSave = "";
-    mMapSave = to_string(numberTileWidth)+"\n"+to_string(numberTileHeight)+"\n" +"dkm";
+    mMapSave = to_string(numberTileWidth)+"\n"+to_string(numberTileHeight)+"\n" +"dm";
     
     for (int i = numberTileHeight-1 ; i>=0; i--) {
         for (int j = 0; j<numberTileWidth; j++) {

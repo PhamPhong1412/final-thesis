@@ -16,7 +16,7 @@ bool GamePlayLayer::init(std::string map)
 	this->addChild(mRunner);
 	mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 0));
 
-	std::vector<std::string> part = Utility::splitString(map, "dkm");
+	std::vector<std::string> part = Utility::splitString(map, "dm");
 
 	std::vector<std::string> widthHeight = Utility::splitString(part.at(0), "\n");
 	int nTilesWidth = std::stoi(widthHeight.at(0));
