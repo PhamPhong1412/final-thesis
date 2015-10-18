@@ -129,6 +129,9 @@
     <ClCompile Include="..\Classes\GamePlayLayer.cpp">
       <Filter>src\PlayGame\main game\layers\object</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\GameConfig.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">

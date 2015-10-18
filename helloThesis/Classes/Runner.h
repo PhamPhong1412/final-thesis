@@ -14,6 +14,8 @@ private:
 public:
 	virtual bool init();
 
+	bool onContactBegin(PhysicsContact& contact);
+
 	CREATE_FUNC(Runner);
 	
 };

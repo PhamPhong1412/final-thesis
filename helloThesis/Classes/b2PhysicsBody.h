@@ -2,7 +2,8 @@
 #define __B2_PHYSICS_BODY_H__
 
 #include "cocos2d.h"
-#include "Box2D/Box2D.h";
+#include "Box2D/Box2D.h"
+#include "Global.h"
 
 USING_NS_CC;
 

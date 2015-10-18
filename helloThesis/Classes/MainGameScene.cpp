@@ -31,12 +31,14 @@ bool MainGameScene::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	GameBackgroundLayer* backgroundLayder = new GameBackgroundLayer();
-	backgroundLayder->init(gameMap->backgroundName, gameMap->background);
-	this->addChild(backgroundLayder);
+	//GameBackgroundLayer* backgroundLayder = new GameBackgroundLayer();
+	//backgroundLayder->init(gameMap->backgroundName, gameMap->background);
+	//this->addChild(backgroundLayder);
 
-	auto gamePlayLayer = GamePlayLayer::create();
-	//gamePlayLayer->init();
+	//auto gamePlayLayer = GamePlayLayer::create();
+
+	auto gamePlayLayer = new GamePlayLayer();
+	gamePlayLayer->init();
 	this->addChild(gamePlayLayer);
 
 	return true;

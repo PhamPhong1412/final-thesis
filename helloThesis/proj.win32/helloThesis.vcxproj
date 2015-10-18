@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -154,6 +154,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
     <ClCompile Include="..\Classes\DBContext.cpp" />
     <ClCompile Include="..\Classes\FileUtil.cpp" />
+    <ClCompile Include="..\Classes\GameConfig.cpp" />
     <ClCompile Include="..\Classes\GameMap.cpp" />
     <ClCompile Include="..\Classes\GamePlayLayer.cpp" />
     <ClCompile Include="..\Classes\GLES-Render.cpp" />

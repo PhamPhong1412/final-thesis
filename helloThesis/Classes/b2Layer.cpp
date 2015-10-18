@@ -25,8 +25,12 @@ bool b2Layer::init()
 
 void b2Layer::addChild(b2PhysicsBody* child)
 {
-	child->setBody(_world->CreateBody(&child->getBodyDef()));
-	child->getBody()->CreateFixture(&child->getShapeDef());
+	b2BodyDef t1 = child->getBodyDef();
+	child->setBody(_world->CreateBody(&t1));
+
+	b2FixtureDef t2 = child->getShapeDef();
+	child->getBody()->CreateFixture(&t2);
+
 }
 
 void b2Layer::addChild(Node* child)
@@ -41,8 +45,11 @@ void b2Layer::addToPhysicsWorld(Node* child)
 	{
 		if (node->getb2PhysicsBody() != nullptr)
 		{
-			node->getb2PhysicsBody()->setBody(_world->CreateBody(&node->getb2PhysicsBody()->getBodyDef()));
-			node->getb2PhysicsBody()->getBody()->CreateFixture(&node->getb2PhysicsBody()->getShapeDef());
+			b2BodyDef t1 = node->getb2PhysicsBody()->getBodyDef();
+			node->getb2PhysicsBody()->setBody(_world->CreateBody(&t1));
+
+			b2FixtureDef t2 = node->getb2PhysicsBody()->getShapeDef();
+			node->getb2PhysicsBody()->getBody()->CreateFixture(&t2);
 		}
 
 		for (int i = 0; i < node->getb2Child().size(); i++)
@@ -56,7 +63,7 @@ void b2Layer::addToPhysicsWorld(Node* child)
 void b2Layer::initPhysicsWorld()
 {
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -50.0f);
+	gravity.Set(0.0f, -150.0f);
 	_world = new b2World(gravity);
 	_world->SetContinuousPhysics(true);
 	if (SET_DEBUG)
