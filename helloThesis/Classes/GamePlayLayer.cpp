@@ -13,6 +13,7 @@ bool GamePlayLayer::init(std::string map)
 	this->mMap = map;
 	mRunner = Runner::create();
 	mRunner->setb2Position(100, 200);
+	mRunner->setPosition(100, 200);
 	this->addChild(mRunner);
 	mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 0));
 
@@ -27,6 +28,8 @@ bool GamePlayLayer::init(std::string map)
 	std::vector<std::string> objectData = Utility::splitString(part.at(1), "\n");
 	for (int i = 0; i < nTilesHeight; i++){
 		y = (nTilesHeight - i - 1) * tileSize;
+		int tmp = y;
+		y = tmp;
 		std::vector<std::string> currentLineData = Utility::splitString(objectData.at(i), ";");
 		for (int j = 0; j < nTilesWidth; j++){
 			std::string tileName = currentLineData.at(j);
@@ -49,8 +52,8 @@ bool GamePlayLayer::init(std::string map)
 
 	this->scheduleUpdate();
 
-	//Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
-	//this->runAction(cocos2d::Follow::create(mRunner, Rect::ZERO));
+	Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
+	this->runAction(cocos2d::Follow::create(mRunner, Rect::ZERO));
 
 	return true;
 }
@@ -58,9 +61,9 @@ bool GamePlayLayer::init(std::string map)
 void GamePlayLayer::update(float delta){
 
 	b2Layer::update(delta);
-	if (tmp){
-		this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(10.0f, 0));
-	}
+	//if (tmp){
+	//	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(10.0f, 0));
+	//}
 //	Director::getInstance()->setp
 	//mRunner->ve
 }
@@ -106,6 +109,7 @@ void GamePlayLayer::createTiles(float xLoc, float yLoc){
 b2PhysicsMaterial(0, 0, 0.5));
 	b2PhysicBody->setBodyType(b2_staticBody);
 	b2Tiles->setb2PhysicsBody(b2PhysicBody);
+	float y = yLoc + sprite->getContentSize().height / 2;
 	b2Tiles->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
 	b2Tiles->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
 	this->addChild(b2Tiles);
@@ -143,9 +147,11 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
     if (tileName == "0")
         return;
-   
-    std::vector<std::string> tTypeObject = Utility::splitString(tileName, ",");
-    Sprite* sprite = Sprite::create(tileName + ".png");
+
+	GroundObject* go = new GroundObject(xLoc, yLoc, tileName);
+	//go->init();
+
+    /*Sprite* sprite = Sprite::create(tileName + ".png");
     b2Node* b2Tiles = b2Node::create();
     b2Tiles->setTag(TAG_OBJECT_GROUND);
     b2Tiles->addChild(sprite);
@@ -178,15 +184,16 @@ void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
         b2Tiles->setb2PhysicsBody(b2PhysicBody);
         b2Tiles->setPosition(xLoc ,  yLoc + sprite->getContentSize().height / 2);
         b2Tiles->setb2Position(xLoc , yLoc + sprite->getContentSize().height / 2);
-    }
+    }*/
 
-	this->addChild(b2Tiles);
+	this->addChild(go);
 }
 
 #pragma region touch event
 void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
 	//tmp = !tmp;
-	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 100));
+
+	this->mRunner->getb2PhysicsBody()->setVelocityY(2.0f);
 }
 
 void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)
@@ -201,7 +208,7 @@ void GamePlayLayer::onTouchesEnded(const std::vector<Touch*>& touches, cocos2d::
 
 void GamePlayLayer::onTouchesCancelled(const std::vector<Touch*>& touches, cocos2d::Event  *event)
 {
-	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(20.0f, 0));
+	//this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(20.0f, 0));
 
 }
 #pragma endregion
@@ -220,30 +227,15 @@ void GamePlayLayer::BeginContact(b2Contact* contact)
 
 		if (aTag == TAG_OBJECT_PLAYER)
 		{
-			switch (bTag)
-			{
-			case TAG_OBJECT_GROUND:{
-									   this->mRunner->collideGround(nodeB);
-									   break;
-			}
-			default:
-				break;
-			}
+			this->mRunner->updateCollision(nodeB, contact);
+
 		}
 		else
 		{
 			if (bTag == TAG_OBJECT_PLAYER)
 			{
-				switch (aTag)
-				{
-				case TAG_OBJECT_GROUND:{
-										   this->mRunner->collideGround(nodeA);
-										   break;
+				this->mRunner->updateCollision(nodeA, contact);
 
-				}
-				default:
-					break;
-				}
 			}
 		}
 	}
@@ -252,11 +244,13 @@ void GamePlayLayer::BeginContact(b2Contact* contact)
 
 void GamePlayLayer::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 {
+	this->BeginContact(contact);
 	//return true;
 }
 
 void GamePlayLayer::PostSolve(b2Contact* contact, const b2ContactImpulse* impulse)
 {
+	this->BeginContact(contact);
 }
 
 void GamePlayLayer::EndContact(b2Contact* contact)

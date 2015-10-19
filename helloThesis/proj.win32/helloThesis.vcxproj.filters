@@ -34,9 +34,6 @@
     <Filter Include="src\GameObject\Runner">
       <UniqueIdentifier>{80302e3a-c7c0-49dd-bb07-4382e4ee9126}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\GameObject\NewFilter1">
-      <UniqueIdentifier>{0f709c0d-d74c-4752-a86a-dba92bc57454}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Scenes">
       <UniqueIdentifier>{2a139b42-f07a-4682-bb58-90bef3bff881}</UniqueIdentifier>
     </Filter>
@@ -69,6 +66,9 @@
     </Filter>
     <Filter Include="src\Scenes\Login">
       <UniqueIdentifier>{e0a0a049-07c7-4a84-9a2d-920cff95a44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Ground">
+      <UniqueIdentifier>{0f709c0d-d74c-4752-a86a-dba92bc57454}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +140,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\LoginScene.cpp">
       <Filter>src\Scenes\Login</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GroundObject.cpp">
+      <Filter>src\GameObject\Ground</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +217,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\LoginScene.h">
       <Filter>src\Scenes\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GroundObject.h">
+      <Filter>src\GameObject\Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

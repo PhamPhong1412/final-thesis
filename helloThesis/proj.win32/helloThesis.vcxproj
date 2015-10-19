@@ -158,6 +158,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GameMap.cpp" />
     <ClCompile Include="..\Classes\GamePlayLayer.cpp" />
     <ClCompile Include="..\Classes\GLES-Render.cpp" />
+    <ClCompile Include="..\Classes\GroundObject.cpp" />
     <ClCompile Include="..\Classes\LoginScene.cpp" />
     <ClCompile Include="..\Classes\MainGameScene.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
@@ -183,6 +184,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GameMap.h" />
     <ClInclude Include="..\Classes\GamePlayLayer.h" />
     <ClInclude Include="..\Classes\GLES-Render.h" />
+    <ClInclude Include="..\Classes\GroundObject.h" />
     <ClInclude Include="..\Classes\LangDefine.h" />
     <ClInclude Include="..\Classes\LoginScene.h" />
     <ClInclude Include="..\Classes\MainGameScene.h" />

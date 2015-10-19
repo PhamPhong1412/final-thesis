@@ -190,3 +190,11 @@ Vec2 b2PhysicsBody::getb2Position()
 	else
 		return Vec2(_bodyDef.position.x * PTM_RATIO, _bodyDef.position.y * PTM_RATIO);
 }
+
+void b2PhysicsBody::setVelocityX(float Vx){
+	this->getBody()->SetLinearVelocity(b2Vec2(Vx, this->getBody()->GetLinearVelocity().y));
+}
+
+void b2PhysicsBody::setVelocityY(float Vy){
+	this->getBody()->SetLinearVelocity(b2Vec2(this->getBody()->GetLinearVelocity().x, Vy));
+}

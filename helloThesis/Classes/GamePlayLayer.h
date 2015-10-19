@@ -5,6 +5,7 @@
 #include "cocos2d.h"
 #include "b2Layer.h"
 #include "Runner.h"
+#include "GroundObject.h"
 #include "GameConfig.h"
 #include "Utility.h"
 USING_NS_CC;

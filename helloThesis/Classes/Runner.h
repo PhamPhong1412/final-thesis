@@ -20,11 +20,12 @@ class Runner : public b2Node
 private:
 	Node* mBody;
 	cocostudio::timeline::ActionTimeline* mAnimation;
+	void collideGround(Node* groundNode, b2Contact* contact);
 public:
 	virtual bool init();
 
 	//collisions
-	void collideGround(Node* groundNode);
+	void updateCollision(Node* groundNode, b2Contact* contact);
 
 	CREATE_FUNC(Runner);
 	

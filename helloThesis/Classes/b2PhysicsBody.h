@@ -83,6 +83,8 @@ public:
 	void setUserData(void* data){ _bodyDef.userData = data; };
 	void setBodyType(b2BodyType bodyType);
 
+	void setVelocityX(float Vx);
+	void setVelocityY(float Vy);
 
 	//body's properties
 	CC_SYNTHESIZE(b2Body*,_body, Body);

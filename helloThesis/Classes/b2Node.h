@@ -18,4 +18,8 @@ public:
 	CREATE_FUNC(b2Node);
 };
 
+enum NodeDirection {
+	LEFT, RIGHT
+};
+
 #endif

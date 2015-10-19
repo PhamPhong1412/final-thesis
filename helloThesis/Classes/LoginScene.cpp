@@ -41,12 +41,59 @@ bool LoginScene::init()
 }
 
 void LoginScene::menuPlayCallback(cocos2d::Ref* pSender){
-	//cocos2d::network::HttpRequest* request = new cocos2d::network::HttpRequest();
-	//request->setUrl("127.0.0.1");
-	//request->setRequestType(cocos2d::network::HttpRequest::Type::GET);
-	////request->setResponseCallback(CC_CALLBACK_0(cocos2d::network::HttpResponse::getHttpRequest, this));
-	//request->setTag("loadGame");
-	//cocos2d::network::HttpClient::getInstance()->send(request);cd
-	//request->release();
+	HttpRequest* request = new (std::nothrow) HttpRequest();
+	request->setUrl("127.0.0.1");
+	request->setRequestType(HttpRequest::Type::GET);
+	request->setResponseCallback(CC_CALLBACK_2(LoginScene::onHttpRequestCompleted, this));
+	if (false)
+	{
+		request->setTag("GET immediate test1");
+		HttpClient::getInstance()->sendImmediate(request);
+	}
+	else
+	{
+		request->setTag("GET test1");
+		HttpClient::getInstance()->send(request);
+	}
+	request->release();
 }
 
+void LoginScene::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response)
+{
+	if (!response)
+	{
+		return;
+	}
+
+	// You can get original request type from: response->request->reqType
+	if (0 != strlen(response->getHttpRequest()->getTag()))
+	{
+		log("%s completed", response->getHttpRequest()->getTag());
+	}
+
+	long statusCode = response->getResponseCode();
+	char statusString[64] = {};
+	sprintf(statusString, "HTTP Status Code: %ld, tag = %s", statusCode, response->getHttpRequest()->getTag());
+	log("status string %s ", statusString);
+	log("response code: %ld", statusCode);
+
+	if (!response->isSucceed())
+	{
+		log("response failed");
+		log("error buffer: %s", response->getErrorBuffer());
+		return;
+	}
+
+	// dump data
+	std::vector<char> *buffer = response->getResponseData();
+	log("Http Test, dump data: ");
+	for (unsigned int i = 0; i < buffer->size(); i++)
+	{
+		log("%c", (*buffer)[i]);
+	}
+	log("\n");
+	if (response->getHttpRequest()->getReferenceCount() != 2)
+	{
+		log("request ref count not 2, is %d", response->getHttpRequest()->getReferenceCount());
+	}
+}

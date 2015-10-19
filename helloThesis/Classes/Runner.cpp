@@ -19,15 +19,50 @@ bool Runner::init(){
 	//};
 
 	//auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0.5, 0, 1));
-	auto b2PhysicBody = b2PhysicsBody::createBox(Size(15,40), b2PhysicsMaterial(0, 0, 0.1));
+	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0.1));
 	b2PhysicBody->setBodyType(b2_dynamicBody);
 	this->setb2PhysicsBody(b2PhysicBody);
 
 	this->setTag(TAG_OBJECT_PLAYER);
-
 	return true;
 }
 
-void Runner::collideGround(Node* groundNode){
+void Runner::updateCollision(Node* node, b2Contact* contact){
+	int targetTag = node->getTag();
+	switch (targetTag)
+	{
+	case TAG_OBJECT_GROUND:{
+							   this->collideGround(node, contact);
+							   break;
+	}
+	default:
+		break;
+	}
+}
 
+void Runner::collideGround(Node* groundNode, b2Contact* contact){
+	for (int i = 0; i < contact->GetManifold()->pointCount; i++) {
+		float x=contact->GetManifold()->points[i].localPoint.x;
+		float y = contact->GetManifold()->points[i].localPoint.y;
+	}
+
+	float tileSize = 70 / GameConfig::scale;
+	float yGround = groundNode->getPosition().y;
+	float hGround = yGround + tileSize/2;
+	//float hmGround = groundNode->getBoundingBox().getMinY();
+	float hRunner = this->getPosition().y -45 /(2*GameConfig::scale);
+	float hB2y = this->getb2Position().y;
+	float hb2 = this->getb2Position().y - 50 / 2;
+
+	//float hmRunner = this->mBody->getBoundingBox().getMaxY();
+	int y = this->getPosition().y;
+
+	if (hb2<hGround){
+		//one way platform
+		contact->SetEnabled(false);
+	}
+	else{
+		this->getb2PhysicsBody()->setVelocityX(10.0f);
+		//contact->SetEnabled(false);
+	}
 }

@@ -63,7 +63,7 @@ void b2Layer::addToPhysicsWorld(Node* child)
 void b2Layer::initPhysicsWorld()
 {
 	b2Vec2 gravity;
-	gravity.Set(0.0f, -150.0f);
+	gravity.Set(0.0f, -1.0f);
 	_world = new b2World(gravity);
 	_world->SetContinuousPhysics(true);
 	if (SET_DEBUG)
