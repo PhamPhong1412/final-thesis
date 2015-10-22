@@ -193,7 +193,7 @@ void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
 void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
 	//tmp = !tmp;
 
-	this->mRunner->getb2PhysicsBody()->setVelocityY(2.0f);
+	this->mRunner->getb2PhysicsBody()->setVelocityY(30.0f);
 }
 
 void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)
@@ -255,7 +255,7 @@ void GamePlayLayer::PostSolve(b2Contact* contact, const b2ContactImpulse* impuls
 
 void GamePlayLayer::EndContact(b2Contact* contact)
 {
-
+	//this->mRunner->getb2PhysicsBody()->setVelocityX(0);
 }
 
 #pragma endregion

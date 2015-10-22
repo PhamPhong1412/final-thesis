@@ -41,28 +41,29 @@ void Runner::updateCollision(Node* node, b2Contact* contact){
 }
 
 void Runner::collideGround(Node* groundNode, b2Contact* contact){
-	for (int i = 0; i < contact->GetManifold()->pointCount; i++) {
-		float x=contact->GetManifold()->points[i].localPoint.x;
-		float y = contact->GetManifold()->points[i].localPoint.y;
-	}
+	//for (int i = 0; i < contact->GetManifold()->pointCount; i++) {
+	//	float x=contact->GetManifold()->points[i].localPoint.x;
+	//	float y = contact->GetManifold()->points[i].localPoint.y;
+	//}
 
 	float tileSize = 70 / GameConfig::scale;
 	float yGround = groundNode->getPosition().y;
 	float hGround = yGround + tileSize/2;
-	//float hmGround = groundNode->getBoundingBox().getMinY();
+
 	float hRunner = this->getPosition().y -45 /(2*GameConfig::scale);
 	float hB2y = this->getb2Position().y;
 	float hb2 = this->getb2Position().y - 50 / 2;
 
 	//float hmRunner = this->mBody->getBoundingBox().getMaxY();
 	int y = this->getPosition().y;
-
-	if (hb2<hGround){
+	float vy = this->getb2PhysicsBody()->getVelocityY();
+	//if (hb2<hGround){
+	if (this->getb2PhysicsBody()->getVelocityY()>15.0f){
 		//one way platform
 		contact->SetEnabled(false);
 	}
 	else{
-		this->getb2PhysicsBody()->setVelocityX(10.0f);
+		this->getb2PhysicsBody()->setVelocityX(15.0f);
 		//contact->SetEnabled(false);
 	}
 }

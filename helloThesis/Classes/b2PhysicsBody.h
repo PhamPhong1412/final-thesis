@@ -85,6 +85,8 @@ public:
 
 	void setVelocityX(float Vx);
 	void setVelocityY(float Vy);
+	float getVelocityX();
+	float getVelocityY();
 
 	//body's properties
 	CC_SYNTHESIZE(b2Body*,_body, Body);

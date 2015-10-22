@@ -14,6 +14,7 @@ protected:
 public:
 	b2Node();
 	void setb2PhysicsBody(b2PhysicsBody* body);
+
 	//void replaceb2PhysicsBody(b2PhysicsBody* body);
 	CREATE_FUNC(b2Node);
 };

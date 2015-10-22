@@ -198,3 +198,11 @@ void b2PhysicsBody::setVelocityX(float Vx){
 void b2PhysicsBody::setVelocityY(float Vy){
 	this->getBody()->SetLinearVelocity(b2Vec2(this->getBody()->GetLinearVelocity().x, Vy));
 }
+
+float b2PhysicsBody::getVelocityX(){
+	return this->getBody()->GetLinearVelocity().x;
+}
+
+float b2PhysicsBody::getVelocityY(){
+	return this->getBody()->GetLinearVelocity().y;
+}
