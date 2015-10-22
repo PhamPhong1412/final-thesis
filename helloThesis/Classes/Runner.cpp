@@ -27,7 +27,7 @@ bool Runner::init(){
 	return true;
 }
 
-void Runner::updateCollision(Node* node, b2Contact* contact){
+void Runner::BeginContact(Node* node, b2Contact* contact){
 	int targetTag = node->getTag();
 	switch (targetTag)
 	{
@@ -48,9 +48,9 @@ void Runner::collideGround(Node* groundNode, b2Contact* contact){
 
 	float tileSize = 70 / GameConfig::scale;
 	float yGround = groundNode->getPosition().y;
-	float hGround = yGround + tileSize/2;
+	float hGround = yGround + tileSize / 2;
 
-	float hRunner = this->getPosition().y -45 /(2*GameConfig::scale);
+	float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
 	float hB2y = this->getb2Position().y;
 	float hb2 = this->getb2Position().y - 50 / 2;
 
@@ -63,7 +63,29 @@ void Runner::collideGround(Node* groundNode, b2Contact* contact){
 		contact->SetEnabled(false);
 	}
 	else{
-		this->getb2PhysicsBody()->setVelocityX(15.0f);
+		this->getb2PhysicsBody()->setVelocityX(10.0f);
+		this->mState = PlayerState::ON_GROUND;
 		//contact->SetEnabled(false);
+	}
+}
+
+void Runner::endCollideGround(){
+	this->mState = PlayerState::ON_AIR;
+}
+
+bool Runner::isOnGround(){
+	return this->mState == PlayerState::ON_GROUND ? true : false;
+}
+
+void Runner::EndContact(Node* node, b2Contact* contact){
+	int targetTag = node->getTag();
+	switch (targetTag)
+	{
+	case TAG_OBJECT_GROUND:{
+							   this->endCollideGround();
+							   break;
+	}
+	default:
+		break;
 	}
 }

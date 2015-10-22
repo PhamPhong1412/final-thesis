@@ -53,7 +53,7 @@ bool GamePlayLayer::init(std::string map)
 	this->scheduleUpdate();
 
 	Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
-	this->runAction(cocos2d::Follow::create(mRunner, Rect::ZERO));
+	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, 9999, nTilesHeight*70/GameConfig::scale)));
 
 	return true;
 }
@@ -192,8 +192,8 @@ void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
 #pragma region touch event
 void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
 	//tmp = !tmp;
-
-	this->mRunner->getb2PhysicsBody()->setVelocityY(30.0f);
+	if (this->mRunner->isOnGround())
+		this->mRunner->getb2PhysicsBody()->setVelocityY(30.0f);
 }
 
 void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)
@@ -227,20 +227,19 @@ void GamePlayLayer::BeginContact(b2Contact* contact)
 
 		if (aTag == TAG_OBJECT_PLAYER)
 		{
-			this->mRunner->updateCollision(nodeB, contact);
+			this->mRunner->BeginContact(nodeB, contact);
 
 		}
 		else
 		{
 			if (bTag == TAG_OBJECT_PLAYER)
 			{
-				this->mRunner->updateCollision(nodeA, contact);
+				this->mRunner->BeginContact(nodeA, contact);
 
 			}
 		}
 	}
 }
-
 
 void GamePlayLayer::PreSolve(b2Contact* contact, const b2Manifold* oldManifold)
 {
@@ -255,7 +254,28 @@ void GamePlayLayer::PostSolve(b2Contact* contact, const b2ContactImpulse* impuls
 
 void GamePlayLayer::EndContact(b2Contact* contact)
 {
-	//this->mRunner->getb2PhysicsBody()->setVelocityX(0);
+	auto nodeA = (Node*)contact->GetFixtureA()->GetBody()->GetUserData();
+	auto nodeB = (Node*)contact->GetFixtureB()->GetBody()->GetUserData();
+
+	if (nodeA && nodeB)
+	{
+		int aTag = nodeA->getTag();
+		int bTag = nodeB->getTag();
+
+		if (aTag == TAG_OBJECT_PLAYER)
+		{
+			this->mRunner->EndContact(nodeB, contact);
+
+		}
+		else
+		{
+			if (bTag == TAG_OBJECT_PLAYER)
+			{
+				this->mRunner->EndContact(nodeA, contact);
+
+			}
+		}
+	}
 }
 
 #pragma endregion
