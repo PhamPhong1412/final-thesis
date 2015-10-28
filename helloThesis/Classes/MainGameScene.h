@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 #include "GameBackgroundLayer.h"
 #include "GamePlayLayer.h"
+#include "MapMakingScene.h"
 #include "GameMap.h"
 #include "DBContext.h"
 USING_NS_CC;
@@ -20,6 +21,8 @@ public:
 
 	void menuPlayCallback(cocos2d::Ref* pSender);
 
+    void menuBackCallback(cocos2d::Ref* pSender);
+    
 	CREATE_FUNC(MainGameScene);
 };
 

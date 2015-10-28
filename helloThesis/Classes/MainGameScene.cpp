@@ -25,12 +25,15 @@ bool MainGameScene::init()
 	{
 		return false;
 	}
+    
+    
 	this->gameMap = new GameMap();
 	gameMap->load("test");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
+    
 	//GameBackgroundLayer* backgroundLayder = new GameBackgroundLayer();
 	//backgroundLayder->init(gameMap->backgroundName, gameMap->background);
 	//this->addChild(backgroundLayder);
@@ -42,9 +45,26 @@ bool MainGameScene::init()
 
 	gamePlayLayer->init(test);
 	this->addChild(gamePlayLayer);
+    
+    auto mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_1(MainGameScene::menuBackCallback, this));
+    mBackButton->setAnchorPoint(Vec2(0,1));
+    mBackButton->setScale(70/mBackButton->getContentSize().width);
+    mBackButton->setPosition(Vec2(origin.x + 15,origin.y + visibleSize.height -15));
+    cocos2d::Vector<MenuItem*> items;
+    items.pushBack(mBackButton);
+    auto menu = Menu::createWithArray(items);
+    menu->setPosition(Vec2::ZERO);
+    this->addChild(menu, 1);
+
+    
 	return true;
 }
 
+void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)
+{
+    auto mapMakingScene = MapMakingScene::createScene();
+    Director::getInstance()->replaceScene(mapMakingScene);
+}
 
 void MainGameScene::menuPlayCallback(cocos2d::Ref* pSender){
 

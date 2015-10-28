@@ -334,9 +334,9 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
         
         switch (mCurrentState) {
             case Insert:
-                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - tile_size)/tile_size >= 0)
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size >= 0)
                 {
-                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - (tile_size/GameConfig::scale))/tile_size;
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x -(tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     
@@ -365,9 +365,9 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                 }
                 break;
             case Remove:
-                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - tile_size)/tile_size >= 0)
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size >= 0)
                 {
-                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - (tile_size/GameConfig::scale))/tile_size;
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
@@ -398,9 +398,9 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
         
         switch (mCurrentState) {
             case Insert:
-                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - tile_size)/tile_size >= 0)
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size >= 0)
                 {
-                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - (tile_size/GameConfig::scale))/tile_size;
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
@@ -426,9 +426,9 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                 }
                 break;
             case Remove:
-                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - tile_size)/tile_size >= 0)
+                if ((touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size >= 0)
                 {
-                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - (tile_size/GameConfig::scale))/tile_size;
+                    int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
