@@ -4,6 +4,7 @@
 
 #include "cocos2d.h"
 #include "MainGameScene.h"
+#include "ShopScene.h"
 #include "MapMakingScene.h"
 #include "Utility.h"
 #include "ui/CocosGUI.h"

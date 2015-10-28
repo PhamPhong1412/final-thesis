@@ -114,7 +114,8 @@ void MainMenuScene::menuRatingCallback(cocos2d::Ref *pSender)
 
 void MainMenuScene::menuShopCallback(cocos2d::Ref *pSender)
 {
-    CCLOG("Shoping");
+    auto shopScene = ShopScene::createScene();
+    Director::getInstance()->replaceScene(shopScene);
 }
 
 void MainMenuScene::menuSettingCallback(cocos2d::Ref *pSender)

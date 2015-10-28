@@ -89,9 +89,9 @@ void MapMakingScene::initScrollMapView()
 {
     mScrollMapView = ui::ScrollView::create();
     mScrollMapView->setDirection(ui::ScrollView::Direction::BOTH);
-    mScrollMapView->setContentSize(Size(visibleSize.width - tile_size - 20 + origin.x, visibleSize.height + origin.y));
+    mScrollMapView->setContentSize(Size(visibleSize.width - tile_size/GameConfig::scale + origin.x, visibleSize.height + origin.y));
     mScrollMapView->setInnerContainerSize(Size(tile_size*numberTileWidth + origin.x, tile_size*numberTileHeight + origin.y));
-    mScrollMapView->setPosition(Vec2(tile_size+origin.x + 20,origin.y));
+    mScrollMapView->setPosition(Vec2(tile_size/GameConfig::scale+origin.x ,origin.y));
     mScrollMapView->setScrollBarEnabled(true);
     mScrollMapView->setBackGroundImage("bg.png");
     mScrollMapView->setBackGroundImageScale9Enabled(true);
@@ -158,8 +158,9 @@ void MapMakingScene::initListChild()
     mListButtonChild = ui::ListView::create();
     mListButtonChild->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButtonChild->setClippingEnabled(false);
+    mListButtonChild->setBounceEnabled(true);
     mListButtonChild->setPosition(Vec2(0,origin.y));
-    mListButtonChild->setContentSize(Size(tile_size + origin.x + 20,visibleSize.height));
+    mListButtonChild->setContentSize(Size(tile_size/GameConfig::scale + origin.x,visibleSize.height));
     mListButtonChild->setItemsMargin(10);
     mListButtonChild->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemChildListEvent, this));
     mListButtonChild->setBackGroundColorType(cocos2d::ui::LayoutBackGroundColorType::SOLID);
@@ -174,8 +175,9 @@ void MapMakingScene::initListRoot()
     mListButonRoot = ui::ListView::create();
     mListButonRoot->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButonRoot->setClippingEnabled(false);
+    mListButonRoot->setBounceEnabled(true);
     mListButonRoot->setPosition(Vec2(0,origin.y));
-    mListButonRoot->setContentSize(Size(tile_size+ origin.x + 20,visibleSize.height));
+    mListButonRoot->setContentSize(Size(tile_size/GameConfig::scale+ origin.x ,visibleSize.height));
     for (int i =0 ; i<mMapNameItem.size() ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
         button->setScale(GameConfig::scale);
