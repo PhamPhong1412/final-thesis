@@ -26,45 +26,100 @@ bool MainMenuScene::init()
 		return false;
 	}
 
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	visibleSize = Director::getInstance()->getVisibleSize();
+	origin = Director::getInstance()->getVisibleOrigin();
 
 	std::string s = "abdf \t fwef";
 	Utility::splitString(s, "\t");
 
-	MenuItemFont* playGame = MenuItemFont::create(Translator::inst()->translate(START_GAME_BUTTON), CC_CALLBACK_1(MainMenuScene::menuPlayCallback, this));
-	playGame->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2));
-
-	MenuItemFont* makeMap = MenuItemFont::create("Map", CC_CALLBACK_1(MainMenuScene::menuMakeMapCallback, this));
-	makeMap->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2 - visibleSize.height / 6));
-
-	MenuItemFont* setting = MenuItemFont::create("Setting", CC_CALLBACK_1(MainMenuScene::menuSettingCallback, this));
-	setting->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2 - 2 * visibleSize.height / 6));
-
-	MenuItemFont* quit = MenuItemFont::create("Exit", CC_CALLBACK_1(MainMenuScene::menuExitCallback, this));
-	quit->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 5 + visibleSize.height / 2 - 3 * visibleSize.height / 6));
-
-	Menu *mainMenu = Menu::create(playGame, makeMap, setting, quit, nullptr);
-	mainMenu->setPosition(Vec2(0, 0));
-	this->addChild(mainMenu);
-
+    initButton();
 	return true;
 }
 
-void MainMenuScene::menuPlayCallback(cocos2d::Ref* pSender){
-	auto gameScene = MainGameScene::createScene();
-	Director::getInstance()->replaceScene(gameScene);
-	//auto loginScene = LoginScene::createScene();
-	//Director::getInstance()->replaceScene(loginScene);
+void MainMenuScene::initButton()
+{
+    auto mBackGround = Sprite::create("bg3.png");
+    mBackGround->setScale(visibleSize.height/mBackGround->getContentSize().height);
+    mBackGround->setAnchorPoint(Vec2(0.5,0.5));
+    mBackGround->setPosition((origin.x +visibleSize.width)/2, (origin.y +visibleSize.height)/2);
+    addChild(mBackGround);
+    
+    auto mNameSprite = Sprite::create("GameName.png");
+    mNameSprite->setScale((visibleSize.width/2)/mNameSprite->getContentSize().width);
+    mNameSprite->setAnchorPoint(Vec2(0.5,1));
+    mNameSprite->setPosition(Vec2((origin.x +visibleSize.width)/2,origin.y + visibleSize.height - 50));
+    addChild(mNameSprite);
+    
+    auto mRaceButton = MenuItemImage::create("RaceNormal.png","RaceSelected.png",CC_CALLBACK_1(MainMenuScene::menuPlayCallback,this));
+
+    mRaceButton->setAnchorPoint(Vec2(0.5,0.5));
+    mRaceButton->setScale((visibleSize.width/5)/mRaceButton->getNormalImage()->getContentSize().width);
+    Vec2 tRaceButtonPos = Vec2((origin.x +visibleSize.width)/2,(origin.y + visibleSize.height)/2 + mRaceButton->getNormalImage()->getContentSize().height/3);
+    mRaceButton->setPosition(tRaceButtonPos);
+    
+    
+    
+    auto mMapButton = MenuItemImage::create("MapNormal.png","MapSelected.png",CC_CALLBACK_1(MainMenuScene::menuMakeMapCallback,this));
+    mMapButton->setAnchorPoint(Vec2(0.5,0.5));
+    mMapButton->setScale((visibleSize.width/5)/mMapButton->getNormalImage()->getContentSize().width);
+    Vec2 tMapButtonPos = Vec2((origin.x +visibleSize.width)/2,(origin.y + visibleSize.height)/2 - mMapButton->getNormalImage()->getContentSize().height/3);
+    mMapButton->setPosition(tMapButtonPos);
+    
+    
+    auto tRatingButton = MenuItemImage::create("RatingNormal.png","RatingSelected.png",  CC_CALLBACK_1(MainMenuScene::menuRatingCallback, this));
+    tRatingButton->setAnchorPoint(Vec2(0.5,1));
+    tRatingButton->setScale((visibleSize.width/12)/tRatingButton->getNormalImage()->getContentSize().width);
+    tRatingButton->setPosition((origin.x +visibleSize.width)/2,mMapButton->getPosition().y - (mMapButton->getNormalImage()->getContentSize().height)/2);
+    
+    auto mSettingButton = MenuItemImage::create("SettingNormal.png","SettingSelected.png",CC_CALLBACK_1(MainMenuScene::menuSettingCallback,this));
+    mSettingButton->setScale((visibleSize.width/12)/mSettingButton->getNormalImage()->getContentSize().width);
+    mSettingButton->setAnchorPoint(Vec2(0.5,1));
+    Vec2 tSettingButtonPos = Vec2((origin.x +visibleSize.width)/4, tRatingButton->getPosition().y);
+    mSettingButton->setPosition(tSettingButtonPos);
+    
+    auto tShopButton = MenuItemImage::create("ShopNormal.png","ShopSelected.png",  CC_CALLBACK_1(MainMenuScene::menuShopCallback, this));
+    tShopButton->setAnchorPoint(Vec2(0.5,1));
+    tShopButton->setScale(visibleSize.width/12/tShopButton->getNormalImage()->getContentSize().width);
+    tShopButton->setPosition((origin.x +visibleSize.width)/4*3,tRatingButton->getPosition().y);
+    
+    cocos2d::Vector<MenuItem*> items;
+    items.pushBack(mRaceButton);
+    items.pushBack(mMapButton);
+    items.pushBack(mSettingButton);
+    items.pushBack(tShopButton);
+    items.pushBack(tRatingButton);
+    
+    auto menu = Menu::createWithArray(items);
+    menu->setPosition(Vec2::ZERO);
+    this->addChild(menu, 1);
+    
 }
 
-void MainMenuScene::menuMakeMapCallback(cocos2d::Ref* pSender){
-	auto mapMakingScene = MapMakingScene::createScene();
-	Director::getInstance()->replaceScene(mapMakingScene);
+void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
+{
+    auto gameScene = MainGameScene::createScene();
+    Director::getInstance()->replaceScene(gameScene);
 }
 
-void MainMenuScene::menuSettingCallback(cocos2d::Ref* pSender){
+void MainMenuScene::menuMakeMapCallback(cocos2d::Ref *pSender)
+{
+    auto mapMakingScene = MapMakingScene::createScene();
+    Director::getInstance()->replaceScene(mapMakingScene);
+}
 
+void MainMenuScene::menuRatingCallback(cocos2d::Ref *pSender)
+{
+    CCLOG("Rating");
+}
+
+void MainMenuScene::menuShopCallback(cocos2d::Ref *pSender)
+{
+    CCLOG("Shoping");
+}
+
+void MainMenuScene::menuSettingCallback(cocos2d::Ref *pSender)
+{
+    CCLOG("Setting");
 }
 
 void MainMenuScene::menuExitCallback(cocos2d::Ref* pSender){
