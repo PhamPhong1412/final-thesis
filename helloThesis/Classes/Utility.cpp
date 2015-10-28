@@ -1,7 +1,7 @@
 #include "Utility.h"
 
 std::vector<std::string> Utility::splitString(std::string string, std::string  delim){
-	char str[10024];
+	char str[1002004];
 	char * pch;
 	const char* tmp = delim.c_str();
 	std::vector<std::string> result;

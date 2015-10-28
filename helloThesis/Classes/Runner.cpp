@@ -46,19 +46,19 @@ void Runner::collideGround(Node* groundNode, b2Contact* contact){
 	//	float y = contact->GetManifold()->points[i].localPoint.y;
 	//}
 
-	float tileSize = 70 / GameConfig::scale;
-	float yGround = groundNode->getPosition().y;
-	float hGround = yGround + tileSize / 2;
+	//float tileSize = 70 / GameConfig::scale;
+	//float yGround = groundNode->getPosition().y;
+	//float hGround = yGround + tileSize / 2;
 
-	float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
-	float hB2y = this->getb2Position().y;
-	float hb2 = this->getb2Position().y - 50 / 2;
+	//float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
+	//float hB2y = this->getb2Position().y;
+	//float hb2 = this->getb2Position().y - 50 / 2;
 
-	//float hmRunner = this->mBody->getBoundingBox().getMaxY();
-	int y = this->getPosition().y;
+	////float hmRunner = this->mBody->getBoundingBox().getMaxY();
+	//int y = this->getPosition().y;
 	float vy = this->getb2PhysicsBody()->getVelocityY();
 	//if (hb2<hGround){
-	if (this->getb2PhysicsBody()->getVelocityY()>15.0f){
+	if (this->getb2PhysicsBody()->getVelocityY()>0){
 		//one way platform
 		contact->SetEnabled(false);
 	}

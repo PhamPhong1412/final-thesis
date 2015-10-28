@@ -53,7 +53,7 @@ bool GamePlayLayer::init(std::string map)
 	this->scheduleUpdate();
 
 	Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
-	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, 9999, nTilesHeight*70/GameConfig::scale)));
+	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, nTilesWidth * 70 / GameConfig::scale, nTilesHeight * 70 / GameConfig::scale)));
 
 	return true;
 }
