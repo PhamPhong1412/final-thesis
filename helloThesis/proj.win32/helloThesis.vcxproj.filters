@@ -70,6 +70,9 @@
     <Filter Include="src\GameObject\Ground">
       <UniqueIdentifier>{0f709c0d-d74c-4752-a86a-dba92bc57454}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scenes\Shop">
+      <UniqueIdentifier>{b6655a1d-7f0b-4c07-824a-01dc326d3fa5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -143,6 +146,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\GroundObject.cpp">
       <Filter>src\GameObject\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ShopScene.cpp">
+      <Filter>src\Scenes\Shop</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +226,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\GroundObject.h">
       <Filter>src\GameObject\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ShopScene.h">
+      <Filter>src\Scenes\Shop</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

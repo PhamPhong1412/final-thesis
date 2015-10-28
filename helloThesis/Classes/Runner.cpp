@@ -58,7 +58,7 @@ void Runner::collideGround(Node* groundNode, b2Contact* contact){
 	//int y = this->getPosition().y;
 	float vy = this->getb2PhysicsBody()->getVelocityY();
 	//if (hb2<hGround){
-	if (this->getb2PhysicsBody()->getVelocityY()>0){
+	if (this->getb2PhysicsBody()->getVelocityY()>5){
 		//one way platform
 		contact->SetEnabled(false);
 	}
