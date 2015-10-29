@@ -54,10 +54,17 @@ void ShopScene::initButton()
 
     mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_1(ShopScene::menuBackCallback, this));
     mBackButton->setAnchorPoint(Vec2(0,0));
-    mBackButton->setScale(70/mBackButton->getContentSize().width);
-    mBackButton->setPosition(Vec2(origin.x + 15,origin.y +15));
+    mBackButton->setScale((visibleSize.width/10)/mBackButton->getContentSize().width);
+    mBackButton->setPosition(Vec2(origin.x,origin.y));
+    
+    mBuyButton = MenuItemImage::create("BuyNormal.png", "BuySelected.png", CC_CALLBACK_1(ShopScene::menuBuyItemCallback,this));
+    mBuyButton->setAnchorPoint(Vec2(1,0));
+    mBuyButton->setScale((visibleSize.width/10)/mBackButton->getContentSize().width);
+    mBuyButton->setPosition(Vec2(origin.x + visibleSize.width,origin.y));
+    
     cocos2d::Vector<MenuItem*> items;
     items.pushBack(mBackButton);
+    items.pushBack(mBuyButton);
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
@@ -83,13 +90,19 @@ void ShopScene::initListChild()
 
 void ShopScene::initListRoot()
 {
-    mListButonRoot = ui::ListView::create();
-    mListButonRoot->setDirection(ui::ScrollView::Direction::HORIZONTAL);
-    mListButonRoot->setClippingEnabled(true);
-    mListButonRoot->setBounceEnabled(true);
-    mListButonRoot->setPosition(Vec2(origin.x + mListVertical->getContentSize().width ,origin.y + 70/GameConfig::scale));
-    mListButonRoot->setContentSize(Size(visibleSize.width - mListVertical->getContentSize().width,70/GameConfig::scale));
+    auto tSprite = Sprite::create("ListBackGround.png");
+    tSprite->setAnchorPoint(Vec2(0,0));
+    tSprite->setScale(visibleSize.width/tSprite->getContentSize().width ,20/tSprite->getContentSize().height);
+    tSprite->setPosition(origin.x,origin.y + (visibleSize.width/10));
+    addChild(tSprite);
     
+    mListButonRoot = ui::ListView::create();
+    mListButonRoot->setAnchorPoint(Vec2(0.5,0));
+    mListButonRoot->setDirection(ui::ScrollView::Direction::HORIZONTAL);
+    mListButonRoot->setClippingEnabled(false);
+//    mListButonRoot->setBounceEnabled(true);
+    mListButonRoot->setPosition(Vec2(origin.x + visibleSize.width/2 ,origin.y + (visibleSize.width/10)));
+    mListButonRoot->setContentSize(Size(visibleSize.width/2,visibleSize.width/10));
     for (int i =0 ; i<7 ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
         button->setScale(GameConfig::scale);
@@ -98,10 +111,10 @@ void ShopScene::initListRoot()
     
     mListButonRoot->setItemsMargin(10);
     mListButonRoot->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(ShopScene::selectedItemRootListEvent, this));
-    mListButonRoot->setBackGroundColorType(cocos2d::ui::LayoutBackGroundColorType::SOLID);
     mListButonRoot->setScrollBarEnabled(false);
-    mListButonRoot->setBackGroundColor(Color3B( 0, 255, 0));
     addChild(mListButonRoot);
+    
+    
 }
 
 void ShopScene::initListVertical()
@@ -112,7 +125,7 @@ void ShopScene::initListVertical()
     mListVertical->setClippingEnabled(true);
     mListVertical->setBounceEnabled(true);
     mListVertical->setPosition(Vec2(origin.x,origin.y+visibleSize.height));
-    mListVertical->setContentSize(Size(70/GameConfig::scale,visibleSize.height - 70/GameConfig::scale - 15));
+    mListVertical->setContentSize(Size((visibleSize.width/10),visibleSize.height - (visibleSize.width/10) - 15));
 //    for (int i =0 ; i<mMapNameItem.size() ; i++) {
         for (int i =0 ; i<7 ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
@@ -122,17 +135,20 @@ void ShopScene::initListVertical()
     
     mListVertical->setItemsMargin(10);
     mListVertical->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(ShopScene::selectedItemVerticalListEvent, this));
-    mListVertical->setBackGroundColorType(cocos2d::ui::LayoutBackGroundColorType::SOLID);
     mListVertical->setScrollBarEnabled(false);
-    mListVertical->setBackGroundColor(Color3B( 0, 255, 0));
     addChild(mListVertical);
-
+    
 }
 
 void ShopScene::menuBackCallback(cocos2d::Ref *pSender)
 {
     auto mainScene = MainMenuScene::createScene();
     Director::getInstance()->replaceScene(mainScene);
+}
+
+void ShopScene::menuBuyItemCallback(cocos2d::Ref *pSender)
+{
+    CCLOG("BUY");
 }
 
 void ShopScene::selectedItemVerticalListEvent(Ref *sender, ui::ListView::EventType type)

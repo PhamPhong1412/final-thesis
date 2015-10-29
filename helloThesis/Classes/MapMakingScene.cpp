@@ -62,7 +62,7 @@ bool MapMakingScene::init()
     listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
     listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
-    // initCreateMapView();
+     initCreateMapView();
     return true;
 }
 
@@ -145,8 +145,9 @@ void MapMakingScene::initCreateMapView()
     mySprite->setOpacity(10.0f);
     this->addChild(mySprite);
     
-    auto moveBy = MoveBy::create(2.0f, Vec2(0, -mySprite->getContentSize().height ));
-    auto fadeTo = FadeTo::create(2.0f, 255.0f);
+    auto moveBy = MoveBy::create(1.0f, Vec2(0, -mySprite->getContentSize().height ));
+    
+    auto fadeTo = FadeTo::create(1.0f, 255.0f);
     
     auto mySpawn = Spawn::createWithTwoActions(moveBy, fadeTo);
     
