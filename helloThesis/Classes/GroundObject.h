@@ -15,9 +15,14 @@ private:
 	Sprite* mBody;
 	GroundType type;
 	NodeDirection dir;
+	bool isChangeDirectionTile;
 public:
 
-	GroundObject(float xLoc, float yLoc, std::string tileName);
+	GroundObject(float xLoc, float yLoc, std::string tileName, bool changeDirect = false);
+
+	static bool isChangeDirTile(Node* tile);
+	static std::vector<GroundObject*> changeDirectionTiles;
+	static std::string s;
 
 	
 };

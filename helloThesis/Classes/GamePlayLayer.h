@@ -21,7 +21,7 @@ public:
 	void initTiles();
 	void createTiles(float xloc, float yLoc);
 	void createSlope(float xLoc, bool direction);
-	void addTile(std::string tileName, float xLoc, float yLoc);
+	void addTile(std::string tileName, float xLoc, float yLoc, bool isEnd =false);
 
 	//touches event
 	void onTouchesBegan(const std::vector<Touch*>& touches, Event  *event);

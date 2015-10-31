@@ -24,10 +24,12 @@ bool Runner::init(){
 	this->setb2PhysicsBody(b2PhysicBody);
 
 	this->setTag(TAG_OBJECT_PLAYER);
+
+	this->direction = 1;
 	return true;
 }
 
-void Runner::BeginContact(Node* node, b2Contact* contact){
+void Runner::BeginContact(b2Node* node, b2Contact* contact){
 	int targetTag = node->getTag();
 	switch (targetTag)
 	{
@@ -40,7 +42,7 @@ void Runner::BeginContact(Node* node, b2Contact* contact){
 	}
 }
 
-void Runner::collideGround(Node* groundNode, b2Contact* contact){
+void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 	//for (int i = 0; i < contact->GetManifold()->pointCount; i++) {
 	//	float x=contact->GetManifold()->points[i].localPoint.x;
 	//	float y = contact->GetManifold()->points[i].localPoint.y;
@@ -63,7 +65,10 @@ void Runner::collideGround(Node* groundNode, b2Contact* contact){
 		contact->SetEnabled(false);
 	}
 	else{
-		this->getb2PhysicsBody()->setVelocityX(10.0f);
+		if (GroundObject::isChangeDirTile(groundNode)){
+			this->direction *= -1;
+		}
+		this->getb2PhysicsBody()->setVelocityX(10.0f*this->direction);
 		this->mState = PlayerState::ON_GROUND;
 		//contact->SetEnabled(false);
 	}
@@ -77,7 +82,7 @@ bool Runner::isOnGround(){
 	return this->mState == PlayerState::ON_GROUND ? true : false;
 }
 
-void Runner::EndContact(Node* node, b2Contact* contact){
+void Runner::EndContact(b2Node* node, b2Contact* contact){
 	int targetTag = node->getTag();
 	switch (targetTag)
 	{

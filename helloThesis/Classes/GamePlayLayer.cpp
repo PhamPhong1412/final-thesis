@@ -36,7 +36,13 @@ bool GamePlayLayer::init(std::string map)
 			if (tileName == "0")
 				continue;
 			x = j * tileSize;
-			addTile(tileName, x, y);
+			if (i == nTilesHeight - 1 && j == nTilesWidth-2){
+				addTile(tileName, x, y, true);
+			}
+			else{
+
+				addTile(tileName, x, y);
+			}
 		}
 	}
 	
@@ -144,11 +150,11 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 	
 }
 
-void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
+void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc, bool isEnd){
     if (tileName == "0")
         return;
 
-	GroundObject* go = new GroundObject(xLoc, yLoc, tileName);
+	GroundObject* go = new GroundObject(xLoc, yLoc, tileName, isEnd);
 	//go->init();
 
     /*Sprite* sprite = Sprite::create(tileName + ".png");
@@ -217,8 +223,8 @@ void GamePlayLayer::onTouchesCancelled(const std::vector<Touch*>& touches, cocos
 
 void GamePlayLayer::BeginContact(b2Contact* contact)
 {
-	auto nodeA = (Node*)contact->GetFixtureA()->GetBody()->GetUserData();
-	auto nodeB = (Node*)contact->GetFixtureB()->GetBody()->GetUserData();
+	auto nodeA = (b2Node*)contact->GetFixtureA()->GetBody()->GetUserData();
+	auto nodeB = (b2Node*)contact->GetFixtureB()->GetBody()->GetUserData();
 
 	if (nodeA && nodeB)
 	{
@@ -254,8 +260,8 @@ void GamePlayLayer::PostSolve(b2Contact* contact, const b2ContactImpulse* impuls
 
 void GamePlayLayer::EndContact(b2Contact* contact)
 {
-	auto nodeA = (Node*)contact->GetFixtureA()->GetBody()->GetUserData();
-	auto nodeB = (Node*)contact->GetFixtureB()->GetBody()->GetUserData();
+	auto nodeA = (b2Node*)contact->GetFixtureA()->GetBody()->GetUserData();
+	auto nodeB = (b2Node*)contact->GetFixtureB()->GetBody()->GetUserData();
 
 	if (nodeA && nodeB)
 	{

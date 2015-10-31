@@ -13,7 +13,7 @@
 #include "cocostudio\ActionTimeline\CCActionTimelineCache.h"
 #endif
 
-#include "b2Node.h"
+#include "GroundObject.h"
 
 enum PlayerState{
 	ON_GROUND, ON_AIR
@@ -24,9 +24,10 @@ class Runner : public b2Node
 private:
 	Node* mBody;
 	cocostudio::timeline::ActionTimeline* mAnimation;
-	void collideGround(Node* groundNode, b2Contact* contact);
+	void collideGround(b2Node* groundNode, b2Contact* contact);
 	void endCollideGround();
 	PlayerState mState = PlayerState::ON_GROUND;
+	int direction; //
 public:
 	virtual bool init();
 
@@ -35,8 +36,8 @@ public:
 	//void updateCollision(Node* groundNode, b2Contact* contact);
 
 	//Physics event
-	void BeginContact(Node* node, b2Contact* contact);
-	void EndContact(Node* node, b2Contact* contact);
+	void BeginContact(b2Node* node, b2Contact* contact);
+	void EndContact(b2Node* node, b2Contact* contact);
 	//void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	//void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 
