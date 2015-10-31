@@ -27,6 +27,7 @@ public:
     cocos2d::Vec2 origin;
     
     MenuItemImage *mBackButton;
+    MenuItemImage *mBuyButton;
     
     ListView *mListVertical;
     ListView *mListButtonChild;
@@ -45,6 +46,7 @@ public:
     void selectedItemChildListEvent(Ref *sender, ui::ListView::EventType type);
     
     void menuBackCallback(cocos2d::Ref* pSender);
+    void menuBuyItemCallback(cocos2d::Ref* pSender);
     
     string getNameWithNumber(int number);
     CREATE_FUNC(ShopScene);
