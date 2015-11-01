@@ -67,24 +67,35 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 	//float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
 	//float hB2y = this->getb2Position().y;
 	//float hb2 = this->getb2Position().y - 50 / 2 ;
-	int groundTag = groundNode->getTag();
+	int groundTag = ((GroundObject*)groundNode)->getType();
+	log("%d", groundTag);
 	float tmp;
-	if (groundTag == GroundType::NORMAL)
-		tmp = 1;
+	if (groundTag == GroundType::BARNORMAL)
+	{
+		float groundWidth = groundNode->getBoundingBox().getMaxX();
+		tmp = 10;
+		if (this->getb2PhysicsBody()->getVelocityY()>tmp){
+			if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
+
+				contact->SetEnabled(false);
+			}
+			//one way platform
+		}
+	}
 	else
 		tmp = 10;
-	float groundWidth = groundNode->getBoundingBox().getMaxX();
+	
 	////float hmRunner = this->mBody->getBoundingBox().getMaxY();
 	//int y = this->getPosition().y;
 	float vy = this->getb2PhysicsBody()->getVelocityY();
 	//if (hb2<hGround){
-	if (this->getb2PhysicsBody()->getVelocityY()>tmp){
-		if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
+	//if (this->getb2PhysicsBody()->getVelocityY()>tmp){
+	//	if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
 
-			contact->SetEnabled(false);
-		}
-		//one way platform
-	}
+	//		contact->SetEnabled(false);
+	//	}
+	//	//one way platform
+	//}
 
 
 	//else{

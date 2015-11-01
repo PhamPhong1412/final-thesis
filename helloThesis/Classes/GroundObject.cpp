@@ -6,7 +6,7 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 	bool isEnd = false;
 	Sprite* sprite = Sprite::create(tileName + ".png");
 	this->addChild(sprite);
-	this->setTag(TAG_OBJECT_GROUND);
+	
 
 	std::vector<std::string> tTypeObject = Utility::splitString(tileName, ",");
 	std::string tType = tTypeObject[1];
@@ -20,6 +20,16 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 		type = GroundType::SLOPE;
 		createSlopePhysicBody(sprite);
 	}
+	else if (tType == "3")
+	{
+		type = GroundType::BARNORMAL;
+		createBarNormalPhysicBody(sprite);
+	}
+	else if (tType == "4")
+	{
+		type = GroundType::BARSLOPE;
+		createBarSlopePhysicBody(sprite);
+	}
 	else
 	{
 		type = GroundType::END;
@@ -27,14 +37,7 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 		isEnd = true;
 	}
 
-
-	//if (type == GroundType::NORMAL) {
-
-	//}
-	//else if (type == GroundType::SLOPE)
-	//{
-
-	//}
+	this->setTag(TAG_OBJECT_GROUND);
 	this->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
 	this->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
 
@@ -63,7 +66,7 @@ void GroundObject::createNormalPhysicBody(Sprite* sprite){
 	//b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
 	//	b2PhysicsMaterial(0, 0, 0));
 
-	b2PhysicBody = b2PhysicsBody::createBox(Size(sprite->getContentSize().width, 1),
+	b2PhysicBody = b2PhysicsBody::createBox(Size(sprite->getContentSize().width, sprite->getContentSize().height),
 		b2PhysicsMaterial(0, 0.01, 0));
 
 	//int num = 4;
@@ -95,7 +98,42 @@ void GroundObject::createSlopePhysicBody(Sprite* sprite){
 		b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
 		b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
 	};
-	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.1, 0));
+	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+
+	b2PhysicBody->setBodyType(b2_staticBody);
+	this->setb2PhysicsBody(b2PhysicBody);
+}
+
+void GroundObject::createBarNormalPhysicBody(Sprite* sprite)
+{
+	b2PhysicsBody *b2PhysicBody = new b2PhysicsBody();
+
+	int num = 4;
+	b2Vec2 verts[] = {
+		b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
+		b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2 + sprite->getContentSize().height/3),
+		b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2 + sprite->getContentSize().height / 3),
+		b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
+	};
+
+	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+
+	b2PhysicBody->setBodyType(b2_staticBody);
+	this->setb2PhysicsBody(b2PhysicBody);
+}
+
+void GroundObject::createBarSlopePhysicBody(Sprite* sprite)
+{
+	b2PhysicsBody *b2PhysicBody = new b2PhysicsBody();
+
+	int num = 4;
+	b2Vec2 verts[] = {
+		b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+		b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
+		b2Vec2(-sprite->getContentSize().width / 2 + 4, -sprite->getContentSize().height / 2),
+		b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2 - 4)
+	};
+	b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
 
 	b2PhysicBody->setBodyType(b2_staticBody);
 	this->setb2PhysicsBody(b2PhysicBody);
@@ -108,4 +146,9 @@ void GroundObject::createEndlPhysicBody(Sprite* sprite){
 
 	b2PhysicBody->setBodyType(b2_staticBody);
 	this->setb2PhysicsBody(b2PhysicBody);
+}
+
+GroundType GroundObject::getType()
+{
+	return type;
 }

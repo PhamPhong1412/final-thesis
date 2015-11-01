@@ -68,10 +68,10 @@ bool MapMakingScene::init()
 
 void MapMakingScene::initListItem()
 {
-    vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2.png","2,1.png","2,2.png","castleCliffRightAlt.png","castleHalf.png"};
+    vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2.png","2,1.png","2,2.png","1,3.png","2,3.png","1,4.png","2,4.png"};
     vector<string> tTemp1 = {"signExit.png", "boxItem.png","boxCoin_disabled.png","boxCoin.png","boxCoinAlt.png","boxEmpty.png","boxExplosive.png","boxWarning.png","lock_blue.png","lock_green.png","lock_red.png","lock_yellow.png"};
     vector<string> tTemp2 = {"signExit.png", "fence.png","door_closedMid.png","door_closedTop.png","fenceBroken.png","door_openTop.png","door_openMid.png","ladder_top.png","ladder_mid.png"};
-    vector<string> tTemp3 = {"signExit.png", "signRight.png","1,3.png","sign.png"};
+    vector<string> tTemp3 = {"signExit.png", "signRight.png","1,5.png","sign.png"};
     vector<string> tTemp4 = {"signExit.png", "tochLit.png","torch.png","tochLit2.png","window.png"};
     vector<string> tTemp5 = {"signExit.png", "liquidWaterTop_mid.png","liquidWaterTop.png","liquidWater.png","liquidLavaTop.png","liquidLavaTop_mid.png","liquidLava.png"};
     vector<string> tTemp6 = {"signExit.png", "stoneHalf.png","stoneHalfLeft.png","stoneHalfMid.png","stoneHalfRight.png","stoneHillLeft2.png","stoneHillRight2.png","stoneMid.png"};
@@ -326,7 +326,7 @@ string MapMakingScene::getNameWithNumber(int number)
     string rName="";
     switch (number) {
         case 0:
-            rName ="castle.png";
+            rName ="1,1.png";
             break;
         case 1:
             rName ="boxItem.png";
