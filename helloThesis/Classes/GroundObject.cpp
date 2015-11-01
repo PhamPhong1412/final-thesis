@@ -61,20 +61,20 @@ void GroundObject::createNormalPhysicBody(Sprite* sprite){
 	//	//b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
 	//};
 	//b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
-	//	b2PhysicsMaterial(0, 0, 0.5));
+	//	b2PhysicsMaterial(0, 0, 0));
 
-	//b2PhysicBody = b2PhysicsBody::createBox(Size(sprite->getContentSize().width, sprite->getContentSize().height),
-	//	b2PhysicsMaterial(0, 0,0.5));
+	b2PhysicBody = b2PhysicsBody::createBox(Size(sprite->getContentSize().width, 1),
+		b2PhysicsMaterial(0, 0.01, 0));
 
-	int num = 4;
-	b2Vec2 verts[] = {
-		b2Vec2((int)-sprite->getContentSize().width / 2, (int)-sprite->getContentSize().height / 2),
-		b2Vec2((int)-sprite->getContentSize().width / 2, (int)sprite->getContentSize().height / 2),
-		b2Vec2((int)sprite->getContentSize().width / 2, (int)sprite->getContentSize().height / 2),
-		b2Vec2((int)sprite->getContentSize().width / 2, (int)-sprite->getContentSize().height / 2)
-		//b2Vec2(32.2f , 35.0f )
-	};
-	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0.2));
+	//int num = 4;
+	//b2Vec2 verts[] = {
+	//	b2Vec2((int)-sprite->getContentSize().width / 2, (int)-sprite->getContentSize().height / 2),
+	//	b2Vec2((int)-sprite->getContentSize().width / 2, (int)sprite->getContentSize().height / 2),
+	//	b2Vec2((int)sprite->getContentSize().width / 2, (int)sprite->getContentSize().height / 2),
+	//	b2Vec2((int)sprite->getContentSize().width / 2, (int)-sprite->getContentSize().height / 2)
+	//	//b2Vec2(32.2f , 35.0f )
+	//};
+	// b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
 
 	b2PhysicBody->setBodyType(b2_staticBody);
 	this->setb2PhysicsBody(b2PhysicBody);
@@ -95,7 +95,7 @@ void GroundObject::createSlopePhysicBody(Sprite* sprite){
 		b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
 		b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
 	};
-	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.1, 0.8));
+	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.1, 0));
 
 	b2PhysicBody->setBodyType(b2_staticBody);
 	this->setb2PhysicsBody(b2PhysicBody);

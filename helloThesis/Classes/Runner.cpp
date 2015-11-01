@@ -29,7 +29,7 @@ bool Runner::init(){
 	//};
 
 	//auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0, 0.1));
-	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0.3));
+	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0.2));
 	b2PhysicBody->setBodyType(b2_dynamicBody);
 	this->setb2PhysicsBody(b2PhysicBody);
 
@@ -67,21 +67,32 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 	//float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
 	//float hB2y = this->getb2Position().y;
 	//float hb2 = this->getb2Position().y - 50 / 2 ;
-
+	int groundTag = groundNode->getTag();
+	float tmp;
+	if (groundTag == GroundType::NORMAL)
+		tmp = 1;
+	else
+		tmp = 10;
+	float groundWidth = groundNode->getBoundingBox().getMaxX();
 	////float hmRunner = this->mBody->getBoundingBox().getMaxY();
 	//int y = this->getPosition().y;
 	float vy = this->getb2PhysicsBody()->getVelocityY();
 	//if (hb2<hGround){
-	//if (this->getb2PhysicsBody()->getVelocityY()>5){
-	//	//one way platform
-	//	contact->SetEnabled(false);
-	//}
+	if (this->getb2PhysicsBody()->getVelocityY()>tmp){
+		if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
+
+			contact->SetEnabled(false);
+		}
+		//one way platform
+	}
+
+
 	//else{
 		//if (GroundObject::isChangeDirTile(groundNode) && ++changeDirectionCooldown>1){
 		//	this->direction *= -1;
 		//	changeDirectionCooldown = 0;
 		//}
-		this->getb2PhysicsBody()->setVelocityX(7.0f);
+		this->getb2PhysicsBody()->setVelocityX(9.0f);
 		this->mState = PlayerState::ON_GROUND;
 		//contact->SetEnabled(false);
 	//}

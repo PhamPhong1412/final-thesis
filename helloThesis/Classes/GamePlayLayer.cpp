@@ -12,8 +12,8 @@ bool GamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	this->mMap = map;
 	mRunner = Runner::create();
-	mRunner->setb2Position(100, 200);
-	mRunner->setPosition(100, 200);
+	mRunner->setb2Position(100, 100);
+	mRunner->setPosition(100, 100);
 	this->addChild(mRunner);
 	mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(0.0f, 0));
 
@@ -224,7 +224,7 @@ void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
 void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
 	//tmp = !tmp;
 	if (this->mRunner->isOnGround())
-		this->mRunner->getb2PhysicsBody()->setVelocityY(30.0f);
+		this->mRunner->getb2PhysicsBody()->setVelocityY(35.0f);
 }
 
 void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)
