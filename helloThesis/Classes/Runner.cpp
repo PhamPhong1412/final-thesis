@@ -70,7 +70,7 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 	int groundTag = ((GroundObject*)groundNode)->getType();
 	log("%d", groundTag);
 	float tmp;
-	if (groundTag == GroundType::BARNORMAL)
+	if (groundTag == GroundType::BA == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == = ; RNORMAL)
 	{
 		float groundWidth = groundNode->getBoundingBox().getMaxX();
 		tmp = 10;
