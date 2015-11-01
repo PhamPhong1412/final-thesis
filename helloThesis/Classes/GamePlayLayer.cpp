@@ -27,7 +27,7 @@ bool GamePlayLayer::init(std::string map)
 	float tileSize = 70 / GameConfig::scale;
 	std::vector<std::string> objectData = Utility::splitString(part.at(1), "\n");
 	for (int i = 0; i < nTilesHeight; i++){
-		y = (nTilesHeight - i - 1) * tileSize;
+		y = (int)(nTilesHeight - i - 1) * tileSize;
 		int tmp = y;
 		y = tmp;
 		std::vector<std::string> currentLineData = Utility::splitString(objectData.at(i), ";");
@@ -35,14 +35,14 @@ bool GamePlayLayer::init(std::string map)
 			std::string tileName = currentLineData.at(j);
 			if (tileName == "0")
 				continue;
-			x = j * tileSize;
-			if (i == nTilesHeight - 1 && j == nTilesWidth-2){
-				addTile(tileName, x, y, true);
-			}
-			else{
+			x = j * tileSize ;
+			//if (i == nTilesHeight - 1 && j == nTilesWidth-1){
+			//	addTile(tileName, x, y, true);
+			//}
+			//else{
 
-				addTile(tileName, x, y);
-			}
+			addTile(tileName, x, y);
+			//}
 		}
 	}
 	
@@ -58,15 +58,40 @@ bool GamePlayLayer::init(std::string map)
 
 	this->scheduleUpdate();
 
-	Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
-	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, nTilesWidth * 70 / GameConfig::scale, nTilesHeight * 70 / GameConfig::scale)));
+	//camera = Camera::create();
+	//camera->setCameraFlag(CameraFlag::USER2);
+	////the calling order matters, we should first call setPosition3D, then call lookAt.
+	//camera->setPosition(this->mRunner->getPosition());
+	////camera->lookAt(Vec3(this->mRunner->getPosition().x, this->mRunner->getPosition().y, 0), Vec3(0.0, 1.0, 0.0));
+	//this->addChild(camera);
+	//camera->loo
+
+	//Rect a = Rect(0, 0, visibleSize.width, visibleSize.height);
+	cameraFollow = cocos2d::Follow::create(mRunner, Rect(0, 0, nTilesWidth * 70 / GameConfig::scale,
+		nTilesHeight * 70 / GameConfig::scale));
+	cameraFollow->setTag(5);
+	cameraFollow->retain();
+	this->runAction(cameraFollow);
 
 	return true;
 }
 
 void GamePlayLayer::update(float delta){
+	cameraCounter += delta;
+	//if (cameraCounter > 20.0f){
+	//	if (this->getActionByTag(5) == nullptr){
 
+	//		this->runAction(cameraFollow);
+	//	}
+	//	else{
+
+	//		this->stopAction(cameraFollow);
+	//	}
+	//}
+/*	CCLOG("%f", this->mRunner->getPosition().y);
+this->camera->setPosition( Vec2(this->mRunner->getPosition().x, this->mRunner->getPosition().y))*/;
 	b2Layer::update(delta);
+	//CCLOG("%f", this->mRunner->getb2PhysicsBody()->getVelocityX());
 	//if (tmp){
 	//	this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(10.0f, 0));
 	//}
@@ -150,11 +175,11 @@ void GamePlayLayer::createSlope(float xLoc, bool direction){
 	
 }
 
-void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc, bool isEnd){
+void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
     if (tileName == "0")
         return;
 
-	GroundObject* go = new GroundObject(xLoc, yLoc, tileName, isEnd);
+	GroundObject* go = new GroundObject(xLoc, yLoc, tileName);
 	//go->init();
 
     /*Sprite* sprite = Sprite::create(tileName + ".png");

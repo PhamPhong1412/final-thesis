@@ -14,6 +14,9 @@ class GamePlayLayer : public b2Layer
 {
 private: 
 	std::string mMap;
+	Camera* camera;
+	Follow* cameraFollow;
+	float cameraCounter = 0;
 public:
 
 	virtual bool init(std::string map);
@@ -21,7 +24,7 @@ public:
 	void initTiles();
 	void createTiles(float xloc, float yLoc);
 	void createSlope(float xLoc, bool direction);
-	void addTile(std::string tileName, float xLoc, float yLoc, bool isEnd =false);
+	void addTile(std::string tileName, float xLoc, float yLoc);
 
 	//touches event
 	void onTouchesBegan(const std::vector<Touch*>& touches, Event  *event);

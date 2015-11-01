@@ -41,7 +41,7 @@ bool MapMakingScene::init()
     
     mCurrentState = Move;
     tile_size = 70;
-    numberTileWidth = 40;
+    numberTileWidth = 400;
     numberTileHeight = 30;
     
     visibleSize = Director::getInstance()->getVisibleSize();

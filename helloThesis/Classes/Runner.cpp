@@ -4,7 +4,7 @@ bool Runner::init(){
 	mBody = CSLoader::createNode(FileUtils::getInstance()->fullPathForFilename("mummy.csb"));
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("mummy.csb"));
 	mAnimation->play("walk", true);
-	mBody->runAction(mAnimation);
+	//mBody->runAction(mAnimation);
 	mBody->setPosition(0, 0);
 	mBody->setTag(TAG_OBJECT_PLAYER_BODY);
 	this->addChild(mBody);
@@ -17,15 +17,27 @@ bool Runner::init(){
 	//	//b2Vec2(20.0f , -40.0f ),
 	//	b2Vec2(32.2f , 35.0f )
 	//};
+	//int num = 6;
+	//b2Vec2 verts[] = {
+	//	b2Vec2(20, 50),
+	//	b2Vec2(0, 50),
+	//	b2Vec2(0, 20/3),
+	//	b2Vec2(20 / 3, 0),
+	//	b2Vec2(20*2/3, 0 ),
+	//	b2Vec2(20 , 20/3 +2.5)
+	//	//b2Vec2(32.2f , 35.0f )
+	//};
 
-	//auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0.5, 0, 1));
-	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0.1));
+	//auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0, 0.1));
+	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0.3));
 	b2PhysicBody->setBodyType(b2_dynamicBody);
 	this->setb2PhysicsBody(b2PhysicBody);
 
 	this->setTag(TAG_OBJECT_PLAYER);
 
 	this->direction = 1;
+	this->changeDirectionCooldown = 1;
+	//this->autorelease();
 	return true;
 }
 
@@ -54,24 +66,25 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 
 	//float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
 	//float hB2y = this->getb2Position().y;
-	//float hb2 = this->getb2Position().y - 50 / 2;
+	//float hb2 = this->getb2Position().y - 50 / 2 ;
 
 	////float hmRunner = this->mBody->getBoundingBox().getMaxY();
 	//int y = this->getPosition().y;
 	float vy = this->getb2PhysicsBody()->getVelocityY();
 	//if (hb2<hGround){
-	if (this->getb2PhysicsBody()->getVelocityY()>5){
-		//one way platform
-		contact->SetEnabled(false);
-	}
-	else{
-		if (GroundObject::isChangeDirTile(groundNode)){
-			this->direction *= -1;
-		}
-		this->getb2PhysicsBody()->setVelocityX(10.0f*this->direction);
+	//if (this->getb2PhysicsBody()->getVelocityY()>5){
+	//	//one way platform
+	//	contact->SetEnabled(false);
+	//}
+	//else{
+		//if (GroundObject::isChangeDirTile(groundNode) && ++changeDirectionCooldown>1){
+		//	this->direction *= -1;
+		//	changeDirectionCooldown = 0;
+		//}
+		this->getb2PhysicsBody()->setVelocityX(7.0f);
 		this->mState = PlayerState::ON_GROUND;
 		//contact->SetEnabled(false);
-	}
+	//}
 }
 
 void Runner::endCollideGround(){

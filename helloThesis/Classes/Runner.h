@@ -28,6 +28,7 @@ private:
 	void endCollideGround();
 	PlayerState mState = PlayerState::ON_GROUND;
 	int direction; //
+	int changeDirectionCooldown;
 public:
 	virtual bool init();
 
