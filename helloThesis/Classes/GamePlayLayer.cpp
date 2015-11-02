@@ -224,7 +224,7 @@ void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
 void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
 	//tmp = !tmp;
 	if (this->mRunner->isOnGround())
-		this->mRunner->getb2PhysicsBody()->setVelocityY(35.0f);
+		this->mRunner->getb2PhysicsBody()->setVelocityY(25.0f);
 }
 
 void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)

@@ -17,19 +17,21 @@ bool Runner::init(){
 	//	//b2Vec2(20.0f , -40.0f ),
 	//	b2Vec2(32.2f , 35.0f )
 	//};
-	//int num = 6;
-	//b2Vec2 verts[] = {
-	//	b2Vec2(20, 50),
-	//	b2Vec2(0, 50),
-	//	b2Vec2(0, 20/3),
-	//	b2Vec2(20 / 3, 0),
-	//	b2Vec2(20*2/3, 0 ),
-	//	b2Vec2(20 , 20/3 +2.5)
-	//	//b2Vec2(32.2f , 35.0f )
-	//};
-
-	//auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0, 0.1));
-	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0.2));
+    
+//	int num = 6;
+//	b2Vec2 verts[] = {
+//		b2Vec2(20, 50),
+//		b2Vec2(0, 50),
+//		b2Vec2(0, 20/3),
+//		b2Vec2(20 / 3, 0),
+//		b2Vec2(20*2/3, 0 ),
+//		b2Vec2(20 , 20/3 +2.5)
+//		//b2Vec2(32.2f , 35.0f )
+//	};
+//
+//	auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0, 0.1));
+	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0));
+    
 	b2PhysicBody->setBodyType(b2_dynamicBody);
 	this->setb2PhysicsBody(b2PhysicBody);
 
@@ -42,16 +44,17 @@ bool Runner::init(){
 }
 
 void Runner::BeginContact(b2Node* node, b2Contact* contact){
-	int targetTag = node->getTag();
-	switch (targetTag)
-	{
-	case TAG_OBJECT_GROUND:{
-							   this->collideGround(node, contact);
-							   break;
-	}
-	default:
-		break;
-	}
+//	int targetTag = node->getTag();
+//	switch (targetTag)
+//	{
+//	case TAG_OBJECT_GROUND:{
+//							   this->collideGround(node, contact);
+//							   break;
+//	}
+//	default:
+//		break;
+//	}
+    this->collideGround(node, contact);
 }
 
 void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
@@ -67,43 +70,58 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 	//float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
 	//float hB2y = this->getb2Position().y;
 	//float hb2 = this->getb2Position().y - 50 / 2 ;
-	int groundTag = ((GroundObject*)groundNode)->getType();
-	log("%d", groundTag);
+	int groundTag = groundNode->getTag();
 	float tmp;
-	if (groundTag == GroundType::BA == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == = ; RNORMAL)
-	{
-		float groundWidth = groundNode->getBoundingBox().getMaxX();
-		tmp = 10;
-		if (this->getb2PhysicsBody()->getVelocityY()>tmp){
-			if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
-
-				contact->SetEnabled(false);
-			}
-			//one way platform
-		}
-	}
-	else
-		tmp = 10;
+    switch (groundTag)
+    	{
+            case TAG_OBJECT_GROUND:
+            {
+                    break;
+            }
+            case TAG_OBJECT_BARNORMAL:
+            {
+                float groundWidth = groundNode->getBoundingBox().getMaxX();
+                tmp = 2;
+                if (this->getb2PhysicsBody()->getVelocityY()>tmp){
+                    if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
+                        
+                        contact->SetEnabled(false);
+                    }
+                    //one way platform
+                }
+               break;
+            }
+            case TAG_OBJECT_BARSLOPE:
+            {
+//                float groundWidth = groundNode->getBoundingBox().getMaxX();
+//                tmp = 1;
+//                if (this->getb2PhysicsBody()->getVelocityY()>tmp){
+//                    if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
+//                        
+//                        contact->SetEnabled(false);
+//                    }
+//                    //one way platform
+//                }
+                break;
+            }
+            case TAG_OBJECT_BACK:
+            {
+            
+                break;
+            }
+            default:
+                break;
+    	}
 	
 	////float hmRunner = this->mBody->getBoundingBox().getMaxY();
 	//int y = this->getPosition().y;
-	float vy = this->getb2PhysicsBody()->getVelocityY();
-	//if (hb2<hGround){
-	//if (this->getb2PhysicsBody()->getVelocityY()>tmp){
-	//	if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
-
-	//		contact->SetEnabled(false);
-	//	}
-	//	//one way platform
-	//}
-
 
 	//else{
 		//if (GroundObject::isChangeDirTile(groundNode) && ++changeDirectionCooldown>1){
 		//	this->direction *= -1;
 		//	changeDirectionCooldown = 0;
 		//}
-		this->getb2PhysicsBody()->setVelocityX(9.0f);
+		this->getb2PhysicsBody()->setVelocityX(10.0f);
 		this->mState = PlayerState::ON_GROUND;
 		//contact->SetEnabled(false);
 	//}

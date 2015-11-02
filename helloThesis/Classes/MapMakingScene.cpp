@@ -59,8 +59,11 @@ bool MapMakingScene::init()
     initButton();
     
     auto listener = EventListenerTouchOneByOne::create();
+    
     listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
     listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(MapMakingScene::onTouchEnded, this);
+    
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
 //     initCreateMapView();
     return true;
@@ -475,6 +478,10 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
     }
 }
 
+void MapMakingScene::onTouchEnded(Touch *touch, Event *event)
+{
+    
+}
 void MapMakingScene::saveMap(cocos2d::Ref *pSender)
 {
     mMapSave = "";

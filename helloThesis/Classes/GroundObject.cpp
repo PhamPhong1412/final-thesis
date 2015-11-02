@@ -15,29 +15,34 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 	if (tType == "1"){
 		type = GroundType::NORMAL;
 		createNormalPhysicBody(sprite);
+        this->setTag(TAG_OBJECT_GROUND);
 	}
 	else if (tType == "2"){
 		type = GroundType::SLOPE;
 		createSlopePhysicBody(sprite);
+        this->setTag(TAG_OBJECT_GROUND);
 	}
 	else if (tType == "3")
 	{
 		type = GroundType::BARNORMAL;
 		createBarNormalPhysicBody(sprite);
+        this->setTag(TAG_OBJECT_BARNORMAL);
 	}
 	else if (tType == "4")
 	{
 		type = GroundType::BARSLOPE;
 		createBarSlopePhysicBody(sprite);
+        this->setTag(TAG_OBJECT_BARSLOPE);
 	}
 	else
 	{
 		type = GroundType::END;
 		createEndlPhysicBody(sprite);
+        this->setTag(TAG_OBJECT_BACK);
 		isEnd = true;
 	}
 
-	this->setTag(TAG_OBJECT_GROUND);
+	
 	this->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
 	this->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
 
@@ -66,7 +71,7 @@ void GroundObject::createNormalPhysicBody(Sprite* sprite){
 	//b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
 	//	b2PhysicsMaterial(0, 0, 0));
 
-	b2PhysicBody = b2PhysicsBody::createBox(Size(sprite->getContentSize().width, sprite->getContentSize().height),
+	b2PhysicBody = b2PhysicsBody::createBox(Size(sprite->getContentSize().width - 1 , sprite->getContentSize().height),
 		b2PhysicsMaterial(0, 0.01, 0));
 
 	//int num = 4;
