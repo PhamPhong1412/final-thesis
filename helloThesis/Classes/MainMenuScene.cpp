@@ -93,6 +93,22 @@ void MainMenuScene::initButton()
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
     
+    
+    
+    TableView* tableView = TableView::create(this, Size(300,400));
+
+    tableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
+
+    tableView->setPosition(Vec2(0,visibleSize.height/3));
+
+    tableView->setDelegate(this);
+
+    tableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
+
+    this->addChild(tableView);
+
+    tableView->reloadData();
+    
 }
 
 void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
@@ -125,4 +141,59 @@ void MainMenuScene::menuSettingCallback(cocos2d::Ref *pSender)
 
 void MainMenuScene::menuExitCallback(cocos2d::Ref* pSender){
 	Director::getInstance()->end();
+}
+
+
+TableViewCell* MainMenuScene::tableCellAtIndex(TableView *table, ssize_t idx) {
+    CC_UNUSED_PARAM(table);
+    
+    auto string = String::createWithFormat("%zd", idx);
+    
+
+    TableViewCell *cell = table->dequeueCell();
+    
+    if (!cell) {
+
+        cell = new TableViewCell();
+
+        cell->autorelease();
+
+        auto sprite = Sprite::create("CloseNormal.png");
+
+        sprite->setAnchorPoint(Vec2::ZERO);
+
+        sprite->setPosition(Vec2(0,0));
+
+        cell->addChild(sprite);
+        
+
+        LabelTTF *label = LabelTTF::create(string->getCString(), "Helvetica", 20.0);
+
+        label->setPosition(Vec2::ZERO);
+
+        label->setAnchorPoint(Vec2::ZERO);
+
+        label->setTag(123);
+
+        cell->addChild(label);
+    }
+    else
+    {
+        LabelTTF *label = (LabelTTF*)cell->getChildByTag(123);
+
+        label->setString(string->getCString());
+    }
+    return cell;
+}
+
+ssize_t MainMenuScene::numberOfCellsInTableView(TableView *table) {
+    CC_UNUSED_PARAM(table);
+    
+    return 20;
+}
+
+Size MainMenuScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
+    CC_UNUSED_PARAM(table);
+    
+    return Size(100, 100);
 }

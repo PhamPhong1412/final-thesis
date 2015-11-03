@@ -98,6 +98,7 @@ void ShopScene::initListRoot()
     
     mListButonRoot = ui::ListView::create();
     mListButonRoot->setAnchorPoint(Vec2(0.5,0));
+    mListButonRoot->setGravity(cocos2d::ui::ListView::Gravity::CENTER_HORIZONTAL);
     mListButonRoot->setDirection(ui::ScrollView::Direction::HORIZONTAL);
     mListButonRoot->setClippingEnabled(false);
 //    mListButonRoot->setBounceEnabled(true);

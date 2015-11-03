@@ -1,4 +1,4 @@
-#ifndef __B2_ANIMATED_SPRITE_H__
+	#ifndef __B2_ANIMATED_SPRITE_H__
 #define __B2_ANIMATED_SPRITE_H__
 
 #include "cocos2d.h"
