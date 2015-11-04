@@ -11,6 +11,7 @@
 #include "ui/CocosGUI.h"
 #include "Translator.h"
 #include "LoginScene.h"
+#include "RatingTableCell.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -45,8 +46,10 @@ public:
     virtual TableViewCell* tableCellAtIndex(TableView *table, ssize_t idx);
     virtual ssize_t numberOfCellsInTableView(TableView *table);
     virtual cocos2d::Size tableCellSizeForIndex(TableView *table, ssize_t idx) override;
-    virtual void tableCellTouched(TableView *table, TableViewCell *cell) {}
+    virtual void tableCellTouched(TableView *table, TableViewCell *cell);
+    
     virtual void scrollViewDidScroll(cocos2d::extension::ScrollView *view) {};
+    
 //    virtual void scrollViewDidZoom(ScrollView *view) {};
     
 	CREATE_FUNC(MainMenuScene);

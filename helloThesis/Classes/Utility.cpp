@@ -1,6 +1,6 @@
 #include "Utility.h"
 
-std::vector<std::string> Utility::splitString(std::string string, std::string  delim){
+std::vector<string> Utility::splitString(std::string string, std::string  delim){
 	char str[1002004];
 	char * pch;
 	const char* tmp = delim.c_str();

@@ -94,6 +94,8 @@ void MainMenuScene::initButton()
     this->addChild(menu, 1);
     
     
+    GameConfig::RANK_TABLE_WIDTH = 300;
+    GameConfig::RANK_TABLE_CELL_HEIGHT = 50;
     
     TableView* tableView = TableView::create(this, Size(300,400));
 
@@ -148,41 +150,19 @@ TableViewCell* MainMenuScene::tableCellAtIndex(TableView *table, ssize_t idx) {
     CC_UNUSED_PARAM(table);
     
     auto string = String::createWithFormat("%zd", idx);
-    
 
-    TableViewCell *cell = table->dequeueCell();
+    RatingTableCell *cell = (RatingTableCell*)table->dequeueCell();
     
     if (!cell) {
 
-        cell = new TableViewCell();
+        cell = new RatingTableCell();
 
-        cell->autorelease();
-
-        auto sprite = Sprite::create("CloseNormal.png");
-
-        sprite->setAnchorPoint(Vec2::ZERO);
-
-        sprite->setPosition(Vec2(0,0));
-
-        cell->addChild(sprite);
-        
-
-        LabelTTF *label = LabelTTF::create(string->getCString(), "Helvetica", 20.0);
-
-        label->setPosition(Vec2::ZERO);
-
-        label->setAnchorPoint(Vec2::ZERO);
-
-        label->setTag(123);
-
-        cell->addChild(label);
+        cell->setContentSize(Size(GameConfig::RANK_TABLE_WIDTH,GameConfig::RANK_TABLE_CELL_HEIGHT));
     }
-    else
-    {
-        LabelTTF *label = (LabelTTF*)cell->getChildByTag(123);
-
-        label->setString(string->getCString());
-    }
+    
+    cell->getNickNameLabel()->setString("thien");
+    cell->getPlayCountLabel()->setString("12");
+    cell->getTotalScoreLabel()->setString("3");
     return cell;
 }
 
@@ -195,5 +175,10 @@ ssize_t MainMenuScene::numberOfCellsInTableView(TableView *table) {
 Size MainMenuScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
     CC_UNUSED_PARAM(table);
     
-    return Size(100, 100);
+    return Size(300, 50);
+}
+
+void MainMenuScene::tableCellTouched(TableView *table, TableViewCell *cell)
+{
+    CCLOG("%zi",cell->getIdx());
 }

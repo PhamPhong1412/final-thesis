@@ -5,6 +5,7 @@
 #define DESIGN_SCREEN_WIDTH 1136
 #define DESIGN_SCREEN_HEIGHT 640
 
+
 #define PTM_RATIO 32
 #define SET_DEBUG 1
 
@@ -25,5 +26,7 @@
 class GameConfig{
 public:
 	static float scale;
+    static float RANK_TABLE_WIDTH;
+    static float RANK_TABLE_CELL_HEIGHT;
 };
 #endif
