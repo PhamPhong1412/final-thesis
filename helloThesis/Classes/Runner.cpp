@@ -58,73 +58,39 @@ void Runner::BeginContact(b2Node* node, b2Contact* contact){
 }
 
 void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
-	//for (int i = 0; i < contact->GetManifold()->pointCount; i++) {
-	//	float x=contact->GetManifold()->points[i].localPoint.x;
-	//	float y = contact->GetManifold()->points[i].localPoint.y;
-	//}
-
-	//float tileSize = 70 / GameConfig::scale;
-	//float yGround = groundNode->getPosition().y;
-	//float hGround = yGround + tileSize / 2;
-
-	//float hRunner = this->getPosition().y - 45 / (2 * GameConfig::scale);
-	//float hB2y = this->getb2Position().y;
-	//float hb2 = this->getb2Position().y - 50 / 2 ;
 	int groundTag = groundNode->getTag();
 	float tmp;
     switch (groundTag)
     	{
             case TAG_OBJECT_GROUND:
             {
+					runNormal();
                     break;
             }
             case TAG_OBJECT_BARNORMAL:
-            {
-                float groundWidth = groundNode->getBoundingBox().getMaxX();
-                tmp = 2;
-                if (this->getb2PhysicsBody()->getVelocityY()>tmp){
-                    if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
-                        
-                        contact->SetEnabled(false);
-                    }
-                    //one way platform
-                }
-               break;
-            }
             case TAG_OBJECT_BARSLOPE:
             {
-//                float groundWidth = groundNode->getBoundingBox().getMaxX();
-//                tmp = 1;
-//                if (this->getb2PhysicsBody()->getVelocityY()>tmp){
-//                    if (std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2){
-//                        
-//                        contact->SetEnabled(false);
-//                    }
-//                    //one way platform
-//                }
+                float groundWidth = groundNode->getBoundingBox().getMaxX();
+                tmp = 3;
+				bool velocityCheck = this->getb2PhysicsBody()->getVelocityY() > tmp;
+				bool positionCheck = std::abs(this->getPosition().x - groundNode->getPosition().x) < groundWidth / 2;
+
+				if (velocityCheck && positionCheck){
+                        contact->SetEnabled(false);
+				}
+				else{
+					runNormal();
+					jumpSpeedBoostCharges++;
+				}
                 break;
             }
             case TAG_OBJECT_BACK:
             {
-            
                 break;
             }
             default:
                 break;
     	}
-	
-	////float hmRunner = this->mBody->getBoundingBox().getMaxY();
-	//int y = this->getPosition().y;
-
-	//else{
-		//if (GroundObject::isChangeDirTile(groundNode) && ++changeDirectionCooldown>1){
-		//	this->direction *= -1;
-		//	changeDirectionCooldown = 0;
-		//}
-		this->getb2PhysicsBody()->setVelocityX(10.0f);
-		this->mState = PlayerState::ON_GROUND;
-		//contact->SetEnabled(false);
-	//}
 }
 
 void Runner::endCollideGround(){
@@ -132,7 +98,9 @@ void Runner::endCollideGround(){
 }
 
 bool Runner::isOnGround(){
-	return this->mState == PlayerState::ON_GROUND ? true : false;
+	bool statusCheck = this->mState == PlayerState::ON_GROUND ? true : false;
+	bool velocityCheck = this->getb2PhysicsBody()->getVelocityY() > -0.5f && this->getb2PhysicsBody()->getVelocityY() < 1.0f;
+	return statusCheck && velocityCheck;
 }
 
 void Runner::EndContact(b2Node* node, b2Contact* contact){
@@ -145,5 +113,25 @@ void Runner::EndContact(b2Node* node, b2Contact* contact){
 	}
 	default:
 		break;
+	}
+}
+
+void Runner::runNormal(){
+	this->getb2PhysicsBody()->setVelocityX(10.0f);
+	this->mState = PlayerState::ON_GROUND;
+}
+
+void Runner::jump(){
+	if (this->isOnGround())
+		this->getb2PhysicsBody()->setVelocityY(getJumpSpeed());
+}
+
+float Runner::getJumpSpeed(){
+	if (jumpSpeedBoostCharges > 0){
+		jumpSpeedBoostCharges--;
+		return BOOSTED_JUMP_SPEED;
+	}
+	else{
+		return NORMAL_JUMP_SPEED;
 	}
 }

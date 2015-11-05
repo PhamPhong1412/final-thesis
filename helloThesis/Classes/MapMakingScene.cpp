@@ -119,14 +119,15 @@ void MapMakingScene::initScrollMapView()
     for (int i = 0; i < numberTileHeight; i++) {
         mVector2Chieu.push_back(vector<string>());
         for (int j = 0 ; j < numberTileWidth; j++) {
-            if (i == 0||i==4) {
-					if (i == 4)
+            if (i == 0) {
+			//if (false){
+					if (i==4)
 					{
 						if (j % 2 != 0)
 						{
-							mVector2Chieu[i].push_back("1,1");
+							mVector2Chieu[i].push_back("1,3");
 							string tName = to_string(j) + "+" + to_string(i);
-							auto tSprite = Sprite::create("1,1.png");
+							auto tSprite = Sprite::create("1,3.png");
 							tSprite->setName(tName);
 							tSprite->setAnchorPoint(Vec2(0, 0));
 							tSprite->setScale(GameConfig::scale);

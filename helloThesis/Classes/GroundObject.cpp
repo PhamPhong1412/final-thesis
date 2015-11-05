@@ -121,7 +121,7 @@ void GroundObject::createBarNormalPhysicBody(Sprite* sprite)
 		b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
 	};
 
-	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+	b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
 
 	b2PhysicBody->setBodyType(b2_staticBody);
 	this->setb2PhysicsBody(b2PhysicBody);

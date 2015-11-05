@@ -18,7 +18,6 @@ private:
 	Follow* cameraFollow;
 	float cameraCounter = 0;
 public:
-
 	virtual bool init(std::string map);
 	void update(float delta);
 	void initTiles();
