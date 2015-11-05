@@ -8,7 +8,7 @@ USING_NS_CC;
 class DBContext
 {
 private:
-	static CCUserDefault* context;
+	static UserDefault* context;
 
 public:
 	static void init();

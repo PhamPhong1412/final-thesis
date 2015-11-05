@@ -150,6 +150,9 @@
     <ClCompile Include="..\Classes\ShopScene.cpp">
       <Filter>src\Scenes\Shop</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RatingTableCell.cpp">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -229,6 +232,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\ShopScene.h">
       <Filter>src\Scenes\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RatingTableCell.h">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

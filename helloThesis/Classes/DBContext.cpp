@@ -1,7 +1,7 @@
 #include "DBContext.h"
-CCUserDefault* DBContext::context = nullptr;
+UserDefault* DBContext::context = nullptr;
 void DBContext::init(){
-	context = CCUserDefault::sharedUserDefault();
+	context =UserDefault::sharedUserDefault();
 }
 
 std::string DBContext::get(const char* key){

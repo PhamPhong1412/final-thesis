@@ -18,7 +18,7 @@ public:
 	bool initWithTexture(Texture2D* texture);
 
 	Vector<SpriteFrame*> Frames;
-	CCDictionary* settings;
+	Dictionary* settings;
 
 	void initPhysicBody();
 	void setFrame(int frame);
