@@ -4,7 +4,8 @@
 
 #include "cocos2d.h"
 #include "b2Layer.h"
-#include "Runner.h"
+//#include "Runner.h"
+#include "RunnerController.h"
 #include "GroundObject.h"
 #include "GameConfig.h"
 #include "Utility.h"
@@ -36,9 +37,9 @@ public:
 	void EndContact(b2Contact* contact);
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
-
+	Runner* mRunner;
 	//CREATE_FUNC(GamePlayLayer);
-	CC_SYNTHESIZE(Runner*, mRunner, Runner);
+	//CC_SYNTHESIZE(Runner*, mRunner, Runner);
 };
 
 #endif 

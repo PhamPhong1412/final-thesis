@@ -153,6 +153,18 @@
     <ClCompile Include="..\Classes\RatingTableCell.cpp">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RunnerModel.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RunnerView.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RunnerController.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -235,6 +247,18 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RatingTableCell.h">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorldScene.h">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RunnerModel.h">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RunnerView.h">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RunnerController.h">
+      <Filter>src\GameObject\Runner</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

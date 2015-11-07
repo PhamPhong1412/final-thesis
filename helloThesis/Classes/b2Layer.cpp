@@ -20,7 +20,7 @@ bool b2Layer::init()
 {
 }
 #endif
-
+	return true;
 }
 
 void b2Layer::addChild(b2PhysicsBody* child)
@@ -134,7 +134,7 @@ void b2Layer::update(float delta)
 		if (b->GetUserData() != NULL)
 		{
 			// Synchronize the AtlasSprites position and rotation with the corresponding body
-			CCSprite* myActor = (CCSprite*)b->GetUserData();
+			Sprite* myActor = (Sprite*)b->GetUserData();
 			myActor->setPosition(CCPointMake(b->GetPosition().x * PTM_RATIO, b->GetPosition().y * PTM_RATIO));
 			myActor->setRotation(-1 * CC_RADIANS_TO_DEGREES(b->GetAngle()));
 		}

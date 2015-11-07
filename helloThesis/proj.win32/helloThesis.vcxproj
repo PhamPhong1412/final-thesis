@@ -159,12 +159,16 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GamePlayLayer.cpp" />
     <ClCompile Include="..\Classes\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\GroundObject.cpp" />
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
     <ClCompile Include="..\Classes\LoginScene.cpp" />
     <ClCompile Include="..\Classes\MainGameScene.cpp" />
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
     <ClCompile Include="..\Classes\MapMakingScene.cpp" />
     <ClCompile Include="..\Classes\RatingTableCell.cpp" />
     <ClCompile Include="..\Classes\Runner.cpp" />
+    <ClCompile Include="..\Classes\RunnerController.cpp" />
+    <ClCompile Include="..\Classes\RunnerModel.cpp" />
+    <ClCompile Include="..\Classes\RunnerView.cpp" />
     <ClCompile Include="..\Classes\ShopScene.cpp" />
     <ClCompile Include="..\Classes\SoundManager.cpp" />
     <ClCompile Include="..\Classes\Translator.cpp" />
@@ -187,6 +191,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GamePlayLayer.h" />
     <ClInclude Include="..\Classes\GLES-Render.h" />
     <ClInclude Include="..\Classes\GroundObject.h" />
+    <ClInclude Include="..\Classes\HelloWorldScene.h" />
     <ClInclude Include="..\Classes\LangDefine.h" />
     <ClInclude Include="..\Classes\LoginScene.h" />
     <ClInclude Include="..\Classes\MainGameScene.h" />
@@ -194,6 +199,9 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MapMakingScene.h" />
     <ClInclude Include="..\Classes\RatingTableCell.h" />
     <ClInclude Include="..\Classes\Runner.h" />
+    <ClInclude Include="..\Classes\RunnerController.h" />
+    <ClInclude Include="..\Classes\RunnerModel.h" />
+    <ClInclude Include="..\Classes\RunnerView.h" />
     <ClInclude Include="..\Classes\ShopScene.h" />
     <ClInclude Include="..\Classes\SoundManager.h" />
     <ClInclude Include="..\Classes\Translator.h" />
