@@ -57,6 +57,9 @@ bool HUDLayer::onTouchBegan(Touch *touch, Event *event){
 }
 
 bool HUDLayer::isTouchInside(Touch *touch){
+	//auto z = this->background->getTexture();
+	//if (!true)
+	//	return false;
 	float x = touch->getLocation().x;
 	float y = touch->getLocation().y;
 

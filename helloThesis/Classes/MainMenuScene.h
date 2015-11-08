@@ -13,7 +13,6 @@
 #include "LoginScene.h"
 #include "RatingTableCell.h"
 #include "HelloWorldScene.h"
-#include "ABCXYZ.h"
 USING_NS_CC;
 USING_NS_CC_EXT;
 

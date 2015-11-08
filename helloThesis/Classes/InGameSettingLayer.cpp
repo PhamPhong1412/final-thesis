@@ -12,7 +12,6 @@ InGameSettingLayer::~InGameSettingLayer(){
 bool InGameSettingLayer::init()
 {
 	background = Sprite::create("HelloWorld.png");
-	//background->setColor(Color4B(0, 0, 0, 100));
 	background->setPosition(Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT / 2));
 	this->addChild(background);
 
