@@ -85,7 +85,8 @@ void MainGameScene::menuSettingCallback(cocos2d::Ref *pSender)
 	//if (!isPause){
 		//InGameSettingLayer* settingLayer = InGameSettingLayer::create(this);
 		//this->addChild(settingLayer);
-	this->addChild(new InGameSettingLayer(this));
+	InGameSettingLayer* settingLayer = new InGameSettingLayer(this);
+	this->addChild(settingLayer);
 		isPause = true;
 	//}
 }

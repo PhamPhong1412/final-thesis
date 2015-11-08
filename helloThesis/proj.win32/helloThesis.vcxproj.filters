@@ -186,6 +186,9 @@
     <ClCompile Include="..\Classes\InGameSettingLayer.cpp">
       <Filter>src\Scenes\PlayGame\main game\layers\Setting</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\TexturePool.cpp">
+      <Filter>src\GameObject\SpritePool</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -289,6 +292,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\InGameSettingLayer.h">
       <Filter>src\Scenes\PlayGame\main game\layers\Setting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TexturePool.h">
+      <Filter>src\GameObject\SpritePool</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

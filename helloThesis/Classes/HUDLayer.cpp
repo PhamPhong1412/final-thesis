@@ -6,7 +6,6 @@ HUDLayer::HUDLayer(Layer* parent){
 }
 
 HUDLayer::~HUDLayer(){
-
 }
 
 // on "init" you need to initialize your instance
@@ -25,7 +24,7 @@ bool HUDLayer::init(Layer* parent)
 			node->pause();
 		}
 	}
-	parent->pause();
+	//parent->pause();
 	this->parent = parent;
 
 	auto listener = EventListenerTouchOneByOne::create();
@@ -33,13 +32,13 @@ bool HUDLayer::init(Layer* parent)
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 
-
+	this->setTag(TAG_HUD_LAYER);
 	return true;
 }
 
 void HUDLayer::exit(){
 	parent->resume();
-	for (auto node : parent->getChildren()){
+	for (CCNode* node : parent->getChildren()){
 		if (node->getTag() == TAG_NORMAL_LAYER){
 			node->resume();
 		}

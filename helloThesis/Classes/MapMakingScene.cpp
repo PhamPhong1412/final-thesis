@@ -119,7 +119,7 @@ void MapMakingScene::initScrollMapView()
     for (int i = 0; i < numberTileHeight; i++) {
         mVector2Chieu.push_back(vector<string>());
         for (int j = 0 ; j < numberTileWidth; j++) {
-            if (i == 0) {
+            if (i == 0 || i%2==0) {
 			//if (false){
 					if (i==4)
 					{
