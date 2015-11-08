@@ -38,17 +38,18 @@ bool GamePlayLayer::init(std::string map)
 		}
 	}
 
-	auto onTouchListener = EventListenerTouchAllAtOnce::create();
-	onTouchListener->onTouchesBegan = CC_CALLBACK_2(GamePlayLayer::onTouchesBegan, this);
-	onTouchListener->onTouchesMoved = CC_CALLBACK_2(GamePlayLayer::onTouchesMoved, this);
-	onTouchListener->onTouchesEnded = CC_CALLBACK_2(GamePlayLayer::onTouchesEnded, this);
-	onTouchListener->onTouchesCancelled = CC_CALLBACK_2(GamePlayLayer::onTouchesCancelled, this);
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(onTouchListener, this);
+	auto listener = EventListenerTouchOneByOne::create();
+
+	listener->onTouchBegan = CC_CALLBACK_2(GamePlayLayer::onTouchBegan, this);
+	listener->onTouchMoved = CC_CALLBACK_2(GamePlayLayer::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(GamePlayLayer::onTouchEnded, this);
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	this->scheduleUpdate();
-
 	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, nTilesWidth * 70 / GameConfig::scale,
 		nTilesHeight * 70 / GameConfig::scale)));
+
+	this->setTag(TAG_NORMAL_LAYER);
 
 	return true;
 }
@@ -104,21 +105,22 @@ void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
 }
 
 #pragma region touch event
-void GamePlayLayer::onTouchesBegan(const std::vector<Touch*>& touches, Event  *event){
+bool GamePlayLayer::onTouchBegan(Touch *touch, Event *event){
 	this->mRunner->jump();
+	return true;
 }
 
-void GamePlayLayer::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)
+void GamePlayLayer::onTouchMoved(Touch *touch, Event *event)
 {
 
 }
 
-void GamePlayLayer::onTouchesEnded(const std::vector<Touch*>& touches, cocos2d::Event  *event)
+void GamePlayLayer::onTouchEnded(Touch *touch, Event *event)
 {
 
 }
 
-void GamePlayLayer::onTouchesCancelled(const std::vector<Touch*>& touches, cocos2d::Event  *event)
+void GamePlayLayer::onTouchCancelled(Touch *touch, Event *event)
 {
 	//this->mRunner->getb2PhysicsBody()->getBody()->SetLinearVelocity(b2Vec2(20.0f, 0));
 

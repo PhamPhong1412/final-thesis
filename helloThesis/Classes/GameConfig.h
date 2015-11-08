@@ -7,7 +7,7 @@
 
 
 #define PTM_RATIO 32
-#define SET_DEBUG 1
+#define SET_DEBUG 0
 
 #define TAG_OBJECT_PLAYER	1
 #define TAG_OBJECT_PLAYER_BODY	2
@@ -17,7 +17,10 @@
 #define TAG_OBJECT_BARSLOPE         102
 #define TAG_OBJECT_BACK             103
 
-#define TAG_OBJECT_MAP              200
+#define TAG_OBJECT_MAP              300
+
+#define TAG_NORMAL_LAYER              200
+#define TAG_HUD_LAYER              201
 
 #define MOVING_DIRECTION_LEFT	-1
 #define MOVING_DIRECTION_RIGHT	1

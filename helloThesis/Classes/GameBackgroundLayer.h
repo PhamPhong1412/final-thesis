@@ -10,7 +10,8 @@ class GameBackgroundLayer : public Layer
 private: 
 public:
 
-	bool init(std::string backgroundID, std::vector<std::string*>* backgroundObject);
+	//bool init(std::string backgroundID, std::vector<std::string*>* backgroundObject);
+	bool init();
 	void update(float delta);
 };
 

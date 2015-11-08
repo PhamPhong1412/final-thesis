@@ -27,10 +27,10 @@ public:
 	void addTile(std::string tileName, float xLoc, float yLoc);
 
 	//touches event
-	void onTouchesBegan(const std::vector<Touch*>& touches, Event  *event);
-	void onTouchesMoved(const std::vector<Touch*>& touches, Event  *event);
-	void onTouchesEnded(const std::vector<Touch*>& touches, Event  *event);
-	void onTouchesCancelled(const std::vector<Touch*>& touches, cocos2d::Event  *event);
+	bool onTouchBegan(Touch *touch, Event *event);
+	void onTouchMoved(Touch *touch, Event *event);
+	void onTouchEnded(Touch *touch, Event *event);
+	void onTouchCancelled(Touch *touch, Event *event);
 
 	//Physics event
 	void BeginContact(b2Contact* contact);
@@ -40,6 +40,8 @@ public:
 	Runner* mRunner;
 	//CREATE_FUNC(GamePlayLayer);
 	//CC_SYNTHESIZE(Runner*, mRunner, Runner);
+
+	//CC_SYNTHESIZE(bool, isActive, bool);
 };
 
 #endif 

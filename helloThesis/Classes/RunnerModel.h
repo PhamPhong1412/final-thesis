@@ -28,8 +28,6 @@ public:
 
 	void setState(PlayerState state);
 
-	void update(float delta);
-
 	bool isOnGround();
 
 	float getPosX();

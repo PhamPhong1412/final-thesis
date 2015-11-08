@@ -31,20 +31,14 @@ bool RunnerModel::init(){
 
 	this->direction = 1;
 	this->changeDirectionCooldown = 1;
-	this->retain();
-	this->scheduleUpdate();
 	return true;
 }
 
-void RunnerModel::update(float delta){
-
-	this->retain();
-}
 
 bool RunnerModel::isOnGround(){
 	bool statusCheck = this->mState == PlayerState::ON_GROUND ? true : false;
-	bool velocityCheck = this->getb2PhysicsBody()->getVelocityY() > -0.5f && this->getb2PhysicsBody()->getVelocityY() < 1.0f;
-	return statusCheck && velocityCheck;
+	//bool velocityCheck = this->getb2PhysicsBody()->getVelocityY() > -0.5f && this->getb2PhysicsBody()->getVelocityY() < 5.0f;
+	return statusCheck;
 }
 
 float RunnerModel::getJumpSpeed(){

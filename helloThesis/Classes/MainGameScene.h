@@ -7,12 +7,17 @@
 #include "MapMakingScene.h"
 #include "GameMap.h"
 #include "DBContext.h"
+#include "HUDLayer.h"
+#include "GameHUDLayer.h"
+#include "InGameSettingLayer.h"
+
 USING_NS_CC;
 
 class MainGameScene : public Layer
 {
 private:
 	GameMap* gameMap;
+	bool isPause;
 public:
 
 	static cocos2d::Scene* createScene();
@@ -21,7 +26,8 @@ public:
 
 	void menuPlayCallback(cocos2d::Ref* pSender);
 
-    void menuBackCallback(cocos2d::Ref* pSender);
+	void menuBackCallback(cocos2d::Ref* pSender);
+	void menuSettingCallback(cocos2d::Ref* pSender);
     
 	CREATE_FUNC(MainGameScene);
 };

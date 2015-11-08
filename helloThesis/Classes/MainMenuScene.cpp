@@ -118,8 +118,51 @@ void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
 	auto gameScene = MainGameScene::createScene();
 	Director::getInstance()->replaceScene(gameScene);
 
+	//auto action = Sequence::create(DelayTime::create(1), CallFunc::create(this, callfunc_selector(MainMenuScene::transitionToGameScene)), NULL);
+	//this->runAction(action);
+
 	//auto gameScene = HelloWorld::createScene();
 	//Director::getInstance()->replaceScene(gameScene);
+}
+
+void MainMenuScene::transitionToGameScene()
+{
+	auto size = Director::getInstance()->getWinSize();      //get the windows size.
+
+	auto clipper = ClippingNode::create();      // create the ClippingNode object
+
+	auto stencil = DrawNode::create();      // create the DrawNode object which can draw dots, segments and polygons.
+
+	Point triangle[3];      // init the  triangle vertexes. here my win size is 360x640, so my triangle vertexes init by these values. You can change the values to adapt your scree.
+	triangle[0] = Point(-size.width * 1.5f, -size.height / 2);
+	triangle[1] = Point(size.width * 1.5f, -size.height / 2);
+	triangle[2] = Point(0, size.height);
+	Color4F green(0, 1, 0, 1);
+
+	stencil->drawPolygon(triangle, 3, green, 0, green);     //use the drawNode to draw the triangle to cut the ClippingNode.
+
+	clipper->setAnchorPoint(Point(0.5f, 0.5f));     // set the ClippingNode anchorPoint, to make sure the drawNode at the center of ClippingNode
+	clipper->setPosition(size.width / 2, size.height / 2);
+	clipper->setStencil(stencil);   //set the cut triangle in the ClippingNode.
+	clipper->setInverted(true);     //make sure the content is show right side.
+
+	Sprite* blackRect = Sprite::create("HelloWorld.png");     //create a black screen sprite to make sure the bottom is black. the"black_screen.png" is a "black screen" png. 
+
+	clipper->addChild(blackRect);   //to make sure the cover is black.
+
+	this->addChild(clipper, 500);
+
+	// the Clipping node triangle  add some actions to make the triangle scale and rotate.  
+	stencil->runAction(EaseSineOut::create(Spawn::create(ScaleTo::create(2.5f, 0.0f, 0.0f), RotateBy::create(2.5f, 540),
+		Sequence::create(DelayTime::create(2.5), CallFunc::create(this, callfunc_selector(MainMenuScene::toGameScene)), NULL), NULL)));
+
+}
+
+void MainMenuScene::toGameScene()
+{
+	//get the game scene and run it.
+	auto gameScene = MainGameScene::createScene();
+	Director::getInstance()->replaceScene(gameScene);
 }
 
 void MainMenuScene::menuMakeMapCallback(cocos2d::Ref *pSender)

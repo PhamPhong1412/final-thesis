@@ -51,7 +51,6 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 				}
 				else{
 					runNormal();
-					//jumpSpeedBoostCharges++;
 				}
                 break;
             }
