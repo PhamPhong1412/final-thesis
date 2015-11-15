@@ -41,31 +41,11 @@ bool MapMakingScene::init()
     
     mCurrentState = Move;
     tile_size = 70;
-    numberTileWidth = 200;
-    numberTileHeight = 30;
     
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     
-    // INIT LOCAL DATA
-    initListItem();
-    // SETUP SCROLL VIEW
-    initScrollMapView();
-    // SETUP LIST VIEW CHILD
-    initListChild();
-    // SETUP LISTVIEW ROOT
-    initListRoot();
-    // Button Remove, Insert, Move
-    initButton();
-    
-    auto listener = EventListenerTouchOneByOne::create();
-    
-    listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
-    listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
-    listener->onTouchEnded = CC_CALLBACK_2(MapMakingScene::onTouchEnded, this);
-    
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
-//     initCreateMapView();
+     initCreateMapView();
     return true;
 }
 
@@ -166,19 +146,36 @@ void MapMakingScene::initScrollMapView()
 
 void MapMakingScene::initCreateMapView()
 {
-    auto mySprite = Sprite::create("Windown1.png");
-    mySprite->setAnchorPoint(Vec2(0.5,1));
-    mySprite->setPosition(Point((visibleSize.width / 2) + origin.x, visibleSize.height+ mySprite->getContentSize().height + origin.y));
-    mySprite->setOpacity(10.0f);
-    this->addChild(mySprite);
+    WidthHeightChooseHUD* chooseLayer = new WidthHeightChooseHUD(this);
+    chooseLayer->setDelegate(this);
+    this->removeChild(menu);
+    this->addChild(chooseLayer);
+    isChooseInfo = true;
+}
+
+void MapMakingScene::exitBack(int width, int height)
+{
+    numberTileWidth = width;
+    numberTileHeight = height;
+    CCLOG("%d%d",width, height);
+    // INIT LOCAL DATA
+    initListItem();
+    // SETUP LIST VIEW CHILD
+    initListChild();
+    // SETUP LISTVIEW ROOT
+    initListRoot();
+    // SETUP SCROLL VIEW
+    initScrollMapView();
+    // Button Remove, Insert, Move
+    initButton();
     
-    auto moveBy = MoveBy::create(1.0f, Vec2(0, -mySprite->getContentSize().height ));
+    auto listener = EventListenerTouchOneByOne::create();
     
-    auto fadeTo = FadeTo::create(1.0f, 255.0f);
+    listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
+    listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(MapMakingScene::onTouchEnded, this);
     
-    auto mySpawn = Spawn::createWithTwoActions(moveBy, fadeTo);
-    
-    mySprite->runAction(mySpawn);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
 }
 
 void MapMakingScene::initListChild()
@@ -260,7 +257,7 @@ void MapMakingScene::initButton()
     items.pushBack(mMoveButton);
     items.pushBack(tSaveButton);
     
-    auto menu = Menu::createWithArray(items);
+    menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
 

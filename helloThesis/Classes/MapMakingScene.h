@@ -8,14 +8,16 @@
 #include <list>
 #include "DBContext.h"
 #include "MainGameScene.h"
+#include "WidthHeightChooseHUD.h"
 
 using namespace cocos2d::ui;
 using namespace std;
 USING_NS_CC;
 
-class MapMakingScene : public Layer
+class MapMakingScene : public Layer, public WidthHeightChooseDelegate
 {
 private:
+    bool isChooseInfo;
     bool mCheckRootItem;
     Sprite *map;
     int tile_size;
@@ -26,9 +28,12 @@ private:
     string mCurrentNameChild;
     string mMapSave;
     
+    Menu *menu;
     MenuItemImage *mMoveButton;
     MenuItemImage *mInsertButton;
     MenuItemImage *mRemoveButton;
+    MenuItemImage *mChangeSizeButton;
+    
 public:
     
     cocos2d::Size visibleSize;
@@ -41,9 +46,12 @@ public:
     vector<vector<string>> mVector2Chieu;
 
     ScrollView *mScrollMapView;
+    
     ListView *mListButtonChild;
     ListView *mListButonRoot;
     virtual bool init();
+    
+    virtual void exitBack(int width, int height);
     
     bool onTouchBegan(Touch *touch, Event *event);
     void onTouchMoved(Touch *touch, Event *event);

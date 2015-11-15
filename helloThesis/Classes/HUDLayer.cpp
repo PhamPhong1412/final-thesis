@@ -42,6 +42,7 @@ void HUDLayer::exit(){
 		if (node->getTag() == TAG_NORMAL_LAYER){
 			node->resume();
 		}
+        
 	}
 	parent->removeChild(this);
 }

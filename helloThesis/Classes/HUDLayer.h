@@ -14,11 +14,13 @@ protected:
 	bool isTouchInside(Touch* touch);
 	virtual bool init(Layer* parent);
 	void exit();
-
+    
 public:
 	HUDLayer(Layer* parent);
 	~HUDLayer();
-
+    
+    
+    
 	//touches event
 	bool onTouchBegan(Touch *touch, Event *event);
 	//void onTouchesBegan(const std::vector<Touch*>& touches, Event  *event);
@@ -29,5 +31,6 @@ public:
 
 	//CC_SYNTHESIZE(Runner*, mRunner, Runner);
 };
+
 
 #endif 
