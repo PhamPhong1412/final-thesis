@@ -11,11 +11,21 @@ bool GamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	this->mMap = map;
 	mRunner = Runner::create();
-	mRunner->mModel->setb2Position(100, 300);
-	mRunner->setPosition(100, 300);
+	mRunner->mModel->setb2Position(1900, 300);
+	mRunner->setPosition(1900, 300);
 	this->addChild(mRunner);
+	vector<int>* t = new vector<int>();
+	t->push_back(0);
+	t->push_back(0);
+	t->at(0) = 0;
+	t->at(1) = 0;
 
-	std::vector<std::string> part = Utility::splitString(map, "dm");
+	quadTree = new QuadNode(map, t);
+	currentObjectList = new set<string>();
+	currentQuadNode = new vector<QuadNode*>();
+	updateQuadTree();
+
+	/*std::vector<std::string> part = Utility::splitString(map, "dm");
 
 	std::vector<std::string> widthHeight = Utility::splitString(part.at(0), "\n");
 	int nTilesWidth = std::stoi(widthHeight.at(0));
@@ -37,7 +47,7 @@ bool GamePlayLayer::init(std::string map)
 			addTile(tileName, x, y);
 		}
 	}
-
+*/
 	auto listener = EventListenerTouchOneByOne::create();
 
 	listener->onTouchBegan = CC_CALLBACK_2(GamePlayLayer::onTouchBegan, this);
@@ -46,16 +56,21 @@ bool GamePlayLayer::init(std::string map)
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
 	this->scheduleUpdate();
-	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, nTilesWidth * 70 / GameConfig::scale,
-		nTilesHeight * 70 / GameConfig::scale)));
+
+	//this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
+	//	y / GameConfig::scale)));
+	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, quadTree->nodeRect.right / GameConfig::scale,
+		quadTree->nodeRect.top / GameConfig::scale)));
 
 	this->setTag(TAG_NORMAL_LAYER);
-
 	return true;
 }
 
 void GamePlayLayer::update(float delta){
-
+	if (quadtreeUpdateCounter++ > 1){
+		quadtreeUpdateCounter=0;
+		updateQuadTree();
+	}
 	b2Layer::update(delta);
 }
 
@@ -64,43 +79,6 @@ void GamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){
         return;
 
 	GroundObject* go = new GroundObject(xLoc, yLoc, tileName);
-	//go->init();
-
-    /*Sprite* sprite = Sprite::create(tileName + ".png");
-    b2Node* b2Tiles = b2Node::create();
-    b2Tiles->setTag(TAG_OBJECT_GROUND);
-    b2Tiles->addChild(sprite);
-    std::string tType = tTypeObject[1];
-    
-    b2PhysicsBody *b2PhysicBody;
-    
-    if (tType == "1") {
-        b2Vec2 verts[] = {
-            b2Vec2(-sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
-            b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2)
-        };
-        b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
-                                                       b2PhysicsMaterial(0, 0, 0.5));
-        b2PhysicBody->setBodyType(b2_staticBody);
-        b2Tiles->setb2PhysicsBody(b2PhysicBody);
-        b2Tiles->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
-        b2Tiles->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
-    }
-    else if(tType == "2")
-    {
-        b2Vec2 verts[] = {
-            b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
-            b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
-        };
-        b2PhysicBody = b2PhysicsBody::createChain(verts, 2,
-                                                       b2PhysicsMaterial(0, 0, 1));
-        
-        b2PhysicBody->setBodyType(b2_staticBody);
-        b2Tiles->setb2PhysicsBody(b2PhysicBody);
-        b2Tiles->setPosition(xLoc ,  yLoc + sprite->getContentSize().height / 2);
-        b2Tiles->setb2Position(xLoc , yLoc + sprite->getContentSize().height / 2);
-    }*/
-
 	this->addChild(go);
 }
 
@@ -193,3 +171,32 @@ void GamePlayLayer::EndContact(b2Contact* contact)
 }
 
 #pragma endregion
+
+void GamePlayLayer::updateQuadTree(){
+	std::vector<ObjectNode>* object2bRemove = new std::vector<ObjectNode>();
+	std::vector<ObjectNode>* object2bAdd = new std::vector<ObjectNode>();
+
+	QuadRect cameraRect = QuadRect(DESIGN_SCREEN_HEIGHT,0,
+		this->mRunner->getPosition().x - DESIGN_SCREEN_WIDTH / 2,
+		this->mRunner->getPosition().x + DESIGN_SCREEN_WIDTH / 2);
+
+	object2bAdd = this->quadTree->getObjectFromQuadtree(cameraRect,
+		object2bAdd, this->currentObjectList, this->currentQuadNode);
+
+	for (int i = 0; i != object2bAdd->size(); i++) {
+		//addTile(origin->at(i).name, origin->at(i).rect.left + TILE_SIZE / 2, origin->at(i).rect.bot + TILE_SIZE / 2);
+		//if (this->getChildByName(origin->at(i).id) != nullptr)
+		//	continue;
+		GroundObject* go = new GroundObject(object2bAdd->at(i).rect.left + TILE_SIZE / 2, 
+			object2bAdd->at(i).rect.bot + TILE_SIZE / 2, object2bAdd->at(i).name);
+		go->setName(object2bAdd->at(i).id);
+		this->addChild(go);
+	}
+
+	//for (int i = 0; i != currentObjectList->size(); i++) {
+	//	//addTile(origin->at(i).name, origin->at(i).rect.left + TILE_SIZE / 2, origin->at(i).rect.bot + TILE_SIZE / 2);
+	//	//Node* object = this->getChildByName(currentObjectList);
+	//	//if (QuadNode::intersect(cameraRect, )
+	//	//	continue;
+	//}
+}

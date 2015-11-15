@@ -1,23 +1,27 @@
 #ifndef _GAME_PLAY_LAYER_H__
 #define _GAME_PLAY_LAYER_H__
-#include <iostream>
 
 #include "cocos2d.h"
 #include "b2Layer.h"
-//#include "Runner.h"
+#include "QuadNode.h"
 #include "RunnerController.h"
 #include "GroundObject.h"
 #include "GameConfig.h"
-#include "Utility.h"
 USING_NS_CC;
 
 class GamePlayLayer : public b2Layer
 {
 private: 
+	QuadNode* quadTree;
 	std::string mMap;
 	Camera* camera;
 	Follow* cameraFollow;
-	float cameraCounter = 0;
+
+	int quadtreeUpdateCounter = 0;
+	//std::vector<ObjectNode>* currentObjectList;
+	set<string>* currentObjectList;
+	vector<QuadNode*>* currentQuadNode;
+	void updateQuadTree();
 public:
 	virtual bool init(std::string map);
 	void update(float delta);

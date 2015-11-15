@@ -85,6 +85,9 @@
     <Filter Include="src\GameObject\SpritePool">
       <UniqueIdentifier>{3859739b-166d-4fb9-b7af-bd8eb0f677f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\GameObject\quadtree">
+      <UniqueIdentifier>{803d9eb6-51f3-4dbf-a6b5-45182b536c2b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -188,6 +191,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\TexturePool.cpp">
       <Filter>src\GameObject\SpritePool</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\QuadNode.cpp">
+      <Filter>src\GameObject\quadtree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -295,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\TexturePool.h">
       <Filter>src\GameObject\SpritePool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\QuadNode.h">
+      <Filter>src\GameObject\quadtree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
