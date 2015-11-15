@@ -146,7 +146,7 @@ void MapMakingScene::initScrollMapView()
 
 void MapMakingScene::initCreateMapView()
 {
-    WidthHeightChooseHUD* chooseLayer = new WidthHeightChooseHUD(this);
+    WidthHeightChooseHUD* chooseLayer = new WidthHeightChooseHUD(this,false);
     chooseLayer->setDelegate(this);
     this->removeChild(menu);
     this->addChild(chooseLayer);

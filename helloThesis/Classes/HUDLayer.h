@@ -10,13 +10,13 @@ class HUDLayer : public Layer
 protected: 
 	Layer* parent;
 	Sprite* background;
-
+    bool mCanExitTouchOnSite;
 	bool isTouchInside(Touch* touch);
-	virtual bool init(Layer* parent);
+	virtual bool init(Layer* parent,bool canExitTouchOnSite);
 	void exit();
     
 public:
-	HUDLayer(Layer* parent);
+	HUDLayer(Layer* parent,bool canExit);
 	~HUDLayer();
     
     

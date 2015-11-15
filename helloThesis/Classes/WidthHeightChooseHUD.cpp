@@ -8,7 +8,7 @@
 
 #include "WidthHeightChooseHUD.h"
 
-WidthHeightChooseHUD::WidthHeightChooseHUD(Layer* parent) : HUDLayer(parent){
+WidthHeightChooseHUD::WidthHeightChooseHUD(Layer* parent,bool canExit) : HUDLayer(parent,canExit){
     this->init();
 }
 
@@ -58,12 +58,16 @@ bool WidthHeightChooseHUD::init()
 }
 
 void WidthHeightChooseHUD::menuBackCallback()
-{
-    int width = std::stoi(mWidthEditBox->getText());
-    int height = std::stoi(mHeightEditBox->getText());
+{   int witdh = 0;
+    int height = 0;
+    if (mWidthEditBox->getText()) {
+        
+    }
+    witdh = std::stoi(mWidthEditBox->getText());
+    height = std::stoi(mHeightEditBox->getText());
     
-    if (width > 0 && height > 0) {
-        mDelegate->exitBack(width,height);
+    if (witdh > 0 && height > 0) {
+        mDelegate->exitBack(witdh,height);
         exit();
     }
    else

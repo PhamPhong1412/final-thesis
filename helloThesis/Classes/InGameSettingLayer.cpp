@@ -1,6 +1,6 @@
 #include "InGameSettingLayer.h"
 
-InGameSettingLayer::InGameSettingLayer(Layer* parent) : HUDLayer(parent){
+InGameSettingLayer::InGameSettingLayer(Layer* parent) : HUDLayer(parent,true){
 	this->init();
 }
 

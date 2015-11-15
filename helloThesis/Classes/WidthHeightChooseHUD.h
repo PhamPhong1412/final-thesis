@@ -40,7 +40,7 @@ private:
     ui::EditBox *mWidthEditBox;
     ui::EditBox *mHeightEditBox;
 public:
-    WidthHeightChooseHUD(Layer* parent);
+    WidthHeightChooseHUD(Layer* parent,bool canExit);
     ~WidthHeightChooseHUD();
     
     void setDelegate(WidthHeightChooseDelegate* pDelegate) { mDelegate = pDelegate; }
