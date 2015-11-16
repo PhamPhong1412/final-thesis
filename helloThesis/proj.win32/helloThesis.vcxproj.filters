@@ -195,6 +195,9 @@
     <ClCompile Include="..\Classes\QuadNode.cpp">
       <Filter>src\GameObject\quadtree</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\WidthHeightChooseHUD.cpp">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -304,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\QuadNode.h">
       <Filter>src\GameObject\quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WidthHeightChooseHUD.h">
+      <Filter>src\Scenes\MapMaking</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

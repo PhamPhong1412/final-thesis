@@ -82,7 +82,7 @@ void Runner::EndContact(b2Node* node, b2Contact* contact){
 }
 
 void Runner::runNormal(){
-	this->mModel->setVelocityX(10.0f);
+	this->mModel->setVelocityX(5.0f);
 	this->mModel->setState(PlayerState::ON_GROUND);
 }
 

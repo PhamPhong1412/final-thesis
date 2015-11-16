@@ -178,6 +178,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\TexturePool.cpp" />
     <ClCompile Include="..\Classes\Translator.cpp" />
     <ClCompile Include="..\Classes\Utility.cpp" />
+    <ClCompile Include="..\Classes\WidthHeightChooseHUD.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +217,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\TexturePool.h" />
     <ClInclude Include="..\Classes\Translator.h" />
     <ClInclude Include="..\Classes\Utility.h" />
+    <ClInclude Include="..\Classes\WidthHeightChooseHUD.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
