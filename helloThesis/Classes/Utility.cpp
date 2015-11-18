@@ -15,3 +15,8 @@ std::vector<string> Utility::splitString(std::string string, std::string  delim)
 	}
 	return result;
 }
+
+
+static bool isNumber(const std::string& s){
+	return(strspn(s.c_str(), "-.0123456789") == s.size());
+}

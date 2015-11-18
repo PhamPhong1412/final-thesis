@@ -11,8 +11,8 @@ bool GamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	this->mMap = map;
 	mRunner = Runner::create();
-	mRunner->mModel->setb2Position(1900, 300);
-	mRunner->setPosition(1900, 300);
+	mRunner->mModel->setb2Position(50, 100);
+	mRunner->setPosition(50, 100);
 	this->addChild(mRunner);
 	vector<int>* t = new vector<int>();
 	t->push_back(0);

@@ -72,9 +72,9 @@ void RunnerModel::setVelocityY(float value){
 }
 
 float RunnerModel::getPosX(){
-	return this->getPosition().x;
+	return this->getb2PhysicsBody()->getb2Position().x;
 }
 
 float RunnerModel::getPosY(){
-	return this->getPosition().y;
+	return this->getb2PhysicsBody()->getb2Position().y;
 }
