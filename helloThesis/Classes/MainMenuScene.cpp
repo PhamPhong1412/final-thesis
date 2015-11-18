@@ -94,23 +94,6 @@ void MainMenuScene::initButton()
     this->addChild(menu, 1);
     
     
-    GameConfig::RANK_TABLE_WIDTH = 300;
-    GameConfig::RANK_TABLE_CELL_HEIGHT = 50;
-    
-    TableView* tableView = TableView::create(this, Size(300,400));
-
-    tableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
-
-    tableView->setPosition(Vec2(0,visibleSize.height/3));
-
-    tableView->setDelegate(this);
-
-    tableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
-
-    this->addChild(tableView);
-
-    tableView->reloadData();
-    
 }
 
 void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
@@ -173,7 +156,8 @@ void MainMenuScene::menuMakeMapCallback(cocos2d::Ref *pSender)
 
 void MainMenuScene::menuRatingCallback(cocos2d::Ref *pSender)
 {
-    CCLOG("Rating");
+    auto rankScene = RankingScene::createScene();
+    Director::getInstance()->replaceScene(rankScene);
 }
 
 void MainMenuScene::menuShopCallback(cocos2d::Ref *pSender)
@@ -189,42 +173,4 @@ void MainMenuScene::menuSettingCallback(cocos2d::Ref *pSender)
 
 void MainMenuScene::menuExitCallback(cocos2d::Ref* pSender){
 	Director::getInstance()->end();
-}
-
-
-TableViewCell* MainMenuScene::tableCellAtIndex(TableView *table, ssize_t idx) {
-    CC_UNUSED_PARAM(table);
-    
-    auto string = String::createWithFormat("%zd", idx);
-
-    RatingTableCell *cell = (RatingTableCell*)table->dequeueCell();
-    
-    if (!cell) {
-
-        cell = new RatingTableCell();
-
-        cell->setContentSize(Size(GameConfig::RANK_TABLE_WIDTH,GameConfig::RANK_TABLE_CELL_HEIGHT));
-    }
-    
-    cell->getNickNameLabel()->setString("thien");
-    cell->getPlayCountLabel()->setString("12");
-    cell->getTotalScoreLabel()->setString("3");
-    return cell;
-}
-
-ssize_t MainMenuScene::numberOfCellsInTableView(TableView *table) {
-    CC_UNUSED_PARAM(table);
-    
-    return 20;
-}
-
-Size MainMenuScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
-    CC_UNUSED_PARAM(table);
-    
-    return Size(300, 50);
-}
-
-void MainMenuScene::tableCellTouched(TableView *table, TableViewCell *cell)
-{
-    CCLOG("%zi",cell->getIdx());
 }

@@ -13,12 +13,13 @@
 #include "LoginScene.h"
 #include "RatingTableCell.h"
 #include "HelloWorldScene.h"
+#include "RankingScene.h"
+
 USING_NS_CC;
-USING_NS_CC_EXT;
 
 using namespace cocos2d::ui;
 
-class MainMenuScene : public Layer,public cocos2d::extension::TableViewDelegate,cocos2d::extension::TableViewDataSource
+class MainMenuScene : public Layer
 
 {
 private:
@@ -42,16 +43,6 @@ public:
     void menuRatingCallback(cocos2d::Ref* pSender);
 	void menuExitCallback(cocos2d::Ref* pSender);
 
-
-    
-    virtual TableViewCell* tableCellAtIndex(TableView *table, ssize_t idx);
-    virtual ssize_t numberOfCellsInTableView(TableView *table);
-    virtual cocos2d::Size tableCellSizeForIndex(TableView *table, ssize_t idx) override;
-    virtual void tableCellTouched(TableView *table, TableViewCell *cell);
-    
-    virtual void scrollViewDidScroll(cocos2d::extension::ScrollView *view) {};
-    
-//    virtual void scrollViewDidZoom(ScrollView *view) {};
     
 	CREATE_FUNC(MainMenuScene);
 

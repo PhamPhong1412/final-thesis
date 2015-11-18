@@ -18,19 +18,19 @@ RatingTableCell::RatingTableCell():_cellBackground(NULL), _lbNickName(NULL), _lb
     
     const float widthPlayCount  = 40.0f;
     const float widthTotalScore = 80.0f;
-    const float widthNickName   = GameConfig::RANK_TABLE_WIDTH - (widthPlayCount + widthTotalScore) - (gapLeft + gapRight);
+    const float widthNickName   = (widthPlayCount + widthTotalScore) - (gapLeft + gapRight);
     
     const float posNickName = gapLeft;
     const float posPlayCount = posNickName + widthNickName;
     const float posTotalScore = posPlayCount + widthPlayCount;
     
-    // Background
     
-//    Sprite *sprite = Sprite::create("HelloWorld.png");
-//    cocos2d::Size spriteSize = sprite->getContentSize();
-//    sprite->setPosition( Vec2(spriteSize.width/2, spriteSize.height/2) );
-//    sprite->setScale(0.5);
-//    this->addChild(sprite);
+    auto *sprite = Sprite::create("HelloWorld.png");
+    cocos2d::Size spriteSize = sprite->getContentSize();
+    sprite->setAnchorPoint(Vec2(0,0.5));
+    sprite->setPosition( Vec2(0,0) );
+    sprite->setScale(GameConfig::RANK_TABLE_WIDTH/spriteSize.width,GameConfig::RANK_TABLE_CELL_HEIGHT/spriteSize.height);
+    this->addChild(sprite);
     
     // Text : NickName
     

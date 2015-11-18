@@ -45,7 +45,7 @@ public:
     
     vector<vector<string>> mVector2Chieu;
 
-    ScrollView *mScrollMapView;
+    ui::ScrollView *mScrollMapView;
     
     ListView *mListButtonChild;
     ListView *mListButonRoot;
