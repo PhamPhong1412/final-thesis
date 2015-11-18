@@ -63,6 +63,7 @@ void WidthHeightChooseHUD::menuBackCallback()
     if (mWidthEditBox->getText()) {
         
     }
+
 //	if (Utility::isNumber(mWidthEditBox->getText()) && Utility::isNumber(mHeightEditBox->getText())){
 //		witdh = std::stoi(mWidthEditBox->getText());
 //		height = std::stoi(mHeightEditBox->getText());
@@ -71,6 +72,7 @@ void WidthHeightChooseHUD::menuBackCallback()
 		witdh = 300;
 		height = 30;
 //	}
+
 
 
     if (witdh > 0 && height > 0) {
