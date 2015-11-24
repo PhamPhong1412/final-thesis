@@ -198,6 +198,9 @@
     <ClCompile Include="..\Classes\WidthHeightChooseHUD.cpp">
       <Filter>src\Scenes\MapMaking</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RankingScene.cpp">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -310,6 +313,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\WidthHeightChooseHUD.h">
       <Filter>src\Scenes\MapMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RankingScene.h">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

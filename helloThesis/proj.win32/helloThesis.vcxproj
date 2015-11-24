@@ -168,6 +168,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\MainMenuScene.cpp" />
     <ClCompile Include="..\Classes\MapMakingScene.cpp" />
     <ClCompile Include="..\Classes\QuadNode.cpp" />
+    <ClCompile Include="..\Classes\RankingScene.cpp" />
     <ClCompile Include="..\Classes\RatingTableCell.cpp" />
     <ClCompile Include="..\Classes\Runner.cpp" />
     <ClCompile Include="..\Classes\RunnerController.cpp" />
@@ -207,6 +208,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\MainMenuScene.h" />
     <ClInclude Include="..\Classes\MapMakingScene.h" />
     <ClInclude Include="..\Classes\QuadNode.h" />
+    <ClInclude Include="..\Classes\RankingScene.h" />
     <ClInclude Include="..\Classes\RatingTableCell.h" />
     <ClInclude Include="..\Classes\Runner.h" />
     <ClInclude Include="..\Classes\RunnerController.h" />

@@ -98,14 +98,14 @@ void MainMenuScene::initButton()
 
 void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
 {
-	auto gameScene = MainGameScene::createScene();
-	Director::getInstance()->replaceScene(gameScene);
+	//auto gameScene = MainGameScene::createScene();
+	//Director::getInstance()->replaceScene(gameScene);
 
 	//auto action = Sequence::create(DelayTime::create(1), CallFunc::create(this, callfunc_selector(MainMenuScene::transitionToGameScene)), NULL);
 	//this->runAction(action);
 
-	//auto gameScene = HelloWorld::createScene();
-	//Director::getInstance()->replaceScene(gameScene);
+	auto gameScene = HelloWorld::createScene();
+	Director::getInstance()->replaceScene(gameScene);
 }
 
 void MainMenuScene::transitionToGameScene()
