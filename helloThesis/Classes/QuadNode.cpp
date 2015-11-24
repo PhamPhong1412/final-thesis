@@ -20,19 +20,33 @@ QuadNode::QuadNode(QuadRect rect, std::vector<ObjectNode> objects, vector<int>* 
 		return;
 	}
 
-	//if (height <= DESIGN_SCREEN_HEIGHT && width <= DESIGN_SCREEN_WIDTH){
+	//if (listObject.size() == 0){
 	//	leftTopNode = leftBotNode = rightTopNode = rightBotNode = nullptr;
+	//	tmp->at(1) = tmp->at(1) + listObject.size();
 	//	return;
 	//}
 
-	//if (height > DESIGN_SCREEN_HEIGHT && width > DESIGN_SCREEN_WIDTH){
-	//	this->leftTopNode = new QuadNode(QuadRect(rect.top, midY, rect.left, midX), objects, tmp);
+	//if ( height*2 > DESIGN_SCREEN_HEIGHT && width > DESIGN_SCREEN_WIDTH){
+	//	this->leftTopNode = new QuadNode(QuadRect(rect.top, midY, rect.left, midX), listObject, tmp, ID * 4 + 1);
 
-	//	this->leftBotNode = new QuadNode(QuadRect(midY, rect.bot, rect.left, midX), objects, tmp);
+	//	this->leftBotNode = new QuadNode(QuadRect(midY, rect.bot, rect.left, midX), listObject, tmp, ID * 4 + 2);
 
-	//	this->rightTopNode = new QuadNode(QuadRect(rect.top, midY, midX, rect.right), objects, tmp);
+	//	this->rightTopNode = new QuadNode(QuadRect(rect.top, midY, midX, rect.right), listObject, tmp, ID * 4 + 3);
 
-	//	this->rightBotNode = new QuadNode(QuadRect(midY, rect.bot, midX, rect.right), objects, tmp);
+	//	this->rightBotNode = new QuadNode(QuadRect(midY, rect.bot, midX, rect.right), listObject, tmp, ID * 4 + 4);
+	//	listObject.clear();
+	//	return;
+	//}
+
+	//if (height*2 > DESIGN_SCREEN_HEIGHT){
+	//	this->leftTopNode = new QuadNode(QuadRect(rect.top, midY, rect.left, midX), listObject, tmp, ID * 4 + 1);
+
+	//	this->leftBotNode = new QuadNode(QuadRect(midY, rect.bot, rect.left, midX), listObject, tmp, ID * 4 + 2);
+
+	//	this->rightTopNode = new QuadNode(QuadRect(rect.top, midY, midX, rect.right), listObject, tmp, ID * 4 + 3);
+
+	//	this->rightBotNode = new QuadNode(QuadRect(midY, rect.bot, midX, rect.right), listObject, tmp, ID * 4 + 4);
+	//	listObject.clear();
 	//	return;
 	//}
 
@@ -176,16 +190,13 @@ vector<ObjectNode>* QuadNode::removeObjectFromQuadtree(QuadRect camera,
 	for (int i = 0; i < currentQuadNode->size(); i++){
 		if (!QuadNode::intersect(camera, currentQuadNode->at(i)->nodeRect)){
 
+			for (auto &object : currentQuadNode->at(i)->listObject){
+				objectsTobeRemove->push_back(object);
+				currentObject->erase(currentObject->find(object.id));
+			}
+
 			currentQuadNode->erase(currentQuadNode->begin() + i);
 		}
 	}
-	/*while (it != currentQuadNode->end()) {
-
-		if (QuadNode::intersect(camera, currentQuadNode->at(it)) {
-
-			it = currentQuadNode->erase(it);
-		}
-		else ++it;
-	}*/
-	return nullptr;
+	return objectsTobeRemove;
 }

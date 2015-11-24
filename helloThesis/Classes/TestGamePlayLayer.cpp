@@ -1,4 +1,4 @@
-#include "TestGamePlayLayer.h"
+#include "GamePlayLayer.h"
 
 // on "init" you need to initialize your instance
 bool TestGamePlayLayer::init(std::string map)
@@ -69,14 +69,8 @@ bool TestGamePlayLayer::init(std::string map)
 }
 
 void TestGamePlayLayer::update(float delta){
-	/*if (quadtreeUpdateCounter++ > 1){
-		quadtreeUpdateCounter=0;
-		updateQuadTree();
-	}*/
-	if (mRunner->mModel->finish())
-	{
-		CCLOG("Hoan thanh");
-	}
+
+	updateQuadTree();
 	b2Layer::update(delta);
 }
 
@@ -178,31 +172,39 @@ void TestGamePlayLayer::EndContact(b2Contact* contact)
 
 #pragma endregion
 
-void TestGamePlayLayer::updateQuadTree(){
-	std::vector<ObjectNode>* object2bRemove = new std::vector<ObjectNode>();
-	std::vector<ObjectNode>* object2bAdd = new std::vector<ObjectNode>();
+void GamePlayLayer::updateQuadTree(){
 
-	QuadRect cameraRect = QuadRect(DESIGN_SCREEN_HEIGHT,0,
-		this->mRunner->getPosition().x - DESIGN_SCREEN_WIDTH / 2,
-		this->mRunner->getPosition().x + DESIGN_SCREEN_WIDTH / 2);
 
-	object2bAdd = this->quadTree->getObjectFromQuadtree(cameraRect,
-		object2bAdd, this->currentObjectList, this->currentQuadNode);
+	if (quadtreeUpdateCounter++ > 20){
+		quadtreeUpdateCounter = 0;
 
-	for (int i = 0; i != object2bAdd->size(); i++) {
-		//addTile(origin->at(i).name, origin->at(i).rect.left + TILE_SIZE / 2, origin->at(i).rect.bot + TILE_SIZE / 2);
-		//if (this->getChildByName(origin->at(i).id) != nullptr)
-		//	continue;
-		GroundObject* go = new GroundObject(object2bAdd->at(i).rect.left + TILE_SIZE / 2, 
-			object2bAdd->at(i).rect.bot + TILE_SIZE / 2, object2bAdd->at(i).name);
-		go->setName(object2bAdd->at(i).id);
-		this->addChild(go);
+		QuadRect cameraRect = QuadRect(DESIGN_SCREEN_HEIGHT, 0,
+			this->mRunner->getPosition().x - DESIGN_SCREEN_WIDTH / 2,
+			this->mRunner->getPosition().x + DESIGN_SCREEN_WIDTH / 2);
+		std::vector<ObjectNode>* object2bAdd = new std::vector<ObjectNode>();
+		std::vector<ObjectNode>* object2bRemove = new std::vector<ObjectNode>();
+		
+		object2bAdd = this->quadTree->getObjectFromQuadtree(cameraRect,
+			object2bAdd, this->currentObjectList, this->currentQuadNode);
+
+		for (int i = 0; i != object2bAdd->size(); i++) {
+			//addTile(origin->at(i).name, origin->at(i).rect.left + TILE_SIZE / 2, origin->at(i).rect.bot + TILE_SIZE / 2);
+			//if (this->getChildByName(origin->at(i).id) != nullptr)
+			//	continue;
+			GroundObject* go = new GroundObject(object2bAdd->at(i).rect.left + TILE_SIZE / 2,
+				object2bAdd->at(i).rect.bot + TILE_SIZE / 2, object2bAdd->at(i).name);
+			go->setName(object2bAdd->at(i).id);
+			this->addChild(go);
+		}
+
+		object2bRemove = this->quadTree->removeObjectFromQuadtree(cameraRect,
+			object2bRemove, this->currentObjectList, this->currentQuadNode);
+
+		for (int i = 0; i != object2bRemove->size(); i++) {
+			this->removeChildByName(object2bRemove->at(i).id);
+		}
+
 	}
 
-	//for (int i = 0; i != currentObjectList->size(); i++) {
-	//	//addTile(origin->at(i).name, origin->at(i).rect.left + TILE_SIZE / 2, origin->at(i).rect.bot + TILE_SIZE / 2);
-	//	//Node* object = this->getChildByName(currentObjectList);
-	//	//if (QuadNode::intersect(cameraRect, )
-	//	//	continue;
-	//}
+	
 }
