@@ -45,7 +45,7 @@ bool MapMakingScene::init()
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     
-     initCreateMapView();
+     initCreateMapView(false);
     return true;
 }
 
@@ -54,7 +54,7 @@ void MapMakingScene::initListItem()
     vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2.png","2,1.png","2,2.png","1,3.png","2,3.png","1,4.png","2,4.png"};
     vector<string> tTemp1 = {"signExit.png", "boxItem.png","boxCoin_disabled.png","boxCoin.png","boxCoinAlt.png","boxEmpty.png","boxExplosive.png","boxWarning.png","lock_blue.png","lock_green.png","lock_red.png","lock_yellow.png"};
     vector<string> tTemp2 = {"signExit.png", "fence.png","door_closedMid.png","door_closedTop.png","fenceBroken.png","door_openTop.png","door_openMid.png","ladder_top.png","ladder_mid.png"};
-    vector<string> tTemp3 = {"signExit.png", "signRight.png","1,5.png","sign.png"};
+    vector<string> tTemp3 = {"signExit.png", "1,6.png","1,5.png"};
     vector<string> tTemp4 = {"signExit.png", "tochLit.png","torch.png","tochLit2.png","window.png"};
     vector<string> tTemp5 = {"signExit.png", "liquidWaterTop_mid.png","liquidWaterTop.png","liquidWater.png","liquidLavaTop.png","liquidLavaTop_mid.png","liquidLava.png"};
     vector<string> tTemp6 = {"signExit.png", "stoneHalf.png","stoneHalfLeft.png","stoneHalfMid.png","stoneHalfRight.png","stoneHillLeft2.png","stoneHillRight2.png","stoneMid.png"};
@@ -100,29 +100,6 @@ void MapMakingScene::initScrollMapView()
         mVector2Chieu.push_back(vector<string>());
         for (int j = 0 ; j < numberTileWidth; j++) {
             if (i == 0 ) {
-			//if (false){
-					if (i==4)
-					{
-						if (j % 2 != 0)
-						{
-							mVector2Chieu[i].push_back("1,3");
-							string tName = to_string(j) + "+" + to_string(i);
-							auto tSprite = Sprite::create("1,3.png");
-							tSprite->setName(tName);
-							tSprite->setAnchorPoint(Vec2(0, 0));
-							tSprite->setScale(GameConfig::scale);
-							tSprite->setPosition(j*tile_size, i*tile_size);
-							mScrollMapView->addChild(tSprite);
-						}
-						
-						
-						else
-						{
-							mVector2Chieu[i].push_back("0");
-						}
-					}
-					else{
-
 					mVector2Chieu[i].push_back("1,1");
 					string tName = to_string(j) + "+" + to_string(i);
 					auto tSprite = Sprite::create("1,1.png");
@@ -131,10 +108,37 @@ void MapMakingScene::initScrollMapView()
 					tSprite->setScale(GameConfig::scale);
 					tSprite->setPosition(j*tile_size, i*tile_size);
 					mScrollMapView->addChild(tSprite);
-				}
-
                 
             }
+			else if (i == 1)
+			{
+				if (j == 0)
+				{
+					mVector2Chieu[i].push_back("1,6");
+					string tName = to_string(j) + "+" + to_string(i);
+					auto tSprite = Sprite::create("1,6.png");
+					tSprite->setName(tName);
+					tSprite->setAnchorPoint(Vec2(0, 0));
+					tSprite->setScale(GameConfig::scale);
+					tSprite->setPosition(j*tile_size, i*tile_size);
+					mScrollMapView->addChild(tSprite);
+				}
+				else if (j == numberTileWidth - 1)
+				{
+					mVector2Chieu[i].push_back("1,5");
+					string tName = to_string(j) + "+" + to_string(i);
+					auto tSprite = Sprite::create("1,5.png");
+					tSprite->setName(tName);
+					tSprite->setAnchorPoint(Vec2(0, 0));
+					tSprite->setScale(GameConfig::scale);
+					tSprite->setPosition(j*tile_size, i*tile_size);
+					mScrollMapView->addChild(tSprite);
+				}
+				else
+				{
+					mVector2Chieu[i].push_back("0");
+				}
+			}
             else
             {
                 mVector2Chieu[i].push_back("0");
@@ -144,9 +148,9 @@ void MapMakingScene::initScrollMapView()
 
 }
 
-void MapMakingScene::initCreateMapView()
+void MapMakingScene::initCreateMapView(bool withBackground)
 {
-    WidthHeightChooseHUD* chooseLayer = new WidthHeightChooseHUD(this,false);
+	WidthHeightChooseHUD* chooseLayer = new WidthHeightChooseHUD(this, withBackground, withBackground);
     chooseLayer->setDelegate(this);
     this->removeChild(menu);
     this->addChild(chooseLayer);
@@ -366,7 +370,10 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x -(tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-                    
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
+					{
+						return true;
+					}
                     
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto temp = mScrollMapView->getChildByName(tName);
@@ -397,6 +404,10 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
+					{
+						return true;
+					}
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto tSprite = mScrollMapView->getChildByName(tName);
                     if (tSprite!=NULL){
@@ -430,6 +441,10 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
+					{
+						return;
+					}
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto temp = mScrollMapView->getChildByName(tName);
                     if (temp!=NULL) {
@@ -458,6 +473,10 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
+					{
+						return;
+					}
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto tSprite = mScrollMapView->getChildByName(tName);
                     if (tSprite!=NULL){

@@ -1,6 +1,6 @@
 #include "GroundObject.h"
 
-//std::vector<GroundObject*> GroundObject::changeDirectionTiles;
+std::vector<GroundObject*> GroundObject::changeDirectionTiles;
 
 GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 	bool isEnd = false;
@@ -34,29 +34,39 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 		createBarSlopePhysicBody(sprite);
         this->setTag(TAG_OBJECT_BARSLOPE);
 	}
-	else
+	else if (tType == "5")
+	{
+		createNormalPhysicBody(sprite);
+		this->setTag(TAG_OBJECT_BACK);
+	}
+	else if (tType == "6")
+	{
+		createNormalPhysicBody(sprite);
+		this->setTag(TAG_OBJECT_END);
+	}
+	/*else
 	{
 		type = GroundType::END;
 		createEndlPhysicBody(sprite);
         this->setTag(TAG_OBJECT_BACK);
 		isEnd = true;
-	}
+	}*/
 
 	
 	this->setb2Position(xLoc, yLoc + sprite->getContentSize().height / 2);
 	this->setPosition(xLoc, yLoc + sprite->getContentSize().height / 2);
 
-	//if (isEnd)
-	//	changeDirectionTiles.push_back(this);
+	if (isEnd)
+		changeDirectionTiles.push_back(this);
 
 }
 
 bool GroundObject::isChangeDirTile(Node* testTile){
-	//for (auto &tile : GroundObject::changeDirectionTiles){
-	//	if (tile->getPosition().x == testTile->getPosition().x&&tile->getPosition().y == testTile->getPosition().y)
-	//		return true;
-	//}
-	return false;
+	for (auto &tile : GroundObject::changeDirectionTiles){
+		if (tile->getPosition().x == testTile->getPosition().x&&tile->getPosition().y == testTile->getPosition().y)
+			return true;
+	}
+	//return false;
 	//return this->isChangeDirectionTile;
 }
 

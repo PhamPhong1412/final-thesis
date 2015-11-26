@@ -84,6 +84,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
 	searchPaths.push_back("language");
 	searchPaths.push_back("image/small/background");
+	searchPaths.push_back("image");
 	searchPaths.push_back("cocosStudio");
 	searchPaths.push_back("tiles");
 	searchPaths.push_back("Button");

@@ -16,6 +16,7 @@
 #define TAG_OBJECT_BARNORMAL        101
 #define TAG_OBJECT_BARSLOPE         102
 #define TAG_OBJECT_BACK             103
+#define TAG_OBJECT_END           104
 
 #define TAG_OBJECT_MAP              300
 

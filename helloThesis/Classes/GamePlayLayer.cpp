@@ -13,7 +13,9 @@ bool GamePlayLayer::init(std::string map)
 	mRunner = Runner::create();
 	mRunner->mModel->setb2Position(50, 100);
 	mRunner->setPosition(50, 100);
+	
 	this->addChild(mRunner);
+	mRunner->mModel->setVelocityX(15.0f);
 	vector<int>* t = new vector<int>();
 	t->push_back(0);
 	t->push_back(0);
@@ -46,8 +48,8 @@ bool GamePlayLayer::init(std::string map)
 			x = j * tileSize ;
 			addTile(tileName, x, y);
 		}
-	}
-*/
+	}*/
+
 	auto listener = EventListenerTouchOneByOne::create();
 
 	listener->onTouchBegan = CC_CALLBACK_2(GamePlayLayer::onTouchBegan, this);
@@ -57,8 +59,8 @@ bool GamePlayLayer::init(std::string map)
 
 	this->scheduleUpdate();
 
-	//this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
-	//	y / GameConfig::scale)));
+	/*this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
+		y / GameConfig::scale)));*/
 	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, quadTree->nodeRect.right / GameConfig::scale,
 		quadTree->nodeRect.top / GameConfig::scale)));
 
@@ -70,6 +72,10 @@ void GamePlayLayer::update(float delta){
 	if (quadtreeUpdateCounter++ > 1){
 		quadtreeUpdateCounter=0;
 		updateQuadTree();
+	}
+	if (mRunner->mModel->finish())
+	{
+		CCLOG("Hoan thanh");
 	}
 	b2Layer::update(delta);
 }

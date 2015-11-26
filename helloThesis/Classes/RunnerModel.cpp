@@ -78,3 +78,23 @@ float RunnerModel::getPosX(){
 float RunnerModel::getPosY(){
 	return this->getb2PhysicsBody()->getb2Position().y;
 }
+
+
+void RunnerModel::setDirection(int dir){
+	direction = dir;
+}
+
+int RunnerModel::getDirection()
+{
+	return direction;
+}
+
+bool RunnerModel::finish()
+{
+	return isFinish;
+}
+
+void RunnerModel::setFinish(bool finish)
+{
+	isFinish = finish;
+}

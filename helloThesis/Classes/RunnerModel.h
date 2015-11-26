@@ -22,7 +22,7 @@ private:
 	int changeDirectionCooldown;
 
 	int jumpSpeedBoostCharges = 0;
-
+	bool isFinish = false;
 public:
 	virtual bool init();
 
@@ -39,6 +39,11 @@ public:
 	void setVelocityX(float value);
 	void setVelocityY(float value);
 
+	bool finish();
+	void setFinish(bool isFinish);
+
+	void setDirection(int dir);
+	int getDirection();
 	float getJumpSpeed();
 	CREATE_FUNC(RunnerModel);
 	

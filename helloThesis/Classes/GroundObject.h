@@ -6,7 +6,7 @@
 #include "Utility.h"
 
 enum GroundType{
-	NORMAL, BARNORMAL, BARSLOPE, SLOPE, END
+	NORMAL, BARNORMAL, BARSLOPE, SLOPE, END, START
 };
 
 class GroundObject : public b2Node
@@ -28,7 +28,7 @@ public:
 
 	static bool isChangeDirTile(Node* tile);
 	GroundType getType();
-	//static std::vector<GroundObject*> changeDirectionTiles;
+	static std::vector<GroundObject*> changeDirectionTiles;
 	
 };
 

@@ -67,7 +67,7 @@ public:
     void startInsert(cocos2d::Ref *pSender);
     
     // LOCAL FUNCION
-    void initCreateMapView();
+	void initCreateMapView(bool withBackground);
     void initListItem();
     void initButton();
     void initScrollMapView();

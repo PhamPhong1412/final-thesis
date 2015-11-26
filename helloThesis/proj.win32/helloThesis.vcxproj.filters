@@ -79,14 +79,14 @@
     <Filter Include="src\Scenes\PlayGame\HUD">
       <UniqueIdentifier>{55c3f6cc-2823-46b1-b2fc-6d6cbcd9dc75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Scenes\PlayGame\main game\layers\Setting">
-      <UniqueIdentifier>{373c7129-def3-46a4-98ca-c416c266372f}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\GameObject\SpritePool">
       <UniqueIdentifier>{3859739b-166d-4fb9-b7af-bd8eb0f677f3}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\GameObject\quadtree">
       <UniqueIdentifier>{803d9eb6-51f3-4dbf-a6b5-45182b536c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\Setting">
+      <UniqueIdentifier>{373c7129-def3-46a4-98ca-c416c266372f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

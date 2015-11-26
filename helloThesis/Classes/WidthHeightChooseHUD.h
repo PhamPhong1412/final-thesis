@@ -13,6 +13,7 @@
 #include "HUDLayer.h"
 #include "ui/CocosGUI.h"
 
+
 class WidthHeightChooseHUD;
 
 class WidthHeightChooseDelegate
@@ -36,11 +37,12 @@ class WidthHeightChooseHUD : public HUDLayer
 private:
     WidthHeightChooseDelegate *mDelegate;
     void menuBackCallback();
-    bool init();
+	void menuNextCallback();
+	bool init(bool withBackground);
     ui::EditBox *mWidthEditBox;
     ui::EditBox *mHeightEditBox;
 public:
-    WidthHeightChooseHUD(Layer* parent,bool canExit);
+	WidthHeightChooseHUD(Layer* parent, bool canExit, bool withBackground);
     ~WidthHeightChooseHUD();
     
     void setDelegate(WidthHeightChooseDelegate* pDelegate) { mDelegate = pDelegate; }
