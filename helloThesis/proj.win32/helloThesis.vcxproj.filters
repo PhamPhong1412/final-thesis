@@ -49,6 +49,9 @@
     <Filter Include="src\Scenes\PlayGame\main game\layers\background">
       <UniqueIdentifier>{f83844cd-acdf-4d33-98a2-c033f1c135cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\object">
+      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Scenes\Menu">
       <UniqueIdentifier>{cbe50f88-35b5-48ad-8c16-df40cbdf5398}</UniqueIdentifier>
     </Filter>
@@ -82,14 +85,8 @@
     <Filter Include="src\GameObject\quadtree">
       <UniqueIdentifier>{803d9eb6-51f3-4dbf-a6b5-45182b536c2b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Scenes\PlayGame\main game\layers\Setting">
-      <UniqueIdentifier>{373c7129-def3-46a4-98ca-c416c266372f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Scenes\PlayGame\main game\layers\RealPlay">
-      <UniqueIdentifier>{36d3a3bb-f27f-4d62-a57e-9f1e6484c1a5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\Scenes\PlayGame\main game\layers\TestPlay">
-      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
+    <Filter Include="src\HttpServices">
+      <UniqueIdentifier>{90bd5baf-f0b4-4a15-89a9-39beac5590f1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,9 +165,6 @@
     <ClCompile Include="..\Classes\RatingTableCell.cpp">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>src\Scenes\Menu\StartMenu</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\RunnerModel.cpp">
       <Filter>src\GameObject\Runner</Filter>
     </ClCompile>
@@ -201,11 +195,8 @@
     <ClCompile Include="..\Classes\RankingScene.cpp">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TestGamePlayLayer.cpp">
-      <Filter>src\Scenes\PlayGame\main game\layers\TestPlay</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\RealGamePlayLayer.cpp">
-      <Filter>src\Scenes\PlayGame\main game\layers\RealPlay</Filter>
+    <ClCompile Include="..\Classes\HttpServices.cpp">
+      <Filter>src\HttpServices</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -287,9 +278,6 @@
     <ClInclude Include="..\Classes\RatingTableCell.h">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>src\Scenes\Menu\StartMenu</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\RunnerModel.h">
       <Filter>src\GameObject\Runner</Filter>
     </ClInclude>
@@ -320,11 +308,8 @@
     <ClInclude Include="..\Classes\RankingScene.h">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
     </ClInclude>
-    <ClInclude Include="RealGamePlayLayer.h">
-      <Filter>src\Scenes\PlayGame\main game\layers\RealPlay</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\TestGamePlayLayer.h">
-      <Filter>src\Scenes\PlayGame\main game\layers\TestPlay</Filter>
+    <ClInclude Include="..\Classes\HttpServices.h">
+      <Filter>src\HttpServices</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

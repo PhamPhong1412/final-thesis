@@ -12,7 +12,7 @@
 #include "Translator.h"
 #include "LoginScene.h"
 #include "RatingTableCell.h"
-#include "HelloWorldScene.h"
+#include "HttpServices.h"
 #include "RankingScene.h"
 
 USING_NS_CC;

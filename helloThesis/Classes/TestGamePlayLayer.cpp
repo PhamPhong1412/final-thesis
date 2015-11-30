@@ -1,7 +1,7 @@
 #include "GamePlayLayer.h"
 
 // on "init" you need to initialize your instance
-bool TestGamePlayLayer::init(std::string map)
+bool GamePlayLayer::init(std::string map)
 {
 	if (!b2Layer::init())
 	{
@@ -11,9 +11,8 @@ bool TestGamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	this->mMap = map;
 	mRunner = Runner::create();
-	mRunner->mModel->setb2Position(50, 100);
-	mRunner->setPosition(50, 100);
-	
+	mRunner->mModel->setb2Position(50, 300);
+	mRunner->setPosition(50, 300);
 	this->addChild(mRunner);
 	mRunner->mModel->setVelocityX(15.0f);
 	vector<int>* t = new vector<int>();

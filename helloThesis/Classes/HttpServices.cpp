@@ -1,18 +1,19 @@
-#include "HelloWorldScene.h"
+#include "HttpServices.h"
 #include <string>
 #include "spine/Json.h"
 
 USING_NS_CC;
 //USING_NS_CC_EXT;
 using namespace cocos2d::network;
+HttpServices* HttpServices::inst = new HttpServices();
 
-Scene* HelloWorld::createScene()
+Scene* HttpServices::createScene()
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
 
 	// 'layer' is an autorelease obsject
-	auto layer = HelloWorld::create();
+	auto layer = HttpServices::create();
 
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -22,7 +23,7 @@ Scene* HelloWorld::createScene()
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool HttpServices::init()
 {
 	//////////////////////////////
 	// 1. super init first
@@ -45,7 +46,7 @@ bool HelloWorld::init()
 
 	// Post
 	auto labelPost = Label::createWithTTF("Test Post", "fonts/arial.ttf", 22);
-	auto itemPost = MenuItemLabel::create(labelPost, CC_CALLBACK_1(HelloWorld::onMenuPostTestClicked, this, false));
+	auto itemPost = MenuItemLabel::create(labelPost, CC_CALLBACK_1(HttpServices::onMenuPostTestClicked, this, false, ""));
 	itemPost->setPosition(LEFT, visibleSize.height - MARGIN - 2 * SPACE);
 	menuRequest->addChild(itemPost);
 
@@ -58,7 +59,7 @@ bool HelloWorld::init()
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void HttpServices::menuCloseCallback(Ref* pSender)
 {
 	Director::getInstance()->end();
 
@@ -68,7 +69,7 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
 }
 
 
-void HelloWorld::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response)
+void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response, std::string uid)
 {
 	if (!response)
 	{
@@ -76,58 +77,41 @@ void HelloWorld::onHttpRequestCompleted(HttpClient *sender, HttpResponse *respon
 	}
 	
 	// You can get original request type from: response->request->reqType
-	if (0 != strlen(response->getHttpRequest()->getTag()))
-	{
-		log("%s completed", response->getHttpRequest()->getTag());
-	}
+	//if (0 != strlen(response->getHttpRequest()->getTag()))
+	//{
+	//	log("%s completed", response->getHttpRequest()->getTag());
+	//}
 
-	long statusCode = response->getResponseCode();
-	char statusString[64] = {};
-	sprintf(statusString, "HTTP Status Code: %ld, tag = %s", statusCode, response->getHttpRequest()->getTag());
-	_labelStatusCode->setString(statusString);
-	log("response code: %ld", statusCode);
+	//long statusCode = response->getResponseCode();
+	//char statusString[64] = {};
+	//sprintf(statusString, "HTTP Status Code: %ld, tag = %s", statusCode, response->getHttpRequest()->getTag());
+	//_labelStatusCode->setString(statusString);
+	//log("response code: %ld", statusCode);
 
-	if (!response->isSucceed())
-	{
-		log("response failed");
-		log("error buffer: %s", response->getErrorBuffer());
-		return;
-	}
+	//if (!response->isSucceed())
+	//{
+	//	log("response failed");
+	//	log("error buffer: %s", response->getErrorBuffer());
+	//	return;
+	//}
 
-	// dump data
 	std::vector<char> *buffer = response->getResponseData();	
-	char* text = reinterpret_cast<char*>(buffer->data());
-	_labelStatusCode->setString(text);
 
-
-	// The data will be placed in the buffer.
-	/*std::vector<char> * buffer = response->getResponseData();
 	char * concatenated = (char *)malloc(buffer->size() + 1);
 	std::string s2(buffer->begin(), buffer->end());
-	strcpy(concatenated, s2.c_str());*/
+	strcpy(concatenated, s2.c_str());
 
-	 //JSON Parser. Include "spine/Json.h".
-	//std::string a = "";
-	//Json * json = Json_create(a);
-	//const char * test1 = Json_getString(json, "test1", "default");
-	//const char * test2 = Json_getString(json, "test2", "default");
-
-	//// View the console
-	//CCLog("HTTP Response : key 1 : %s", test1);
-	//CCLog("HTTP Response : key 2 : %s", test2);
-
-	//// Delete the JSON object
-	//Json_dispose(json);
+	Json * json = Json_create(concatenated);
+	const char * test1 = Json_getString(json, "result", "default");
+	const char * test2 = Json_getString(json, "time_server", "default");
 }
 
-
-void HelloWorld::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate)
+void HttpServices::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate, std::string uid)
 {
-
 	HttpRequest* request = new (std::nothrow) HttpRequest();
-	request->setUrl("http://192.168.1.13:8090/runner");
+	request->setUrl("localhost:8090/runner");
 	request->setRequestType(HttpRequest::Type::POST);
-	request->setResponseCallback(CC_CALLBACK_2(HelloWorld::onHttpRequestCompleted, this));
+	request->setResponseCallback(CC_CALLBACK_2(HttpServices::onHttpRequestCompleted, this, uid));
 
 	// write the post data
 	const char* postData = "{\"method\":\"uploadMap\", \"data\":{}}";
@@ -144,7 +128,7 @@ void HelloWorld::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate)
 }
 
 
-void HelloWorld::onMenuPostBinaryTestClicked(cocos2d::Ref *sender, bool isImmediate)
+void HttpServices::onMenuPostBinaryTestClicked(cocos2d::Ref *sender, bool isImmediate)
 {
 	
 }

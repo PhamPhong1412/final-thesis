@@ -29,7 +29,6 @@ public:
 	void EndContact(b2Node* node, b2Contact* contact);
 
 	CREATE_FUNC(Runner);
-	
 };
 
 #endif
