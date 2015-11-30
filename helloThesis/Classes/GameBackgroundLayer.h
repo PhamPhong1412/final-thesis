@@ -3,6 +3,7 @@
 
 #include "cocos2d.h"
 #include "GameConfig.h"
+
 USING_NS_CC;
 
 class GameBackgroundLayer : public Layer

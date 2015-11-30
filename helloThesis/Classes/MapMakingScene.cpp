@@ -250,7 +250,8 @@ void MapMakingScene::initButton()
     tSaveButton->setAnchorPoint(Vec2(1,1));
     tSaveButton->setScale(tile_size/tSaveButton->getNormalImage()->getContentSize().width);
     tSaveButton->setPosition(origin.x +visibleSize.width,origin.y + visibleSize.height - tile_size *3 - 30);
-    
+ 
+
     mMoveButton->selected();
     mRemoveButton->unselected();
     mInsertButton->unselected();
@@ -520,6 +521,7 @@ void MapMakingScene::saveMap(cocos2d::Ref *pSender)
 	DBContext::set("map_test", mMapSave.c_str());
 
 	auto gameScene = MainGameScene::createScene();
+	((MainGameScene*)gameScene)->initWithTestGame();
 	Director::getInstance()->replaceScene(gameScene);
 }
 

@@ -49,9 +49,6 @@
     <Filter Include="src\Scenes\PlayGame\main game\layers\background">
       <UniqueIdentifier>{f83844cd-acdf-4d33-98a2-c033f1c135cf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\Scenes\PlayGame\main game\layers\object">
-      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\Scenes\Menu">
       <UniqueIdentifier>{cbe50f88-35b5-48ad-8c16-df40cbdf5398}</UniqueIdentifier>
     </Filter>
@@ -87,6 +84,12 @@
     </Filter>
     <Filter Include="src\Scenes\PlayGame\main game\layers\Setting">
       <UniqueIdentifier>{373c7129-def3-46a4-98ca-c416c266372f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\RealPlay">
+      <UniqueIdentifier>{36d3a3bb-f27f-4d62-a57e-9f1e6484c1a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\TestPlay">
+      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +153,6 @@
     <ClCompile Include="..\Classes\AnimatedSprite.cpp">
       <Filter>src\box2d</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\GamePlayLayer.cpp">
-      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\GameConfig.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -200,6 +200,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\RankingScene.cpp">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestGamePlayLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\TestPlay</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RealGamePlayLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\RealPlay</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -269,9 +275,6 @@
     <ClInclude Include="..\Classes\AnimatedSprite.h">
       <Filter>src\box2d</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\GamePlayLayer.h">
-      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\LoginScene.h">
       <Filter>src\Scenes\Login</Filter>
     </ClInclude>
@@ -316,6 +319,12 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RankingScene.h">
       <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="RealGamePlayLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\RealPlay</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestGamePlayLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\TestPlay</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

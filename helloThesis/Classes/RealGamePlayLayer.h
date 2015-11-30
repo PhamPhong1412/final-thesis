@@ -1,5 +1,5 @@
-#ifndef _GAME_PLAY_LAYER_H__
-#define _GAME_PLAY_LAYER_H__
+#ifndef _REAL_GAME_PLAY_LAYER_H__
+#define _REAL_GAME_PLAY_LAYER_H__
 
 #include "cocos2d.h"
 #include "b2Layer.h"
@@ -9,9 +9,9 @@
 #include "GameConfig.h"
 USING_NS_CC;
 
-class GamePlayLayer : public b2Layer
+class RealGamePlayLayer : public b2Layer
 {
-private: 
+private:
 	QuadNode* quadTree;
 	std::string mMap;
 	Camera* camera;

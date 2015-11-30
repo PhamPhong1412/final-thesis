@@ -26,9 +26,6 @@ bool MainGameScene::init()
 		return false;
 	}
     
-    
-	this->gameMap = new GameMap();
-	gameMap->load("test");
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -40,11 +37,7 @@ bool MainGameScene::init()
 	//this->addChild(backgroundLayder);
 
 	//auto gamePlayLayer = GamePlayLayer::create();
-	auto gamePlayLayer = new GamePlayLayer();
-
-	std::string test = DBContext::get("map_test");
-	gamePlayLayer->init(test);
-	this->addChild(gamePlayLayer);
+	
 
 #pragma region menu
 	cocos2d::Vector<MenuItem*> items;
@@ -68,6 +61,22 @@ bool MainGameScene::init()
     
 	isPause = false;
 	return true;
+}
+
+void MainGameScene::initWithTestGame()
+{
+	auto testGamePlayLayer = new TestGamePlayLayer();
+
+	std::string test = DBContext::get("map_test");
+	testGamePlayLayer->init(test);
+	this->addChild(testGamePlayLayer);
+}
+
+void MainGameScene::initWithRealGame(std::string mapText)
+{
+	auto realGamePlayLayer = new RealGamePlayLayer();
+	realGamePlayLayer->init(mapText);
+	this->addChild(realGamePlayLayer);
 }
 
 void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)

@@ -3,7 +3,8 @@
 
 #include "cocos2d.h"
 #include "GameBackgroundLayer.h"
-#include "GamePlayLayer.h"
+#include "TestGamePlayLayer.h"
+#include "RealGamePlayLayer.h"
 #include "MapMakingScene.h"
 #include "GameMap.h"
 #include "DBContext.h"
@@ -23,6 +24,9 @@ public:
 	static cocos2d::Scene* createScene();
 
 	virtual bool init();
+
+	void initWithTestGame();
+	void initWithRealGame(std::string mapText);
 
 	void menuPlayCallback(cocos2d::Ref* pSender);
 
