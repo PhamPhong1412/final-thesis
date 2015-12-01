@@ -8,13 +8,13 @@ QuadNode::QuadNode(QuadRect rect, std::vector<ObjectNode> objects, vector<int>* 
 	float midY = (rect.top + rect.bot) / 2;
 	float width = (-rect.left + rect.right);
 	float height = (rect.top - rect.bot);
-	for (auto &object : objects){
+ 	for (auto &object : objects){
 		if (intersect(rect, object)){
 			listObject.push_back(object);
 		}
 	}
 	this->nodeID = ID;
-	if (listObject.size() == 0 || height*2 <= DESIGN_SCREEN_HEIGHT || width <= DESIGN_SCREEN_WIDTH){
+	if (listObject.size() == 0 || height <= DESIGN_SCREEN_HEIGHT || width <= DESIGN_SCREEN_WIDTH){
 		leftTopNode = leftBotNode = rightTopNode = rightBotNode = nullptr;
 		tmp->at(1) = tmp->at(1) + listObject.size();
 		return;
@@ -87,14 +87,14 @@ QuadNode::QuadNode(std::string map, vector<int>* tmp){
 	int nTilesHeight = std::stoi(widthHeight.at(1));
 
 
-	QuadRect rect(nTilesHeight*TILE_SIZE, 0, 0, nTilesWidth*TILE_SIZE);
+	float x, y;
+	float tileSize = 70 / GameConfig::scale;
+	QuadRect rect(nTilesHeight*tileSize, 0, 0, nTilesWidth*tileSize);
 	this->nodeRect = rect;
 	float midX = (rect.left + rect.right) / 2;
 	float midY = (rect.top + rect.bot) / 2;
 
 
-	float x, y;
-	float tileSize = 70 / GameConfig::scale;
 	std::vector<std::string> objectData = Utility::splitString(part.at(1), "\n");
 	for (int i = 0; i < nTilesHeight; i++){
 		y = (int)(nTilesHeight - i - 1) * tileSize;
@@ -112,13 +112,13 @@ QuadNode::QuadNode(std::string map, vector<int>* tmp){
 	}
 	
 
-	this->leftTopNode = new QuadNode(QuadRect(rect.top, midY, rect.left, midX), objects, tmp, 0);
+	this->leftTopNode = new QuadNode(QuadRect(rect.top, midY, rect.left, midX), objects, tmp, 1);
 
-	this->leftBotNode = new QuadNode(QuadRect(midY, rect.bot, rect.left, midX), objects, tmp, 1);
+	this->leftBotNode = new QuadNode(QuadRect(midY, rect.bot, rect.left, midX), objects, tmp, 2);
 
-	this->rightTopNode = new QuadNode(QuadRect(rect.top, midY, midX, rect.right), objects, tmp, 2);
+	this->rightTopNode = new QuadNode(QuadRect(rect.top, midY, midX, rect.right), objects, tmp, 3);
 
-	this->rightBotNode = new QuadNode(QuadRect(midY, rect.bot, midX, rect.right), objects, tmp, 3);
+	this->rightBotNode = new QuadNode(QuadRect(midY, rect.bot, midX, rect.right), objects, tmp, 4);
 	objects.clear();
 	this->listObject = objects;
 }
@@ -192,7 +192,9 @@ vector<ObjectNode>* QuadNode::removeObjectFromQuadtree(QuadRect camera,
 
 			for (auto &object : currentQuadNode->at(i)->listObject){
 				objectsTobeRemove->push_back(object);
-				currentObject->erase(currentObject->find(object.id));
+				auto tmp = currentObject->find(object.id);
+				if (tmp != currentObject->end())
+					currentObject->erase(tmp); 
 			}
 
 			currentQuadNode->erase(currentQuadNode->begin() + i);

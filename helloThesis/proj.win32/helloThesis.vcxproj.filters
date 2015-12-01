@@ -88,6 +88,9 @@
     <Filter Include="src\HttpServices">
       <UniqueIdentifier>{90bd5baf-f0b4-4a15-89a9-39beac5590f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\setting">
+      <UniqueIdentifier>{7d9af1b1-336f-453b-a6c8-d6fddb439172}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -180,9 +183,6 @@
     <ClCompile Include="..\Classes\HUDLayer.cpp">
       <Filter>src\Scenes\PlayGame\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\InGameSettingLayer.cpp">
-      <Filter>src\Scenes\PlayGame\main game\layers\Setting</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\TexturePool.cpp">
       <Filter>src\GameObject\SpritePool</Filter>
     </ClCompile>
@@ -197,6 +197,15 @@
     </ClCompile>
     <ClCompile Include="..\Classes\HttpServices.cpp">
       <Filter>src\HttpServices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RealGamePlayLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestGamePlayLayer.cpp">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\InGameSettingLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\setting</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -293,9 +302,6 @@
     <ClInclude Include="..\Classes\HUDLayer.h">
       <Filter>src\Scenes\PlayGame\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\InGameSettingLayer.h">
-      <Filter>src\Scenes\PlayGame\main game\layers\Setting</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\TexturePool.h">
       <Filter>src\GameObject\SpritePool</Filter>
     </ClInclude>
@@ -310,6 +316,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\HttpServices.h">
       <Filter>src\HttpServices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestGamePlayLayer.h">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\InGameSettingLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\setting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RealGamePlayLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -196,6 +196,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\FileUtil.h" />
     <ClInclude Include="..\Classes\GameConfig.h" />
     <ClInclude Include="..\Classes\GameMap.h" />
+    <ClInclude Include="..\Classes\RealGamePlayLayer.h" />
     <ClInclude Include="..\Classes\TestGamePlayLayer.h" />
     <ClInclude Include="..\Classes\GLES-Render.h" />
     <ClInclude Include="..\Classes\GroundObject.h" />
@@ -222,7 +223,6 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\Utility.h" />
     <ClInclude Include="..\Classes\WidthHeightChooseHUD.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="RealGamePlayLayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
