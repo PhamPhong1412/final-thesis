@@ -19,7 +19,7 @@ USING_NS_CC;
 
 using namespace cocos2d::ui;
 
-class MainMenuScene : public Layer
+class MainMenuScene : public Layer, public HttpServicesDelegate
 
 {
 private:
@@ -29,6 +29,9 @@ public:
     cocos2d::Vec2 origin;
     
     virtual bool init();
+
+	virtual void getUID(std::string uid);
+
 	static cocos2d::Scene* createScene();
     
 	void transitionToGameScene();

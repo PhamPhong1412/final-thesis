@@ -104,10 +104,17 @@ void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
 	//auto action = Sequence::create(DelayTime::create(1), CallFunc::create(this, callfunc_selector(MainMenuScene::transitionToGameScene)), NULL);
 	//this->runAction(action);
 	std::string uid;
-	//HttpServices::inst->onMenuPostTestClicked(this, false, uid);
-	auto gameScene = HttpServices::createScene();
-	Director::getInstance()->replaceScene(gameScene);
+	HttpServices::inst->onMenuPostTestClicked(this, false, uid);
+	HttpServices::inst->setDelegate(this);
+	/*auto gameScene = HttpServices::createScene();
+	((HttpServices*)gameScene)->setDelegate(this);
+	Director::getInstance()->replaceScene(gameScene);*/
 
+}
+
+void MainMenuScene::getUID(std::string uid)
+{
+	CCLOG("get UID");
 }
 
 void MainMenuScene::transitionToGameScene()

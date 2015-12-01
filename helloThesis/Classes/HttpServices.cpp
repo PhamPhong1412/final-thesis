@@ -95,7 +95,7 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 	//	return;
 	//}
 
-	std::vector<char> *buffer = response->getResponseData();	
+	/*std::vector<char> *buffer = response->getResponseData();	
 
 	char * concatenated = (char *)malloc(buffer->size() + 1);
 	std::string s2(buffer->begin(), buffer->end());
@@ -103,12 +103,15 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 
 	Json * json = Json_create(concatenated);
 	const char * test1 = Json_getString(json, "result", "default");
-	const char * test2 = Json_getString(json, "time_server", "default");
+	const char * test2 = Json_getString(json, "time_server", "default");*/
 
+	mDelegate->getUID("phong khung");
+	hideLoading();
 }
 
 void HttpServices::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate, std::string uid)
 {
+	showLoading((Layer*)sender);
 	HttpRequest* request = new (std::nothrow) HttpRequest();
 	request->setUrl("localhost:8090/runner");
 	request->setRequestType(HttpRequest::Type::POST);
@@ -132,4 +135,18 @@ void HttpServices::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate,
 void HttpServices::onMenuPostBinaryTestClicked(cocos2d::Ref *sender, bool isImmediate)
 {
 	
+}
+
+void HttpServices::showLoading(Layer *layer)
+{
+	auto sprite = Sprite::create("1,1.png");
+	sprite->setPosition(Vec2(300, 300));
+	sprite->setTag(1111);
+	mCurrentLayer = layer;
+	layer->addChild(sprite);
+}
+
+void HttpServices::hideLoading()
+{
+	mCurrentLayer->removeChildByTag(1111);
 }

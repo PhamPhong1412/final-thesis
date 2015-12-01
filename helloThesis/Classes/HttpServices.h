@@ -3,11 +3,35 @@
 
 #include "cocos2d.h";
 #include "network\HttpClient.h";
+class HttpServices;
+
+class HttpServicesDelegate
+{
+public:
+	/**
+	* @js NA
+	* @lua NA
+	*/
+	virtual ~HttpServicesDelegate() {}
+	/**
+	* @js NA
+	* @lua NA
+	*/
+	virtual void getUID(std::string uid) {};
+
+};
 
 class HttpServices : public cocos2d::Layer
 {
+private:
+	HttpServicesDelegate *mDelegate;
+	Layer *mCurrentLayer;
+	void showLoading(Layer *layer);
+	void hideLoading();
 public:
     static cocos2d::Scene* createScene();
+
+	void setDelegate(HttpServicesDelegate* pDelegate) { mDelegate = pDelegate; }
 
     virtual bool init();
     
@@ -24,7 +48,6 @@ public:
 
 	void onMenuPostBinaryTestClicked(cocos2d::Ref *sender, bool isImmediate);
 
-	void getUid();
 
 	static HttpServices* inst;
 
