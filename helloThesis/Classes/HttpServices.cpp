@@ -104,6 +104,7 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 	Json * json = Json_create(concatenated);
 	const char * test1 = Json_getString(json, "result", "default");
 	const char * test2 = Json_getString(json, "time_server", "default");
+
 }
 
 void HttpServices::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate, std::string uid)

@@ -1,7 +1,7 @@
-#include "GamePlayLayer.h"
+#include "TestGamePlayLayer.h"
 
 // on "init" you need to initialize your instance
-bool GamePlayLayer::init(std::string map)
+bool TestGamePlayLayer::init(std::string map)
 {
 	if (!b2Layer::init())
 	{
@@ -171,7 +171,7 @@ void TestGamePlayLayer::EndContact(b2Contact* contact)
 
 #pragma endregion
 
-void GamePlayLayer::updateQuadTree(){
+void TestGamePlayLayer::updateQuadTree(){
 
 
 	if (quadtreeUpdateCounter++ > 20){
