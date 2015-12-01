@@ -110,7 +110,6 @@ QuadNode::QuadNode(std::string map, vector<int>* tmp){
  			objects.push_back(ObjectNode(QuadRect(y + tileSize / 2, y - tileSize / 2, x - tileSize / 2, x + tileSize / 2), tileName, tmp));
 		}
 	}
-	
 
 	this->leftTopNode = new QuadNode(QuadRect(rect.top, midY, rect.left, midX), objects, tmp, 1);
 

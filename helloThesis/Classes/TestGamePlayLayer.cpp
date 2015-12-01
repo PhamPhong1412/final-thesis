@@ -21,12 +21,12 @@ bool TestGamePlayLayer::init(std::string map)
 	t->at(0) = 0;
 	t->at(1) = 0;
 
-	/*quadTree = new QuadNode(map, t);
+	quadTree = new QuadNode(map, t);
 	currentObjectList = new set<string>();
 	currentQuadNode = new vector<QuadNode*>();
-	updateQuadTree();*/
+	updateQuadTree();
 
-	std::vector<std::string> part = Utility::splitString(map, "dm");
+	/*std::vector<std::string> part = Utility::splitString(map, "dm");
 
 	std::vector<std::string> widthHeight = Utility::splitString(part.at(0), "\n");
 	int nTilesWidth = std::stoi(widthHeight.at(0));
@@ -48,6 +48,9 @@ bool TestGamePlayLayer::init(std::string map)
 			addTile(tileName, x, y);
 		}
 	}
+		this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
+		y / GameConfig::scale)));
+		*/
 
 	auto listener = EventListenerTouchOneByOne::create();
 
@@ -58,10 +61,9 @@ bool TestGamePlayLayer::init(std::string map)
 
 	this->scheduleUpdate();
 
-	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
-		y / GameConfig::scale)));
-	/*this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, quadTree->nodeRect.right / GameConfig::scale,
-		quadTree->nodeRect.top / GameConfig::scale)));*/
+
+	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, quadTree->nodeRect.right / GameConfig::scale,
+		quadTree->nodeRect.top / GameConfig::scale)));
 
 	this->setTag(TAG_NORMAL_LAYER);
 	return true;
@@ -202,8 +204,5 @@ void TestGamePlayLayer::updateQuadTree(){
 		for (int i = 0; i != object2bRemove->size(); i++) {
 			this->removeChildByName(object2bRemove->at(i).id);
 		}
-
 	}
-
-	
 }

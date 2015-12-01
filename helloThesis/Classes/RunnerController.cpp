@@ -81,6 +81,7 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 
 void Runner::endCollideGround(){
 	this->mModel->setState(PlayerState::ON_AIR);
+	this->mModel->isMultiJump = false;
 }
 
 
@@ -100,10 +101,11 @@ void Runner::EndContact(b2Node* node, b2Contact* contact){
 void Runner::runNormal(){
 	this->mModel->setVelocityX(15.0f*this->mModel->getDirection());
 	this->mModel->setState(PlayerState::ON_GROUND);
+	this->mModel->isMultiJump = true;
 }
 
 void Runner::jump(){
-	if (this->mModel->isOnGround())
+	if (this->mModel->canJump())
 		this->mModel->setVelocityY(this->mModel->getJumpSpeed());
 }
 

@@ -24,10 +24,12 @@ private:
 	int jumpSpeedBoostCharges = 0;
 	bool isFinish = false;
 public:
+	bool isMultiJump = false;
 	virtual bool init();
 
 	void setState(PlayerState state);
 
+	bool canJump();
 	bool isOnGround();
 
 	float getPosX();

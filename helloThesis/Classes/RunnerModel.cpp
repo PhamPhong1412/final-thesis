@@ -34,6 +34,10 @@ bool RunnerModel::init(){
 	return true;
 }
 
+bool RunnerModel::canJump(){
+	bool onGround = isOnGround();
+	return (onGround || isMultiJump)&&this->getVelocityY()<1;
+}
 
 bool RunnerModel::isOnGround(){
 	bool statusCheck = this->mState == PlayerState::ON_GROUND ? true : false;
@@ -47,7 +51,9 @@ float RunnerModel::getJumpSpeed(){
 		return BOOSTED_JUMP_SPEED;
 	}
 	else{
-		return NORMAL_JUMP_SPEED;
+		bool isJumpingMulti = isMultiJump && this->getVelocityY() <= -1;
+		//if (isJumpingMulti)
+		return isJumpingMulti ? NORMAL_JUMP_SPEED/2 : NORMAL_JUMP_SPEED;
 	}
 }
 
