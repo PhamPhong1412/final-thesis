@@ -19,7 +19,7 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 	}
 	else if (tType == "2"){
 		type = GroundType::SLOPE;
-		createSlopePhysicBody(sprite);
+		createSlopePhysicBody(sprite, tTypeObject[2]);
         this->setTag(TAG_OBJECT_GROUND);
 	}
 	else if (tType == "3")
@@ -31,7 +31,7 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 	else if (tType == "4")
 	{
 		type = GroundType::BARSLOPE;
-		createBarSlopePhysicBody(sprite);
+		createBarSlopePhysicBody(sprite, tTypeObject[2]);
         this->setTag(TAG_OBJECT_BARSLOPE);
 	}
 	else if (tType == "5")
@@ -98,7 +98,7 @@ void GroundObject::createNormalPhysicBody(Sprite* sprite){
 	this->setb2PhysicsBody(b2PhysicBody);
 }
 
-void GroundObject::createSlopePhysicBody(Sprite* sprite){
+void GroundObject::createSlopePhysicBody(Sprite* sprite, std::string type){
 	b2PhysicsBody *b2PhysicBody = new b2PhysicsBody();
 	//b2Vec2 verts[] = {
 	//	b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
@@ -108,12 +108,24 @@ void GroundObject::createSlopePhysicBody(Sprite* sprite){
 	//	b2PhysicsMaterial(0, 0.1, 1));
 
 	int num = 3;
-	b2Vec2 verts[] = {
-		b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
-		b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
-		b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
-	};
-	 b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+	if (type == "1")
+	{
+		b2Vec2 verts[] = {
+			b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+			b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
+			b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
+		};
+		b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+	}
+	else
+	{
+		b2Vec2 verts[] = {
+			b2Vec2(-sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+			b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
+			b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2)
+		};
+		b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+	}
 
 	b2PhysicBody->setBodyType(b2_staticBody);
 	this->setb2PhysicsBody(b2PhysicBody);
@@ -137,18 +149,33 @@ void GroundObject::createBarNormalPhysicBody(Sprite* sprite)
 	this->setb2PhysicsBody(b2PhysicBody);
 }
 
-void GroundObject::createBarSlopePhysicBody(Sprite* sprite)
+void GroundObject::createBarSlopePhysicBody(Sprite* sprite, std::string type)
 {
 	b2PhysicsBody *b2PhysicBody = new b2PhysicsBody();
 
 	int num = 4;
-	b2Vec2 verts[] = {
-		b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
-		b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
-		b2Vec2(-sprite->getContentSize().width / 2 + 4, -sprite->getContentSize().height / 2),
-		b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2 - 4)
-	};
-	b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+	
+
+	if (type == "1")
+	{
+		b2Vec2 verts[] = {
+			b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+			b2Vec2(-sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
+			b2Vec2(-sprite->getContentSize().width / 2 + 4, -sprite->getContentSize().height / 2),
+			b2Vec2(sprite->getContentSize().width / 2, sprite->getContentSize().height / 2 - 4)
+		};
+		b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+	}
+	else
+	{
+		b2Vec2 verts[] = {
+			b2Vec2(-sprite->getContentSize().width / 2, sprite->getContentSize().height / 2),
+			b2Vec2(sprite->getContentSize().width / 2, -sprite->getContentSize().height / 2),
+			b2Vec2(sprite->getContentSize().width / 2 - 4, -sprite->getContentSize().height / 2),
+			b2Vec2(-sprite->getContentSize().width / 2, sprite->getContentSize().height / 2 - 4)
+		};
+		b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0.01, 0));
+	}
 
 	b2PhysicBody->setBodyType(b2_staticBody);
 	this->setb2PhysicsBody(b2PhysicBody);

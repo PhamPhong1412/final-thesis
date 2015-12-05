@@ -45,13 +45,13 @@ bool MapMakingScene::init()
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     
-     initCreateMapView(false);
+    initCreateMapView(false);
     return true;
 }
 
 void MapMakingScene::initListItem()
 {
-    vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2.png","2,1.png","2,2.png","1,3.png","2,3.png","1,4.png","2,4.png"};
+    vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2,1.png","2,1.png","2,2,1.png","1,3.png","2,3.png","1,4,1.png","2,4,1.png"};
     vector<string> tTemp1 = {"signExit.png", "boxItem.png","boxCoin_disabled.png","boxCoin.png","boxCoinAlt.png","boxEmpty.png","boxExplosive.png","boxWarning.png","lock_blue.png","lock_green.png","lock_red.png","lock_yellow.png"};
     vector<string> tTemp2 = {"signExit.png", "fence.png","door_closedMid.png","door_closedTop.png","fenceBroken.png","door_openTop.png","door_openMid.png","ladder_top.png","ladder_mid.png"};
     vector<string> tTemp3 = {"signExit.png", "1,6.png","1,5.png"};
@@ -79,7 +79,82 @@ void MapMakingScene::initScrollMapView()
     mScrollMapView->setBackGroundImage("bg.png");
     mScrollMapView->setBackGroundImageScale9Enabled(true);
     addChild(mScrollMapView);
-    
+
+
+	
+	if (!isNewMap)
+	{
+		std::string map = DBContext::get("map_test");
+		std::vector<std::string> part = Utility::splitString(map, "dm");
+
+		std::vector<std::string> widthHeight = Utility::splitString(part.at(0), "\n");
+		numberTileWidth = std::stoi(widthHeight.at(0));
+		numberTileHeight = std::stoi(widthHeight.at(1));
+		std::vector<std::string> objectData = Utility::splitString(part.at(1), "\n");
+		for (int i = 0; i < numberTileHeight; i++){
+			std::vector<std::string> currentLineData = Utility::splitString(objectData.at(i), ";");
+			for (int j = 0; j < numberTileWidth; j++){
+				std::string tileName = currentLineData.at(j);
+				if (tileName == "0")
+					continue;
+			}
+		}
+	}
+	else
+	{
+		
+		for (int i = 0; i < numberTileHeight; i++) {
+			mVector2Chieu.push_back(vector<string>());
+			for (int j = 0; j < numberTileWidth; j++) {
+				if (i == 0) {
+					mVector2Chieu[i].push_back("1,1");
+					string tName = to_string(j) + "+" + to_string(i);
+					auto tSprite = Sprite::create("1,1.png");
+					tSprite->setName(tName);
+					tSprite->setAnchorPoint(Vec2(0, 0));
+					tSprite->setScale(GameConfig::scale);
+					tSprite->setPosition(j*tile_size, i*tile_size);
+					mScrollMapView->addChild(tSprite);
+
+				}
+				else if (i == 1)
+				{
+					if (j == 0)
+					{
+						mVector2Chieu[i].push_back("1,6");
+						string tName = to_string(j) + "+" + to_string(i);
+						auto tSprite = Sprite::create("1,6.png");
+						tSprite->setName(tName);
+						tSprite->setAnchorPoint(Vec2(0, 0));
+						tSprite->setScale(GameConfig::scale);
+						tSprite->setPosition(j*tile_size, i*tile_size);
+						mScrollMapView->addChild(tSprite);
+					}
+					else if (j == numberTileWidth - 1)
+					{
+						mVector2Chieu[i].push_back("1,5");
+						string tName = to_string(j) + "+" + to_string(i);
+						auto tSprite = Sprite::create("1,5.png");
+						tSprite->setName(tName);
+						tSprite->setAnchorPoint(Vec2(0, 0));
+						tSprite->setScale(GameConfig::scale);
+						tSprite->setPosition(j*tile_size, i*tile_size);
+						mScrollMapView->addChild(tSprite);
+					}
+					else
+					{
+						mVector2Chieu[i].push_back("0");
+					}
+				}
+				else
+				{
+					mVector2Chieu[i].push_back("0");
+				}
+			}
+		}
+	}
+
+
     Color4F color(0, 0, 0.5, 0.5);
     auto draw_node = DrawNode::create();
     
@@ -93,93 +168,54 @@ void MapMakingScene::initScrollMapView()
         auto y = i *tile_size;
         draw_node->drawLine(Vec2(0, y), Vec2(mScrollMapView->getInnerContainerSize().width, y), color);
     }
-    
-    mScrollMapView->addChild(draw_node, -1);
-    mScrollMapView->setSwallowTouches(false);
-    for (int i = 0; i < numberTileHeight; i++) {
-        mVector2Chieu.push_back(vector<string>());
-        for (int j = 0 ; j < numberTileWidth; j++) {
-            if (i == 0 ) {
-					mVector2Chieu[i].push_back("1,1");
-					string tName = to_string(j) + "+" + to_string(i);
-					auto tSprite = Sprite::create("1,1.png");
-					tSprite->setName(tName);
-					tSprite->setAnchorPoint(Vec2(0, 0));
-					tSprite->setScale(GameConfig::scale);
-					tSprite->setPosition(j*tile_size, i*tile_size);
-					mScrollMapView->addChild(tSprite);
-                
-            }
-			else if (i == 1)
-			{
-				if (j == 0)
-				{
-					mVector2Chieu[i].push_back("1,6");
-					string tName = to_string(j) + "+" + to_string(i);
-					auto tSprite = Sprite::create("1,6.png");
-					tSprite->setName(tName);
-					tSprite->setAnchorPoint(Vec2(0, 0));
-					tSprite->setScale(GameConfig::scale);
-					tSprite->setPosition(j*tile_size, i*tile_size);
-					mScrollMapView->addChild(tSprite);
-				}
-				else if (j == numberTileWidth - 1)
-				{
-					mVector2Chieu[i].push_back("1,5");
-					string tName = to_string(j) + "+" + to_string(i);
-					auto tSprite = Sprite::create("1,5.png");
-					tSprite->setName(tName);
-					tSprite->setAnchorPoint(Vec2(0, 0));
-					tSprite->setScale(GameConfig::scale);
-					tSprite->setPosition(j*tile_size, i*tile_size);
-					mScrollMapView->addChild(tSprite);
-				}
-				else
-				{
-					mVector2Chieu[i].push_back("0");
-				}
-			}
-            else
-            {
-                mVector2Chieu[i].push_back("0");
-            }
-        }
-    }
+	mScrollMapView->addChild(draw_node, -1);
+	mScrollMapView->setSwallowTouches(false);
 
+}
+void MapMakingScene::initAll()
+{
+	initListItem();
+	// SETUP LIST VIEW CHILD
+	initListChild();
+	// SETUP LISTVIEW ROOT
+	initListRoot();
+	// SETUP SCROLL VIEW
+	initScrollMapView();
+	// Button Remove, Insert, Move
+	initButton();
+	mCurrentTile = Sprite::create(mCurrentNameChild);
+	mCurrentTile->setAnchorPoint(Vec2(0.5, 1));
+	mCurrentTile->setScale(70 / mCurrentTile->getBoundingBox().size.width);
+	mCurrentTile->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.x + visibleSize.height));
+
+	this->addChild(mCurrentTile);
+
+	auto listener = EventListenerTouchOneByOne::create();
+
+	listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
+	listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
+	listener->onTouchEnded = CC_CALLBACK_2(MapMakingScene::onTouchEnded, this);
+
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
 }
 
 void MapMakingScene::initCreateMapView(bool withBackground)
 {
 	WidthHeightChooseHUD* chooseLayer = new WidthHeightChooseHUD(this, withBackground, withBackground);
     chooseLayer->setDelegate(this);
-    this->removeChild(menu);
+    //this->removeChild(menu);
     this->addChild(chooseLayer);
     isChooseInfo = true;
 }
 
 void MapMakingScene::exitBack(int width, int height)
 {
+	isNewMap = true;
     numberTileWidth = width;
     numberTileHeight = height;
     CCLOG("%d%d",width, height);
     // INIT LOCAL DATA
-    initListItem();
-    // SETUP LIST VIEW CHILD
-    initListChild();
-    // SETUP LISTVIEW ROOT
-    initListRoot();
-    // SETUP SCROLL VIEW
-    initScrollMapView();
-    // Button Remove, Insert, Move
-    initButton();
-    
-    auto listener = EventListenerTouchOneByOne::create();
-    
-    listener->onTouchBegan = CC_CALLBACK_2(MapMakingScene::onTouchBegan, this);
-    listener->onTouchMoved = CC_CALLBACK_2(MapMakingScene::onTouchMoved, this);
-    listener->onTouchEnded = CC_CALLBACK_2(MapMakingScene::onTouchEnded, this);
-    
-    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, mScrollMapView);
+	initAll();
 }
 
 void MapMakingScene::initListChild()
@@ -249,8 +285,12 @@ void MapMakingScene::initButton()
     auto tSaveButton = MenuItemImage::create("SaveSelected.png","SaveNormal.png",  CC_CALLBACK_1(MapMakingScene::saveMap, this));
     tSaveButton->setAnchorPoint(Vec2(1,1));
     tSaveButton->setScale(tile_size/tSaveButton->getNormalImage()->getContentSize().width);
-    tSaveButton->setPosition(origin.x +visibleSize.width,origin.y + visibleSize.height - tile_size *3 - 30);
+    tSaveButton->setPosition(origin.x +visibleSize.width,origin.y + visibleSize.height - tile_size *4 - 30);
  
+	auto tFlipButton = MenuItemImage::create("ChangeSelected.png", "ChangeNormal.png", CC_CALLBACK_1(MapMakingScene::flipTile, this));
+	tFlipButton->setAnchorPoint(Vec2(1, 1));
+	tFlipButton->setScale(tile_size / tFlipButton->getNormalImage()->getContentSize().width);
+	tFlipButton->setPosition(origin.x + visibleSize.width, origin.y + visibleSize.height - tile_size * 3 - 40);
 
     mMoveButton->selected();
     mRemoveButton->unselected();
@@ -261,7 +301,8 @@ void MapMakingScene::initButton()
     items.pushBack(mRemoveButton);
     items.pushBack(mMoveButton);
     items.pushBack(tSaveButton);
-    
+    items.pushBack(tFlipButton);
+
     menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
     this->addChild(menu, 1);
@@ -311,6 +352,7 @@ void MapMakingScene::selectedItemChildListEvent(Ref *sender, ui::ListView::Event
             if (listView->getCurSelectedIndex() != 0) {
                 CCLOG("index Child = %ld",listView->getCurSelectedIndex());
                 mCurrentNameChild = tVectorNameChildItem[(int)listView->getCurSelectedIndex()];
+				mCurrentTile->setTexture(mCurrentNameChild);
             }
             else
             {
@@ -500,6 +542,29 @@ void MapMakingScene::onTouchEnded(Touch *touch, Event *event)
 {
     
 }
+
+void MapMakingScene::flipTile(cocos2d::Ref *pSender)
+{
+	string tPng = ".png";
+
+	string tNameFile = mCurrentNameChild;
+	string::size_type i = tNameFile.find(tPng);
+	if (i != std::string::npos)
+		tNameFile.erase(i, tPng.length());
+
+	std::vector<std::string> tTypeObject = Utility::splitString(tNameFile, ",");
+	if (tTypeObject.size() == 2)
+		return;
+	std::string tType = tTypeObject[1];
+	std::string tFlip = tTypeObject[2];
+	if (tType == "2" || tType == "4")
+	{
+		tFlip = tFlip == "1" ? "2" : "1";
+		mCurrentNameChild = tTypeObject[0] + "," + tType + "," + tFlip + ".png";
+		mCurrentTile->setTexture(mCurrentNameChild);
+	}
+}
+
 void MapMakingScene::saveMap(cocos2d::Ref *pSender)
 {
     mMapSave = "";
@@ -553,4 +618,9 @@ void MapMakingScene::startRemove(cocos2d::Ref *pSender)
     mRemoveButton->selected();
     mInsertButton->unselected();
     mScrollMapView->setTouchEnabled(false);
+}
+
+void MapMakingScene::setIsNewMap(bool newMap)
+{
+	isNewMap = newMap;
 }

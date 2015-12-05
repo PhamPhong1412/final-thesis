@@ -33,9 +33,10 @@ private:
     MenuItemImage *mInsertButton;
     MenuItemImage *mRemoveButton;
     MenuItemImage *mChangeSizeButton;
-    
+	Sprite *mCurrentTile;
+
 public:
-    
+	bool isNewMap;
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
     static cocos2d::Scene* createScene();
@@ -62,11 +63,13 @@ public:
     string getNameWithNumber(int number);
     
     void saveMap(cocos2d::Ref* pSender);
+	void flipTile(cocos2d::Ref* pSender);
     void startMove(cocos2d::Ref *pSender);
     void startRemove(cocos2d::Ref* pSender);
     void startInsert(cocos2d::Ref *pSender);
     
     // LOCAL FUNCION
+	void initAll();
 	void initCreateMapView(bool withBackground);
     void initListItem();
     void initButton();
@@ -74,6 +77,8 @@ public:
     void initListChild();
     void initListRoot();
     
+	void setIsNewMap(bool newMap);
+	
     CREATE_FUNC(MapMakingScene);
 };
 

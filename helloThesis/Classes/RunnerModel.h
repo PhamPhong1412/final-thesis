@@ -4,7 +4,8 @@
 #define NORMAL_JUMP_SPEED 30.0f
 #define BOOSTED_JUMP_SPEED 60.0f
 
-#include "b2Node.h"
+#include "box2d\b2Node.h"
+//#include "b2Node.h"
 
 enum PlayerState{
 	ON_GROUND, ON_AIR
