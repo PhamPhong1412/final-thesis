@@ -3,62 +3,48 @@
 
 #include "cocos2d.h"
 
+
+
+class HttpServices;
+
+#include "GameConfig.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "HttpClient.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "network\HttpClient.h"
 #endif
+#include "HttpServicesDelegate.h"
+#include "Utility.h"
+#include "util\json\Json.h"
 
-class HttpServices;
+USING_NS_CC;
+using namespace cocos2d::network;
 
-class HttpServicesDelegate
-{
-public:
-	/**
-	* @js NA
-	* @lua NA
-	*/
-	virtual ~HttpServicesDelegate() {}
-	/**
-	* @js NA
-	* @lua NA
-	*/
-	virtual void getUID(std::string uid) {};
 
-};
-
-class HttpServices : public cocos2d::Layer
+class HttpServices
 {
 private:
-	HttpServicesDelegate *mDelegate;
-	Layer *mCurrentLayer;
-	void showLoading(Layer *layer);
-	void hideLoading();
+	HttpServicesDelegate* mDelegate;
+	Layer* mCurrentLayer;
+
+	void showLoading(Layer* layer);
+	void hideLoading(bool isSucess);
+
+	std::string getMethodName(HttpRequestMethod method);
+
+	void returnDelegate(HttpRequestMethod method, Json* jsonResponseData);
+
+	//void deserResponseData(HttpRequestMethod type, std::map<std::string, std::string> response);
 public:
-    static cocos2d::Scene* createScene();
 
 	void setDelegate(HttpServicesDelegate* pDelegate) { mDelegate = pDelegate; }
 
-    virtual bool init();
-    
-    // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
-    
-    // implement the "static create()" method manually
-	CREATE_FUNC(HttpServices);
-
 	//Http Response Callback
-	void onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response, std::string uid);
+	void onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response, HttpRequestMethod type);
 
-	void onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate, std::string uid);
-
-	void onMenuPostBinaryTestClicked(cocos2d::Ref *sender, bool isImmediate);
-
+	void sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestParameter> RequestParameter, HttpRequestMethod type, bool isImmediate = false);
 
 	static HttpServices* inst;
-
-private:
-	cocos2d::Label* _labelStatusCode;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

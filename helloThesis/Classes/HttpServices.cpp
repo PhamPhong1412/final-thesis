@@ -1,125 +1,58 @@
 #include "HttpServices.h"
-#include <string>
-#include "spine/Json.h"
 
-USING_NS_CC;
-//USING_NS_CC_EXT;
-using namespace cocos2d::network;
 HttpServices* HttpServices::inst = new HttpServices();
 
-Scene* HttpServices::createScene()
+
+void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response, HttpRequestMethod method)
 {
-	// 'scene' is an autorelease object
-	auto scene = Scene::create();
 
-	// 'layer' is an autorelease obsject
-	auto layer = HttpServices::create();
-
-	// add layer as a child to scene
-	scene->addChild(layer);
-
-	// return the scene
-	return scene;
-}
-
-// on "init" you need to initialize your instance
-bool HttpServices::init()
-{
-	//////////////////////////////
-	// 1. super init first
-	if (!Layer::init())
-	{
-		return false;
-	}
-
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
-
-	const int MARGIN = 40;
-	const int SPACE = 35;
-
-	const int LEFT = visibleSize.width / 2;
-
-	auto menuRequest = Menu::create();
-	menuRequest->setPosition(Vec2::ZERO);
-	addChild(menuRequest);
-
-	// Post
-	auto labelPost = Label::createWithTTF("Test Post", "fonts/arial.ttf", 22);
-	auto itemPost = MenuItemLabel::create(labelPost, CC_CALLBACK_1(HttpServices::onMenuPostTestClicked, this, false, ""));
-	itemPost->setPosition(LEFT, visibleSize.height - MARGIN - 2 * SPACE);
-	menuRequest->addChild(itemPost);
-
-	// Response Code Label
-	_labelStatusCode = Label::createWithTTF("HTTP Status Code", "fonts/arial.ttf", 18);
-	_labelStatusCode->setPosition(visibleSize.width / 2, visibleSize.height - MARGIN - 6 * SPACE);
-	addChild(_labelStatusCode);
-
-	return true;
-}
-
-
-void HttpServices::menuCloseCallback(Ref* pSender)
-{
-	Director::getInstance()->end();
-
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	exit(0);
-#endif
-}
-
-
-void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response, std::string uid)
-{
-	if (!response)
-	{
+	std::vector<char> *buffer = response->getResponseData();	
+	if (buffer->size() != 0){
+		hideLoading(false);
 		return;
 	}
-	
-	// You can get original request type from: response->request->reqType
-	//if (0 != strlen(response->getHttpRequest()->getTag()))
-	//{
-	//	log("%s completed", response->getHttpRequest()->getTag());
-	//}
-
-	//long statusCode = response->getResponseCode();
-	//char statusString[64] = {};
-	//sprintf(statusString, "HTTP Status Code: %ld, tag = %s", statusCode, response->getHttpRequest()->getTag());
-	//_labelStatusCode->setString(statusString);
-	//log("response code: %ld", statusCode);
-
-	//if (!response->isSucceed())
-	//{
-	//	log("response failed");
-	//	log("error buffer: %s", response->getErrorBuffer());
-	//	return;
-	//}
-
-	/*std::vector<char> *buffer = response->getResponseData();	
 
 	char * concatenated = (char *)malloc(buffer->size() + 1);
 	std::string s2(buffer->begin(), buffer->end());
-	strcpy(concatenated, s2.c_str());
+	Utility::strcpy(concatenated, s2.c_str());
 
 	Json * json = Json_create(concatenated);
-	const char * test1 = Json_getString(json, "result", "default");
-	const char * test2 = Json_getString(json, "time_server", "default");*/
+	//CC_SAFE_DELETE(concatenated);
+	const char * result = Json_getString(json, "result", "fail");
 
-	mDelegate->getUID("phong khung");
-	hideLoading();
+	if (result == "fail"){
+		hideLoading(false);
+		return;
+	}
+
+	const char * test2 = Json_getString(json, "time_server", "default");
+
+	returnDelegate(method, Json_getItem(json, "data"));
+	//mDelegate->getUID("phong khung");
+
+	hideLoading(true);
 }
 
-void HttpServices::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate, std::string uid)
+void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestParameter> RequestParameter, HttpRequestMethod method, bool isImmediate)
 {
 	showLoading((Layer*)sender);
+
 	HttpRequest* request = new (std::nothrow) HttpRequest();
 	request->setUrl("localhost:8090/runner");
 	request->setRequestType(HttpRequest::Type::POST);
-	request->setResponseCallback(CC_CALLBACK_2(HttpServices::onHttpRequestCompleted, this, uid));
+	request->setResponseCallback(CC_CALLBACK_2(HttpServices::onHttpRequestCompleted, this, method));
 
 	// write the post data
-	const char* postData = "{\"method\":\"uploadMap\", \"data\":{}}";
-	request->setRequestData(postData, strlen(postData));
+	std::string methodName = getMethodName(method);
+	std::string phoneID = Utility::getPhoneID();
+
+	RequestParameter.push_back(HttpRequestParameter("method", methodName));
+	RequestParameter.push_back(HttpRequestParameter("phoneID", phoneID));
+	char* jsonData = Utility::buildJson(RequestParameter);
+	request->setRequestData(jsonData, strlen(jsonData));
+
+	//const char* postData = "{\"method\":\"uploadMap\", \"data\":{}}";
+	//request->setRequestData(postData, strlen(postData));
 	if (isImmediate)
 	{
 		HttpClient::getInstance()->sendImmediate(request);
@@ -131,22 +64,39 @@ void HttpServices::onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate,
 	request->release();
 }
 
-
-void HttpServices::onMenuPostBinaryTestClicked(cocos2d::Ref *sender, bool isImmediate)
-{
-	
-}
-
-void HttpServices::showLoading(Layer *layer)
+void HttpServices::showLoading(Layer* layer)
 {
 	auto sprite = Sprite::create("1,1.png");
-	sprite->setPosition(Vec2(300, 300));
+	sprite->setPosition(Vec2(DESIGN_SCREEN_WIDTH/2, DESIGN_SCREEN_HEIGHT/2));
 	sprite->setTag(1111);
 	mCurrentLayer = layer;
 	layer->addChild(sprite);
 }
 
-void HttpServices::hideLoading()
+void HttpServices::hideLoading(bool isSucess)
 {
-	mCurrentLayer->removeChildByTag(1111);
+	if (isSucess){
+		mCurrentLayer->removeChildByTag(1111);
+	}
+	else{
+		//show network fail message
+	}
+}
+
+std::string HttpServices::getMethodName(HttpRequestMethod method){
+	switch (method)
+	{
+	case HttpRequestMethod::UPLOAD_MAP: return "uploadMap";
+	default:
+		break;
+	}
+}
+
+void HttpServices::returnDelegate(HttpRequestMethod method, Json* jsonResponseData){
+	switch (method)
+	{
+	//case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap("");
+	default:
+		break;
+	}
 }

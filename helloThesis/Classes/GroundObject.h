@@ -2,7 +2,9 @@
 #define __GROUND_H__
 
 #include "cocos2d.h"
-#include "b2Node.h"
+
+#include "box2d\b2Node.h"
+//#include "b2Node.h"
 #include "Utility.h"
 
 enum GroundType{
@@ -18,9 +20,9 @@ private:
 	bool isChangeDirectionTile;
 
 	void createNormalPhysicBody(Sprite* sprite);
-	void createSlopePhysicBody(Sprite* sprite);
+	void createSlopePhysicBody(Sprite* sprite, std::string type);
 	void createBarNormalPhysicBody(Sprite* sprite);
-	void createBarSlopePhysicBody(Sprite* sprite);
+	void createBarSlopePhysicBody(Sprite* sprite, std::string type);
 	void createEndlPhysicBody(Sprite* sprite);
 public:
 

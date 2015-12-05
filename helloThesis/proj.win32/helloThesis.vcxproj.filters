@@ -79,9 +79,6 @@
     <Filter Include="src\Scenes\PlayGame\HUD">
       <UniqueIdentifier>{55c3f6cc-2823-46b1-b2fc-6d6cbcd9dc75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\GameObject\SpritePool">
-      <UniqueIdentifier>{3859739b-166d-4fb9-b7af-bd8eb0f677f3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\GameObject\quadtree">
       <UniqueIdentifier>{803d9eb6-51f3-4dbf-a6b5-45182b536c2b}</UniqueIdentifier>
     </Filter>
@@ -90,6 +87,9 @@
     </Filter>
     <Filter Include="src\Scenes\PlayGame\main game\layers\setting">
       <UniqueIdentifier>{7d9af1b1-336f-453b-a6c8-d6fddb439172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\Json">
+      <UniqueIdentifier>{bafb0ffa-7250-4c3b-b16e-9c75958878a4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,29 +129,8 @@
     <ClCompile Include="..\Classes\GameMap.cpp">
       <Filter>src\GameMap</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\b2Global.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\b2Integration.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\b2Layer.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\b2Node.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\b2PhysicsBody.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\GLES-Render.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\Runner.cpp">
       <Filter>src\GameObject\Runner</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\AnimatedSprite.cpp">
-      <Filter>src\box2d</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\GameConfig.cpp">
       <Filter>src</Filter>
@@ -183,9 +162,6 @@
     <ClCompile Include="..\Classes\HUDLayer.cpp">
       <Filter>src\Scenes\PlayGame\HUD</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\TexturePool.cpp">
-      <Filter>src\GameObject\SpritePool</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\QuadNode.cpp">
       <Filter>src\GameObject\quadtree</Filter>
     </ClCompile>
@@ -206,6 +182,33 @@
     </ClCompile>
     <ClCompile Include="..\Classes\InGameSettingLayer.cpp">
       <Filter>src\Scenes\PlayGame\main game\layers\setting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\box2d\AnimatedSprite.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\box2d\b2Global.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\box2d\b2Integration.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\box2d\b2Layer.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\box2d\b2Node.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\box2d\b2PhysicsBody.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\box2d\GLES-Render.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\util\json\Json.cpp">
+      <Filter>src\Util\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\util\json\extension.cpp">
+      <Filter>src\Util\Json</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,29 +254,8 @@
     <ClInclude Include="..\Classes\GameConfig.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\b2Global.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\b2Integration.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\b2Layer.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\b2Node.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\b2PhysicsBody.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\GLES-Render.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\Runner.h">
       <Filter>src\GameObject\Runner</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\AnimatedSprite.h">
-      <Filter>src\box2d</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\LoginScene.h">
       <Filter>src\Scenes\Login</Filter>
@@ -302,9 +284,6 @@
     <ClInclude Include="..\Classes\HUDLayer.h">
       <Filter>src\Scenes\PlayGame\HUD</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\TexturePool.h">
-      <Filter>src\GameObject\SpritePool</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\QuadNode.h">
       <Filter>src\GameObject\quadtree</Filter>
     </ClInclude>
@@ -325,6 +304,36 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RealGamePlayLayer.h">
       <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HttpServicesDelegate.h">
+      <Filter>src\HttpServices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\box2d\AnimatedSprite.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\box2d\b2Global.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\box2d\b2Integration.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\box2d\b2Layer.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\box2d\b2Node.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\box2d\b2PhysicsBody.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\box2d\GLES-Render.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\util\json\Json.h">
+      <Filter>src\Util\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\util\json\extension.h">
+      <Filter>src\Util\Json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
