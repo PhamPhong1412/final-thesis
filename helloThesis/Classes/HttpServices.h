@@ -1,8 +1,14 @@
 #ifndef __HTTP_SERVICES_H__
 #define __HTTP_SERVICES_H__
 
-#include "cocos2d.h";
-#include "network\HttpClient.h";
+#include "cocos2d.h"
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "HttpClient.h"
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+#include "network\HttpClient.h"
+#endif
+
 class HttpServices;
 
 class HttpServicesDelegate
