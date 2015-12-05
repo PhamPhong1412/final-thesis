@@ -65,8 +65,8 @@ bool MainGameScene::init()
 
 void MainGameScene::initWithTestGame()
 {
+	isTestMap = true;
 	auto testGamePlayLayer = new TestGamePlayLayer();
-
 	std::string test = DBContext::get("map_test");
 	testGamePlayLayer->init(test);
 	this->addChild(testGamePlayLayer);
@@ -74,6 +74,7 @@ void MainGameScene::initWithTestGame()
 
 void MainGameScene::initWithRealGame(std::string mapText)
 {
+	isTestMap = false;
 	auto realGamePlayLayer = new RealGamePlayLayer();
 	realGamePlayLayer->init(mapText);
 	this->addChild(realGamePlayLayer);
@@ -81,8 +82,13 @@ void MainGameScene::initWithRealGame(std::string mapText)
 
 void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)
 {
-    auto mapMakingScene = MapMakingScene::createScene();
-    Director::getInstance()->replaceScene(mapMakingScene);
+	if (isTestMap)
+	{
+		auto mapMakingScene = MapMakingScene::createScene();
+		((MapMakingScene*)mapMakingScene)->setIsNewMap(true);
+		Director::getInstance()->replaceScene(mapMakingScene);
+	}
+    
 }
 
 void MainGameScene::menuPlayCallback(cocos2d::Ref* pSender){
