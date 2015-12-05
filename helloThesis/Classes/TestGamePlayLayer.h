@@ -2,7 +2,8 @@
 #define _TEST_GAME_PLAY_LAYER_H__
 
 #include "cocos2d.h"
-#include "b2Layer.h"
+#include "box2d\b2Layer.h"
+//#include "b2Layer.h"
 #include "QuadNode.h"
 #include "RunnerController.h"
 #include "GroundObject.h"

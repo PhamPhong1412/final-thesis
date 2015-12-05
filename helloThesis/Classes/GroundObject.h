@@ -2,7 +2,9 @@
 #define __GROUND_H__
 
 #include "cocos2d.h"
-#include "b2Node.h"
+
+#include "box2d\b2Node.h"
+//#include "b2Node.h"
 #include "Utility.h"
 
 enum GroundType{
