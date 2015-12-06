@@ -11,7 +11,17 @@ bool Runner::init(){
 	this->mView = RunnerView::create();
 	this->addChild(mView);
 	this->setTag(TAG_OBJECT_PLAYER);
+	this->scheduleUpdate();
 	return true;
+}
+
+void Runner::update(float delta){
+	switch (this->mModel->getState()){
+
+	case PlayerState::ON_GROUND: this->mView->runOnGround(); break;
+	case PlayerState::ON_AIR: this->mView->runOnAir(); break;
+	default:this->mView->runOnGround(); break;
+	}
 }
 
 void Runner::BeginContact(b2Node* node, b2Contact* contact){
@@ -36,6 +46,13 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
             case TAG_OBJECT_GROUND:
             {
 					runNormal();
+					float groundWidth = groundNode->getBoundingBox().getMaxX();
+					bool positionCheckY = this->mModel->getPosY() - groundNode->getPosition().y > this->mModel->getBoundingBox().getMaxY() / 2;
+					float a1 = std::abs(this->mModel->getPosX() - groundNode->getPosition().x);
+					float a2 = this->mModel->getBoundingBox().getMaxX();
+					bool positionCheckX = std::abs(this->mModel->getPosX() - groundNode->getPosition().x) < (groundWidth / 2 + this->mModel->getBoundingBox().getMaxX() / 2);
+					if (positionCheckY&&positionCheckX)
+						this->mModel->setState(PlayerState::ON_GROUND);
                     break;
             }
             case TAG_OBJECT_BARNORMAL:
@@ -59,6 +76,7 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 				if (!isChangeDirection)
 				{
 					mModel->setDirection(-1);
+					mView->setDirection(-1);
 					isChangeDirection = true;
 				}
 				
@@ -84,7 +102,6 @@ void Runner::endCollideGround(){
 	this->mModel->isMultiJump = false;
 }
 
-
 void Runner::EndContact(b2Node* node, b2Contact* contact){
 	int targetTag = node->getTag();
 	switch (targetTag)
@@ -100,12 +117,14 @@ void Runner::EndContact(b2Node* node, b2Contact* contact){
 
 void Runner::runNormal(){
 	this->mModel->setVelocityX(15.0f*this->mModel->getDirection());
-	this->mModel->setState(PlayerState::ON_GROUND);
+	//this->mModel->setState(PlayerState::ON_GROUND);
 	this->mModel->isMultiJump = true;
 }
 
 void Runner::jump(){
-	if (this->mModel->canJump())
+	if (this->mModel->canJump()){
+		this->mModel->setState(PlayerState::ON_AIR);
 		this->mModel->setVelocityY(this->mModel->getJumpSpeed());
+	}
 }
 

@@ -17,6 +17,8 @@ private:
 
 	void runNormal();
 
+	void update(float delta);
+
 public:
 	virtual bool init();
 	RunnerView* mView;

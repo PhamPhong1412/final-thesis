@@ -22,7 +22,7 @@ bool RunnerModel::init(){
 //	};
 //
 //	auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0, 0.1));
-	auto b2PhysicBody = b2PhysicsBody::createBox(Size(20,50), b2PhysicsMaterial(0, 0, 0));
+	auto b2PhysicBody = b2PhysicsBody::createBox(Size(34,70), b2PhysicsMaterial(0, 0, 0));
     
 	b2PhysicBody->setBodyType(b2_dynamicBody);
 	this->setb2PhysicsBody(b2PhysicBody);
@@ -31,7 +31,19 @@ bool RunnerModel::init(){
 
 	this->direction = 1;
 	this->changeDirectionCooldown = 1;
+	this->scheduleUpdate();
 	return true;
+}
+
+
+void RunnerModel::update(float delta){
+	//if (abs(this->getVelocityY()) < 0.2f){
+	//	this->mState = PlayerState::ON_GROUND;
+	//}
+	//else{
+	//	this->mState = PlayerState::ON_AIR;
+
+	//}
 }
 
 bool RunnerModel::canJump(){
@@ -59,6 +71,10 @@ float RunnerModel::getJumpSpeed(){
 
 void RunnerModel::setState(PlayerState state){
 	this->mState = state;
+}
+
+PlayerState RunnerModel::getState(){
+	return mState;
 }
 
 float RunnerModel::getVelocityX(){

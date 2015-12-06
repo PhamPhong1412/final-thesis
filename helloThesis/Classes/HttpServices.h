@@ -30,9 +30,11 @@ private:
 	void showLoading(Layer* layer);
 	void hideLoading(bool isSucess);
 
+	inline bool checkValid(bool ass);
+
 	std::string getMethodName(HttpRequestMethod method);
 
-	void returnDelegate(HttpRequestMethod method, Json* jsonResponseData);
+	void returnDelegate(HttpRequestMethod method, std::map<std::string, std::string> response);
 
 	//void deserResponseData(HttpRequestMethod type, std::map<std::string, std::string> response);
 public:

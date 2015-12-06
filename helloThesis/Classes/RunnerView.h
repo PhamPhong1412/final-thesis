@@ -13,6 +13,8 @@
 #include "cocostudio\ActionTimeline\CCActionTimelineCache.h"
 #endif
 
+#include "RunnerModel.h"
+
 USING_NS_CC;
 
 class RunnerView : public Node
@@ -22,10 +24,16 @@ private:
 	Node* mBody;
 	cocostudio::timeline::ActionTimeline* mAnimation;
 
-	void runNormal();
 
 public:
+	void runOnGround();
+	void runOnAir();
+	void jump();
+	void setDirection(int dir);
+
 	virtual bool init();
+
+	void update(float delta);
 	
 	CREATE_FUNC(RunnerView);
 	

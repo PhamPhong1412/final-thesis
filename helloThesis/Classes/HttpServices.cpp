@@ -2,13 +2,19 @@
 
 HttpServices* HttpServices::inst = new HttpServices();
 
-
+inline bool HttpServices::checkValid(bool ex){
+	if (!ex){
+		hideLoading(false);
+		return true;
+	}
+else
+	return false;
+}
 void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *response, HttpRequestMethod method)
 {
 
 	std::vector<char> *buffer = response->getResponseData();	
-	if (buffer->size() != 0){
-		hideLoading(false);
+	if (checkValid(buffer->size() != 0)){
 		return;
 	}
 
@@ -17,17 +23,27 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 	Utility::strcpy(concatenated, s2.c_str());
 
 	Json * json = Json_create(concatenated);
-	//CC_SAFE_DELETE(concatenated);
+	if (checkValid(json != nullptr)){
+		return;
+	}
+	CC_SAFE_DELETE(concatenated);
+	json = Json_getItem(json, "data");
 	const char * result = Json_getString(json, "result", "fail");
 
-	if (result == "fail"){
-		hideLoading(false);
+	if (checkValid(result != "fail")){
 		return;
 	}
 
 	const char * test2 = Json_getString(json, "time_server", "default");
 
-	returnDelegate(method, Json_getItem(json, "data"));
+	std::map<std::string, std::string> res;
+
+	Json *c = json->child;
+	while (c){
+		res[c->name] = c->valueString;
+		c = c->next;
+	}
+	returnDelegate(method, res);
 	//mDelegate->getUID("phong khung");
 
 	hideLoading(true);
@@ -47,7 +63,7 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 	std::string phoneID = Utility::getPhoneID();
 
 	RequestParameter.push_back(HttpRequestParameter("method", methodName));
-	RequestParameter.push_back(HttpRequestParameter("phoneID", phoneID));
+	RequestParameter.push_back(HttpRequestParameter("phone_id", phoneID));
 	char* jsonData = Utility::buildJson(RequestParameter);
 	request->setRequestData(jsonData, strlen(jsonData));
 
@@ -92,7 +108,7 @@ std::string HttpServices::getMethodName(HttpRequestMethod method){
 	}
 }
 
-void HttpServices::returnDelegate(HttpRequestMethod method, Json* jsonResponseData){
+void HttpServices::returnDelegate(HttpRequestMethod method, std::map<std::string, std::string> response){
 	switch (method)
 	{
 	//case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap("");

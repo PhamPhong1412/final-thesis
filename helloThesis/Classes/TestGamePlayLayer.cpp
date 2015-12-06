@@ -180,8 +180,8 @@ void TestGamePlayLayer::updateQuadTree(){
 		quadtreeUpdateCounter = 0;
 
 		QuadRect cameraRect = QuadRect(DESIGN_SCREEN_HEIGHT, 0,
-			this->mRunner->getPosition().x - DESIGN_SCREEN_WIDTH / 2,
-			this->mRunner->getPosition().x + DESIGN_SCREEN_WIDTH / 2);
+			this->mRunner->getPosition().x - DESIGN_SCREEN_WIDTH,
+			this->mRunner->getPosition().x + DESIGN_SCREEN_WIDTH);
 		std::vector<ObjectNode>* object2bAdd = new std::vector<ObjectNode>();
 		std::vector<ObjectNode>* object2bRemove = new std::vector<ObjectNode>();
 		

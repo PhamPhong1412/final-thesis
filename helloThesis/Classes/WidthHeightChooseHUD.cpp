@@ -92,7 +92,7 @@ void WidthHeightChooseHUD::menuNextCallback()
 		height = std::stoi(mHeightEditBox->getText());
 	}
 	else{
-		witdh = 50;
+		witdh = 40;
 		height = 40;
 	}
 

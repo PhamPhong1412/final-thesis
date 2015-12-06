@@ -28,6 +28,7 @@ public:
 	bool isMultiJump = false;
 	virtual bool init();
 
+	PlayerState getState();
 	void setState(PlayerState state);
 
 	bool canJump();
@@ -48,6 +49,9 @@ public:
 	void setDirection(int dir);
 	int getDirection();
 	float getJumpSpeed();
+
+	void update(float delta);
+
 	CREATE_FUNC(RunnerModel);
 	
 };
