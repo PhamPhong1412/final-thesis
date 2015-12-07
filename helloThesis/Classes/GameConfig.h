@@ -7,7 +7,7 @@
 
 
 #define PTM_RATIO 32
-#define SET_DEBUG 1
+#define SET_DEBUG 0
 
 #define TAG_OBJECT_PLAYER	1
 #define TAG_OBJECT_PLAYER_BODY	2
