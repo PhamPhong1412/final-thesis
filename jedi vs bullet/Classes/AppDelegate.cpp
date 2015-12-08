@@ -90,7 +90,6 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	searchPaths.push_back("Button");
 
 	fileUtils->setSearchPaths(searchPaths);
-	DBContext::init();
     // create a scene. it's an autorelease object
     auto scene = MainMenuScene::createScene();
     // run

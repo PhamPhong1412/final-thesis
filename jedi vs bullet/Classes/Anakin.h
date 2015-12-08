@@ -39,6 +39,7 @@ private:
 	bool canAttack();
 
 	Vec2 centralPoint;
+	float scale;
 public:
 	virtual bool init();
 	void play();
@@ -46,13 +47,13 @@ public:
 
 
 	void attack(float xLoc, float yLoc);
-	
+
 
 	//Physics event
 	void collideBullet();
 
 	CREATE_FUNC(Anakin);
-	
+
 };
 
 #endif

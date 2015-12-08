@@ -9,6 +9,9 @@ USING_NS_CC;
 class RealGamePlayLayer : public Layer
 {
 private:
+	Camera* camera;
+	Follow* cameraFollow;
+	Vec2 centralPoint;
 
 public:
 	virtual bool init(std::string map);

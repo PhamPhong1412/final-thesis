@@ -30,7 +30,6 @@ bool MainMenuScene::init()
 	origin = Director::getInstance()->getVisibleOrigin();
 
 	std::string s = "abdf \t fwef";
-	Utility::splitString(s, "\t");
 
     initButton();
 	return true;

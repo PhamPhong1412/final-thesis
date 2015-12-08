@@ -1,28 +1,23 @@
 #include "Anakin.h"
+#include "GameConfig.h"
 
 bool Anakin::init(){
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+
 	mBody = CSLoader::createNode(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
+	centralPoint = Vec2(visibleSize.width/2, visibleSize.height / 2);
 	mAnimation->play("hit", true);
-	//mAnimation->setTimeSpeed(0.5f);
 	mBody->runAction(mAnimation);
 	mBody->setPosition(0, 0);
 	mBody->setTag(56);
+	scale = ((visibleSize.height - 50)/2) / (50 / GameConfig::scale);
+	mBody->setScale(scale);
 	this->addChild(mBody);
-	direction = 1;
-
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
-
-	float designH = DESIGN_SCREEN_HEIGHT - 100;
-	float curH = visibleSize.height - 100;
-	float defaulScale = (visibleSize.height - 100)/68;
-	mBody->setScale(1);
-
-
 
 	this->setTag(55);
 
+	this->direction = 1;
 	this->direction = 1;
 	this->scheduleUpdate();
 	return true;
@@ -30,7 +25,7 @@ bool Anakin::init(){
 
 void Anakin::update(float delta){
 	int curFrame = mAnimation->getCurrentFrame();
-	
+
 	if (curFrame == 40 || curFrame == 20){
 		mAnimation->play("idle", true);
 	}
@@ -54,14 +49,14 @@ void Anakin::attack(float xLoc, float yLoc){
 	if (!canAttack())
 		return;
 
-	if (xLoc > centralPoint.x&&direction!=1){
+	if (xLoc > centralPoint.x&&direction != 1){
 		mBody->setRotationY(0);
-		this->setPosition(Vec2(this->getPosition().x + 20, this->getPosition().y));
+		this->setPosition(Vec2(this->getPosition().x + 20 * scale, this->getPosition().y));
 		direction = 1;
 	}
 	if (xLoc < centralPoint.x&&direction == 1){
 		mBody->setRotationY(180);
-		this->setPosition(Vec2(this->getPosition().x - 20, this->getPosition().y));
+		this->setPosition(Vec2(this->getPosition().x - 20 * scale, this->getPosition().y));
 		direction = -1;
 	}
 	//else{
