@@ -11,7 +11,7 @@ bool RealGamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
 	mAnakin = Anakin::create();
-	mAnakin->setPosition(centralPoint.x, centralPoint.y);
+	mAnakin->setPosition(centralPoint.x-10, centralPoint.y);
 	this->addChild(mAnakin);
 
 	auto listener = EventListenerTouchOneByOne::create();

@@ -27,7 +27,7 @@ enum PlayerState{
 class Anakin : public Node
 {
 private:
-
+	int direction;
 	Node* mBody;
 	cocostudio::timeline::ActionTimeline* mAnimation;
 
@@ -36,7 +36,6 @@ private:
 
 	PlayerState mState = PlayerState::ON_GROUND;
 
-	int direction; 
 	bool canAttack();
 
 	Vec2 centralPoint;

@@ -4,19 +4,20 @@ bool Anakin::init(){
 	mBody = CSLoader::createNode(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	mAnimation->play("hit", true);
-	mAnimation->setTimeSpeed(0.5f);
+	//mAnimation->setTimeSpeed(0.5f);
 	mBody->runAction(mAnimation);
 	mBody->setPosition(0, 0);
 	mBody->setTag(56);
 	this->addChild(mBody);
+	direction = 1;
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
 
 	float designH = DESIGN_SCREEN_HEIGHT - 100;
 	float curH = visibleSize.height - 100;
-	float defaulScale = 6;
-	mBody->setScale(defaulScale);
+	float defaulScale = (visibleSize.height - 100)/68;
+	mBody->setScale(1);
 
 
 
@@ -30,7 +31,7 @@ bool Anakin::init(){
 void Anakin::update(float delta){
 	int curFrame = mAnimation->getCurrentFrame();
 	
-	if (curFrame == 35 || curFrame == 15){
+	if (curFrame == 40 || curFrame == 20){
 		mAnimation->play("idle", true);
 	}
 }
@@ -53,12 +54,20 @@ void Anakin::attack(float xLoc, float yLoc){
 	if (!canAttack())
 		return;
 
-	if (xLoc > centralPoint.x){
+	if (xLoc > centralPoint.x&&direction!=1){
 		mBody->setRotationY(0);
+		this->setPosition(Vec2(this->getPosition().x + 20, this->getPosition().y));
+		direction = 1;
 	}
-	else{
+	if (xLoc < centralPoint.x&&direction == 1){
 		mBody->setRotationY(180);
+		this->setPosition(Vec2(this->getPosition().x - 20, this->getPosition().y));
+		direction = -1;
 	}
+	//else{
+	//	mBody->setRotationY(180);
+	//	this->setPosition(Vec2(this->getPosition().x - 20, this->getPosition().y)) ;
+	//}
 
 	if (yLoc > centralPoint.y){
 		mAnimation->play("hit", false);

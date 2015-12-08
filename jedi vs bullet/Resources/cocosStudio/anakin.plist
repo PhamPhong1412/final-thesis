@@ -7,95 +7,95 @@
 			<key>anakin/h1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{122,45},{35,50}}</string>
+				<string>{{45,114},{34,40}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{0,-5}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{35,50}</string>
 			</dict>
 			<key>anakin/h2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{258,0},{53,50}}</string>
+				<string>{{45,61},{53,44}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{0,-3}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{53,50}</string>
 			</dict>
 			<key>anakin/h3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{122,0},{45,68}}</string>
+				<string>{{0,61},{45,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{45,68}</string>
 			</dict>
 			<key>anakin/h4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{190,0},{45,68}}</string>
+				<string>{{0,129},{45,68}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{45,68}</string>
 			</dict>
 			<key>anakin/h5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{61,53},{29,56}}</string>
+				<string>{{53,0},{29,56}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{29,56}</string>
 			</dict>
 			<key>anakin/h6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,60},{30,51}}</string>
+				<string>{{82,0},{30,51}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{30,51}</string>
 			</dict>
 			<key>anakin/h7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{61,0},{53,61}}</string>
+				<string>{{0,0},{53,61}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{53,61}</string>
 			</dict>
 			<key>anakin/h8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{61,60}}</string>
+				<string>{{0,197},{51,60}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{61,60}</string>
+				<string>{51,60}</string>
 			</dict>
 			<key>anakin/s1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{172,45},{27,50}}</string>
+				<string>{{45,154},{27,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,18 @@
 			<key>anakin/s2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{222,45},{27,50}}</string>
+				<string>{{79,114},{27,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{27,50}</string>
+			</dict>
+			<key>anakin/s3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{89,51},{27,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -114,36 +125,25 @@
 				<key>sourceSize</key>
 				<string>{27,50}</string>
 			</dict>
-			<key>anakin/s3.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{172,72},{27,50}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{27,50}</string>
-			</dict>
 			<key>anakin/s4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{117,80},{27,50}}</string>
+				<string>{{112,0},{27,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{27,50}</string>
 			</dict>
 			<key>anakin/s5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{51,82},{27,50}}</string>
+				<string>{{116,50},{27,50}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{27,50}</string>
 			</dict>
@@ -153,18 +153,18 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>textureFileName</key>
-			<string>anakin.png</string>
+			<string>anakin.jpg</string>
 			<key>realTextureFileName</key>
-			<string>anakin.png</string>
+			<string>anakin.jpg</string>
 			<key>size</key>
-			<string>{512,128}</string>
+			<string>{143,257}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>512</integer>
+			<integer>143</integer>
 			<key>height</key>
-			<integer>128</integer>
+			<integer>257</integer>
 		</dict>
 	</dict>
 </plist>
