@@ -9,7 +9,7 @@ bool RealGamePlayLayer::init(std::string map)
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
+	Vec2 centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
 	mAnakin = Anakin::create();
 	mAnakin->setPosition(centralPoint.x, centralPoint.y);
 	this->addChild(mAnakin);
@@ -35,7 +35,7 @@ void RealGamePlayLayer::update(float delta){
 
 #pragma region touch event
 bool RealGamePlayLayer::onTouchBegan(Touch *touch, Event *event){
-	this->mAnakin->play();
+	this->mAnakin->attack(touch->getLocation().x, touch->getLocation().y);
 	return true;
 }
 

@@ -16,6 +16,8 @@
 #include "cocostudio\ActionTimeline\CCActionTimelineCache.h"
 #endif
 
+#include "GameConfig.h"
+
 USING_NS_CC;
 
 enum PlayerState{
@@ -35,9 +37,16 @@ private:
 	PlayerState mState = PlayerState::ON_GROUND;
 
 	int direction; 
+	bool canAttack();
+
+	Vec2 centralPoint;
 public:
 	virtual bool init();
 	void play();
+	void update(float delta);
+
+
+	void attack(float xLoc, float yLoc);
 	
 
 	//Physics event
