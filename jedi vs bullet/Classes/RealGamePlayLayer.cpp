@@ -3,7 +3,7 @@
 // on "init" you need to initialize your instance
 bool RealGamePlayLayer::init(std::string map)
 {
-	if (!Layer::init())
+	if (!LayerColor::initWithColor(Color4B(255,255,255,255)))
 	{
 		//		return false;
 	}
@@ -11,14 +11,16 @@ bool RealGamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	centralPoint = Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2);
+	centralPoint = Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
+	centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
 	mAnakin = Anakin::create();
-	mAnakin->setAnchorPoint(Vec2(0.5, 0.5));
+	//mAnakin->setAnchorPoint(Vec2(0.5, 0.5));
 	mAnakin->setPosition(centralPoint.x, centralPoint.y);
 	this->addChild(mAnakin);
 
-	auto listener = EventListenerTouchOneByOne::create();
+	this->addChild(BulletPool::create());
 
+	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = CC_CALLBACK_2(RealGamePlayLayer::onTouchBegan, this);
 	listener->onTouchMoved = CC_CALLBACK_2(RealGamePlayLayer::onTouchMoved, this);
 	listener->onTouchEnded = CC_CALLBACK_2(RealGamePlayLayer::onTouchEnded, this);
