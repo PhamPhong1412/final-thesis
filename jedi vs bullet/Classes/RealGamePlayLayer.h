@@ -24,6 +24,10 @@ public:
 	void onTouchEnded(Touch *touch, Event *event);
 	void onTouchCancelled(Touch *touch, Event *event);
 
+	void updateBulletPool();
+	BulletPool* bulletPool;
+	float scale;
+
 	Anakin* mAnakin;
 
 };

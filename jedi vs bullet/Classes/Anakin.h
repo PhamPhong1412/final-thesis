@@ -27,7 +27,6 @@ enum PlayerState{
 class Anakin : public Node
 {
 private:
-	int direction;
 	Node* mBody;
 	cocostudio::timeline::ActionTimeline* mAnimation;
 
@@ -41,6 +40,8 @@ private:
 	Vec2 centralPoint;
 	float scale;
 public:
+	int direction;
+	static float anakinXloc;
 	virtual bool init();
 	void play();
 	void update(float delta);

@@ -2,7 +2,7 @@
 #define _GAME_CONFIG_
 
 #define TILE_SIZE	32 
-#define DESIGN_SCREEN_WIDTH 800	
+#define DESIGN_SCREEN_WIDTH 1024
 #define DESIGN_SCREEN_HEIGHT 450
 
 
@@ -32,5 +32,6 @@ public:
 	static float scale;
     static float RANK_TABLE_WIDTH;
     static float RANK_TABLE_CELL_HEIGHT;
+	static bool gameFinished;
 };
 #endif

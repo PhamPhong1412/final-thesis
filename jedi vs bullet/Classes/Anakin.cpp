@@ -18,15 +18,22 @@ bool Anakin::init(){
 	this->addChild(mBody);
 
 	this->setTag(55);
-
 	this->direction = 1;
 	this->direction = 1;
 	this->scheduleUpdate();
 	return true;
 }
 
+float Anakin::anakinXloc;
 void Anakin::update(float delta){
 
+	//if (direction == 1){
+	//	anakinXloc = this->getPosition().x;
+
+	//}
+	//else{
+	//	anakinXloc = this->getPosition().x + 80*scale;
+	//}
 	int curFrame = mAnimation->getCurrentFrame();
 
 	if (curFrame == 40 || curFrame == 20){
@@ -56,12 +63,12 @@ void Anakin::attack(float xLoc, float yLoc){
 	float x = this->getPosition().x;
 	if (xLoc > centralPoint.x&&direction != 1){
 		mBody->setRotationY(0);
-		this->setPosition(Vec2(this->getPosition().x + 280 * scale, this->getPosition().y));
+		this->setPosition(Vec2(this->getPosition().x + 230 * scale, this->getPosition().y));
 		direction = 1;
 	}
 	if (xLoc < centralPoint.x&&direction == 1){
 		mBody->setRotationY(180);
-		this->setPosition(Vec2(this->getPosition().x - 280 * scale, this->getPosition().y));
+		this->setPosition(Vec2(this->getPosition().x - 230 * scale, this->getPosition().y));
 		direction = -1;
 	}
 	//else{

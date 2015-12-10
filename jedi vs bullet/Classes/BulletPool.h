@@ -22,6 +22,7 @@ private:
 public:
 	virtual bool init();
 
+	std::vector<Bullet*> pool;
 
 	void update(float delta);
 
