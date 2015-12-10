@@ -25,10 +25,11 @@ void BulletPool::update(float delta){
 void BulletPool::shootBullet(){
 	int shootEdge = RandomHelper::random_int(1,8);
 
-	int randomPos = RandomHelper::random_int(0, 20);
+	int randomPos = RandomHelper::random_int(0, 40);
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
-	randomPos*=((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
+	scale = ((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
+	randomPos *= scale;
 
 	Vec2 root;
 	switch (shootEdge)
@@ -47,15 +48,20 @@ void BulletPool::shootBullet(){
 	Vec2 velocity = Vec2(-0.5, -0.5);
 	Bullet* bullet = Bullet::create();
 
+	int tmpRand = RandomHelper::random_int(0, 5);
+	int diff = 5 + tmpRand;
 	switch (shootEdge){
 	case 1:
 	case 2:
 	case 7:
-	case 8:bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT / 2 + 25); break;
-	default: bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT / 2 - 25); break;
+	case 8:bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2 - 10 *scale, DESIGN_SCREEN_HEIGHT / 2 + diff*scale); break;
+	default: bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2 - 10 * scale, DESIGN_SCREEN_HEIGHT / 2 - diff * scale); break;
 	}
 
 	bullet->setPosition(root);
 	bullet->velocity = velocity;
+	auto moveTo = MoveTo::create(2, bullet->targetPoint);
+	bullet->runAction(moveTo);
+
 	this->addChild(bullet);
 }

@@ -14,8 +14,9 @@ bool RealGamePlayLayer::init(std::string map)
 	centralPoint = Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
 	centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
 	mAnakin = Anakin::create();
+	float scale = ((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
 	//mAnakin->setAnchorPoint(Vec2(0.5, 0.5));
-	mAnakin->setPosition(centralPoint.x, centralPoint.y);
+	mAnakin->setPosition(centralPoint.x + 20*scale, centralPoint.y + 10*scale);
 	this->addChild(mAnakin);
 
 	this->addChild(BulletPool::create());
