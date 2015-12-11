@@ -8,14 +8,13 @@ bool Anakin::init(){
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	centralPoint = Vec2(visibleSize.width/2, visibleSize.height / 2);
 	mAnimation->play("hit", true);
+	mBody->setAnchorPoint(Vec2(0.5, 0));
 	mBody->runAction(mAnimation);
 	mBody->setPosition(0, 0);
 	mBody->setTag(56);
-	scale = ((visibleSize.height - 50)/2) / (50 / GameConfig::scale);
 	this->addChild(mBody);
 
 	this->setTag(55);
-	this->direction = 1;
 	this->direction = 1;
 	this->scheduleUpdate();
 	return true;

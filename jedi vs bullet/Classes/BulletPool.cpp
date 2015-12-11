@@ -16,7 +16,6 @@ bool BulletPool::init(){
 }
 
 void BulletPool::update(float delta){
-	//int i = RandomHelper::random_int(0, 1);
 	time += delta;
 	if (time > nextShootTime)
 		shootBullet();
@@ -24,11 +23,22 @@ void BulletPool::update(float delta){
 }
 
 void BulletPool::shootBullet(){
-	int shootEdge = RandomHelper::random_int(1,8);
-
-	int randomPos = RandomHelper::random_int(0, 80);
-
 	Size visibleSize = Director::getInstance()->getVisibleSize();
+	int shootEdge = RandomHelper::random_int(1, 8);
+
+	int randomPos = 0;
+	switch (shootEdge)
+	{
+	case 1: randomPos = RandomHelper::random_int(0, (int)visibleSize.width / 4); break;
+	case 2: randomPos = RandomHelper::random_int(0, (int)visibleSize.height / 4); break;
+	case 3: randomPos = RandomHelper::random_int(0, (int)visibleSize.height / 4); break;
+	case 4: randomPos = RandomHelper::random_int(0, (int)visibleSize.width / 4); break;
+	case 5: randomPos = RandomHelper::random_int(0, (int)visibleSize.width / 4); break;
+	case 6: randomPos = RandomHelper::random_int(0, (int)visibleSize.height / 4); break;
+	case 7: randomPos = RandomHelper::random_int(0, (int)visibleSize.height / 4); break;
+	case 8: randomPos = RandomHelper::random_int(0, (int)visibleSize.width / 4); break;
+	}
+
 	//scale = ((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
 	scale = GameConfig::scale;
 	randomPos *= scale;
@@ -39,8 +49,8 @@ void BulletPool::shootBullet(){
 	case 1: root = Vec2(DESIGN_SCREEN_WIDTH - randomPos, DESIGN_SCREEN_HEIGHT); break;
 	case 2: root = Vec2(DESIGN_SCREEN_WIDTH, DESIGN_SCREEN_HEIGHT - randomPos); break;
 	case 3: root = Vec2(DESIGN_SCREEN_WIDTH, 0 + randomPos); break;
-	case 4: root = Vec2(DESIGN_SCREEN_WIDTH - randomPos/4, 0); break;
-	case 5: root = Vec2(0 + randomPos/4, 0); break;
+	case 4: root = Vec2(DESIGN_SCREEN_WIDTH - randomPos, 0); break;
+	case 5: root = Vec2(0 + randomPos, 0); break;
 	case 6: root = Vec2(0, 0 + randomPos); break;
 	case 7: root = Vec2(0, DESIGN_SCREEN_HEIGHT - randomPos); break;
 	case 8: root = Vec2(0 + randomPos, DESIGN_SCREEN_HEIGHT); break;
