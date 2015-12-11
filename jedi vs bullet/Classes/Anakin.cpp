@@ -8,7 +8,7 @@ bool Anakin::init(){
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	centralPoint = Vec2(visibleSize.width/2, visibleSize.height / 2);
 	mAnimation->play("hit", true);
-	mBody->setAnchorPoint(Vec2(0.5, 0));
+	//mBody->setAnchorPoint(Vec2(0.5, 0));
 	mBody->runAction(mAnimation);
 	mBody->setPosition(0, 0);
 	mBody->setTag(56);
