@@ -307,9 +307,9 @@
 			<key>format</key>
 			<integer>2</integer>
 			<key>textureFileName</key>
-			<string>anakin.png</string>
+			<string>anakin.jpg</string>
 			<key>realTextureFileName</key>
-			<string>anakin.png</string>
+			<string>anakin.jpg</string>
 			<key>size</key>
 			<string>{949,1021}</string>
 		</dict>
