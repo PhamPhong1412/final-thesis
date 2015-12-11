@@ -32,7 +32,6 @@ private:
 
 	void collideGround();
 
-
 	PlayerState mState = PlayerState::ON_GROUND;
 
 	bool canAttack();
@@ -46,7 +45,9 @@ public:
 	void play();
 	void update(float delta);
 
+	int getAttackDir();
 
+	bool isAttacking();
 	void attack(float xLoc, float yLoc);
 
 

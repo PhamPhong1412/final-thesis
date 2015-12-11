@@ -8,9 +8,9 @@ bool Anakin::init(){
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	centralPoint = Vec2(visibleSize.width/2, visibleSize.height / 2);
 	mAnimation->play("hit", true);
-	mBody->setAnchorPoint(Vec2(0.5, 0));
+	//mBody->setAnchorPoint(Vec2(0.5, 0));
 	mBody->runAction(mAnimation);
-	mBody->setPosition(0, 0);
+	mBody->setPosition(20, 0);
 	mBody->setTag(56);
 	this->addChild(mBody);
 
@@ -84,4 +84,35 @@ void Anakin::attack(float xLoc, float yLoc){
 	}
 
 	mAnimation->setTimeSpeed(1);
+}
+
+bool Anakin::isAttacking(){
+	int curFrame = this->mAnimation->getCurrentFrame();
+	bool hitCheck = curFrame > 5 && curFrame < 21;
+	bool hit2Check = curFrame > 26 && curFrame < 41;
+	bool hitRevertCheck = curFrame > 75 && curFrame < 91;
+	bool hitRevert2Check = curFrame > 96 && curFrame < 111;
+
+	return hit2Check || hitCheck || hitRevertCheck || hitRevert2Check;
+}
+
+int Anakin::getAttackDir(){
+	int curFrame = this->mAnimation->getCurrentFrame();
+	bool hitCheck = curFrame > 5 && curFrame < 21;
+	bool hit2Check = curFrame > 26 && curFrame < 41;
+	bool hitRevertCheck = curFrame > 75 && curFrame < 91;
+	bool hitRevert2Check = curFrame > 96 && curFrame < 111;
+
+	if (hitCheck)
+		return 1;
+
+	if (hit2Check)
+		return 2;
+	if (hitRevertCheck)
+		return 3;
+
+	if (hitRevert2Check)
+		return 4;
+	return 1;
+
 }
