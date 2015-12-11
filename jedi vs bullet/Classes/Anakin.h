@@ -32,6 +32,7 @@ private:
 
 	void collideGround();
 
+
 	PlayerState mState = PlayerState::ON_GROUND;
 
 	bool canAttack();

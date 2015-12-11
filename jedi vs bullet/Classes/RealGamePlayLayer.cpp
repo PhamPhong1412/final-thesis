@@ -10,7 +10,7 @@ bool RealGamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	centralPoint = Vec2(visibleSize.width / 2 , origin.y + 50);
+	centralPoint = Vec2(origin.x + visibleSize.width / 2 + 20 * (visibleSize.height - 100) / (272 / GameConfig::scale), origin.y + 50);
 
 	mAnakin = Anakin::create();
 	//scale = ((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
@@ -71,7 +71,7 @@ void RealGamePlayLayer::updateBulletPool(){
 	for (int i = 0; i < this->bulletPool->pool.size(); i++){
 		auto bullet = this->bulletPool->pool[i];
 
-
+		  
 		bool intersectAnakin = std::abs(bullet->targetPoint.x - bullet->getPosition().x)<1.0f;
 		if (intersectAnakin){
 			this->bulletPool->removeChild(bullet);

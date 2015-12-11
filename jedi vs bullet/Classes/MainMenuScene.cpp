@@ -1,5 +1,5 @@
 #include "MainMenuScene.h"
-#include "AdmobHelper.h"
+
 
 Scene* MainMenuScene::createScene()
 {
@@ -32,7 +32,6 @@ bool MainMenuScene::init()
 	std::string s = "abdf \t fwef";
 
     initButton();
-    AdmobHelper::showAd();
 	return true;
 }
 
