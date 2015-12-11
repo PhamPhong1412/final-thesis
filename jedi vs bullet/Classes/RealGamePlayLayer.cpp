@@ -2,7 +2,7 @@
 // on "init" you need to initialize your instance
 bool RealGamePlayLayer::init(std::string map)
 {
-	if (!LayerColor::initWithColor(Color4B(255,255,255,255)))
+	if (!LayerColor::initWithColor(Color4B(255, 255, 255, 255)))
 	{
 		//		return false;
 	}
@@ -10,13 +10,14 @@ bool RealGamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	centralPoint = Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height / 2);
-	centralPoint = Vec2(visibleSize.width / 2, visibleSize.height / 2);
+	centralPoint = Vec2(origin.x + visibleSize.width / 2, origin.y + 50);
+
 	mAnakin = Anakin::create();
-	scale = ((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
-	scale = GameConfig::scale;
-	//mAnakin->setAnchorPoint(Vec2(0.5, 0.5));
-	mAnakin->setPosition(centralPoint.x + 90*scale, centralPoint.y + 50*scale);
+	//scale = ((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
+	//scale = GameConfig::scale;
+	mAnakin->setAnchorPoint(Vec2(0.5, 0));
+	mAnakin->setPosition(centralPoint.x, centralPoint.y);
+	mAnakin->setScale((visibleSize.height * 4 / 5) / 240);
 	this->addChild(mAnakin);
 	bulletPool = BulletPool::create();
 	this->addChild(bulletPool);
@@ -51,16 +52,16 @@ void RealGamePlayLayer::updateBulletPool(){
 	float anakinLeft;
 
 	if (this->mAnakin->direction == 1){
-		 anakinBot = this->mAnakin->getPosition().y - 50 - 60;
-		 anakinTop = this->mAnakin->getPosition().y + 50 - 60;
-		 //anakinRight = this->mAnakin->getPosition().x - 100;
-		 //anakinLeft = this->mAnakin->getPosition().x  - 100;
+		anakinBot = this->mAnakin->getPosition().y - 50 - 60;
+		anakinTop = this->mAnakin->getPosition().y + 50 - 60;
+		//anakinRight = this->mAnakin->getPosition().x - 100;
+		//anakinLeft = this->mAnakin->getPosition().x  - 100;
 	}
 	else{
-		 anakinBot = this->mAnakin->getPosition().y - 50 - 60;
-		 anakinTop = this->mAnakin->getPosition().y + 50 - 60;
-		 //anakinRight = this->mAnakin->getPosition().x + 120 ;
-		 //anakinLeft = this->mAnakin->getPosition().x +100;
+		anakinBot = this->mAnakin->getPosition().y - 50 - 60;
+		anakinTop = this->mAnakin->getPosition().y + 50 - 60;
+		//anakinRight = this->mAnakin->getPosition().x + 120 ;
+		//anakinLeft = this->mAnakin->getPosition().x +100;
 	}
 
 	//Color4F color(0, 0, 0, 255);
@@ -75,17 +76,11 @@ void RealGamePlayLayer::updateBulletPool(){
 	anakinLeft = centralPoint.x;
 	anakinRight = anakinLeft;
 
-	float attackBoxBot = anakinBot-20;
-	float attackBoxTop = anakinTop+ 20;
+	float attackBoxBot = anakinBot - 20;
+	float attackBoxTop = anakinTop + 20;
 	float attackBoxRight = anakinRight + 90;
 	float attackBoxLeft = anakinRight - 90;
 
-	Color4F color(0, 0, 0, 255);
-	auto draw_node = DrawNode::create();
-
-	draw_node->drawRect(Vec2(attackBoxLeft, attackBoxTop), Vec2(attackBoxRight, attackBoxBot), color);
-		//draw_node->drawDot(Vec2(anakinRight, anakinBot), 10, color);
-		this->addChild(draw_node);
 
 	for (int i = 0; i < this->bulletPool->pool.size(); i++){
 		auto bullet = this->bulletPool->pool[i];
@@ -98,7 +93,7 @@ void RealGamePlayLayer::updateBulletPool(){
 		bool leftCheck = bullet->getPosition().x - bulletWidth > anakinRight;
 		bool rightCheck = bullet->getPosition().x + bulletWidth < anakinLeft;
 
-		bool intersect= !(topCheck || botCheck || leftCheck || rightCheck);
+		bool intersect = !(topCheck || botCheck || leftCheck || rightCheck);
 		if (intersect){
 			this->bulletPool->removeChild(bullet);
 			this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
