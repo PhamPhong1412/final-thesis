@@ -54,24 +54,11 @@ void RealGamePlayLayer::updateBulletPool(){
 	if (this->mAnakin->direction == 1){
 		anakinBot = this->mAnakin->getPosition().y - 50 - 60;
 		anakinTop = this->mAnakin->getPosition().y + 50 - 60;
-		//anakinRight = this->mAnakin->getPosition().x - 100;
-		//anakinLeft = this->mAnakin->getPosition().x  - 100;
 	}
 	else{
 		anakinBot = this->mAnakin->getPosition().y - 50 - 60;
 		anakinTop = this->mAnakin->getPosition().y + 50 - 60;
-		//anakinRight = this->mAnakin->getPosition().x + 120 ;
-		//anakinLeft = this->mAnakin->getPosition().x +100;
 	}
-
-	//Color4F color(0, 0, 0, 255);
-	//auto draw_node = DrawNode::create();
-
-	//if (this->mAnakin->direction == 1){
-	//	draw_node->drawRect(Vec2(anakinLeft, anakinTop), Vec2(anakinRight, anakinBot), color);
-	//	//draw_node->drawDot(Vec2(anakinRight, anakinBot), 10, color);
-	//	this->addChild(draw_node);
-	//}
 
 	anakinLeft = centralPoint.x;
 	anakinRight = anakinLeft;
@@ -81,20 +68,12 @@ void RealGamePlayLayer::updateBulletPool(){
 	float attackBoxRight = anakinRight + 90;
 	float attackBoxLeft = anakinRight - 90;
 
-
 	for (int i = 0; i < this->bulletPool->pool.size(); i++){
 		auto bullet = this->bulletPool->pool[i];
 
-
-
-
-		bool topCheck = bullet->getPosition().y + bulletHeight < anakinBot;
-		bool botCheck = bullet->getPosition().y - bulletHeight > anakinTop;
-		bool leftCheck = bullet->getPosition().x - bulletWidth > anakinRight;
-		bool rightCheck = bullet->getPosition().x + bulletWidth < anakinLeft;
-
-		bool intersect = !(topCheck || botCheck || leftCheck || rightCheck);
-		if (intersect){
+		  
+		bool intersectAnakin = std::abs(bullet->targetPoint.x - bullet->getPosition().x)<1.0f;
+		if (intersectAnakin){
 			this->bulletPool->removeChild(bullet);
 			this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
 		}
