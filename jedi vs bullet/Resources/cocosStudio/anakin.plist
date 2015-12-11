@@ -7,7 +7,7 @@
 			<key>anakin/h1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{204,514},{137,160}}</string>
+				<string>{{204,508},{137,160}}</string>
 				<key>offset</key>
 				<string>{-2,-20}</string>
 				<key>rotated</key>
@@ -18,7 +18,7 @@
 			<key>anakin/h2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{212,0},{212,176}}</string>
+				<string>{{207,0},{212,176}}</string>
 				<key>offset</key>
 				<string>{0,-12}</string>
 				<key>rotated</key>
@@ -29,7 +29,7 @@
 			<key>anakin/h3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{180,244},{180,270}}</string>
+				<string>{{180,238},{180,270}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -40,7 +40,7 @@
 			<key>anakin/h4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,244},{180,272}}</string>
+				<string>{{0,238},{180,272}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -51,7 +51,7 @@
 			<key>anakin/h5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,756},{116,224}}</string>
+				<string>{{0,750},{116,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -62,7 +62,7 @@
 			<key>anakin/h6.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{116,756},{120,204}}</string>
+				<string>{{116,750},{120,204}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -73,9 +73,9 @@
 			<key>anakin/h7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{212,244}}</string>
+				<string>{{0,0},{207,238}}</string>
 				<key>offset</key>
-				<string>{0,0}</string>
+				<string>{2,-2}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
@@ -84,7 +84,7 @@
 			<key>anakin/h8.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,516},{204,240}}</string>
+				<string>{{0,510},{204,240}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -95,7 +95,7 @@
 			<key>anakin/s1.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{236,674},{108,200}}</string>
+				<string>{{236,668},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -106,7 +106,7 @@
 			<key>anakin/s2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{341,514},{108,200}}</string>
+				<string>{{341,508},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -117,7 +117,7 @@
 			<key>anakin/s3.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{236,874},{108,200}}</string>
+				<string>{{236,868},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -128,7 +128,7 @@
 			<key>anakin/s4.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{344,622},{108,200}}</string>
+				<string>{{344,616},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -139,7 +139,7 @@
 			<key>anakin/s5.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{436,822},{108,200}}</string>
+				<string>{{436,816},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -157,14 +157,14 @@
 			<key>realTextureFileName</key>
 			<string>anakin.png</string>
 			<key>size</key>
-			<string>{544,1022}</string>
+			<string>{544,1016}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
 			<integer>544</integer>
 			<key>height</key>
-			<integer>1022</integer>
+			<integer>1016</integer>
 		</dict>
 	</dict>
 </plist>
