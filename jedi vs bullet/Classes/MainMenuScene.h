@@ -19,14 +19,15 @@ private:
 public:
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
-    
+	MenuItemImage *mSoundButton;
     virtual bool init();
 
 
 	static cocos2d::Scene* createScene();
    
     void initButton();
-    
+	void menuSoundCallback(cocos2d::Ref* pSender);
+	void menuRateCallback(cocos2d::Ref* pSender);
 	void menuPlayCallback(cocos2d::Ref* pSender);
 	void menuSettingCallback(cocos2d::Ref* pSender);
 	void menuExitCallback(cocos2d::Ref* pSender);

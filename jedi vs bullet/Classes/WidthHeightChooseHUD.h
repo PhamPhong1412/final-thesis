@@ -28,7 +28,7 @@ public:
      * @js NA
      * @lua NA
      */
-    virtual void exitBack(int width, int height) {};
+    virtual void exitBack() {};
     
 };
 
@@ -37,10 +37,8 @@ class WidthHeightChooseHUD : public HUDLayer
 private:
     WidthHeightChooseDelegate *mDelegate;
     void menuBackCallback();
-	void menuNextCallback();
-	bool init(bool withBackground);
-    ui::EditBox *mWidthEditBox;
-    ui::EditBox *mHeightEditBox;
+	void menuShareCallback();
+	bool init();
 public:
 	WidthHeightChooseHUD(Layer* parent, bool canExit, bool withBackground);
     ~WidthHeightChooseHUD();

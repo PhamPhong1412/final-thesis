@@ -55,7 +55,18 @@ void BulletPool::shootBullet(){
 	case 8: root = Vec2(0 + randomPos, DESIGN_SCREEN_HEIGHT); break;
 	}
 	
+	Vec2 velocity = Vec2(-0.5, -0.5);
 	Bullet* bullet = Bullet::create();
+
+	//int tmpRand = RandomHelper::random_int(0, 5);
+	//int diff = 25 + tmpRand;
+	//switch (shootEdge){
+	//case 1:
+	//case 2:
+	//case 7:
+	//case 8:bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2 , DESIGN_SCREEN_HEIGHT / 2); break;
+	//default: bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2 , DESIGN_SCREEN_HEIGHT / 2); break;
+	//}
 	
 	float rotate=0;
 	switch (shootEdge)
@@ -70,21 +81,11 @@ void BulletPool::shootBullet(){
 	case 8: rotate = 0 - 90.0f*(root.x - visibleSize.width / 2) / (visibleSize.width); break;
 	}
 
-
 	bullet->setRotationY(rotate);
 	bullet->setPosition(root);
-	bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT / 2-40);
+	bullet->targetPoint = Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT / 2 - 40);
 
-
-	int direction;
-
-	if (bullet->getPosition().x > bullet->targetPoint.x)
-		bullet->direction = 1;
-	else
-		bullet->direction = -1;
-
-	bullet->attackEdge = shootEdge;
-
+	bullet->velocity = velocity;
 	auto moveTo = MoveTo::create(1.5, bullet->targetPoint);
 	bullet->runAction(moveTo);
 	this->addChild(bullet);
