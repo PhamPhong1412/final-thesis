@@ -45,7 +45,9 @@ public:
 	void play();
 	void update(float delta);
 
+	int getAttackDir();
 
+	bool isAttacking();
 	void attack(float xLoc, float yLoc);
 
 

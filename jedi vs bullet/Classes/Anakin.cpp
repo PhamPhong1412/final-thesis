@@ -85,3 +85,34 @@ void Anakin::attack(float xLoc, float yLoc){
 
 	mAnimation->setTimeSpeed(1);
 }
+
+bool Anakin::isAttacking(){
+	int curFrame = this->mAnimation->getCurrentFrame();
+	bool hitCheck = curFrame > 5 && curFrame < 21;
+	bool hit2Check = curFrame > 26 && curFrame < 41;
+	bool hitRevertCheck = curFrame > 75 && curFrame < 91;
+	bool hitRevert2Check = curFrame > 96 && curFrame < 111;
+
+	return hit2Check || hitCheck || hitRevertCheck || hitRevert2Check;
+}
+
+int Anakin::getAttackDir(){
+	int curFrame = this->mAnimation->getCurrentFrame();
+	bool hitCheck = curFrame > 5 && curFrame < 21;
+	bool hit2Check = curFrame > 26 && curFrame < 41;
+	bool hitRevertCheck = curFrame > 75 && curFrame < 91;
+	bool hitRevert2Check = curFrame > 96 && curFrame < 111;
+
+	if (hitCheck)
+		return 1;
+
+	if (hit2Check)
+		return 2;
+	if (hitRevertCheck)
+		return 3;
+
+	if (hitRevert2Check)
+		return 4;
+	return 1;
+
+}
