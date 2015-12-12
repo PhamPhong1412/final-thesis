@@ -26,6 +26,10 @@ public:
 
 	void update(float delta);
 
+	std::vector<float> shootTime;
+
+	void generateShootPattern();
+
 	CREATE_FUNC(BulletPool);
 
 

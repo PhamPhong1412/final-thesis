@@ -50,6 +50,8 @@ public:
 	bool isAttacking();
 	void attack(float xLoc, float yLoc);
 
+	void goDie();
+
 
 	//Physics event
 	void collideBullet();

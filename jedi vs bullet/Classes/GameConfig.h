@@ -31,7 +31,8 @@ class GameConfig{
 public:
 	static float scale;
     static float RANK_TABLE_WIDTH;
-    static float RANK_TABLE_CELL_HEIGHT;
+	static float RANK_TABLE_CELL_HEIGHT;
 	static bool gameFinished;
+	static float currentScore;
 };
 #endif

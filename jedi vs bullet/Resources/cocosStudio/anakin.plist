@@ -7,7 +7,7 @@
 			<key>anakin/trans.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,1020},{1,1}}</string>
+				<string>{{180,986},{1,1}}</string>
 				<key>offset</key>
 				<string>{62,-78}</string>
 				<key>rotated</key>
@@ -15,23 +15,155 @@
 				<key>sourceSize</key>
 				<string>{125,158}</string>
 			</dict>
-			<key>anakin/h1 - Copy.png</key>
+			<key>anakin/h7.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{504,662},{137,160}}</string>
+				<string>{{0,0},{207,238}}</string>
 				<key>offset</key>
-				<string>{1,-20}</string>
+				<string>{2,-2}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{212,244}</string>
+			</dict>
+			<key>anakin/h1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{233,1447},{137,160}}</string>
+				<key>offset</key>
+				<string>{-2,-20}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
 				<string>{140,200}</string>
 			</dict>
-			<key>anakin/h1.png</key>
+			<key>anakin/h2.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{588,822},{137,160}}</string>
+				<string>{{207,270},{212,176}}</string>
 				<key>offset</key>
-				<string>{-2,-20}</string>
+				<string>{0,-12}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{212,200}</string>
+			</dict>
+			<key>anakin/h3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{180,716},{180,270}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,270}</string>
+			</dict>
+			<key>anakin/h4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,476},{180,272}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{180,272}</string>
+			</dict>
+			<key>anakin/h5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1260},{116,224}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{116,224}</string>
+			</dict>
+			<key>anakin/h6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1708},{120,204}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{120,204}</string>
+			</dict>
+			<key>anakin/h8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,1020},{204,240}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{204,240}</string>
+			</dict>
+			<key>anakin/s1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{204,1860},{108,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{108,200}</string>
+			</dict>
+			<key>anakin/s2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{257,1700},{108,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{108,200}</string>
+			</dict>
+			<key>anakin/s3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{404,1808},{108,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{108,200}</string>
+			</dict>
+			<key>anakin/s4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{523,1916},{108,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{108,200}</string>
+			</dict>
+			<key>anakin/s5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{204,986},{108,200}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{108,200}</string>
+			</dict>
+			<key>anakin/h1 - Copy.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{120,1700},{137,160}}</string>
+				<key>offset</key>
+				<string>{1,-20}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
@@ -41,17 +173,6 @@
 			<dict>
 				<key>frame</key>
 				<string>{{387,0},{212,176}}</string>
-				<key>offset</key>
-				<string>{0,-12}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{212,200}</string>
-			</dict>
-			<key>anakin/h2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{384,450},{212,176}}</string>
 				<key>offset</key>
 				<string>{0,-12}</string>
 				<key>rotated</key>
@@ -70,29 +191,7 @@
 				<key>sourceSize</key>
 				<string>{180,270}</string>
 			</dict>
-			<key>anakin/h3.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{207,270},{180,270}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
-				<key>sourceSize</key>
-				<string>{180,270}</string>
-			</dict>
 			<key>anakin/h4 - Copy.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{0,476},{180,272}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{180,272}</string>
-			</dict>
-			<key>anakin/h4.png</key>
 			<dict>
 				<key>frame</key>
 				<string>{{0,748},{180,272}}</string>
@@ -106,40 +205,18 @@
 			<key>anakin/h5 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{477,212},{116,224}}</string>
+				<string>{{0,1484},{116,224}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
-				<key>sourceSize</key>
-				<string>{116,224}</string>
-			</dict>
-			<key>anakin/h5.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{563,0},{116,224}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
 				<key>sourceSize</key>
 				<string>{116,224}</string>
 			</dict>
 			<key>anakin/h6 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{384,662},{120,204}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{120,204}</string>
-			</dict>
-			<key>anakin/h6.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{384,866},{120,204}}</string>
+				<string>{{0,1912},{120,204}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -150,20 +227,9 @@
 			<key>anakin/h7 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{0,0},{207,238}}</string>
-				<key>offset</key>
-				<string>{-3,-2}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{212,244}</string>
-			</dict>
-			<key>anakin/h7.png</key>
-			<dict>
-				<key>frame</key>
 				<string>{{0,238},{207,238}}</string>
 				<key>offset</key>
-				<string>{2,-2}</string>
+				<string>{-3,-2}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
@@ -180,54 +246,21 @@
 				<key>sourceSize</key>
 				<string>{204,240}</string>
 			</dict>
-			<key>anakin/h8.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{180,716},{204,240}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{204,240}</string>
-			</dict>
 			<key>anakin/s1 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{560,436},{108,200}}</string>
+				<string>{{240,1186},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
-				<key>sourceSize</key>
-				<string>{108,200}</string>
-			</dict>
-			<key>anakin/s1.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{641,636},{108,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
 				<key>sourceSize</key>
 				<string>{108,200}</string>
 			</dict>
 			<key>anakin/s2 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{725,744},{108,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{108,200}</string>
-			</dict>
-			<key>anakin/s2.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{833,744},{108,200}}</string>
+				<string>{{312,986},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -238,40 +271,18 @@
 			<key>anakin/s3 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{841,0},{108,200}}</string>
+				<string>{{348,1186},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
-				<key>sourceSize</key>
-				<string>{108,200}</string>
-			</dict>
-			<key>anakin/s3.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{593,116},{108,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<true />
 				<key>sourceSize</key>
 				<string>{108,200}</string>
 			</dict>
 			<key>anakin/s4 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{593,224},{108,200}}</string>
-				<key>offset</key>
-				<string>{0,0}</string>
-				<key>rotated</key>
-				<false />
-				<key>sourceSize</key>
-				<string>{108,200}</string>
-			</dict>
-			<key>anakin/s4.png</key>
-			<dict>
-				<key>frame</key>
-				<string>{{668,424},{108,200}}</string>
+				<string>{{360,716},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -282,7 +293,7 @@
 			<key>anakin/s5 - Copy.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{701,224},{108,200}}</string>
+				<string>{{420,916},{108,200}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
@@ -290,16 +301,126 @@
 				<key>sourceSize</key>
 				<string>{108,200}</string>
 			</dict>
-			<key>anakin/s5.png</key>
+			<key>anakin/frame0.png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{776,424},{108,200}}</string>
+				<string>{{116,1447},{117,194}}</string>
 				<key>offset</key>
 				<string>{0,0}</string>
 				<key>rotated</key>
 				<false />
 				<key>sourceSize</key>
-				<string>{108,200}</string>
+				<string>{117,194}</string>
+			</dict>
+			<key>anakin/frame1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{116,1260},{124,187}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{124,187}</string>
+			</dict>
+			<key>anakin/frame2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{468,709},{127,167}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{127,167}</string>
+			</dict>
+			<key>anakin/frame3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{518,362},{127,156}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{127,156}</string>
+			</dict>
+			<key>anakin/frame4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{384,446},{134,159}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{134,159}</string>
+			</dict>
+			<key>anakin/frame5.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{419,212},{135,150}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{135,150}</string>
+			</dict>
+			<key>anakin/frame6.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{554,212},{131,127}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{131,127}</string>
+			</dict>
+			<key>anakin/frame7.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{384,605},{144,104}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{144,104}</string>
+			</dict>
+			<key>anakin/frame8.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{204,1968},{159,79}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{159,79}</string>
+			</dict>
+			<key>anakin/frame9.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{363,1968},{160,63}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{160,63}</string>
+			</dict>
+			<key>anakin/frame99.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{116,1641},{176,59}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{176,59}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -311,14 +432,14 @@
 			<key>realTextureFileName</key>
 			<string>anakin.png</string>
 			<key>size</key>
-			<string>{949,1021}</string>
+			<string>{723,2047}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>949</integer>
+			<integer>723</integer>
 			<key>height</key>
-			<integer>1021</integer>
+			<integer>2047</integer>
 		</dict>
 	</dict>
 </plist>

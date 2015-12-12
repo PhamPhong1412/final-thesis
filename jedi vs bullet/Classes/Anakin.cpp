@@ -7,7 +7,8 @@ bool Anakin::init(){
 	mBody = CSLoader::createNode(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	centralPoint = Vec2(visibleSize.width/2, visibleSize.height / 2);
-	mAnimation->play("hit", true);
+	mAnimation->play("hit", false);
+	//this->mAnimation->play("die", true);
 	//mBody->setAnchorPoint(Vec2(0.5, 0));
 	mBody->runAction(mAnimation);
 	mBody->setPosition(20, 0);
@@ -83,7 +84,7 @@ void Anakin::attack(float xLoc, float yLoc){
 			mAnimation->play("hit2Revert", false);
 	}
 
-	mAnimation->setTimeSpeed(1);
+	mAnimation->setTimeSpeed(1.5);
 }
 
 bool Anakin::isAttacking(){
@@ -108,6 +109,7 @@ int Anakin::getAttackDir(){
 
 	if (hit2Check)
 		return 2;
+
 	if (hitRevertCheck)
 		return 3;
 
@@ -115,4 +117,13 @@ int Anakin::getAttackDir(){
 		return 4;
 	return 1;
 
+}
+
+void Anakin::goDie(){
+	this->mAnimation->play("die", false);
+	if (direction == -1){
+		this->setRotationY(180.0f);
+	}
+	this->mAnimation->setTimeSpeed(1.5f);
+	GameConfig::gameFinished = true;
 }

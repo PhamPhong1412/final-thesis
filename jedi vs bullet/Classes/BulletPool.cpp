@@ -17,8 +17,15 @@ bool BulletPool::init(){
 
 void BulletPool::update(float delta){
 	time += delta;
-	if (time > nextShootTime)
-		shootBullet();
+	for (int i = 0; i < shootTime.size(); i++){
+		if (time > shootTime[i]){
+			shootBullet();
+			shootTime.erase(shootTime.begin() + i);
+		}
+	}
+	if (shootTime.size() == 0){
+		generateShootPattern();
+	}
 
 }
 
@@ -85,8 +92,14 @@ void BulletPool::shootBullet(){
 
 	bullet->attackEdge = shootEdge;
 
-	auto moveTo = MoveTo::create(1.5, bullet->targetPoint);
+	auto moveTo = MoveTo::create(1, bullet->targetPoint);
 	bullet->runAction(moveTo);
 	this->addChild(bullet);
 	pool.push_back(bullet);
+}
+
+void BulletPool::generateShootPattern(){
+	for (int i = 0; i < 3; i++){
+		shootTime.push_back(time + i);
+	}
 }

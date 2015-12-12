@@ -4,7 +4,7 @@
 bool Bullet::init(){
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 
-	auto mBody = Sprite::create("bullet.png");
+	auto mBody = Sprite::create("laser.png");
 	mBody->setPosition(0, 0);
 	mBody->setTag(56);
 	//scale = ((visibleSize.height - 50)/2) / (50 / GameConfig::scale);
