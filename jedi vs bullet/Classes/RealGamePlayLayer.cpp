@@ -10,14 +10,14 @@ bool RealGamePlayLayer::init(std::string map)
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	centralPoint = Vec2(visibleSize.width / 2 , origin.y + 50);
+	centralPoint = Vec2(visibleSize.width / 2 , origin.y + 100);
 
 	mAnakin = Anakin::create();
 	//scale = ((visibleSize.height - 50) / 2) / (50 / GameConfig::scale);
 	//scale = GameConfig::scale;
 	mAnakin->setAnchorPoint(Vec2(0.5, 0));
 	mAnakin->setPosition(centralPoint.x, centralPoint.y);
-	mAnakin->setScale((visibleSize.height - 100) / (272 / GameConfig::scale));
+	mAnakin->setScale((visibleSize.height - 200) / (272 / GameConfig::scale));
 	this->addChild(mAnakin);
 	bulletPool = BulletPool::create();
 	this->addChild(bulletPool);

@@ -10,7 +10,7 @@
 #include "MainMenuScene.h"
 
 WidthHeightChooseHUD::WidthHeightChooseHUD(Layer* parent,bool canExit, bool withBackground) : HUDLayer(parent,canExit){
-	this->init(withBackground);
+	this->init();
 }
 
 WidthHeightChooseHUD::~WidthHeightChooseHUD(){
