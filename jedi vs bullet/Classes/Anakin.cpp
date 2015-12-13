@@ -43,8 +43,8 @@ void Anakin::update(float delta){
 		}
 	}
 	else{
-		if (curFrame == 190)
-			GameConfig::gameFinished = true;
+		//if (curFrame == 190)
+			//GameConfig::gameFinished = true;
 	}
 	
 

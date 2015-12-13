@@ -34,7 +34,7 @@ bool RealGamePlayLayer::init(std::string map)
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	this->resumeSchedulerAndActions();
 	this->scheduleUpdate();
-	GameConfig::gameFinished = false;
+	
 	GameConfig::currentScore = 0.0f;
 	this->setTag(TAG_NORMAL_LAYER);
 

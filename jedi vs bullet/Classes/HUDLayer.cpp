@@ -39,5 +39,5 @@ void HUDLayer::exit(){
 	//			node->resume();
 	//		}
 	//	}
-		parent->removeChild(this);
+		//parent->removeChild(this);
 }
