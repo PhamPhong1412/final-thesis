@@ -7,7 +7,8 @@ bool Anakin::init(){
 	mBody = CSLoader::createNode(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("anakin.csb"));
 	centralPoint = Vec2(visibleSize.width/2, visibleSize.height / 2);
-	mAnimation->play("hit", false);
+	mAnimation->play("idle", true);
+	//mAnimation->play("hit", false);
 	//this->mAnimation->play("die", true);
 	//mBody->setAnchorPoint(Vec2(0.5, 0));
 	mBody->runAction(mAnimation);
@@ -18,25 +19,34 @@ bool Anakin::init(){
 	this->setTag(55);
 	this->direction = 1;
 	this->scheduleUpdate();
+	time = 0;
 	return true;
 }
 
 float Anakin::anakinXloc;
 void Anakin::update(float delta){
+	time += delta;
 	int curFrame = mAnimation->getCurrentFrame();
 
-	if (direction==1){
-		if (curFrame == 40 || curFrame == 20){
-			mAnimation->play("idle", true);
-			mAnimation->setTimeSpeed(0.583f);
+	if (curFrame < 140){
+		if (direction == 1){
+			if (curFrame == 40 || curFrame == 20){
+				mAnimation->play("idle", true);
+				mAnimation->setTimeSpeed(0.583f);
+			}
+		}
+		else{
+			if (curFrame == 90 || curFrame == 110){
+				mAnimation->play("idleRevert", true);
+				mAnimation->setTimeSpeed(0.583f);
+			}
 		}
 	}
 	else{
-		if (curFrame == 90 || curFrame == 110){
-			mAnimation->play("idleRevert", true);
-			mAnimation->setTimeSpeed(0.583f);
-		}
+		if (curFrame == 190)
+			GameConfig::gameFinished = true;
 	}
+	
 
 }
 
@@ -84,7 +94,11 @@ void Anakin::attack(float xLoc, float yLoc){
 			mAnimation->play("hit2Revert", false);
 	}
 
-	mAnimation->setTimeSpeed(1.5);
+	float attackBoost = GameConfig::currentScore / 200;
+	if (attackBoost > 2.0f)
+		attackBoost = 2.0f;
+	//attackBoost = 2.0f;
+	mAnimation->setTimeSpeed(1.1 +  attackBoost);
 }
 
 bool Anakin::isAttacking(){
@@ -124,6 +138,6 @@ void Anakin::goDie(){
 	if (direction == -1){
 		this->setRotationY(180.0f);
 	}
-	this->mAnimation->setTimeSpeed(1.5f);
+	this->mAnimation->setTimeSpeed(1.0f);
 	GameConfig::gameFinished = true;
 }

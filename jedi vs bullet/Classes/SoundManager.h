@@ -15,6 +15,8 @@ public:
 
 	void playBackgroundTheme(bool isLoop = true);
 
+	void playBulletBlock(int index);
+	void playBulletShoot(int index);
 	//void playArrowEffect(bool isLoop = false);
 
 };

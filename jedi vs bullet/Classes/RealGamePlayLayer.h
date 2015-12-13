@@ -5,6 +5,7 @@
 #include "Anakin.h"
 #include "GameConfig.h"
 #include "BulletPool.h"
+#include "SoundManager.h"
 USING_NS_CC;
 
 class RealGamePlayLayer : public LayerColor
@@ -30,6 +31,7 @@ public:
 
 	Anakin* mAnakin;
 
+	void destroyBullet(Bullet* bullet, int i);
 };
 
 #endif 

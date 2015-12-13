@@ -4,11 +4,11 @@
 #include "cocos2d.h"
 
 #include "RealGamePlayLayer.h"
-
+#include "WidthHeightChooseHUD.h"
 
 USING_NS_CC;
 
-class MainGameScene : public Layer
+class MainGameScene : public Layer, public WidthHeightChooseDelegate
 {
 private:
 	bool isTestMap;
@@ -22,8 +22,8 @@ public:
 	void initWithRealGame(std::string mapText);
 
 	void menuPlayCallback(cocos2d::Ref* pSender);
-
-    
+	virtual void exitBack();
+    void update(float delta);
 	CREATE_FUNC(MainGameScene);
 };
 

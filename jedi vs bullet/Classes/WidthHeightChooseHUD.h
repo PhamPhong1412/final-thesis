@@ -40,7 +40,7 @@ private:
 	void menuShareCallback();
 	bool init();
 public:
-	WidthHeightChooseHUD(Layer* parent, bool canExit, bool withBackground);
+	WidthHeightChooseHUD(Layer* parent, bool canExit);
     ~WidthHeightChooseHUD();
     
     void setDelegate(WidthHeightChooseDelegate* pDelegate) { mDelegate = pDelegate; }

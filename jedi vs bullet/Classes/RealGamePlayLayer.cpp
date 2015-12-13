@@ -7,6 +7,12 @@ bool RealGamePlayLayer::init(std::string map)
 		//		return false;
 	}
 
+	Node* bg = Sprite::create("background.png");
+	bg->setScaleX(DESIGN_SCREEN_WIDTH / bg->getContentSize().width);
+	bg->setScaleY(DESIGN_SCREEN_HEIGHT / bg->getContentSize().height);
+	bg->setPosition(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT / 2);
+	this->addChild(bg);
+
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
@@ -26,10 +32,13 @@ bool RealGamePlayLayer::init(std::string map)
 	listener->onTouchMoved = CC_CALLBACK_2(RealGamePlayLayer::onTouchMoved, this);
 	listener->onTouchEnded = CC_CALLBACK_2(RealGamePlayLayer::onTouchEnded, this);
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
+	this->resumeSchedulerAndActions();
 	this->scheduleUpdate();
-
+	GameConfig::gameFinished = false;
+	GameConfig::currentScore = 0.0f;
 	this->setTag(TAG_NORMAL_LAYER);
+
+
 	return true;
 }
 
@@ -48,8 +57,8 @@ inline bool intersectAABB(float t1, float t2, float l1, float l2, float b1, floa
 }
 
 void RealGamePlayLayer::updateBulletPool(){
-	float bulletWidth = 49.0f / 2;
-	float bulletHeight = 9.0f / 2;
+	float bulletWidth = 73.0f / 2;
+	float bulletHeight = 19.0f / 2;
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	centralPoint = Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT / 2 - 40);
@@ -91,9 +100,8 @@ void RealGamePlayLayer::updateBulletPool(){
 						rightTopBoxBot, bullet->getPosition().y - bulletHeight,
 						rightTopBoxRight, bullet->getPosition().x + bulletWidth);
 					if (attacktBullet){
-						this->bulletPool->removeChild(bullet);
-						this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
-						GameConfig::currentScore += 1.0f;
+						destroyBullet(bullet, i);
+
 					}
 					continue;
 				}
@@ -104,9 +112,7 @@ void RealGamePlayLayer::updateBulletPool(){
 						rightBotBoxBot, bullet->getPosition().y - bulletHeight,
 						rightBotBoxRight, bullet->getPosition().x + bulletWidth);
 					if (attacktBullet){
-						this->bulletPool->removeChild(bullet);
-						this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
-						GameConfig::currentScore += 1.0f;
+						destroyBullet(bullet, i);
 					}
 					continue;
 				}
@@ -117,9 +123,7 @@ void RealGamePlayLayer::updateBulletPool(){
 						leftTopBoxBot, bullet->getPosition().y - bulletHeight,
 						leftTopBoxRight, bullet->getPosition().x + bulletWidth);
 					if (attacktBullet){
-						this->bulletPool->removeChild(bullet);
-						this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
-						GameConfig::currentScore += 1.0f;
+						destroyBullet(bullet, i);
 					}
 					continue;
 				}
@@ -130,9 +134,7 @@ void RealGamePlayLayer::updateBulletPool(){
 						leftBotBoxBot, bullet->getPosition().y - bulletHeight,
 						leftBotBoxRight, bullet->getPosition().x + bulletWidth);
 					if (attacktBullet){
-						this->bulletPool->removeChild(bullet);
-						this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
-						GameConfig::currentScore += 1.0f;
+						destroyBullet(bullet, i);
 					}
 				}
 			}
@@ -147,9 +149,17 @@ void RealGamePlayLayer::updateBulletPool(){
 			mAnakin->goDie();
 			this->pauseSchedulerAndActions();
 			this->bulletPool->pauseSchedulerAndActions();
+			this->removeChild(bulletPool);
 		}
 	}
 
+}
+
+void RealGamePlayLayer::destroyBullet(Bullet* bullet, int i){
+	this->bulletPool->removeChild(bullet);
+	this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
+	GameConfig::currentScore += 1.0f;
+	SoundManager::inst()->playBulletBlock(1);
 }
 
 

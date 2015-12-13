@@ -10,8 +10,6 @@ class HUDLayer : public Layer
 protected: 
 	Layer* parent;
 	Sprite* background;
-    bool mCanExitTouchOnSite;
-	bool isTouchInside(Touch* touch);
 	virtual bool init(Layer* parent,bool canExitTouchOnSite);
 	void exit();
     
@@ -22,7 +20,7 @@ public:
     
     
 	//touches event
-	bool onTouchBegan(Touch *touch, Event *event);
+
 	//void onTouchesBegan(const std::vector<Touch*>& touches, Event  *event);
 	//void onTouchesMoved(const std::vector<Touch*>& touches, Event  *event);
 	//void onTouchesEnded(const std::vector<Touch*>& touches, Event  *event);

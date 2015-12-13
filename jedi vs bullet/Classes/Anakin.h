@@ -45,6 +45,7 @@ public:
 	void play();
 	void update(float delta);
 
+	float time, lastTime;
 	int getAttackDir();
 
 	bool isAttacking();
