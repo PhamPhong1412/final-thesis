@@ -23,10 +23,10 @@ bool WidthHeightChooseHUD::init()
 	auto visibleSize = Director::getInstance()->getVisibleSize();
 	auto origin = Director::getInstance()->getVisibleOrigin();
 
-	auto boxSprite = Sprite::create("Windown1.png");
-	boxSprite->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
-	boxSprite->setScale((DESIGN_SCREEN_WIDTH / 1.5) / boxSprite->getContentSize().width, (DESIGN_SCREEN_HEIGHT / 1.5) / boxSprite->getContentSize().height);
-	this->addChild(boxSprite);
+	//auto boxSprite = Sprite::create("Windown1.png");
+	//boxSprite->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	//boxSprite->setScale((DESIGN_SCREEN_WIDTH / 1.5) / boxSprite->getContentSize().width, (DESIGN_SCREEN_HEIGHT / 1.5) / boxSprite->getContentSize().height);
+	//this->addChild(boxSprite);
 
 	cocos2d::Vector<MenuItem*> items;
 

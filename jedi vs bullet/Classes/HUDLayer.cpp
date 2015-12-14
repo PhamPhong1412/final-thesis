@@ -40,4 +40,5 @@ void HUDLayer::exit(){
 	//		}
 	//	}
 		//parent->removeChild(this);
+	//this->release();
 }

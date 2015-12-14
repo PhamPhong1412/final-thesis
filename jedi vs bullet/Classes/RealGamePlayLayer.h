@@ -16,7 +16,7 @@ private:
 	Vec2 centralPoint;
 
 public:
-	virtual bool init(std::string map);
+	virtual bool init();
 	void update(float delta);
 
 	//touches event
@@ -32,6 +32,9 @@ public:
 	Anakin* mAnakin;
 
 	void destroyBullet(Bullet* bullet, int i);
+	CREATE_FUNC(RealGamePlayLayer);
+
+	void reInit();
 };
 
 #endif 

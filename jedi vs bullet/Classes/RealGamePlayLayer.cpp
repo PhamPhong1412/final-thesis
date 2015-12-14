@@ -1,6 +1,6 @@
 #include "RealGamePlayLayer.h"
 // on "init" you need to initialize your instance
-bool RealGamePlayLayer::init(std::string map)
+bool RealGamePlayLayer::init()
 {
 	if (!LayerColor::initWithColor(Color4B(255, 255, 255, 255)))
 	{
@@ -34,8 +34,8 @@ bool RealGamePlayLayer::init(std::string map)
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 	this->resumeSchedulerAndActions();
 	this->scheduleUpdate();
-	
-	GameConfig::currentScore = 0.0f;
+	UserDefault::sharedUserDefault()->getIntegerForKey("best", 0);
+	GameConfig::currentScore = 0;
 	this->setTag(TAG_NORMAL_LAYER);
 
 
@@ -43,7 +43,10 @@ bool RealGamePlayLayer::init(std::string map)
 }
 
 void RealGamePlayLayer::update(float delta){
-	updateBulletPool();
+	if (!GameConfig::gameFinished){
+		updateBulletPool();
+
+	}
 }
 
 inline bool intersectAABB(float t1, float t2, float l1, float l2, float b1, float b2, float r1, float r2){
@@ -147,8 +150,8 @@ void RealGamePlayLayer::updateBulletPool(){
 		bool intersectAnakin = std::abs(bullet->targetPoint.x - bullet->getPosition().x)<1.0f;
 		if (intersectAnakin){
 			mAnakin->goDie();
-			this->pauseSchedulerAndActions();
-			this->bulletPool->pauseSchedulerAndActions();
+			//this->pauseSchedulerAndActions();
+			//this->bulletPool->pauseSchedulerAndActions();
 			this->removeChild(bulletPool);
 		}
 	}
@@ -158,10 +161,19 @@ void RealGamePlayLayer::updateBulletPool(){
 void RealGamePlayLayer::destroyBullet(Bullet* bullet, int i){
 	this->bulletPool->removeChild(bullet);
 	this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
-	GameConfig::currentScore += 1.0f;
+	GameConfig::currentScore += 1;
 	SoundManager::inst()->playBulletBlock(1);
 }
 
+void RealGamePlayLayer::reInit(){
+	for (int i = 0; i < this->bulletPool->pool.size(); i++){
+		auto bullet = this->bulletPool->pool[i];
+		this->bulletPool->removeChild(bullet);
+		this->bulletPool->pool.erase(this->bulletPool->pool.begin() + i);
+	}
+	GameConfig::currentScore = 0;
+	this->mAnakin->reInit();
+}
 
 #pragma region touch event
 bool RealGamePlayLayer::onTouchBegan(Touch *touch, Event *event){

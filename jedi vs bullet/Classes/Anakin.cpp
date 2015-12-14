@@ -43,8 +43,8 @@ void Anakin::update(float delta){
 		}
 	}
 	else{
-		//if (curFrame == 190)
-			//GameConfig::gameFinished = true;
+		if (curFrame == 189 || curFrame == 188)
+			GameConfig::gameFinished = true;
 	}
 	
 
@@ -95,9 +95,9 @@ void Anakin::attack(float xLoc, float yLoc){
 	}
 
 	float attackBoost = GameConfig::currentScore / 200;
-	if (attackBoost > 2.0f)
-		attackBoost = 2.0f;
-	//attackBoost = 2.0f;
+	if (attackBoost > 1.5f)
+		attackBoost = 1.5f;
+	//attackBoost = 1.5f;
 	mAnimation->setTimeSpeed(1.1 +  attackBoost);
 }
 
@@ -139,5 +139,12 @@ void Anakin::goDie(){
 		this->setRotationY(180.0f);
 	}
 	this->mAnimation->setTimeSpeed(1.0f);
-	GameConfig::gameFinished = true;
+	if (GameConfig::currentScore > GameConfig::bestScore)
+		GameConfig::bestScore = GameConfig::currentScore;
+	UserDefault::sharedUserDefault()->setIntegerForKey("best", GameConfig::bestScore);
+	//GameConfig::gameFinished = true;
+}
+
+void Anakin::reInit(){
+	mAnimation->play("idle", true);
 }

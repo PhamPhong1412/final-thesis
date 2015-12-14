@@ -147,11 +147,11 @@ void BulletPool::generateShootPattern(){
 		case 8: shootTime = templateSound7; break;
 		case 9: shootTime = templateSound8; break;
 		}
-		//shootTime = templateSound2;
+		//shootTime = templateSound8;
 
-		//speed = 1;
+		//speed = 0.5f;
 		for (int i = 0; i < shootTime.size(); i++){
-			shootTime[i] = shootTime[i] * speed * 1.1 + time + 0.75/speed;
+			shootTime[i] = shootTime[i] * speed + time + 0.75/speed;
 		}
 	}
 

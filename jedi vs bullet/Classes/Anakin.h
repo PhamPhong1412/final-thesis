@@ -53,9 +53,10 @@ public:
 
 	void goDie();
 
-
 	//Physics event
 	void collideBullet();
+
+	void reInit();
 
 	CREATE_FUNC(Anakin);
 

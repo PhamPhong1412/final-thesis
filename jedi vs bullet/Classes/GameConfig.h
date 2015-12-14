@@ -33,6 +33,7 @@ public:
     static float RANK_TABLE_WIDTH;
 	static float RANK_TABLE_CELL_HEIGHT;
 	static bool gameFinished;
-	static float currentScore;
+	static int currentScore;
+	static int bestScore;
 };
 #endif

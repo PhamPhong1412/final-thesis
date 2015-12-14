@@ -42,9 +42,10 @@ void MainGameScene::update(float delta){
 		WidthHeightChooseHUD* chooseLayer = new WidthHeightChooseHUD(this, true);
 		chooseLayer->setTag(2);
 		chooseLayer->setDelegate(this);
+		//chooseLayer->autorelease();
 		//this->removeChild(menu);
 		this->addChild(chooseLayer);
-		this->removeChildByTag(1);
+		//this->removeChildByTag(1);
 		isPause = true;
 	}
 }
@@ -52,9 +53,13 @@ void MainGameScene::update(float delta){
 void MainGameScene::initWithRealGame(std::string mapText)
 {
 	isTestMap = false;
-	auto realGamePlayLayer = new RealGamePlayLayer();
+	//auto realGamePlayLayer = new RealGamePlayLayer();
+	//realGamePlayLayer->setTag(1);
+	//realGamePlayLayer->init(mapText);
+	//auto realGamePlayLayer = new RealGamePlayLayer();
+	auto realGamePlayLayer = RealGamePlayLayer::create();
+	//realGamePlayLayer->autorelease();
 	realGamePlayLayer->setTag(1);
-	realGamePlayLayer->init(mapText);
 	this->addChild(realGamePlayLayer);
 
 }
@@ -62,10 +67,13 @@ void MainGameScene::initWithRealGame(std::string mapText)
 void MainGameScene::exitBack()
 {
 	isPause = false;
+	this->removeChildByTag(1);
 	this->removeChildByTag(2);
-	auto realGamePlayLayer = new RealGamePlayLayer();
+	//auto realGamePlayLayer = new RealGamePlayLayer();
+	auto realGamePlayLayer = RealGamePlayLayer::create();
+	//realGamePlayLayer->autorelease();
 	realGamePlayLayer->setTag(1);
-	realGamePlayLayer->init("");
+	//realGamePlayLayer->init("");
 	GameConfig::gameFinished = false;
 	this->addChild(realGamePlayLayer);
 }
