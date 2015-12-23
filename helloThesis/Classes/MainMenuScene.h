@@ -12,14 +12,13 @@
 #include "Translator.h"
 #include "LoginScene.h"
 #include "RatingTableCell.h"
-#include "HttpServices.h"
 #include "RankingScene.h"
 
 USING_NS_CC;
 
 using namespace cocos2d::ui;
 
-class MainMenuScene : public Layer, public HttpServicesDelegate
+class MainMenuScene : public Layer
 
 {
 private:
@@ -30,7 +29,6 @@ public:
     
     virtual bool init();
 
-	virtual void getUID(std::string uid);
 
 	static cocos2d::Scene* createScene();
     
@@ -43,7 +41,6 @@ public:
 	void menuMakeMapCallback(cocos2d::Ref* pSender);
 	void menuSettingCallback(cocos2d::Ref* pSender);
     void menuShopCallback(cocos2d::Ref* pSender);
-    void menuRatingCallback(cocos2d::Ref* pSender);
 	void menuExitCallback(cocos2d::Ref* pSender);
 
     

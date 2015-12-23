@@ -33,7 +33,7 @@ public:
     void initTableView();
     void initButton();
     
-    void menuBackCallback(cocos2d::Ref* pSender);
+	void menuBackCallback();
     
     
     

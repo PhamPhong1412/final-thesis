@@ -17,7 +17,7 @@ USING_NS_CC;
 class MainGameScene : public Layer
 {
 private:
-	bool isTestMap;
+	
 	bool isPause;
 public:
 

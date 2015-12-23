@@ -2,8 +2,8 @@
 #define _GAME_CONFIG_
 
 #define TILE_SIZE	32 
-#define DESIGN_SCREEN_WIDTH 1136
-#define DESIGN_SCREEN_HEIGHT 640
+#define DESIGN_SCREEN_WIDTH 1024
+#define DESIGN_SCREEN_HEIGHT 768
 
 
 #define PTM_RATIO 32
@@ -29,6 +29,7 @@
 
 class GameConfig{
 public:
+	static bool isTestMap;
 	static float scale;
     static float RANK_TABLE_WIDTH;
     static float RANK_TABLE_CELL_HEIGHT;

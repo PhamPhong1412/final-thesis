@@ -29,6 +29,7 @@ public:
      * @lua NA
      */
     virtual void exitBack(int width, int height) {};
+	virtual void loadLocalMap() {};
     
 };
 
@@ -38,7 +39,14 @@ private:
     WidthHeightChooseDelegate *mDelegate;
     void menuBackCallback();
 	void menuNextCallback();
+	bool haveLocalMap;
 	bool init(bool withBackground);
+	
+	MenuItemImage *mBackButton;
+	MenuItemImage *mNextButton;
+
+	Label *infoLabel;
+
     ui::EditBox *mWidthEditBox;
     ui::EditBox *mHeightEditBox;
 public:

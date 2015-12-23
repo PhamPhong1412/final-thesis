@@ -21,11 +21,11 @@ bool HUDLayer::init(Layer* parent,bool canExitTouchOnSite)
 
 	for (auto node : parent->getChildren()){
 		if (node->getTag() == TAG_NORMAL_LAYER){
-			//Director::getInstance()->getEventDispatcher()->pauseEventListenersForTarget(node);
+			Director::getInstance()->getEventDispatcher()->pauseEventListenersForTarget(node);
 			node->pause();
 		}
 	}
-	//parent->pause();
+	parent->pause();
 	this->parent = parent;
 
 	auto listener = EventListenerTouchOneByOne::create();

@@ -37,8 +37,8 @@ bool GameBackgroundLayer::init()
 	return true;
 }
 
-void GameBackgroundLayer::update(float delta){
-
+void GameBackgroundLayer::update(float delta)
+{
 
 
 }

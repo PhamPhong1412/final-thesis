@@ -54,7 +54,7 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 	showLoading((Layer*)sender);
 
 	HttpRequest* request = new (std::nothrow) HttpRequest();
-	request->setUrl("localhost:8090/runner");
+	request->setUrl("192.168.1.74:9999/runner");
 	request->setRequestType(HttpRequest::Type::POST);
 	request->setResponseCallback(CC_CALLBACK_2(HttpServices::onHttpRequestCompleted, this, method));
 

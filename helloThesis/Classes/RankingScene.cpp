@@ -46,23 +46,27 @@ bool RankingScene::init()
 
 void RankingScene::initButton()
 {
-    auto mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_1(RankingScene::menuBackCallback, this));
-    mBackButton->setAnchorPoint(Vec2(0,0));
-    mBackButton->setScale((visibleSize.width/10)/mBackButton->getContentSize().width);
-    mBackButton->setPosition(Vec2(origin.x,origin.y));
-    addChild(mBackButton);
+	cocos2d::Vector<MenuItem*> items;
+	auto mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(RankingScene::menuBackCallback, this));
+	mBackButton->setAnchorPoint(Vec2(0, 0));
+	mBackButton->setScale(70 / mBackButton->getContentSize().width);
+	mBackButton->setPosition(50, 50);
+	items.pushBack(mBackButton);
+	auto menu = Menu::createWithArray(items);
+	menu->setPosition(Vec2::ZERO);
+	this->addChild(menu, 1);
 }
 
 void RankingScene::initTableView()
 {
     GameConfig::RANK_TABLE_WIDTH = visibleSize.width/2;
-    GameConfig::RANK_TABLE_CELL_HEIGHT = 50;
+    GameConfig::RANK_TABLE_CELL_HEIGHT = DESIGN_SCREEN_HEIGHT/5;
     
     TableView* tableView = TableView::create(this, Size(visibleSize.width/2,visibleSize.height));
-    
+	
     tableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     
-    tableView->setPosition(Vec2(0,0));
+	tableView->setPosition(Vec2(DESIGN_SCREEN_WIDTH/2, 0));
     
     tableView->setDelegate(this);
     
@@ -103,15 +107,19 @@ ssize_t RankingScene::numberOfCellsInTableView(TableView *table) {
 Size RankingScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
     CC_UNUSED_PARAM(table);
     
-    return Size(visibleSize.width/2, 50);
+	return Size(GameConfig::RANK_TABLE_WIDTH, GameConfig::RANK_TABLE_CELL_HEIGHT);
 }
 
 void RankingScene::tableCellTouched(TableView *table, TableViewCell *cell)
 {
     CCLOG("%zi",cell->getIdx());
+	std::string test = DBContext::get("map_test");
+	auto gameScene = MainGameScene::createScene();
+	((MainGameScene*)gameScene)->initWithRealGame(test);
+	Director::getInstance()->replaceScene(gameScene);
 }
 
-void RankingScene::menuBackCallback(cocos2d::Ref *pSender)
+void RankingScene::menuBackCallback()
 {
     auto mainScene = MainMenuScene::createScene();
     Director::getInstance()->replaceScene(mainScene);

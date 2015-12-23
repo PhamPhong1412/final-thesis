@@ -17,6 +17,7 @@ USING_NS_CC;
 class MapMakingScene : public Layer, public WidthHeightChooseDelegate
 {
 private:
+
     bool isChooseInfo;
     bool mCheckRootItem;
     Sprite *map;
@@ -36,7 +37,6 @@ private:
 	Sprite *mCurrentTile;
 
 public:
-	bool isNewMap;
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
     static cocos2d::Scene* createScene();
@@ -53,7 +53,8 @@ public:
     virtual bool init();
     
     virtual void exitBack(int width, int height);
-    
+	virtual void loadLocalMap();
+
     bool onTouchBegan(Touch *touch, Event *event);
     void onTouchMoved(Touch *touch, Event *event);
     void onTouchEnded(Touch *touch, Event *event);
@@ -69,15 +70,13 @@ public:
     void startInsert(cocos2d::Ref *pSender);
     
     // LOCAL FUNCION
-	void initAll();
+	void initAll(bool isNewMap);
 	void initCreateMapView(bool withBackground);
     void initListItem();
     void initButton();
-    void initScrollMapView();
+	void initScrollMapView(bool isNewMap);
     void initListChild();
     void initListRoot();
-    
-	void setIsNewMap(bool newMap);
 	
     CREATE_FUNC(MapMakingScene);
 };

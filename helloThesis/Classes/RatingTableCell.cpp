@@ -27,7 +27,7 @@ RatingTableCell::RatingTableCell():_cellBackground(NULL), _lbNickName(NULL), _lb
     
     auto *sprite = Sprite::create("HelloWorld.png");
     cocos2d::Size spriteSize = sprite->getContentSize();
-    sprite->setAnchorPoint(Vec2(0,0.5));
+    sprite->setAnchorPoint(Vec2(0,0));
     sprite->setPosition( Vec2(0,0) );
     sprite->setScale(GameConfig::RANK_TABLE_WIDTH/spriteSize.width,GameConfig::RANK_TABLE_CELL_HEIGHT/spriteSize.height);
     this->addChild(sprite);

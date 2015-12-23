@@ -1,4 +1,8 @@
 #include "TestGamePlayLayer.h"
+#include "MapMakingScene.h"
+
+#define phoneKey		"phone_id_mapping"
+#define mapData			"mapData"
 
 // on "init" you need to initialize your instance
 bool TestGamePlayLayer::init(std::string map)
@@ -7,7 +11,8 @@ bool TestGamePlayLayer::init(std::string map)
 	{
 //		return false;
 	}
-	
+	time = 0;
+	mCanUpMap = false;
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	this->mMap = map;
 	mRunner = Runner::create();
@@ -51,6 +56,12 @@ bool TestGamePlayLayer::init(std::string map)
 		this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
 		y / GameConfig::scale)));
 		*/
+	timeLabel = Label::createWithTTF("0", "fonts/Marker Felt.ttf", 30);
+	timeLabel->setAnchorPoint(Vec2(0.5, 1));
+	// position the label on the center of the screen
+	timeLabel->setPosition(Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT - 40));
+	timeLabel->setTextColor(Color4B(255, 195, 0, 255));
+	this->addChild(timeLabel);
 
 	auto listener = EventListenerTouchOneByOne::create();
 
@@ -61,7 +72,6 @@ bool TestGamePlayLayer::init(std::string map)
 
 	this->scheduleUpdate();
 
-
 	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, quadTree->nodeRect.right / GameConfig::scale,
 		quadTree->nodeRect.top / GameConfig::scale)));
 
@@ -70,9 +80,45 @@ bool TestGamePlayLayer::init(std::string map)
 }
 
 void TestGamePlayLayer::update(float delta){
+	time += delta;
+	timeLabel->setString(cocos2d::StringUtils::format("%f",time));
+	if (mRunner->mModel->finish() && !mCanUpMap)
+	{
+		mCanUpMap = true;
+		//mRunner->mModel->setFinish(false);
+		GameHUDLayer* chooseLayer = new GameHUDLayer(this);
+		chooseLayer->setDelegate(this);
+		//this->removeChild(menu);
+		this->addChild(chooseLayer);
+	}
+	else
+	{
+		updateQuadTree();
+		b2Layer::update(delta);
+	}
+	
+}
 
-	updateQuadTree();
-	b2Layer::update(delta);
+void TestGamePlayLayer::uploadMap(std::map<std::string, std::string> response)
+{
+	CCLOG("result");
+	auto mapMakingScene = MapMakingScene::createScene();
+	Director::getInstance()->replaceScene(mapMakingScene);
+}
+
+void TestGamePlayLayer::exitBack()
+{
+	auto mapMakingScene = MapMakingScene::createScene();
+	Director::getInstance()->replaceScene(mapMakingScene);
+}
+
+void TestGamePlayLayer::saveMap()
+{
+	cocos2d::log("%s", this->mMap.c_str());
+
+	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter(mapData, this->mMap) };
+	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::UPLOAD_MAP);
+	HttpServices::inst->setDelegate(this);
 }
 
 void TestGamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){

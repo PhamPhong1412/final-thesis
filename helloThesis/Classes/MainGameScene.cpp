@@ -1,5 +1,5 @@
 ﻿#include "MainGameScene.h"
-
+#include "RankingScene.h"
 
 Scene* MainGameScene::createScene()
 {
@@ -65,7 +65,7 @@ bool MainGameScene::init()
 
 void MainGameScene::initWithTestGame()
 {
-	isTestMap = true;
+	GameConfig::isTestMap = true;
 	auto testGamePlayLayer = new TestGamePlayLayer();
 	std::string test = DBContext::get("map_test");
 	testGamePlayLayer->init(test);
@@ -74,7 +74,7 @@ void MainGameScene::initWithTestGame()
 
 void MainGameScene::initWithRealGame(std::string mapText)
 {
-	isTestMap = false;
+	GameConfig::isTestMap = false;
 	auto realGamePlayLayer = new RealGamePlayLayer();
 	realGamePlayLayer->init(mapText);
 	this->addChild(realGamePlayLayer);
@@ -82,11 +82,15 @@ void MainGameScene::initWithRealGame(std::string mapText)
 
 void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)
 {
-	if (isTestMap)
+	if (GameConfig::isTestMap)
 	{
 		auto mapMakingScene = MapMakingScene::createScene();
-		((MapMakingScene*)mapMakingScene)->setIsNewMap(true);
 		Director::getInstance()->replaceScene(mapMakingScene);
+	}
+	else
+	{
+		auto rankScene = RankingScene::createScene();
+		Director::getInstance()->replaceScene(rankScene);
 	}
     
 }

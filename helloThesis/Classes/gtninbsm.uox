@@ -185,7 +185,7 @@ void MapMakingScene::initScrollMapView(bool isNewMap)
 
 				if ((j == 0 || j == numberTileWidth - 1) && i > 1 && i < numberTileHeight - 1)
 				{
-					mVector2Chieu[i].push_back("0");
+					mVector2Chieu[i].push_back("1,1");
 					string tName = to_string(j) + "+" + to_string(i);
 					auto tSprite = Sprite::create("1,1.png");
 					tSprite->setName(tName);
@@ -467,12 +467,11 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x -(tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0 || numberHeight == numberTileHeight - 1 || numberHeight == numberTileHeight - 2)
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
 					{
 						return true;
 					}
                     
-
                     string tName =to_string(numberWidth) + "+" + to_string(numberHeight);
                     auto temp = mScrollMapView->getChildByName(tName);
                     if (temp!=NULL) {
@@ -502,7 +501,7 @@ bool MapMakingScene::onTouchBegan(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0 || numberHeight == numberTileHeight - 1 || numberHeight == numberTileHeight - 2)
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
 					{
 						return true;
 					}
@@ -539,7 +538,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Insert in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0 || numberHeight == numberTileHeight - 1 || numberHeight == numberTileHeight - 2)
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
 					{
 						return;
 					}
@@ -571,7 +570,7 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
                     int numberWidth = (touch->getLocation().x - mScrollMapView->getInnerContainerPosition().x - origin.x - (tile_size/GameConfig::scale))/tile_size;
                     int numberHeight = (touch->getLocation().y - mScrollMapView->getInnerContainerPosition().y - origin.y)/tile_size;
                     CCLOG("Remove in Pos of Map numberWidth = %i, numberHeight = %i", numberWidth, numberHeight);
-					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0 || numberHeight == numberTileHeight - 1 || numberHeight == numberTileHeight - 2)
+					if (numberWidth == 0 || numberWidth == 1 || numberWidth == numberTileWidth - 2 || numberWidth == numberTileWidth - 1 || numberHeight == 0)
 					{
 						return;
 					}
@@ -627,31 +626,9 @@ void MapMakingScene::saveMap(cocos2d::Ref *pSender)
     
     for (int i = numberTileHeight-1 ; i>=0; i--) {
         for (int j = 0 ; j < numberTileWidth ; j++) {
-		
-
-            if (j == numberTileWidth-1) 
-			{
-				if (i > 1 && i < numberTileHeight - 1)
-				{
-					mMapSave += "1,1\n";
-				}
-				else
-				{
-					mMapSave += mVector2Chieu[i][j] + "\n";
-				}
-               
+            if (j == numberTileWidth-1) {
+                mMapSave += mVector2Chieu[i][j]+"\n";
             }
-			else if (j == 0)
-			{
-				if (i > 1 && i < numberTileHeight - 1)
-				{
-					mMapSave += "1,1;";
-				}
-				else
-				{
-					mMapSave += mVector2Chieu[i][j] + ";";
-				}
-			}
             else
             {
                mMapSave += mVector2Chieu[i][j]+";";
