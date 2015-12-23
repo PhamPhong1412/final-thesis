@@ -662,8 +662,8 @@ void MapMakingScene::saveMap(cocos2d::Ref *pSender)
     cocos2d::log("%s", mMapSave.c_str());
 	DBContext::set("map_test", mMapSave.c_str());
 
-	auto gameScene = MainGameScene::createScene();
-	((MainGameScene*)gameScene)->initWithTestGame();
+	auto gameScene = MainGameScene::createScene(true);
+	//((MainGameScene*)gameScene)->initWithTestGame();
 	Director::getInstance()->replaceScene(gameScene);
 }
 

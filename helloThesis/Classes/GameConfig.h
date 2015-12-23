@@ -21,6 +21,7 @@
 #define TAG_OBJECT_MAP              300
 
 #define TAG_NORMAL_LAYER              200
+#define TAG_BUTTON_LAYER              202
 #define TAG_HUD_LAYER              201
 
 #define MOVING_DIRECTION_LEFT	-1

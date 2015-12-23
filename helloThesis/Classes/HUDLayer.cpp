@@ -20,9 +20,15 @@ bool HUDLayer::init(Layer* parent,bool canExitTouchOnSite)
 	this->addChild(bg);
 
 	for (auto node : parent->getChildren()){
+
 		if (node->getTag() == TAG_NORMAL_LAYER){
 			Director::getInstance()->getEventDispatcher()->pauseEventListenersForTarget(node);
 			node->pause();
+			node->pauseSchedulerAndActions();
+		}
+		else if (node->getTag() == TAG_BUTTON_LAYER)
+		{
+			node->setVisible(false);
 		}
 	}
 	parent->pause();
@@ -42,6 +48,11 @@ void HUDLayer::exit(){
 	for (CCNode* node : parent->getChildren()){
 		if (node->getTag() == TAG_NORMAL_LAYER){
 			node->resume();
+			node->resumeSchedulerAndActions();
+		}
+		else if (node->getTag() == TAG_BUTTON_LAYER)
+		{
+			node->setVisible(true);
 		}
         
 	}

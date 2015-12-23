@@ -17,11 +17,10 @@ USING_NS_CC;
 class MainGameScene : public Layer
 {
 private:
-	
 	bool isPause;
 public:
 
-	static cocos2d::Scene* createScene();
+	static cocos2d::Scene* createScene(bool isTestMap);
 
 	virtual bool init();
 

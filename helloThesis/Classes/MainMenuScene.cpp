@@ -132,8 +132,8 @@ void MainMenuScene::transitionToGameScene()
 void MainMenuScene::toGameScene()
 {
 	//get the game scene and run it.
-	auto gameScene = MainGameScene::createScene();
-	Director::getInstance()->replaceScene(gameScene);
+	/*auto gameScene = MainGameScene::createScene();
+	Director::getInstance()->replaceScene(gameScene);*/
 }
 
 void MainMenuScene::menuMakeMapCallback(cocos2d::Ref *pSender)

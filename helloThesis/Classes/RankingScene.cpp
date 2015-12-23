@@ -112,10 +112,9 @@ Size RankingScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
 
 void RankingScene::tableCellTouched(TableView *table, TableViewCell *cell)
 {
-    CCLOG("%zi",cell->getIdx());
+    //CCLOG("%zi",cell->getIdx());
 	std::string test = DBContext::get("map_test");
-	auto gameScene = MainGameScene::createScene();
-	((MainGameScene*)gameScene)->initWithRealGame(test);
+	auto gameScene = MainGameScene::createScene(false);
 	Director::getInstance()->replaceScene(gameScene);
 }
 
