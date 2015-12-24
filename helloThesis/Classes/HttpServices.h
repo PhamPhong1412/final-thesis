@@ -10,12 +10,15 @@ class HttpServices;
 #include "GameConfig.h"
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "HttpClient.h"
+#include "Json.h"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "network\HttpClient.h"
+#include "util\json\Json.h"
 #endif
 #include "HttpServicesDelegate.h"
 #include "Utility.h"
-#include "util\json\Json.h"
+
+
 
 USING_NS_CC;
 using namespace cocos2d::network;

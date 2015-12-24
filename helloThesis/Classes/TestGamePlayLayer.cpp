@@ -56,7 +56,7 @@ bool TestGamePlayLayer::init(std::string map)
 		this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
 		y / GameConfig::scale)));
 		*/
-	timeLabel = Label::createWithTTF("0", "fonts/Marker Felt.ttf", 30);
+	timeLabel = Label::createWithTTF("0", "Marker Felt.ttf", 30);
 	timeLabel->setAnchorPoint(Vec2(0.5, 1));
 	// position the label on the center of the screen
 	timeLabel->setPosition(Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT - 40));

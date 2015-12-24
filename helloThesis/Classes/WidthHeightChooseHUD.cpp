@@ -25,7 +25,8 @@ bool WidthHeightChooseHUD::init(bool withBackground)
 	if (!withBackground)
 	{
 		background = Sprite::create("bg.png");
-		background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+        background->setAnchorPoint(Vec2(0.5,0.5));
+		background->setPosition(Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2));
 		background->setScale(visibleSize.width / background->getContentSize().width, visibleSize.height / background->getContentSize().height);
 		this->addChild(background);
 	}
@@ -33,39 +34,65 @@ bool WidthHeightChooseHUD::init(bool withBackground)
 	haveLocalMap = DBContext::keyExist("map_test");
 
 	auto boxSprite = Sprite::create("Windown1.png");
-	boxSprite->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+	boxSprite->setPosition(Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2));
 	boxSprite->setScale((DESIGN_SCREEN_WIDTH / 1.5) / boxSprite->getContentSize().width, (DESIGN_SCREEN_HEIGHT / 1.5) / boxSprite->getContentSize().height);
 	this->addChild(boxSprite);
 
-	mWidthEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 3, 60), ui::Scale9Sprite::create("blue_button03.png"));
+	mWidthEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 4, 50), ui::Scale9Sprite::create("blue_button03.png"));
     mWidthEditBox->setMaxLength(3);
-	mWidthEditBox->setFontSize(25);
+	mWidthEditBox->setFontSize(20);
 	mWidthEditBox->setAnchorPoint(Vec2(0.5,0));
-	mWidthEditBox->setPosition(Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT/3));
+	mWidthEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + boxSprite->getPosition().y - 160));
     mWidthEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::NUMERIC );
 	mWidthEditBox->setPlaceholderFontColor(Color3B::WHITE);
+    mWidthEditBox->setPlaceholderFontSize(20);
     mWidthEditBox->setPlaceHolder("Input number tile of width");
 
 
-	mHeightEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 3, 60), ui::Scale9Sprite::create("blue_button03.png"));
+	mHeightEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 4, 50), ui::Scale9Sprite::create("blue_button03.png"));
     mHeightEditBox->setMaxLength(3);
-	mHeightEditBox->setFontSize(25);
+	mHeightEditBox->setFontSize(20);
 	mHeightEditBox->setAnchorPoint(Vec2(0.5, 0));
-	mHeightEditBox->setPosition(Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT/2));
+	mHeightEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + boxSprite->getPosition().y - 100));
     mHeightEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::NUMERIC );
     mHeightEditBox->setPlaceHolder("Input number tile of height");
 	mHeightEditBox->setPlaceholderFontColor(Color3B::WHITE);
+    mHeightEditBox->setPlaceholderFontSize(20);
 	mHeightEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
 
     this->addChild(mHeightEditBox);
     this->addChild(mWidthEditBox);
 
-	infoLabel = Label::createWithTTF("Do u want to contine your map...", "fonts/Marker Felt.ttf", 30);
+	infoLabel = Label::createWithTTF("Do u want to contine your map...", "Marker Felt.ttf", 30);
 	infoLabel->setAnchorPoint(Vec2(0.5, 1));
 	// position the label on the center of the screen
-	infoLabel->setPosition(Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT - 80));
+	infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2, origin.y + visibleSize.height - 80));
 	infoLabel->setTextColor(Color4B(255, 195, 0, 255));
 	this->addChild(infoLabel);
+    
+    cocos2d::Vector<MenuItem*> items;
+    
+    mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuBackCallback, this));
+    mBackButton->setAnchorPoint(Vec2(0.5, 0));
+    mBackButton->setScale(70 / mBackButton->getContentSize().width);
+    mBackButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/4,origin.y + 50));
+    items.pushBack(mBackButton);
+    
+    mNewButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNewCallback, this));
+    mNewButton->setAnchorPoint(Vec2(0.5, 0));
+    mNewButton->setScale(70 / mNewButton->getContentSize().width);
+    mNewButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/2,origin.y + 50));
+    items.pushBack(mNewButton);
+    
+    mNextButton = MenuItemImage::create("AddNormal.png", "AddSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNextCallback, this));
+    mNextButton->setAnchorPoint(Vec2(0.5, 0));
+    mNextButton->setScale(70 / mNextButton->getContentSize().width);
+    mNextButton->setPosition(Vec2((origin.x + DESIGN_SCREEN_WIDTH*3)/4, origin.y + 50 ));
+    items.pushBack(mNextButton);
+    
+    auto menu = Menu::createWithArray(items);
+    menu->setPosition(Vec2::ZERO);
+    this->addChild(menu, 1);
 
 	if (haveLocalMap)
 	{
@@ -73,27 +100,24 @@ bool WidthHeightChooseHUD::init(bool withBackground)
 		mWidthEditBox->setVisible(false);
 		infoLabel->setVisible(true);
 	}
-
-    cocos2d::Vector<MenuItem*> items;
-    
-    mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuBackCallback, this));
-    mBackButton->setAnchorPoint(Vec2(0.5, 0));
-    mBackButton->setScale(70 / mBackButton->getContentSize().width);
-    mBackButton->setPosition(Vec2(DESIGN_SCREEN_WIDTH/3, 0));
-    items.pushBack(mBackButton);
-    
-	mNextButton = MenuItemImage::create("AddNormal.png", "AddSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNextCallback, this));
-	mNextButton->setAnchorPoint(Vec2(0.5, 0));
-	mNextButton->setScale(70 / mNextButton->getContentSize().width);
-	mNextButton->setPosition(Vec2((DESIGN_SCREEN_WIDTH*2)/3, 0 ));
-	items.pushBack(mNextButton);
-
-    auto menu = Menu::createWithArray(items);
-    menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
+    else
+    {
+        mNewButton->setVisible(false);
+    }
     
     return true;
 }
+
+void WidthHeightChooseHUD::menuNewCallback()
+{
+    mHeightEditBox->setVisible(true);
+    mWidthEditBox->setVisible(true);
+    infoLabel->setVisible(false);
+    mNewButton->setVisible(false);
+    haveLocalMap = false;
+    
+}
+
 void WidthHeightChooseHUD::menuNextCallback()
 {
 	if (haveLocalMap)
@@ -130,16 +154,8 @@ void WidthHeightChooseHUD::menuNextCallback()
 }
 void WidthHeightChooseHUD::menuBackCallback()
 {   
-	if (haveLocalMap)
-	{
-		mHeightEditBox->setVisible(true);
-		mWidthEditBox->setVisible(true);
-		infoLabel->setVisible(false);
-		haveLocalMap = false;
-	}
-	else
-	{
-		auto mainScene = MainMenuScene::createScene();
-		Director::getInstance()->replaceScene(mainScene);
-	}
+	
+    auto mainScene = MainMenuScene::createScene();
+    Director::getInstance()->replaceScene(mainScene);
+	
 }

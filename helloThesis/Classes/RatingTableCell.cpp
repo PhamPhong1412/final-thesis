@@ -36,21 +36,21 @@ RatingTableCell::RatingTableCell():_cellBackground(NULL), _lbNickName(NULL), _lb
     
     _lbNickName = Text::create("", "arial.ttf", fontSize);
 
-    _lbNickName->setColor( Color3B::RED );
+    _lbNickName->setColor( Color3B::BLUE );
     _lbNickName->setPosition( Vec2(posNickName + widthNickName/2, GameConfig::RANK_TABLE_CELL_HEIGHT/2) );
     this->addChild(_lbNickName);
     
     // Text : PlayCount
     _lbPlayCount = Text::create("", "arial.ttf", fontSize);
     
-    _lbPlayCount->setColor( Color3B::RED );
+    _lbPlayCount->setColor( Color3B::BLUE );
     _lbPlayCount->setPosition( Vec2(posPlayCount + widthPlayCount/2, GameConfig::RANK_TABLE_CELL_HEIGHT/2) );
     this->addChild(_lbPlayCount);
     
     // Text : TotalScore
     _lbTotalScore = Text::create("", "arial.ttf", fontSize);
    
-    _lbTotalScore->setColor( Color3B::RED );
+    _lbTotalScore->setColor( Color3B::BLUE );
     _lbTotalScore->setPosition( Vec2(posTotalScore + widthTotalScore/2, GameConfig::RANK_TABLE_CELL_HEIGHT/2) );
     this->addChild(_lbTotalScore);
 }

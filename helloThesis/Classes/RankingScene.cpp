@@ -35,7 +35,7 @@ bool RankingScene::init()
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     auto background = Sprite::create("HelloWorld.png");
-    background->setPosition(Vec2(visibleSize.width / 2, visibleSize.height / 2));
+    background->setPosition(Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2));
     background->setScale(visibleSize.width/background->getContentSize().width, visibleSize.height/background->getContentSize().height);
     this->addChild(background);
     
@@ -50,7 +50,7 @@ void RankingScene::initButton()
 	auto mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(RankingScene::menuBackCallback, this));
 	mBackButton->setAnchorPoint(Vec2(0, 0));
 	mBackButton->setScale(70 / mBackButton->getContentSize().width);
-	mBackButton->setPosition(50, 50);
+	mBackButton->setPosition(origin.x + 50, origin.y + 50);
 	items.pushBack(mBackButton);
 	auto menu = Menu::createWithArray(items);
 	menu->setPosition(Vec2::ZERO);
@@ -66,7 +66,7 @@ void RankingScene::initTableView()
 	
     tableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     
-	tableView->setPosition(Vec2(DESIGN_SCREEN_WIDTH/2, 0));
+	tableView->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/2, origin.y));
     
     tableView->setDelegate(this);
     
@@ -80,7 +80,7 @@ void RankingScene::initTableView()
 TableViewCell* RankingScene::tableCellAtIndex(TableView *table, ssize_t idx) {
     CC_UNUSED_PARAM(table);
     
-    auto string = String::createWithFormat("%zd", idx);
+    auto string = cocos2d::StringUtils::format("%zd", idx);
     
     RatingTableCell *cell = (RatingTableCell*)table->dequeueCell();
     
@@ -93,7 +93,7 @@ TableViewCell* RankingScene::tableCellAtIndex(TableView *table, ssize_t idx) {
     
     cell->getNickNameLabel()->setString("thien");
     cell->getPlayCountLabel()->setString("12");
-    cell->getTotalScoreLabel()->setString("3");
+    cell->getTotalScoreLabel()->setString(string);
     
     return cell;
 }
@@ -112,7 +112,7 @@ Size RankingScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
 
 void RankingScene::tableCellTouched(TableView *table, TableViewCell *cell)
 {
-    //CCLOG("%zi",cell->getIdx());
+    CCLOG("%zd",cell->getIdx());
 	std::string test = DBContext::get("map_test");
 	auto gameScene = MainGameScene::createScene(false);
 	Director::getInstance()->replaceScene(gameScene);

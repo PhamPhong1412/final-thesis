@@ -39,9 +39,9 @@ bool MainMenuScene::init()
 void MainMenuScene::initButton()
 {
     auto mBackGround = Sprite::create("bg3.png");
-    mBackGround->setScale(visibleSize.height/mBackGround->getContentSize().height);
+    mBackGround->setScale(visibleSize.width/mBackGround->getContentSize().width,visibleSize.height/mBackGround->getContentSize().height);
     mBackGround->setAnchorPoint(Vec2(0.5,0.5));
-    mBackGround->setPosition((origin.x +visibleSize.width)/2, (origin.y +visibleSize.height)/2);
+    mBackGround->setPosition(origin.x +(visibleSize.width)/2, origin.y +(visibleSize.height)/2);
     addChild(mBackGround);
     
     auto mNameSprite = Sprite::create("GameName.png");

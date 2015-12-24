@@ -4,7 +4,12 @@
 #define NORMAL_JUMP_SPEED 30.0f
 #define BOOSTED_JUMP_SPEED 60.0f
 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+#include "b2Node.h"
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 #include "box2d\b2Node.h"
+#endif
+
 //#include "b2Node.h"
 
 enum PlayerState{

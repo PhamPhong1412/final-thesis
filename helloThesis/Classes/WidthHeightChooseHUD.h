@@ -38,11 +38,13 @@ class WidthHeightChooseHUD : public HUDLayer
 private:
     WidthHeightChooseDelegate *mDelegate;
     void menuBackCallback();
+    void menuNewCallback();
 	void menuNextCallback();
 	bool haveLocalMap;
 	bool init(bool withBackground);
 	
 	MenuItemImage *mBackButton;
+    MenuItemImage *mNewButton;
 	MenuItemImage *mNextButton;
 
 	Label *infoLabel;
