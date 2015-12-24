@@ -7,7 +7,10 @@
 #include "GameConfig.h"
 #include <map>
 #include <set>
+#include "cocos2d.h"
+
 using namespace std;
+USING_NS_CC;
 
 typedef struct QuadRect
 {

@@ -183,32 +183,35 @@
     <ClCompile Include="..\Classes\InGameSettingLayer.cpp">
       <Filter>src\Scenes\PlayGame\main game\layers\setting</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\box2d\AnimatedSprite.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\box2d\b2Global.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\box2d\b2Integration.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\box2d\b2Layer.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\box2d\b2Node.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\box2d\b2PhysicsBody.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Classes\box2d\GLES-Render.cpp">
-      <Filter>src\box2d</Filter>
-    </ClCompile>
     <ClCompile Include="..\Classes\util\json\Json.cpp">
       <Filter>src\Util\Json</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\util\json\extension.cpp">
       <Filter>src\Util\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TimeHUDLayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Global.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Integration.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Layer.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Node.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2PhysicsBody.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GLES-Render.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoadingHUDLayer.cpp">
+      <Filter>src</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -308,32 +311,35 @@
     <ClInclude Include="..\Classes\HttpServicesDelegate.h">
       <Filter>src\HttpServices</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\box2d\AnimatedSprite.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\box2d\b2Global.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\box2d\b2Integration.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\box2d\b2Layer.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\box2d\b2Node.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\box2d\b2PhysicsBody.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Classes\box2d\GLES-Render.h">
-      <Filter>src\box2d</Filter>
-    </ClInclude>
     <ClInclude Include="..\Classes\util\json\Json.h">
       <Filter>src\Util\Json</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\util\json\extension.h">
       <Filter>src\Util\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TimeHUDLayer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Global.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Integration.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Layer.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Node.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2PhysicsBody.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GLES-Render.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoadingHUDLayer.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

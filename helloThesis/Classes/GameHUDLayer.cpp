@@ -16,7 +16,7 @@ bool GameHUDLayer::init()
     auto origin = Director::getInstance()->getVisibleOrigin();
     
 	background = Sprite::create("Windown1.png");
-	background->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2, origin.y + DESIGN_SCREEN_HEIGHT / 2));
+	background->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2 - 53, origin.y + DESIGN_SCREEN_HEIGHT / 2-18));
 	background->setScale(0.5);
 	this->addChild(background);
 
@@ -25,17 +25,18 @@ bool GameHUDLayer::init()
 	auto mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(GameHUDLayer::menuBackCallback, this));
 	mBackButton->setAnchorPoint(Vec2(0.5, 0));
 	mBackButton->setScale(70 / mBackButton->getContentSize().width);
-	mBackButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 3,origin.y+ 100));
+	mBackButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 3 - 53,origin.y+ 100 - 18));
 	items.pushBack(mBackButton);
 
 	auto mNextButton = MenuItemImage::create("AddNormal.png", "AddSelected.png", CC_CALLBACK_0(GameHUDLayer::menuNextCallback, this));
 	mNextButton->setAnchorPoint(Vec2(0.5, 0));
 	mNextButton->setScale(70 / mNextButton->getContentSize().width);
-	mNextButton->setPosition(Vec2(origin.x + (DESIGN_SCREEN_WIDTH * 2) / 3,origin.y + 100));
+	mNextButton->setPosition(Vec2(origin.x + (DESIGN_SCREEN_WIDTH * 2) / 3 - 53,origin.y + 100 - 18));
 	items.pushBack(mNextButton);
 
 	auto menu = Menu::createWithArray(items);
 	menu->setPosition(Vec2::ZERO);
+	menu->setTag(TAG_BUTTON_LAYER);
 	this->addChild(menu, 1);
 
 	return true;
@@ -48,7 +49,6 @@ void GameHUDLayer::menuNextCallback()
 void GameHUDLayer::menuBackCallback()
 {
 	mDelegate->exitBack();
-	//exit();
 }
 
 

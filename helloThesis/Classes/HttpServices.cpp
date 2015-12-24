@@ -82,17 +82,17 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 
 void HttpServices::showLoading(Layer* layer)
 {
-	auto sprite = Sprite::create("1,1.png");
-	sprite->setPosition(Vec2(DESIGN_SCREEN_WIDTH/2, DESIGN_SCREEN_HEIGHT/2));
-	sprite->setTag(1111);
 	mCurrentLayer = layer;
-	layer->addChild(sprite);
+	mLoadingHUD = new LoadingHUDLayer(layer);
+	layer->addChild(mLoadingHUD);
 }
 
 void HttpServices::hideLoading(bool isSucess)
 {
+	isSucess = true;
 	if (isSucess){
-		mCurrentLayer->removeChildByTag(1111);
+		mLoadingHUD->exitLoading();
+		//mCurrentLayer->removeChildByTag(1111);
 	}
 	else{
 		//show network fail message

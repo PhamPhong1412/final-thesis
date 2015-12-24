@@ -35,7 +35,7 @@ private:
     MenuItemImage *mRemoveButton;
     MenuItemImage *mChangeSizeButton;
 	Sprite *mCurrentTile;
-
+	LoadingHUDLayer *mLoadingHUD;
 public:
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;

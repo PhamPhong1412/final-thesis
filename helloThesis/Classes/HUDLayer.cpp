@@ -17,6 +17,7 @@ bool HUDLayer::init(Layer* parent,bool canExitTouchOnSite)
 	}
     mCanExitTouchOnSite = canExitTouchOnSite;
 	auto bg = cocos2d::LayerColor::create(Color4B(53, 53, 53, 100));
+	bg->setPosition(-53, -18);
 	this->addChild(bg);
 
 	for (auto node : parent->getChildren()){

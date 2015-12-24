@@ -30,7 +30,9 @@ bool TestGamePlayLayer::init(std::string map, Layer *parentLayer)
 	quadTree = new QuadNode(map, t);
 	currentObjectList = new set<string>();
 	currentQuadNode = new vector<QuadNode*>();
+	quadtreeUpdateCounter = 10;
 	updateQuadTree();
+
 
 	/*std::vector<std::string> part = Utility::splitString(map, "dm");
 
@@ -67,8 +69,8 @@ bool TestGamePlayLayer::init(std::string map, Layer *parentLayer)
 
 	this->scheduleUpdate();
 
-	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, quadTree->nodeRect.right / GameConfig::scale,
-		quadTree->nodeRect.top / GameConfig::scale)));
+	this->runAction(cocos2d::Follow::create(mRunner, Rect(0 - 53, 0 - 18, quadTree->nodeRect.right ,
+		quadTree->nodeRect.top )));
 
 	this->setTag(TAG_NORMAL_LAYER);
 	return true;
@@ -81,7 +83,7 @@ void TestGamePlayLayer::update(float delta){
 	{
 		mCanUpMap = true;
 		//mRunner->mModel->setFinish(false);
-		GameHUDLayer* chooseLayer = new GameHUDLayer(this->mParentLayer);
+		chooseLayer = new GameHUDLayer(this->mParentLayer);
 		chooseLayer->setDelegate(this);
 		//this->removeChild(menu);
 		this->addChild(chooseLayer);
@@ -112,7 +114,7 @@ void TestGamePlayLayer::saveMap()
 	cocos2d::log("%s", this->mMap.c_str());
 
 	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter(mapData, this->mMap) };
-	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::UPLOAD_MAP);
+	HttpServices::inst->sendRequest(chooseLayer, resData, HttpRequestMethod::UPLOAD_MAP);
 	HttpServices::inst->setDelegate(this);
 }
 
@@ -217,10 +219,10 @@ void TestGamePlayLayer::EndContact(b2Contact* contact)
 void TestGamePlayLayer::updateQuadTree(){
 
 
-	if (quadtreeUpdateCounter++ > 20){
+	if (quadtreeUpdateCounter++ > 10){
 		quadtreeUpdateCounter = 0;
 
-		QuadRect cameraRect = QuadRect(DESIGN_SCREEN_HEIGHT, 0,
+		QuadRect cameraRect = QuadRect(DESIGN_SCREEN_HEIGHT + this->mRunner->getPosition().y, this->mRunner->getPosition().y - DESIGN_SCREEN_HEIGHT,
 			this->mRunner->getPosition().x - DESIGN_SCREEN_WIDTH,
 			this->mRunner->getPosition().x + DESIGN_SCREEN_WIDTH);
 		std::vector<ObjectNode>* object2bAdd = new std::vector<ObjectNode>();

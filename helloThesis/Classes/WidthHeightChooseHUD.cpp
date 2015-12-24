@@ -92,6 +92,7 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
+	
     this->addChild(menu, 1);
 
 	if (haveLocalMap)
@@ -120,9 +121,11 @@ void WidthHeightChooseHUD::menuNewCallback()
 
 void WidthHeightChooseHUD::menuNextCallback()
 {
+	
 	if (haveLocalMap)
 	{
 		mDelegate->loadLocalMap();
+		exit();
 	}
 	else
 	{

@@ -106,7 +106,7 @@ void ShopScene::initListRoot()
     mListButonRoot->setContentSize(Size(visibleSize.width/2,visibleSize.width/10));
     for (int i =0 ; i<7 ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
-        button->setScale(GameConfig::scale);
+        //button->setScale(GameConfig::scale);
         mListButonRoot->pushBackCustomItem(button);
     }
     
@@ -130,7 +130,7 @@ void ShopScene::initListVertical()
 //    for (int i =0 ; i<mMapNameItem.size() ; i++) {
         for (int i =0 ; i<7 ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
-        button->setScale(GameConfig::scale);
+        //button->setScale(GameConfig::scale);
         mListVertical->pushBackCustomItem(button);
     }
     

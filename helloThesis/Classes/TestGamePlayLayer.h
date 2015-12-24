@@ -3,11 +3,8 @@
 
 #include "cocos2d.h"
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 #include "b2Layer.h"
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-#include "box2d\b2Layer.h"
-#endif
+
 //#include "b2Layer.h"
 #include "QuadNode.h"
 #include "RunnerController.h"
@@ -20,6 +17,7 @@ USING_NS_CC;
 class TestGamePlayLayer : public b2Layer, public GameHUDLayerDelegate, public HttpServicesDelegate
 {
 private:
+	GameHUDLayer* chooseLayer;
     Layer *mParentLayer;
 	bool mCanUpMap;
 	QuadNode* quadTree;

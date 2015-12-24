@@ -86,10 +86,11 @@ QuadNode::QuadNode(std::string map, vector<int>* tmp){
 	int nTilesWidth = std::stoi(widthHeight.at(0));
 	int nTilesHeight = std::stoi(widthHeight.at(1));
 
+	auto origin = Director::getInstance()->getVisibleOrigin();
 
 	float x, y;
 	float tileSize = 70 / GameConfig::scale;
-	QuadRect rect(nTilesHeight*tileSize, 0, 0, nTilesWidth*tileSize);
+	QuadRect rect(nTilesHeight*tileSize + origin.y, origin.y, origin.x,origin.x + nTilesWidth*tileSize);
 	this->nodeRect = rect;
 	float midX = (rect.left + rect.right) / 2;
 	float midY = (rect.top + rect.bot) / 2;

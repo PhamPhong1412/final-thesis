@@ -145,18 +145,18 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp" />
-    <ClCompile Include="..\Classes\box2d\AnimatedSprite.cpp" />
-    <ClCompile Include="..\Classes\box2d\b2Global.cpp" />
-    <ClCompile Include="..\Classes\box2d\b2Integration.cpp" />
-    <ClCompile Include="..\Classes\box2d\b2Layer.cpp" />
-    <ClCompile Include="..\Classes\box2d\b2Node.cpp" />
-    <ClCompile Include="..\Classes\box2d\b2PhysicsBody.cpp" />
-    <ClCompile Include="..\Classes\box2d\GLES-Render.cpp" />
+    <ClCompile Include="..\Classes\b2Global.cpp" />
+    <ClCompile Include="..\Classes\b2Integration.cpp" />
+    <ClCompile Include="..\Classes\b2Layer.cpp" />
+    <ClCompile Include="..\Classes\b2Node.cpp" />
+    <ClCompile Include="..\Classes\b2PhysicsBody.cpp" />
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
     <ClCompile Include="..\Classes\DBContext.cpp" />
     <ClCompile Include="..\Classes\FileUtil.cpp" />
     <ClCompile Include="..\Classes\GameConfig.cpp" />
     <ClCompile Include="..\Classes\GameMap.cpp" />
+    <ClCompile Include="..\Classes\GLES-Render.cpp" />
+    <ClCompile Include="..\Classes\LoadingHUDLayer.cpp" />
     <ClCompile Include="..\Classes\RealGamePlayLayer.cpp" />
     <ClCompile Include="..\Classes\TestGamePlayLayer.cpp" />
     <ClCompile Include="..\Classes\GroundObject.cpp" />
@@ -177,6 +177,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\RunnerView.cpp" />
     <ClCompile Include="..\Classes\ShopScene.cpp" />
     <ClCompile Include="..\Classes\SoundManager.cpp" />
+    <ClCompile Include="..\Classes\TimeHUDLayer.cpp" />
     <ClCompile Include="..\Classes\Translator.cpp" />
     <ClCompile Include="..\Classes\Utility.cpp" />
     <ClCompile Include="..\Classes\util\json\Json.cpp" />
@@ -186,19 +187,19 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h" />
-    <ClInclude Include="..\Classes\box2d\AnimatedSprite.h" />
-    <ClInclude Include="..\Classes\box2d\b2Global.h" />
-    <ClInclude Include="..\Classes\box2d\b2Integration.h" />
-    <ClInclude Include="..\Classes\box2d\b2Layer.h" />
-    <ClInclude Include="..\Classes\box2d\b2Node.h" />
-    <ClInclude Include="..\Classes\box2d\b2PhysicsBody.h" />
-    <ClInclude Include="..\Classes\box2d\GLES-Render.h" />
+    <ClInclude Include="..\Classes\b2Global.h" />
+    <ClInclude Include="..\Classes\b2Integration.h" />
+    <ClInclude Include="..\Classes\b2Layer.h" />
+    <ClInclude Include="..\Classes\b2Node.h" />
+    <ClInclude Include="..\Classes\b2PhysicsBody.h" />
     <ClInclude Include="..\Classes\GameBackgroundLayer.h" />
     <ClInclude Include="..\Classes\DBContext.h" />
     <ClInclude Include="..\Classes\FileUtil.h" />
     <ClInclude Include="..\Classes\GameConfig.h" />
     <ClInclude Include="..\Classes\GameMap.h" />
+    <ClInclude Include="..\Classes\GLES-Render.h" />
     <ClInclude Include="..\Classes\HttpServicesDelegate.h" />
+    <ClInclude Include="..\Classes\LoadingHUDLayer.h" />
     <ClInclude Include="..\Classes\RealGamePlayLayer.h" />
     <ClInclude Include="..\Classes\TestGamePlayLayer.h" />
     <ClInclude Include="..\Classes\GroundObject.h" />
@@ -220,6 +221,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\RunnerView.h" />
     <ClInclude Include="..\Classes\ShopScene.h" />
     <ClInclude Include="..\Classes\SoundManager.h" />
+    <ClInclude Include="..\Classes\TimeHUDLayer.h" />
     <ClInclude Include="..\Classes\Translator.h" />
     <ClInclude Include="..\Classes\Utility.h" />
     <ClInclude Include="..\Classes\util\json\Json.h" />

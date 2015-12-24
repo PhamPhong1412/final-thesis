@@ -3,9 +3,9 @@
 USING_NS_CC;
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(DESIGN_SCREEN_WIDTH, DESIGN_SCREEN_HEIGHT);
-static cocos2d::Size smallResolutionSize = cocos2d::Size(1024, 768);
-static cocos2d::Size mediumResolutionSize = cocos2d::Size(1024, 768);
-static cocos2d::Size largeResolutionSize = cocos2d::Size(1024, 768);
+static cocos2d::Size smallResolutionSize = cocos2d::Size(DESIGN_SCREEN_WIDTH, DESIGN_SCREEN_HEIGHT);
+static cocos2d::Size mediumResolutionSize = cocos2d::Size(DESIGN_SCREEN_WIDTH, DESIGN_SCREEN_HEIGHT);
+static cocos2d::Size largeResolutionSize = cocos2d::Size(DESIGN_SCREEN_WIDTH, DESIGN_SCREEN_HEIGHT);
 
 AppDelegate::AppDelegate() {
 
@@ -86,8 +86,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	searchPaths.push_back("image/small/background");
 	searchPaths.push_back("image");
 	searchPaths.push_back("cocosStudio");
+	searchPaths.push_back("cocosStudio/loading");
 	searchPaths.push_back("tiles");
 	searchPaths.push_back("Button");
+	searchPaths.push_back("fonts");
 
 	fileUtils->setSearchPaths(searchPaths);
 	DBContext::init();

@@ -22,7 +22,7 @@ bool RunnerModel::init(){
 //	};
 //
 //	auto b2PhysicBody = b2PhysicsBody::createPolygon(verts, num, b2PhysicsMaterial(0, 0, 0.1));
-	auto b2PhysicBody = b2PhysicsBody::createBox(Size(34,70), b2PhysicsMaterial(0, 0, 0));
+	auto b2PhysicBody = b2PhysicsBody::createBox(Size(34,60), b2PhysicsMaterial(0, 0, 0));
     
 	b2PhysicBody->setBodyType(b2_dynamicBody);
 	this->setb2PhysicsBody(b2PhysicBody);

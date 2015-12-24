@@ -18,6 +18,7 @@ class HttpServices;
 #include "HttpServicesDelegate.h"
 #include "Utility.h"
 
+#include "LoadingHUDLayer.h"
 
 
 USING_NS_CC;
@@ -30,6 +31,7 @@ private:
 	HttpServicesDelegate* mDelegate;
 	Layer* mCurrentLayer;
 
+	LoadingHUDLayer *mLoadingHUD;
 	void showLoading(Layer* layer);
 	void hideLoading(bool isSucess);
 

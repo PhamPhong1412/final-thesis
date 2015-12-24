@@ -2,13 +2,9 @@
 #define __GROUND_H__
 
 #include "cocos2d.h"
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#include "b2Node.h"
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-#include "box2d\b2Node.h"
-#endif
 
-//#include "b2Node.h"
+#include "b2Node.h"
+
 #include "Utility.h"
 
 enum GroundType{
