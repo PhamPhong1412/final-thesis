@@ -5,7 +5,7 @@
 #define mapData			"mapData"
 
 // on "init" you need to initialize your instance
-bool TestGamePlayLayer::init(std::string map)
+bool TestGamePlayLayer::init(std::string map, Layer *parentLayer)
 {
 	if (!b2Layer::init())
 	{
@@ -15,6 +15,7 @@ bool TestGamePlayLayer::init(std::string map)
 	mCanUpMap = false;
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	this->mMap = map;
+    this->mParentLayer = parentLayer;
 	mRunner = Runner::create();
 	mRunner->mModel->setb2Position(50, 300);
 	mRunner->setPosition(50, 300);
@@ -56,13 +57,7 @@ bool TestGamePlayLayer::init(std::string map)
 		this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
 		y / GameConfig::scale)));
 		*/
-	timeLabel = Label::createWithTTF("0", "Marker Felt.ttf", 30);
-	timeLabel->setAnchorPoint(Vec2(0.5, 1));
-	// position the label on the center of the screen
-	timeLabel->setPosition(Vec2(DESIGN_SCREEN_WIDTH / 2, DESIGN_SCREEN_HEIGHT - 40));
-	timeLabel->setTextColor(Color4B(255, 195, 0, 255));
-	this->addChild(timeLabel);
-
+	
 	auto listener = EventListenerTouchOneByOne::create();
 
 	listener->onTouchBegan = CC_CALLBACK_2(TestGamePlayLayer::onTouchBegan, this);
@@ -81,12 +76,12 @@ bool TestGamePlayLayer::init(std::string map)
 
 void TestGamePlayLayer::update(float delta){
 	time += delta;
-	timeLabel->setString(cocos2d::StringUtils::format("%f",time));
+	
 	if (mRunner->mModel->finish() && !mCanUpMap)
 	{
 		mCanUpMap = true;
 		//mRunner->mModel->setFinish(false);
-		GameHUDLayer* chooseLayer = new GameHUDLayer(this);
+		GameHUDLayer* chooseLayer = new GameHUDLayer(this->mParentLayer);
 		chooseLayer->setDelegate(this);
 		//this->removeChild(menu);
 		this->addChild(chooseLayer);

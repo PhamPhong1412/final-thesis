@@ -1,7 +1,7 @@
 #include "RealGamePlayLayer.h"
 
 // on "init" you need to initialize your instance
-bool RealGamePlayLayer::init(std::string map)
+bool RealGamePlayLayer::init(std::string map,Layer *parentLayer)
 {
 	if (!b2Layer::init())
 	{
@@ -9,6 +9,7 @@ bool RealGamePlayLayer::init(std::string map)
 	}
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
+    this->mParentLayer = parentLayer;
 	this->mMap = map;
 	mRunner = Runner::create();
 	mRunner->mModel->setb2Position(50, 300);

@@ -17,6 +17,7 @@ USING_NS_CC;
 class RealGamePlayLayer : public b2Layer
 {
 private:
+    Layer *mParentLayer;
 	QuadNode* quadTree;
 	std::string mMap;
 	Camera* camera;
@@ -28,7 +29,7 @@ private:
 	vector<QuadNode*>* currentQuadNode;
 	void updateQuadTree();
 public:
-	virtual bool init(std::string map);
+	virtual bool init(std::string map,Layer *parentLayer);
 	void update(float delta);
 	void initTiles();
 	void createTiles(float xloc, float yLoc);

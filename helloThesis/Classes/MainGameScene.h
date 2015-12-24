@@ -20,12 +20,12 @@ private:
 	bool isPause;
 public:
 
-	static cocos2d::Scene* createScene(bool isTestMap);
+	static cocos2d::Scene* createScene(bool isTestMap, std::string mapText);
 
 	virtual bool init();
 
-	void initWithTestGame();
-	void initWithRealGame(std::string mapText);
+	void initWithTestGame(std::string mapText,Layer *ParentLayer);
+	void initWithRealGame(std::string mapText,Layer *ParentLayer);
 
 	void menuPlayCallback(cocos2d::Ref* pSender);
 

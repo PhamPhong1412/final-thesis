@@ -1,7 +1,7 @@
 ﻿#include "MainGameScene.h"
 #include "RankingScene.h"
 
-Scene* MainGameScene::createScene(bool isTestMap)
+Scene* MainGameScene::createScene(bool isTestMap,std::string mapText)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -9,15 +9,15 @@ Scene* MainGameScene::createScene(bool isTestMap)
 	// 'layer' is an autorelease object
 	auto layer = MainGameScene::create();
 	
-	layer->setTag(111);
+    GameConfig::isTestMap = isTestMap;
 	if (isTestMap)
 	{
-		layer->initWithTestGame();
+        
+		layer->initWithTestGame(mapText, layer);
 	}
 	else
 	{
-		std::string test = DBContext::get("map_test");
-		layer->initWithRealGame(test);
+		layer->initWithRealGame(mapText, layer);
 	}
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -35,7 +35,6 @@ bool MainGameScene::init()
 	{
 		return false;
 	}
-	int i = this->getTag();
 
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
@@ -73,20 +72,19 @@ bool MainGameScene::init()
 	return true;
 }
 
-void MainGameScene::initWithTestGame()
+void MainGameScene::initWithTestGame(std::string mapText,Layer *Parentlayer)
 {
-	GameConfig::isTestMap = true;
+	
 	auto testGamePlayLayer = new TestGamePlayLayer();
-	std::string test = DBContext::get("map_test");
-	testGamePlayLayer->init(test);
+	testGamePlayLayer->init(mapText, Parentlayer);
 	this->addChild(testGamePlayLayer);
 }
 
-void MainGameScene::initWithRealGame(std::string mapText)
+void MainGameScene::initWithRealGame(std::string mapText,Layer *Parentlayer)
 {
-	GameConfig::isTestMap = false;
+	
 	auto realGamePlayLayer = new RealGamePlayLayer();
-	realGamePlayLayer->init(mapText);
+	realGamePlayLayer->init(mapText,Parentlayer);
 	this->addChild(realGamePlayLayer);
 }
 
@@ -102,7 +100,6 @@ void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)
 		auto rankScene = RankingScene::createScene();
 		Director::getInstance()->replaceScene(rankScene);
 	}
-    
 }
 
 void MainGameScene::menuPlayCallback(cocos2d::Ref* pSender){

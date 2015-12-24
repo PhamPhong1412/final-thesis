@@ -278,7 +278,7 @@ void MapMakingScene::initListChild()
     mListButtonChild->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButtonChild->setClippingEnabled(false);
     mListButtonChild->setBounceEnabled(true);
-    mListButtonChild->setPosition(Vec2(0,origin.y));
+    mListButtonChild->setPosition(Vec2(origin.x,origin.y));
     mListButtonChild->setContentSize(Size(tile_size/GameConfig::scale + origin.x,visibleSize.height));
     mListButtonChild->setItemsMargin(10);
     mListButtonChild->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemChildListEvent, this));
@@ -295,7 +295,7 @@ void MapMakingScene::initListRoot()
     mListButonRoot->setDirection(ui::ScrollView::Direction::VERTICAL);
     mListButonRoot->setClippingEnabled(false);
     mListButonRoot->setBounceEnabled(true);
-    mListButonRoot->setPosition(Vec2(0,origin.y));
+    mListButonRoot->setPosition(Vec2(origin.x,origin.y));
     mListButonRoot->setContentSize(Size(tile_size/GameConfig::scale+ origin.x ,visibleSize.height));
     for (int i =0 ; i<mMapNameItem.size() ; i++) {
         ui::Button *button = ui::Button::create(getNameWithNumber(i));
@@ -661,8 +661,8 @@ void MapMakingScene::saveMap(cocos2d::Ref *pSender)
     
     cocos2d::log("%s", mMapSave.c_str());
 	DBContext::set("map_test", mMapSave.c_str());
-
-	auto gameScene = MainGameScene::createScene(true);
+    std::string test = DBContext::get("map_test");
+	auto gameScene = MainGameScene::createScene(true,test);
 	//((MainGameScene*)gameScene)->initWithTestGame();
 	Director::getInstance()->replaceScene(gameScene);
 }

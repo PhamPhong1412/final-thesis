@@ -114,7 +114,7 @@ void RankingScene::tableCellTouched(TableView *table, TableViewCell *cell)
 {
     CCLOG("%zd",cell->getIdx());
 	std::string test = DBContext::get("map_test");
-	auto gameScene = MainGameScene::createScene(false);
+	auto gameScene = MainGameScene::createScene(false,test);
 	Director::getInstance()->replaceScene(gameScene);
 }
 
