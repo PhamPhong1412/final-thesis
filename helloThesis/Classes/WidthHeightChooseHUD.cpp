@@ -24,7 +24,7 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     auto origin = Director::getInstance()->getVisibleOrigin();
 	if (!withBackground)
 	{
-		background = Sprite::create("bg.png");
+		background = Sprite::create("bg3.png");
         background->setAnchorPoint(Vec2(0.5,0.5));
 		background->setPosition(Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2));
 		background->setScale(visibleSize.width / background->getContentSize().width, visibleSize.height / background->getContentSize().height);
@@ -33,27 +33,27 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     
 	haveLocalMap = DBContext::keyExist("map_test");
 
-	auto boxSprite = Sprite::create("Windown1.png");
+	auto boxSprite = Sprite::create("WidthHeightChoose.png");
 	boxSprite->setPosition(Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2));
 	boxSprite->setScale((DESIGN_SCREEN_WIDTH / 1.5) / boxSprite->getContentSize().width, (DESIGN_SCREEN_HEIGHT / 1.5) / boxSprite->getContentSize().height);
 	this->addChild(boxSprite);
 
-	mWidthEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 4, 50), ui::Scale9Sprite::create("blue_button03.png"));
+	mWidthEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 3, 50), ui::Scale9Sprite::create("TextField.png"));
     mWidthEditBox->setMaxLength(3);
 	mWidthEditBox->setFontSize(20);
-	mWidthEditBox->setAnchorPoint(Vec2(0.5,0));
-	mWidthEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + boxSprite->getPosition().y - 160));
+	mWidthEditBox->setAnchorPoint(Vec2(0.5,0.5));
+	mWidthEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + DESIGN_SCREEN_HEIGHT/2 ));
     mWidthEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::NUMERIC );
 	mWidthEditBox->setPlaceholderFontColor(Color3B::WHITE);
     mWidthEditBox->setPlaceholderFontSize(20);
     mWidthEditBox->setPlaceHolder("Input number tile of width");
 
 
-	mHeightEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 4, 50), ui::Scale9Sprite::create("blue_button03.png"));
+	mHeightEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 3, 50), ui::Scale9Sprite::create("TextField.png"));
     mHeightEditBox->setMaxLength(3);
 	mHeightEditBox->setFontSize(20);
-	mHeightEditBox->setAnchorPoint(Vec2(0.5, 0));
-	mHeightEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + boxSprite->getPosition().y - 100));
+	mHeightEditBox->setAnchorPoint(Vec2(0.5, 0.5));
+	mHeightEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + DESIGN_SCREEN_HEIGHT/2 - 60));
     mHeightEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::NUMERIC );
     mHeightEditBox->setPlaceHolder("Input number tile of height");
 	mHeightEditBox->setPlaceholderFontColor(Color3B::WHITE);
@@ -74,19 +74,19 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     
     mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuBackCallback, this));
     mBackButton->setAnchorPoint(Vec2(0.5, 0));
-    mBackButton->setScale(70 / mBackButton->getContentSize().width);
+    mBackButton->setScale(BUTTON_SIZE / mBackButton->getContentSize().width);
     mBackButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/4,origin.y + 50));
     items.pushBack(mBackButton);
     
     mNewButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNewCallback, this));
     mNewButton->setAnchorPoint(Vec2(0.5, 0));
-    mNewButton->setScale(70 / mNewButton->getContentSize().width);
+    mNewButton->setScale(BUTTON_SIZE / mNewButton->getContentSize().width);
     mNewButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/2,origin.y + 50));
     items.pushBack(mNewButton);
     
     mNextButton = MenuItemImage::create("AddNormal.png", "AddSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNextCallback, this));
     mNextButton->setAnchorPoint(Vec2(0.5, 0));
-    mNextButton->setScale(70 / mNextButton->getContentSize().width);
+    mNextButton->setScale(BUTTON_SIZE / mNextButton->getContentSize().width);
     mNextButton->setPosition(Vec2((origin.x + DESIGN_SCREEN_WIDTH*3)/4, origin.y + 50 ));
     items.pushBack(mNextButton);
     

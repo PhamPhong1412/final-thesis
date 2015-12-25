@@ -25,7 +25,7 @@ RatingTableCell::RatingTableCell():_cellBackground(NULL), _lbNickName(NULL), _lb
     const float posTotalScore = posPlayCount + widthPlayCount;
     
     
-    auto *sprite = Sprite::create("HelloWorld.png");
+    auto *sprite = Sprite::create("Cell.png");
     cocos2d::Size spriteSize = sprite->getContentSize();
     sprite->setAnchorPoint(Vec2(0,0));
     sprite->setPosition( Vec2(0,0) );

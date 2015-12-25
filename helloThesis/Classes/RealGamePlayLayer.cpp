@@ -64,7 +64,7 @@ bool RealGamePlayLayer::init(std::string map,Layer *parentLayer)
 	this->scheduleUpdate();
 
 
-	this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, quadTree->nodeRect.right / GameConfig::scale,
+	this->runAction(cocos2d::Follow::create(mRunner, Rect(0 - 53, 0 - 18, quadTree->nodeRect.right / GameConfig::scale,
 		quadTree->nodeRect.top / GameConfig::scale)));
 
 	this->setTag(TAG_NORMAL_LAYER);

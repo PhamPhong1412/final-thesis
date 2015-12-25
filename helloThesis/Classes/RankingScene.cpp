@@ -34,10 +34,15 @@ bool RankingScene::init()
     
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
-    auto background = Sprite::create("HelloWorld.png");
+    auto background = Sprite::create("bg3.png");
     background->setPosition(Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2));
     background->setScale(visibleSize.width/background->getContentSize().width, visibleSize.height/background->getContentSize().height);
     this->addChild(background);
+    
+    auto RankTableBG = Sprite::create("Rank.png");
+    RankTableBG->setPosition(Vec2(origin.x + visibleSize.width / 2,origin.y + visibleSize.height / 2));
+    RankTableBG->setScale((visibleSize.width/2)/RankTableBG->getContentSize().width, visibleSize.height/RankTableBG->getContentSize().height);
+    this->addChild(RankTableBG);
     
     initTableView();
     initButton();
@@ -49,8 +54,8 @@ void RankingScene::initButton()
 	cocos2d::Vector<MenuItem*> items;
 	auto mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(RankingScene::menuBackCallback, this));
 	mBackButton->setAnchorPoint(Vec2(0, 0));
-	mBackButton->setScale(70 / mBackButton->getContentSize().width);
-	mBackButton->setPosition(origin.x + 50, origin.y + 50);
+	mBackButton->setScale(BUTTON_SIZE / mBackButton->getContentSize().width);
+	mBackButton->setPosition(origin.x , origin.y );
 	items.pushBack(mBackButton);
 	auto menu = Menu::createWithArray(items);
 	menu->setPosition(Vec2::ZERO);
@@ -59,14 +64,14 @@ void RankingScene::initButton()
 
 void RankingScene::initTableView()
 {
-    GameConfig::RANK_TABLE_WIDTH = visibleSize.width/2;
+    GameConfig::RANK_TABLE_WIDTH = visibleSize.width/2 - 50;
     GameConfig::RANK_TABLE_CELL_HEIGHT = DESIGN_SCREEN_HEIGHT/5;
     
-    TableView* tableView = TableView::create(this, Size(visibleSize.width/2,visibleSize.height));
-	
+    TableView* tableView = TableView::create(this, Size(GameConfig::RANK_TABLE_WIDTH,visibleSize.height - 150));
+    
     tableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     
-	tableView->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/2, origin.y));
+	tableView->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/4 + 25, origin.y + 25));
     
     tableView->setDelegate(this);
     

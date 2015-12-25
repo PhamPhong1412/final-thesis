@@ -7,20 +7,13 @@ USING_NS_CC;
 class InGameSettingLayer : public HUDLayer
 {
 private:
-	void menuBackCallback();
+    void menuHomeCallback();
+	void menuReplayCallback();
 	bool init();
 public:
 	InGameSettingLayer(Layer* parent);
 	~InGameSettingLayer();
 
-
-
-	//void onTouchesMoved(const std::vector<Touch*>& touches, Event  *event);
-	//void onTouchesEnded(const std::vector<Touch*>& touches, Event  *event);
-	//void onTouchesCancelled(const std::vector<Touch*>& touches, cocos2d::Event  *event);
-
-
-	//CC_SYNTHESIZE(Runner*, mRunner, Runner);
 };
 
 #endif 
