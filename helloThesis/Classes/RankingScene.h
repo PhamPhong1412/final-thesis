@@ -22,6 +22,9 @@ USING_NS_CC_EXT;
 class RankingScene : public Layer,public cocos2d::extension::TableViewDelegate,cocos2d::extension::TableViewDataSource
 {
 private:
+	MenuItemImage *mNewButton;
+	MenuItemImage *mTopRateButton;
+
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
 public:
@@ -33,6 +36,8 @@ public:
     void initTableView();
     void initButton();
     
+	void newPress(cocos2d::Ref *pSender);
+	void topRatePress(cocos2d::Ref *pSender);
 	void menuBackCallback();
     
     

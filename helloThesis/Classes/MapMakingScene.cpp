@@ -2,6 +2,7 @@
 #include "GameConfig.h"
 #include "LoadingHUDLayer.h"
 
+#define kButtonSize	55
 enum States
 {
     Move,
@@ -61,12 +62,12 @@ void MapMakingScene::initListItem()
     vector<string> tTemp6 = {"signExit.png", "stoneHalf.png","stoneHalfLeft.png","stoneHalfMid.png","stoneHalfRight.png","stoneHillLeft2.png","stoneHillRight2.png","stoneMid.png"};
     
     mMapNameItem.push_back(tTemp0);
-    mMapNameItem.push_back(tTemp1);
+   /* mMapNameItem.push_back(tTemp1);
     mMapNameItem.push_back(tTemp2);
     mMapNameItem.push_back(tTemp3);
     mMapNameItem.push_back(tTemp4);
     mMapNameItem.push_back(tTemp5);
-    mMapNameItem.push_back(tTemp6);
+    mMapNameItem.push_back(tTemp6);*/
 }
 
 void MapMakingScene::initScrollMapView(bool isNewMap)
@@ -323,32 +324,37 @@ void MapMakingScene::initButton()
     mMoveButton = MenuItemImage::create("MoveSelected.png","MoveNormal.png",CC_CALLBACK_1(MapMakingScene::startMove,this));
     
     mMoveButton->setAnchorPoint(Vec2(1,1));
-    mMoveButton->setScale(tile_size/mMoveButton->getNormalImage()->getContentSize().width);
+    mMoveButton->setScale(kButtonSize/mMoveButton->getNormalImage()->getContentSize().width);
     mMoveButton->setPosition(tMoveButtonPos);
     
-    Vec2 tRemoveButtonPos = Vec2(Vec2(origin.x +visibleSize.width,origin.y + visibleSize.height - tile_size - 10));
+	Vec2 tRemoveButtonPos = Vec2(Vec2(origin.x + visibleSize.width, origin.y + visibleSize.height - kButtonSize - 10));
     
     mRemoveButton = MenuItemImage::create("RemoveSelected.png","RemoveNormal.png",CC_CALLBACK_1(MapMakingScene::startRemove,this));
     mRemoveButton->setAnchorPoint(Vec2(1,1));
-    mRemoveButton->setScale(tile_size/mRemoveButton->getNormalImage()->getContentSize().width);
+	mRemoveButton->setScale(kButtonSize / mRemoveButton->getNormalImage()->getContentSize().width);
     mRemoveButton->setPosition(tRemoveButtonPos);
     
-    Vec2 tInsertButtonPos = Vec2(Vec2(origin.x +visibleSize.width,origin.y + visibleSize.height - tile_size *2 - 20));
+	Vec2 tInsertButtonPos = Vec2(Vec2(origin.x + visibleSize.width, origin.y + visibleSize.height - kButtonSize * 2 - 20));
     
     mInsertButton = MenuItemImage::create("AddSelected.png","AddNormal.png",CC_CALLBACK_1(MapMakingScene::startInsert,this));
-    mInsertButton->setScale(tile_size/mInsertButton->getNormalImage()->getContentSize().width);
+	mInsertButton->setScale(kButtonSize / mInsertButton->getNormalImage()->getContentSize().width);
     mInsertButton->setAnchorPoint(Vec2(1,1));
     mInsertButton->setPosition(tInsertButtonPos);
     
     auto tSaveButton = MenuItemImage::create("SaveSelected.png","SaveNormal.png",  CC_CALLBACK_1(MapMakingScene::saveMap, this));
     tSaveButton->setAnchorPoint(Vec2(1,1));
-    tSaveButton->setScale(tile_size/tSaveButton->getNormalImage()->getContentSize().width);
-    tSaveButton->setPosition(origin.x +visibleSize.width,origin.y + visibleSize.height - tile_size *4 - 30);
+	tSaveButton->setScale(kButtonSize / tSaveButton->getNormalImage()->getContentSize().width);
+	tSaveButton->setPosition(origin.x + visibleSize.width, origin.y + visibleSize.height - kButtonSize * 4 - 40);
  
 	auto tFlipButton = MenuItemImage::create("ChangeSelected.png", "ChangeNormal.png", CC_CALLBACK_1(MapMakingScene::flipTile, this));
 	tFlipButton->setAnchorPoint(Vec2(1, 1));
-	tFlipButton->setScale(tile_size / tFlipButton->getNormalImage()->getContentSize().width);
-	tFlipButton->setPosition(origin.x + visibleSize.width, origin.y + visibleSize.height - tile_size * 3 - 40);
+	tFlipButton->setScale(kButtonSize / tFlipButton->getNormalImage()->getContentSize().width);
+	tFlipButton->setPosition(origin.x + visibleSize.width, origin.y + visibleSize.height - kButtonSize * 3 - 30);
+
+	auto tHelpButton = MenuItemImage::create("Help2.png", "Help1.png", CC_CALLBACK_1(MapMakingScene::helpPress, this));
+	tHelpButton->setAnchorPoint(Vec2(1, 1));
+	tHelpButton->setScale(kButtonSize / tHelpButton->getNormalImage()->getContentSize().width);
+	tHelpButton->setPosition(origin.x + visibleSize.width, origin.y + visibleSize.height - kButtonSize * 5 - 50);
 
     mMoveButton->selected();
     mRemoveButton->unselected();
@@ -360,6 +366,7 @@ void MapMakingScene::initButton()
     items.pushBack(mMoveButton);
     items.pushBack(tSaveButton);
     items.pushBack(tFlipButton);
+	items.pushBack(tHelpButton);
 
     menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
@@ -600,6 +607,11 @@ void MapMakingScene::onTouchMoved(Touch *touch, Event *event)
 void MapMakingScene::onTouchEnded(Touch *touch, Event *event)
 {
     
+}
+
+void MapMakingScene::helpPress(cocos2d::Ref* pSender)
+{
+	CCLOG("HELP");
 }
 
 void MapMakingScene::flipTile(cocos2d::Ref *pSender)

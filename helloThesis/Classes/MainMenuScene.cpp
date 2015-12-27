@@ -54,34 +54,32 @@ void MainMenuScene::initButton()
 
     mRaceButton->setAnchorPoint(Vec2(0.5,0.5));
     mRaceButton->setScale((visibleSize.width/5)/mRaceButton->getNormalImage()->getContentSize().width);
-    Vec2 tRaceButtonPos = Vec2((origin.x +visibleSize.width)/2,(origin.y + visibleSize.height)/2 + mRaceButton->getNormalImage()->getContentSize().height/3);
+    Vec2 tRaceButtonPos = Vec2((origin.x +visibleSize.width)/2,(origin.y + visibleSize.height)/2 + mRaceButton->getNormalImage()->getContentSize().height/4);
     mRaceButton->setPosition(tRaceButtonPos);
-    
-    
     
     auto mMapButton = MenuItemImage::create("MapNormal.png","MapSelected.png",CC_CALLBACK_1(MainMenuScene::menuMakeMapCallback,this));
     mMapButton->setAnchorPoint(Vec2(0.5,0.5));
     mMapButton->setScale((visibleSize.width/5)/mMapButton->getNormalImage()->getContentSize().width);
-    Vec2 tMapButtonPos = Vec2((origin.x +visibleSize.width)/2,(origin.y + visibleSize.height)/2 - mMapButton->getNormalImage()->getContentSize().height/3);
+    Vec2 tMapButtonPos = Vec2((origin.x +visibleSize.width)/2,(origin.y + visibleSize.height)/2 - mMapButton->getNormalImage()->getContentSize().height/4);
     mMapButton->setPosition(tMapButtonPos);
     
     
     auto mSettingButton = MenuItemImage::create("SettingNormal.png","SettingSelected.png",CC_CALLBACK_1(MainMenuScene::menuSettingCallback,this));
     mSettingButton->setScale((visibleSize.width/12)/mSettingButton->getNormalImage()->getContentSize().width);
     mSettingButton->setAnchorPoint(Vec2(0.5,1));
-	Vec2 tSettingButtonPos = Vec2((origin.x + visibleSize.width) / 4, mMapButton->getPosition().y + 50);
+	Vec2 tSettingButtonPos = Vec2(origin.x + visibleSize.width / 2, mMapButton->getPosition().y - 70);
     mSettingButton->setPosition(tSettingButtonPos);
     
-    auto tShopButton = MenuItemImage::create("ShopNormal.png","ShopSelected.png",  CC_CALLBACK_1(MainMenuScene::menuShopCallback, this));
+    /*auto tShopButton = MenuItemImage::create("ShopNormal.png","ShopSelected.png",  CC_CALLBACK_1(MainMenuScene::menuShopCallback, this));
     tShopButton->setAnchorPoint(Vec2(0.5,1));
     tShopButton->setScale(visibleSize.width/12/tShopButton->getNormalImage()->getContentSize().width);
-	tShopButton->setPosition((origin.x + visibleSize.width) / 4 * 3, mMapButton->getPosition().y + 50);
+	tShopButton->setPosition((origin.x + visibleSize.width) / 4 * 3, mMapButton->getPosition().y + 50);*/
     
     cocos2d::Vector<MenuItem*> items;
     items.pushBack(mRaceButton);
     items.pushBack(mMapButton);
     items.pushBack(mSettingButton);
-    items.pushBack(tShopButton);
+    //items.pushBack(tShopButton);
     
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);

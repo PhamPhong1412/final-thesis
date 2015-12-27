@@ -62,7 +62,8 @@ public:
     void selectedItemRootListEvent(Ref *sender, ui::ListView::EventType type);
     void selectedItemChildListEvent(Ref *sender, ui::ListView::EventType type);
     string getNameWithNumber(int number);
-    
+
+	void helpPress(cocos2d::Ref* pSender);
     void saveMap(cocos2d::Ref* pSender);
 	void flipTile(cocos2d::Ref* pSender);
     void startMove(cocos2d::Ref *pSender);

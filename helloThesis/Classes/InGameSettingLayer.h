@@ -9,6 +9,7 @@ class InGameSettingLayer : public HUDLayer
 private:
     void menuHomeCallback();
 	void menuReplayCallback();
+	void menuBackCallback();
 	bool init();
 public:
 	InGameSettingLayer(Layer* parent);

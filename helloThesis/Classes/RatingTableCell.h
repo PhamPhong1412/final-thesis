@@ -24,8 +24,9 @@ public:
     ~RatingTableCell();
     
     CC_SYNTHESIZE(cocos2d::Sprite*, _cellBackground, CellBackground);
-    CC_SYNTHESIZE(cocos2d::ui::Text*, _lbNickName, NickNameLabel);
-    CC_SYNTHESIZE(cocos2d::ui::Text*, _lbPlayCount, PlayCountLabel);
-    CC_SYNTHESIZE(cocos2d::ui::Text*, _lbTotalScore, TotalScoreLabel);
+	CC_SYNTHESIZE(Label*, _lbIndex, IndexLabel);
+    CC_SYNTHESIZE(Label*, _lbNickName, NickNameLabel);
+	CC_SYNTHESIZE(Label*, _lbPlayCount, PlayCountLabel);
+	CC_SYNTHESIZE(Label*, _lbTotalScore, TotalScoreLabel);
 };
 #endif /* defined(__GameRun__RatingTableCell__) */

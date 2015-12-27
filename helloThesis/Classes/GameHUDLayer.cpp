@@ -20,6 +20,13 @@ bool GameHUDLayer::init()
 	background->setScale(0.5);
 	this->addChild(background);
 
+	auto infoLabel = Label::createWithTTF("Do u want to upload \n      this map...", "Marker Felt.ttf", 30);
+	infoLabel->setAnchorPoint(Vec2(0.5, 0.5));
+	// position the label on the center of the screen
+	infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2 - 53 , origin.y + visibleSize.height/2 + 15));
+	infoLabel->setTextColor(Color4B(255, 195, 0, 255));
+	this->addChild(infoLabel);
+
 	cocos2d::Vector<MenuItem*> items;
 
 	auto mBackButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(GameHUDLayer::menuBackCallback, this));

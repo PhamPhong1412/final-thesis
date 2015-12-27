@@ -50,7 +50,7 @@ bool MainGameScene::init()
 #pragma region menu
 	cocos2d::Vector<MenuItem*> items;
 
-	auto mSettingButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_1(MainGameScene::menuSettingCallback, this));
+	auto mSettingButton = MenuItemImage::create("Pause1.png", "Pause2.png", CC_CALLBACK_1(MainGameScene::menuSettingCallback, this));
 	mSettingButton->setAnchorPoint(Vec2(1, 1));
 	mSettingButton->setScale(BUTTON_SIZE / mSettingButton->getContentSize().width);
 	mSettingButton->setPosition(Vec2(origin.x + visibleSize.width- 15, origin.y + visibleSize.height - 15));

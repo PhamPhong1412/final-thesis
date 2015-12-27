@@ -66,7 +66,7 @@ bool WidthHeightChooseHUD::init(bool withBackground)
 	infoLabel = Label::createWithTTF("Do u want to contine your map...", "Marker Felt.ttf", 30);
 	infoLabel->setAnchorPoint(Vec2(0.5, 1));
 	// position the label on the center of the screen
-	infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2, origin.y + visibleSize.height - 80));
+	infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2, origin.y + visibleSize.height - 100));
 	infoLabel->setTextColor(Color4B(255, 195, 0, 255));
 	this->addChild(infoLabel);
     
@@ -78,13 +78,13 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     mBackButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/4,origin.y + 50));
     items.pushBack(mBackButton);
     
-    mNewButton = MenuItemImage::create("ExitNormal.png", "ExitSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNewCallback, this));
+    mNewButton = MenuItemImage::create("AddNormal.png", "AddSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNewCallback, this));
     mNewButton->setAnchorPoint(Vec2(0.5, 0));
     mNewButton->setScale(BUTTON_SIZE / mNewButton->getContentSize().width);
     mNewButton->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH/2,origin.y + 50));
     items.pushBack(mNewButton);
     
-    mNextButton = MenuItemImage::create("AddNormal.png", "AddSelected.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNextCallback, this));
+    mNextButton = MenuItemImage::create("Next2.png", "Next1.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuNextCallback, this));
     mNextButton->setAnchorPoint(Vec2(0.5, 0));
     mNextButton->setScale(BUTTON_SIZE / mNextButton->getContentSize().width);
     mNextButton->setPosition(Vec2((origin.x + DESIGN_SCREEN_WIDTH*3)/4, origin.y + 50 ));
@@ -99,11 +99,12 @@ bool WidthHeightChooseHUD::init(bool withBackground)
 	{
 		mHeightEditBox->setVisible(false);
 		mWidthEditBox->setVisible(false);
-		infoLabel->setVisible(true);
+		
 	}
     else
     {
         mNewButton->setVisible(false);
+		infoLabel->setString("Add info of your map");
     }
     
     return true;
@@ -113,7 +114,7 @@ void WidthHeightChooseHUD::menuNewCallback()
 {
     mHeightEditBox->setVisible(true);
     mWidthEditBox->setVisible(true);
-    infoLabel->setVisible(false);
+    infoLabel->setString("Add info of your map");
     mNewButton->setVisible(false);
     haveLocalMap = false;
     
