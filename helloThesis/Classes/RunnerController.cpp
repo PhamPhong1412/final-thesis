@@ -46,13 +46,20 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
             case TAG_OBJECT_GROUND:
             {
 					runNormal();
-					float groundWidth = groundNode->getBoundingBox().getMaxX();
+					float groundWidth = groundNode->getBoundingBox().getMaxX(); 
+					auto s = groundNode->getContentSize();
+					auto dm = this->mModel->getContentSize();
+					auto d = this->mView->getContentSize();
 					bool positionCheckY = this->mModel->getPosY() - groundNode->getPosition().y > this->mModel->getBoundingBox().getMaxY() / 2;
 					float a1 = std::abs(this->mModel->getPosX() - groundNode->getPosition().x);
 					float a2 = this->mModel->getBoundingBox().getMaxX();
 					bool positionCheckX = std::abs(this->mModel->getPosX() - groundNode->getPosition().x) < (groundWidth / 2 + this->mModel->getBoundingBox().getMaxX() / 2);
-					if (positionCheckY&&positionCheckX)
+					if (positionCheckY&&positionCheckX){
+						this->mModel->isMultiJump = false;
 						this->mModel->setState(PlayerState::ON_GROUND);
+					}
+					else
+						this->mModel->isMultiJump = true;
                     break;
             }
             case TAG_OBJECT_BARNORMAL:
@@ -68,6 +75,16 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 				}
 				else{
 					runNormal();
+					float groundWidth = groundNode->getBoundingBox().getMaxX();
+					bool positionCheckY = this->mModel->getPosY() - groundNode->getPosition().y > this->mModel->getBoundingBox().getMaxY() / 2;
+					float a1 = std::abs(this->mModel->getPosX() - groundNode->getPosition().x);
+					float a2 = this->mModel->getBoundingBox().getMaxX();
+					bool positionCheckX = std::abs(this->mModel->getPosX() - groundNode->getPosition().x) < (groundWidth / 2 + this->mModel->getBoundingBox().getMaxX() / 2);
+					if (positionCheckY&&positionCheckX)
+						this->mModel->setState(PlayerState::ON_GROUND);
+					else
+						this->mModel->isMultiJump = true;
+					break;
 				}
                 break;
             }
@@ -99,7 +116,7 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 
 void Runner::endCollideGround(){
 	this->mModel->setState(PlayerState::ON_AIR);
-	this->mModel->isMultiJump = false;
+	this->mModel->isMultiJump = true;
 }
 
 void Runner::EndContact(b2Node* node, b2Contact* contact){
@@ -118,7 +135,7 @@ void Runner::EndContact(b2Node* node, b2Contact* contact){
 void Runner::runNormal(){
 	this->mModel->setVelocityX(15.0f*this->mModel->getDirection());
 	//this->mModel->setState(PlayerState::ON_GROUND);
-	this->mModel->isMultiJump = true;
+	//this->mModel->isMultiJump = false;
 }
 
 void Runner::jump(){

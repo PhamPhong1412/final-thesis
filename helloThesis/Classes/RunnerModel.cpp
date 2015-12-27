@@ -48,7 +48,8 @@ void RunnerModel::update(float delta){
 
 bool RunnerModel::canJump(){
 	bool onGround = isOnGround();
-	return (onGround || isMultiJump)&&this->getVelocityY()<1;
+	float y = this->getVelocityY();
+	return onGround || (this->getVelocityY()<1 && isMultiJump);
 }
 
 bool RunnerModel::isOnGround(){
@@ -63,7 +64,8 @@ float RunnerModel::getJumpSpeed(){
 		return BOOSTED_JUMP_SPEED;
 	}
 	else{
-		bool isJumpingMulti = isMultiJump && this->getVelocityY() <= -1;
+		bool isJumpingMulti = isMultiJump ;
+		float x = this->getVelocityX();
 		//if (isJumpingMulti)
 		return isJumpingMulti ? NORMAL_JUMP_SPEED/2 : NORMAL_JUMP_SPEED;
 	}
