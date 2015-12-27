@@ -12,6 +12,7 @@ class Runner : public b2Node
 private:
 
 
+	float lastX;
 	void collideGround(b2Node* groundNode, b2Contact* contact);
 	void endCollideGround();
 

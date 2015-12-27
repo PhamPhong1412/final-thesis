@@ -64,8 +64,8 @@ float RunnerModel::getJumpSpeed(){
 		return BOOSTED_JUMP_SPEED;
 	}
 	else{
-		bool isJumpingMulti = isMultiJump ;
-		float x = this->getVelocityX();
+		bool isJumpingMulti = isMultiJump;
+		float x = this->getPositionX();
 		//if (isJumpingMulti)
 		return isJumpingMulti ? NORMAL_JUMP_SPEED/2 : NORMAL_JUMP_SPEED;
 	}

@@ -18,7 +18,7 @@ private:
 	PlayerState mState = PlayerState::ON_GROUND;
 
 	int tag;
-
+	float lastX;
 	int direction; 
 	int changeDirectionCooldown;
 
