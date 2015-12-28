@@ -7,7 +7,7 @@ bool RealGamePlayLayer::init(std::string map,Layer *parentLayer)
 	{
 		//		return false;
 	}
-
+	mCanRate = false;
 	Size visibleSize = Director::getInstance()->getVisibleSize();
     this->mParentLayer = parentLayer;
 	this->mMap = map;
@@ -73,8 +73,20 @@ bool RealGamePlayLayer::init(std::string map,Layer *parentLayer)
 
 void RealGamePlayLayer::update(float delta){
 
-	updateQuadTree();
-	b2Layer::update(delta);
+	if (mRunner->mModel->finish() && !mCanRate)
+	{
+		//mCanUpMap = true;
+		////mRunner->mModel->setFinish(false);
+		//chooseLayer = new GameHUDLayer(this->mParentLayer);
+		//chooseLayer->setDelegate(this);
+		////this->removeChild(menu);
+		//this->addChild(chooseLayer);
+	}
+	else
+	{
+		updateQuadTree();
+		b2Layer::update(delta);
+	}
 }
 
 void RealGamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){

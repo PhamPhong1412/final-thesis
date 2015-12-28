@@ -24,7 +24,7 @@ public:
 
 	//virtual void getMID(std::string uid) {};
 
-	virtual void uploadMap(std::map<std::string, std::string> response) {};
+	virtual void uploadMap() {};
 
 };
 

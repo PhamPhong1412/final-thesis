@@ -24,7 +24,7 @@ private:
 	std::string mMap;
 	Camera* camera;
 	Follow* cameraFollow;
-
+	
 	float time;
 	int quadtreeUpdateCounter = 0;
 
@@ -36,7 +36,7 @@ private:
 public:
 	virtual bool init(std::string map, Layer *parentLayer);
 
-	virtual void uploadMap(std::map<std::string, std::string> response);
+	virtual void uploadMap();
 	virtual void exitBack();
 	virtual void saveMap();
 	void update(float delta);

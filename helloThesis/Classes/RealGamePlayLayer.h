@@ -19,7 +19,7 @@ private:
 	std::string mMap;
 	Camera* camera;
 	Follow* cameraFollow;
-
+	bool mCanRate;
 	int quadtreeUpdateCounter = 0;
 	//std::vector<ObjectNode>* currentObjectList;
 	set<string>* currentObjectList;

@@ -2,9 +2,9 @@
 
 HttpServices* HttpServices::inst = new HttpServices();
 
-inline bool HttpServices::checkValid(bool ex){
+inline bool HttpServices::checkValid(bool ex, HttpRequestMethod method){
 	if (!ex){
-		hideLoading(false);
+		hideLoading(false,method);
 		return true;
 	}
 else
@@ -14,7 +14,7 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 {
 
 	std::vector<char> *buffer = response->getResponseData();	
-	if (checkValid(buffer->size() != 0)){
+	if (checkValid((buffer->size() != 0),method)){
 		return;
 	}
 
@@ -23,14 +23,14 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 	Utility::strcpy(concatenated, s2.c_str());
 
 	Json * json = Json_create(concatenated);
-	if (checkValid(json != nullptr)){
+	if (checkValid((json != nullptr),method)){
 		return;
 	}
 	CC_SAFE_DELETE(concatenated);
 	json = Json_getItem(json, "data");
 	const char * result = Json_getString(json, "result", "fail");
 
-	if (checkValid(result != "fail")){
+	if (checkValid((result != "fail"),method)){
 		return;
 	}
 
@@ -46,7 +46,7 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 	returnDelegate(method, res);
 	//mDelegate->getUID("phong khung");
 
-	hideLoading(true);
+	hideLoading(true, method);
 }
 
 void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestParameter> RequestParameter, HttpRequestMethod method, bool isImmediate)
@@ -87,15 +87,29 @@ void HttpServices::showLoading(Layer* layer)
 	layer->addChild(mLoadingHUD);
 }
 
-void HttpServices::hideLoading(bool isSucess)
+void HttpServices::hideLoading(bool isSucess, HttpRequestMethod method)
 {
-	isSucess = true;
 	if (isSucess){
+		switch (method)
+		{
+		case HttpRequestMethod::UPLOAD_MAP:
+			MessageBox("Upload map sucess", "Sucess");
+		default:
+			break;
+		}
 		mLoadingHUD->exitLoading();
-		//mCurrentLayer->removeChildByTag(1111);
 	}
 	else{
 		//show network fail message
+		switch (method)
+		{
+		case HttpRequestMethod::UPLOAD_MAP: 
+			MessageBox("Cant up load map", "Failed");
+		default:
+			break;
+		}
+		
+		mLoadingHUD->exitLoading();
 	}
 }
 
@@ -111,7 +125,7 @@ std::string HttpServices::getMethodName(HttpRequestMethod method){
 void HttpServices::returnDelegate(HttpRequestMethod method, std::map<std::string, std::string> response){
 	switch (method)
 	{
-	//case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap("");
+	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap();
 	default:
 		break;
 	}

@@ -96,7 +96,7 @@ void TestGamePlayLayer::update(float delta){
 	
 }
 
-void TestGamePlayLayer::uploadMap(std::map<std::string, std::string> response)
+void TestGamePlayLayer::uploadMap()
 {
 	CCLOG("result");
 	auto mapMakingScene = MapMakingScene::createScene();

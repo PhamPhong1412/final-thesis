@@ -33,9 +33,9 @@ private:
 
 	LoadingHUDLayer *mLoadingHUD;
 	void showLoading(Layer* layer);
-	void hideLoading(bool isSucess);
+	void hideLoading(bool isSucess, HttpRequestMethod method);
 
-	inline bool checkValid(bool ass);
+	inline bool checkValid(bool ass, HttpRequestMethod method);
 
 	std::string getMethodName(HttpRequestMethod method);
 
