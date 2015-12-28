@@ -13,12 +13,13 @@
 #include "LoginScene.h"
 #include "RatingTableCell.h"
 #include "RankingScene.h"
+#include "HttpServices.h"
 
 USING_NS_CC;
 
 using namespace cocos2d::ui;
 
-class MainMenuScene : public Layer
+class MainMenuScene : public Layer, public GameHUDLayerDelegate, public HttpServicesDelegate
 
 {
 private:

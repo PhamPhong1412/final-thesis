@@ -9,6 +9,7 @@
 #include "DBContext.h"
 #include "MainGameScene.h"
 #include "WidthHeightChooseHUD.h"
+#include "HttpServices.h"
 
 using namespace cocos2d::ui;
 using namespace std;

@@ -1,8 +1,6 @@
 #include "TestGamePlayLayer.h"
 #include "MapMakingScene.h"
 
-#define phoneKey		"phone_id_mapping"
-#define mapData			"mapData"
 
 // on "init" you need to initialize your instance
 bool TestGamePlayLayer::init(std::string map, Layer *parentLayer)

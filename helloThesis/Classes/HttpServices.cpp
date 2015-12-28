@@ -104,7 +104,7 @@ void HttpServices::hideLoading(bool isSucess, HttpRequestMethod method)
 		switch (method)
 		{
 		case HttpRequestMethod::UPLOAD_MAP: 
-			MessageBox("Cant up load map", "Failed");
+			MessageBox("Cant upload map", "Failed");
 		default:
 			break;
 		}
@@ -117,16 +117,40 @@ std::string HttpServices::getMethodName(HttpRequestMethod method){
 	switch (method)
 	{
 	case HttpRequestMethod::UPLOAD_MAP: return "uploadMap";
+	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: return "getMapUploadTimeRank";
+	case HttpRequestMethod::GET_MAP_RATING_RANK: return "getMapRatingRank";
 	default:
 		break;
 	}
 }
 
+inline std::vector<HttpShortMapInfo> deserMapUploadTimeRank(std::map<std::string, std::string> response){
+	std::vector<HttpShortMapInfo> result;
+
+	std::string tmp = "map";
+	std::string delim = "splitter";
+	for (std::map<std::string, std::string>::iterator iter = response.begin(); iter != response.end(); ++iter)
+	{
+		std::string key = iter->first;
+
+		if (key.find(tmp) != std::string::npos){
+			std::vector<string> res = Utility::splitString(iter->second, delim);
+			string dm = res[0] + res[1];
+			HttpShortMapInfo  t = HttpShortMapInfo(dm, res[2], res[3], res[4], res[5]);
+			result.push_back(t);
+		}
+	}
+	return result;
+}
+
 void HttpServices::returnDelegate(HttpRequestMethod method, std::map<std::string, std::string> response){
 	switch (method)
 	{
-	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap();
+	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap(); break;
+	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
 	default:
 		break;
 	}
 }
+
+
