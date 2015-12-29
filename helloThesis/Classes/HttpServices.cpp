@@ -83,7 +83,7 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 void HttpServices::showLoading(Layer* layer)
 {
 	mCurrentLayer = layer;
-	mLoadingHUD = new LoadingHUDLayer(layer,-53,-18);
+	mLoadingHUD = new LoadingHUDLayer(layer);
 	layer->addChild(mLoadingHUD);
 }
 
@@ -136,7 +136,7 @@ inline std::vector<HttpShortMapInfo> deserMapUploadTimeRank(std::map<std::string
 		if (key.find(tmp) != std::string::npos){
 			std::vector<string> res = Utility::splitString(iter->second, delim);
 			string dm = res[0] + res[1];
-			HttpShortMapInfo  t = HttpShortMapInfo(dm, res[2], res[3], res[4], res[5]);
+			HttpShortMapInfo  t = HttpShortMapInfo(dm, res[2], res[3], res[4], res[5], "");
 			result.push_back(t);
 		}
 	}
@@ -146,10 +146,9 @@ inline std::vector<HttpShortMapInfo> deserMapUploadTimeRank(std::map<std::string
 void HttpServices::returnDelegate(HttpRequestMethod method, std::map<std::string, std::string> response){
 	switch (method)
 	{
-	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap();
-            break;
-	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response));
-            break;
+	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap(); break;
+	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
+	case HttpRequestMethod::GET_MAP_RATING_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
 	default:
 		break;
 	}

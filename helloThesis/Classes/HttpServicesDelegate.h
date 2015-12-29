@@ -17,15 +17,17 @@ typedef struct HttpShortMapInfo
 	std::string mid;
 	std::string creatorID;
 	std::string rating;
+	std::string data;
 	std::string uploadTime;
 	std::string rateCounter;
 
 	HttpShortMapInfo(std::string mapID, std::string creator, std::string rate,
-		std::string timeUpload, std::string ratecount)
+		std::string timeUpload, std::string ratecount, std::string dataOfMap)
 		:mid(mapID),
 		creatorID(creator),
 		rating(rate),
 		uploadTime(timeUpload),
+		data(dataOfMap),
 		rateCounter(ratecount)
 	{}
 };
