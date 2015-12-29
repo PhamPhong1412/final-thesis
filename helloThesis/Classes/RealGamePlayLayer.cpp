@@ -78,7 +78,7 @@ void RealGamePlayLayer::update(float delta){
 	{
 		mCanRate = true;
 		//mRunner->mModel->setFinish(false);
-		rateLayer = new RateHUDLayer(this->mParentLayer);
+		rateLayer = new RateHUDLayer(this->mParentLayer, time);
 		rateLayer->setDelegate(this);
 		//this->removeChild(menu);
 		this->addChild(rateLayer);
