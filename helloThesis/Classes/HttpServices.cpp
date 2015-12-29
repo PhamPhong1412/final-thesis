@@ -83,7 +83,7 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 void HttpServices::showLoading(Layer* layer)
 {
 	mCurrentLayer = layer;
-	mLoadingHUD = new LoadingHUDLayer(layer);
+	mLoadingHUD = new LoadingHUDLayer(layer, -53, -18);
 	layer->addChild(mLoadingHUD);
 }
 
@@ -119,6 +119,7 @@ std::string HttpServices::getMethodName(HttpRequestMethod method){
 	case HttpRequestMethod::UPLOAD_MAP: return "uploadMap";
 	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: return "getMapUploadTimeRank";
 	case HttpRequestMethod::GET_MAP_RATING_RANK: return "getMapRatingRank";
+	case HttpRequestMethod::GET_MAP_INFO: return "getMapInfo";
 	default:
 		break;
 	}
@@ -128,7 +129,7 @@ inline std::vector<HttpShortMapInfo> deserMapUploadTimeRank(std::map<std::string
 	std::vector<HttpShortMapInfo> result;
 
 	std::string tmp = "map";
-	std::string delim = "splitter";
+	std::string delim = "\t";
 	for (std::map<std::string, std::string>::iterator iter = response.begin(); iter != response.end(); ++iter)
 	{
 		std::string key = iter->first;
@@ -136,7 +137,7 @@ inline std::vector<HttpShortMapInfo> deserMapUploadTimeRank(std::map<std::string
 		if (key.find(tmp) != std::string::npos){
 			std::vector<string> res = Utility::splitString(iter->second, delim);
 			string dm = res[0] + res[1];
-			HttpShortMapInfo  t = HttpShortMapInfo(dm, res[2], res[3], res[4], res[5], "");
+			HttpShortMapInfo  t = HttpShortMapInfo(res[0], res[1], res[2], res[3], res[4], res[5]);
 			result.push_back(t);
 		}
 	}
@@ -149,6 +150,7 @@ void HttpServices::returnDelegate(HttpRequestMethod method, std::map<std::string
 	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap(); break;
 	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
 	case HttpRequestMethod::GET_MAP_RATING_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
+	case HttpRequestMethod::GET_MAP_INFO: mDelegate->getMapInfo(deserMapUploadTimeRank(response).at(0)); break;
 	default:
 		break;
 	}

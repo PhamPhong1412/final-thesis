@@ -9,6 +9,7 @@ enum HttpRequestMethod{
 	RATE_MAP,
 	GET_MAP_UPLOAD_TIME_RANK,
 	GET_MAP_RATING_RANK,
+	GET_MAP_INFO,
 	COMMENT_MAP
 };
 
@@ -51,6 +52,10 @@ public:
 	virtual void uploadMap() {};
 
 	virtual void getMapUploadTimeRank(std::vector<HttpShortMapInfo> result) {};
+
+	virtual void getMapRatingRank(std::vector<HttpShortMapInfo> result) {};
+
+	virtual void getMapInfo(HttpShortMapInfo result) {};
 
 };
 
