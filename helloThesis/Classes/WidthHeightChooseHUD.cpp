@@ -92,12 +92,6 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     mNextButton->setPosition(Vec2((origin.x + DESIGN_SCREEN_WIDTH*3)/4, origin.y + 50 ));
     items.pushBack(mNextButton);
     
-    auto mHidenKeyboardButton = MenuItemImage::create("Next2.png", "Next1.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuHideKeyboardCallback, this));
-    mHidenKeyboardButton->setAnchorPoint(Vec2(0, 1));
-    mHidenKeyboardButton->setScale(BUTTON_SIZE / mHidenKeyboardButton->getContentSize().width);
-    mHidenKeyboardButton->setPosition(Vec2(origin.x + 20, origin.y + DESIGN_SCREEN_HEIGHT - 20 ));
-    items.pushBack(mHidenKeyboardButton);
-    
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
 	
@@ -116,11 +110,6 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     }
     
     return true;
-}
-
-void WidthHeightChooseHUD::menuHideKeyboardCallback()
-{
-    
 }
 
 void WidthHeightChooseHUD::menuNewCallback()

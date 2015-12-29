@@ -34,6 +34,15 @@ class RateHUDLayer : public HUDLayer
 {
 private:
     RateHUDLayerDelegate *mDelegate;
+    MenuItemImage *mStar1Button;
+    MenuItemImage *mStar2Button;
+    MenuItemImage *mStar3Button;
+    
+    void menuStar1Callback();
+    void menuStar2Callback();
+    void menuStar3Callback();
+    
+    void menuReplayCallback();
     void menuNextCallback();
     void menuBackCallback();
     bool init(float x, float y);

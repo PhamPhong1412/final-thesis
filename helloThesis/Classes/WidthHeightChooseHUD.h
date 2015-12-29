@@ -37,7 +37,7 @@ class WidthHeightChooseHUD : public HUDLayer
 {
 private:
     WidthHeightChooseDelegate *mDelegate;
-    void menuHideKeyboardCallback();
+
     void menuBackCallback();
     void menuNewCallback();
 	void menuNextCallback();
