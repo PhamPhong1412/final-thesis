@@ -213,6 +213,9 @@
     <ClCompile Include="..\Classes\LoadingHUDLayer.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\RateHUDLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -340,6 +343,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\LoadingHUDLayer.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RateHUDLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

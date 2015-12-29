@@ -157,6 +157,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\GameMap.cpp" />
     <ClCompile Include="..\Classes\GLES-Render.cpp" />
     <ClCompile Include="..\Classes\LoadingHUDLayer.cpp" />
+    <ClCompile Include="..\Classes\RateHUDLayer.cpp" />
     <ClCompile Include="..\Classes\RealGamePlayLayer.cpp" />
     <ClCompile Include="..\Classes\TestGamePlayLayer.cpp" />
     <ClCompile Include="..\Classes\GroundObject.cpp" />
@@ -200,6 +201,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\GLES-Render.h" />
     <ClInclude Include="..\Classes\HttpServicesDelegate.h" />
     <ClInclude Include="..\Classes\LoadingHUDLayer.h" />
+    <ClInclude Include="..\Classes\RateHUDLayer.h" />
     <ClInclude Include="..\Classes\RealGamePlayLayer.h" />
     <ClInclude Include="..\Classes\TestGamePlayLayer.h" />
     <ClInclude Include="..\Classes\GroundObject.h" />
