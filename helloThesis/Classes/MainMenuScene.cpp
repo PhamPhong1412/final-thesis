@@ -83,18 +83,18 @@ void MainMenuScene::initButton()
     
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
-    this->addChild(menu, 1);
+    this->addChild(menu);
     
     
 }
 
 void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
 {
-	//auto rankScene = RankingScene::createScene();
-	//Director::getInstance()->replaceScene(rankScene);
-	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("start", "10"), HttpRequestParameter("end", "13") };
-	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK);
-	HttpServices::inst->setDelegate(this);
+	auto rankScene = RankingScene::createScene();
+	Director::getInstance()->replaceScene(rankScene);
+//	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("start", "10"), HttpRequestParameter("end", "13") };
+//	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK);
+//	HttpServices::inst->setDelegate(this);
 }
 
 void MainMenuScene::transitionToGameScene()

@@ -12,11 +12,11 @@ protected:
 	Sprite* background;
     bool mCanExitTouchOnSite;
 	bool isTouchInside(Touch* touch);
-	virtual bool init(Layer* parent,bool canExitTouchOnSite);
+	virtual bool init(Layer* parent,bool canExitTouchOnSite, float x, float y);
 	void exit();
     
 public:
-	HUDLayer(Layer* parent,bool canExit);
+	HUDLayer(Layer* parent,bool canExit, float x, float y);
 	~HUDLayer();
     
     

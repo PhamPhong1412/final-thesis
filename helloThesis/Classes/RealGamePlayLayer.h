@@ -8,17 +8,39 @@
 #include "QuadNode.h"
 #include "RunnerController.h"
 #include "GroundObject.h"
+#include "RateHUDLayer.h"
+
 #include "GameConfig.h"
 USING_NS_CC;
 
-class RealGamePlayLayer : public b2Layer
+class RealGamePlayLayerDelegate
+{
+public:
+    /**
+     * @js NA
+     * @lua NA
+     */
+    virtual ~RealGamePlayLayerDelegate() {}
+    /**
+     * @js NA
+     * @lua NA
+     */
+    virtual void realUpdateTime(float time) {};
+    
+};
+
+class RealGamePlayLayer : public b2Layer, public RateHUDLayerDelegate
 {
 private:
     Layer *mParentLayer;
+    RateHUDLayer *rateLayer;
 	QuadNode* quadTree;
 	std::string mMap;
 	Camera* camera;
 	Follow* cameraFollow;
+    RealGamePlayLayerDelegate *mDelegate;
+    
+    float time;
 	bool mCanRate;
 	int quadtreeUpdateCounter = 0;
 	//std::vector<ObjectNode>* currentObjectList;
@@ -27,6 +49,10 @@ private:
 	void updateQuadTree();
 public:
 	virtual bool init(std::string map,Layer *parentLayer);
+    virtual void exitBack();
+    virtual void ratePress(int Number);
+    
+    
 	void update(float delta);
 	void initTiles();
 	void createTiles(float xloc, float yLoc);
@@ -45,6 +71,8 @@ public:
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 	Runner* mRunner;
+    
+    void setDelegate(RealGamePlayLayerDelegate* pDelegate) { mDelegate = pDelegate; }
 	//CREATE_FUNC(GamePlayLayer);
 	//CC_SYNTHESIZE(Runner*, mRunner, Runner);
 

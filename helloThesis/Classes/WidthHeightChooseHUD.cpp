@@ -9,7 +9,7 @@
 #include "WidthHeightChooseHUD.h"
 #include "MainMenuScene.h"
 
-WidthHeightChooseHUD::WidthHeightChooseHUD(Layer* parent,bool canExit, bool withBackground) : HUDLayer(parent,canExit){
+WidthHeightChooseHUD::WidthHeightChooseHUD(Layer* parent,bool canExit, bool withBackground) : HUDLayer(parent,canExit, 0,0){
 	this->init(withBackground);
 }
 
@@ -22,6 +22,7 @@ bool WidthHeightChooseHUD::init(bool withBackground)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
+
 	if (!withBackground)
 	{
 		background = Sprite::create("bg3.png");
@@ -43,23 +44,24 @@ bool WidthHeightChooseHUD::init(bool withBackground)
 	mWidthEditBox->setFontSize(20);
 	mWidthEditBox->setAnchorPoint(Vec2(0.5,0.5));
 	mWidthEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + DESIGN_SCREEN_HEIGHT/2 ));
-    mWidthEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::NUMERIC );
+    mWidthEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::DECIMAL );
 	mWidthEditBox->setPlaceholderFontColor(Color3B::WHITE);
     mWidthEditBox->setPlaceholderFontSize(20);
     mWidthEditBox->setPlaceHolder("Input number tile of width");
 
-
+    
 	mHeightEditBox = ui::EditBox::create(Size(DESIGN_SCREEN_WIDTH / 3, 50), ui::Scale9Sprite::create("TextField.png"));
     mHeightEditBox->setMaxLength(3);
 	mHeightEditBox->setFontSize(20);
 	mHeightEditBox->setAnchorPoint(Vec2(0.5, 0.5));
 	mHeightEditBox->setPosition(Vec2(origin.x + boxSprite->getPosition().x,origin.y + DESIGN_SCREEN_HEIGHT/2 - 60));
-    mHeightEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::NUMERIC );
+    mHeightEditBox->setInputMode(cocos2d::ui::EditBox::InputMode::DECIMAL );
+    mHeightEditBox->setPlaceholderFontColor(Color3B::WHITE);
     mHeightEditBox->setPlaceHolder("Input number tile of height");
-	mHeightEditBox->setPlaceholderFontColor(Color3B::WHITE);
+//    mHeightEditBox->setReturnType(EditBox::KeyboardReturnType::DONE);
     mHeightEditBox->setPlaceholderFontSize(20);
-	mHeightEditBox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
 
+    
     this->addChild(mHeightEditBox);
     this->addChild(mWidthEditBox);
 
@@ -90,6 +92,12 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     mNextButton->setPosition(Vec2((origin.x + DESIGN_SCREEN_WIDTH*3)/4, origin.y + 50 ));
     items.pushBack(mNextButton);
     
+    auto mHidenKeyboardButton = MenuItemImage::create("Next2.png", "Next1.png", CC_CALLBACK_0(WidthHeightChooseHUD::menuHideKeyboardCallback, this));
+    mHidenKeyboardButton->setAnchorPoint(Vec2(0, 1));
+    mHidenKeyboardButton->setScale(BUTTON_SIZE / mHidenKeyboardButton->getContentSize().width);
+    mHidenKeyboardButton->setPosition(Vec2(origin.x + 20, origin.y + DESIGN_SCREEN_HEIGHT - 20 ));
+    items.pushBack(mHidenKeyboardButton);
+    
     auto menu = Menu::createWithArray(items);
     menu->setPosition(Vec2::ZERO);
 	
@@ -110,6 +118,11 @@ bool WidthHeightChooseHUD::init(bool withBackground)
     return true;
 }
 
+void WidthHeightChooseHUD::menuHideKeyboardCallback()
+{
+    
+}
+
 void WidthHeightChooseHUD::menuNewCallback()
 {
     mHeightEditBox->setVisible(true);
@@ -117,12 +130,10 @@ void WidthHeightChooseHUD::menuNewCallback()
     infoLabel->setString("Add info of your map");
     mNewButton->setVisible(false);
     haveLocalMap = false;
-    
 }
 
 void WidthHeightChooseHUD::menuNextCallback()
 {
-	
 	if (haveLocalMap)
 	{
 		mDelegate->loadLocalMap();
@@ -158,7 +169,6 @@ void WidthHeightChooseHUD::menuNextCallback()
 }
 void WidthHeightChooseHUD::menuBackCallback()
 {   
-	
     auto mainScene = MainMenuScene::createScene();
     Director::getInstance()->replaceScene(mainScene);
 	

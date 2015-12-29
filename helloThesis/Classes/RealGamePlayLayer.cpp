@@ -72,21 +72,32 @@ bool RealGamePlayLayer::init(std::string map,Layer *parentLayer)
 }
 
 void RealGamePlayLayer::update(float delta){
-
+    time+= delta;
+    this->mDelegate->realUpdateTime(time);
 	if (mRunner->mModel->finish() && !mCanRate)
 	{
-		//mCanUpMap = true;
-		////mRunner->mModel->setFinish(false);
-		//chooseLayer = new GameHUDLayer(this->mParentLayer);
-		//chooseLayer->setDelegate(this);
-		////this->removeChild(menu);
-		//this->addChild(chooseLayer);
+		mCanRate = true;
+		//mRunner->mModel->setFinish(false);
+		rateLayer = new RateHUDLayer(this->mParentLayer);
+		rateLayer->setDelegate(this);
+		//this->removeChild(menu);
+		this->addChild(rateLayer);
 	}
 	else
 	{
 		updateQuadTree();
 		b2Layer::update(delta);
 	}
+}
+
+void RealGamePlayLayer::exitBack()
+{
+    
+}
+
+void RealGamePlayLayer::ratePress(int Number)
+{
+    CCLOG("%i", Number);
 }
 
 void RealGamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){

@@ -1,7 +1,7 @@
 #include "HUDLayer.h"
 
-HUDLayer::HUDLayer(Layer* parent,bool canExit){
-	this->init(parent,canExit);
+HUDLayer::HUDLayer(Layer* parent,bool canExit, float x, float y){
+	this->init(parent,canExit, x, y);
 	this->autorelease();
 }
 
@@ -9,7 +9,7 @@ HUDLayer::~HUDLayer(){
 }
 
 // on "init" you need to initialize your instance
-bool HUDLayer::init(Layer* parent,bool canExitTouchOnSite)
+bool HUDLayer::init(Layer* parent,bool canExitTouchOnSite, float x, float y)
 {
 	if (!Layer::init())
 	{
@@ -17,7 +17,7 @@ bool HUDLayer::init(Layer* parent,bool canExitTouchOnSite)
 	}
     mCanExitTouchOnSite = canExitTouchOnSite;
 	auto bg = cocos2d::LayerColor::create(Color4B(53, 53, 53, 100));
-	bg->setPosition(-53, -18);
+	bg->setPosition(x,y);
 	this->addChild(bg);
 
 	for (auto node : parent->getChildren()){

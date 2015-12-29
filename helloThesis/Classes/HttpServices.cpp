@@ -83,7 +83,7 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 void HttpServices::showLoading(Layer* layer)
 {
 	mCurrentLayer = layer;
-	mLoadingHUD = new LoadingHUDLayer(layer);
+	mLoadingHUD = new LoadingHUDLayer(layer,-53,-18);
 	layer->addChild(mLoadingHUD);
 }
 
@@ -146,8 +146,10 @@ inline std::vector<HttpShortMapInfo> deserMapUploadTimeRank(std::map<std::string
 void HttpServices::returnDelegate(HttpRequestMethod method, std::map<std::string, std::string> response){
 	switch (method)
 	{
-	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap(); break;
-	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
+	case HttpRequestMethod::UPLOAD_MAP: mDelegate->uploadMap();
+            break;
+	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response));
+            break;
 	default:
 		break;
 	}

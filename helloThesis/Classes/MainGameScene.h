@@ -14,10 +14,11 @@
 
 USING_NS_CC;
 
-class MainGameScene : public Layer
+class MainGameScene : public Layer, public TestGamePlayLayerDelegate, public RealGamePlayLayerDelegate
 {
 private:
 	bool isPause;
+    Label *mTimeLabel;
 public:
 
 	static cocos2d::Scene* createScene(bool isTestMap, std::string mapText);
@@ -32,6 +33,8 @@ public:
 	void menuBackCallback(cocos2d::Ref* pSender);
 	void menuSettingCallback(cocos2d::Ref* pSender);
     
+    virtual void testUpdateTime(float time);
+    virtual void realUpdateTime(float time);
 	CREATE_FUNC(MainGameScene);
 };
 

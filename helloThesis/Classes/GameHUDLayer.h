@@ -28,7 +28,7 @@ private:
 	GameHUDLayerDelegate *mDelegate;
 	void menuNextCallback();
 	void menuBackCallback();
-	bool init();
+	bool init(float x, float y);
 public:
 	GameHUDLayer(Layer* parent);
 	~GameHUDLayer();

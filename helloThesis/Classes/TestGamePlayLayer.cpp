@@ -30,33 +30,6 @@ bool TestGamePlayLayer::init(std::string map, Layer *parentLayer)
 	currentQuadNode = new vector<QuadNode*>();
 	quadtreeUpdateCounter = 10;
 	updateQuadTree();
-
-
-	/*std::vector<std::string> part = Utility::splitString(map, "dm");
-
-	std::vector<std::string> widthHeight = Utility::splitString(part.at(0), "\n");
-	int nTilesWidth = std::stoi(widthHeight.at(0));
-	int nTilesHeight = std::stoi(widthHeight.at(1));
-
-	float x, y;
-	float tileSize = 70 / GameConfig::scale;
-	std::vector<std::string> objectData = Utility::splitString(part.at(1), "\n");
-	for (int i = 0; i < nTilesHeight; i++){
-		y = (int)(nTilesHeight - i - 1) * tileSize;
-		int tmp = y;
-		y = tmp;
-		std::vector<std::string> currentLineData = Utility::splitString(objectData.at(i), ";");
-		for (int j = 0; j < nTilesWidth; j++){
-			std::string tileName = currentLineData.at(j);
-			if (tileName == "0")
-				continue;
-			x = j * tileSize ;
-			addTile(tileName, x, y);
-		}
-	}
-		this->runAction(cocos2d::Follow::create(mRunner, Rect(0, 0, x / GameConfig::scale,
-		y / GameConfig::scale)));
-		*/
 	
 	auto listener = EventListenerTouchOneByOne::create();
 
@@ -76,7 +49,8 @@ bool TestGamePlayLayer::init(std::string map, Layer *parentLayer)
 
 void TestGamePlayLayer::update(float delta){
 	time += delta;
-	
+    this->mDelegate->testUpdateTime(time);
+    
 	if (mRunner->mModel->finish() && !mCanUpMap)
 	{
 		mCanUpMap = true;
@@ -215,7 +189,6 @@ void TestGamePlayLayer::EndContact(b2Contact* contact)
 #pragma endregion
 
 void TestGamePlayLayer::updateQuadTree(){
-
 
 	if (quadtreeUpdateCounter++ > 10){
 		quadtreeUpdateCounter = 0;

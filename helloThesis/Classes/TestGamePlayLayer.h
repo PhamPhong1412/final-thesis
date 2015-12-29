@@ -14,6 +14,23 @@
 #include "HttpServices.h"
 USING_NS_CC;
 
+
+class TestGamePlayLayerDelegate
+{
+public:
+    /**
+     * @js NA
+     * @lua NA
+     */
+    virtual ~TestGamePlayLayerDelegate() {}
+    /**
+     * @js NA
+     * @lua NA
+     */
+    virtual void testUpdateTime(float time) {};
+    
+};
+
 class TestGamePlayLayer : public b2Layer, public GameHUDLayerDelegate, public HttpServicesDelegate
 {
 private:
@@ -24,7 +41,7 @@ private:
 	std::string mMap;
 	Camera* camera;
 	Follow* cameraFollow;
-	
+	TestGamePlayLayerDelegate *mDelegate;
 	float time;
 	int quadtreeUpdateCounter = 0;
 
@@ -57,6 +74,8 @@ public:
 	void PreSolve(b2Contact* contact, const b2Manifold* oldManifold);
 	void PostSolve(b2Contact* contact, const b2ContactImpulse* impulse);
 	Runner* mRunner;
+    
+    void setDelegate(TestGamePlayLayerDelegate* pDelegate) { mDelegate = pDelegate; }
 	//CREATE_FUNC(GamePlayLayer);
 	//CC_SYNTHESIZE(Runner*, mRunner, Runner);
 

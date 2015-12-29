@@ -29,10 +29,10 @@ class LoadingHUDLayer : public HUDLayer
 {
 private:
  
-    bool init();
+    bool init(float x, float y);
 public:
 	void exitLoading();
-	LoadingHUDLayer(Layer* parent);
+	LoadingHUDLayer(Layer* parent, float x, float y);
 	~LoadingHUDLayer();
 };
 

@@ -8,7 +8,7 @@
 
 #include "TimeHUDLayer.h"
 
-TimeHUDLayer::TimeHUDLayer(Layer* parent) : HUDLayer(parent,true){
+TimeHUDLayer::TimeHUDLayer(Layer* parent) : HUDLayer(parent,true, -53,-18){
     this->init();
 }
 

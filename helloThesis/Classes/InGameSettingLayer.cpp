@@ -1,7 +1,7 @@
 #include "InGameSettingLayer.h"
 #include "MainMenuScene.h"
 
-InGameSettingLayer::InGameSettingLayer(Layer* parent) : HUDLayer(parent,true){
+InGameSettingLayer::InGameSettingLayer(Layer* parent) : HUDLayer(parent,true,0,0){
 	this->init();
 }
 

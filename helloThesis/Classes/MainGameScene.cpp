@@ -45,7 +45,14 @@ bool MainGameScene::init()
 	//this->addChild(backgroundLayder);
 
 	//auto gamePlayLayer = GamePlayLayer::create();
-	
+    
+    mTimeLabel = Label::createWithTTF("0", "Marker Felt.ttf", 30);
+    mTimeLabel->setAnchorPoint(Vec2(0.5, 1));
+    // position the label on the center of the screen
+    mTimeLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2  , origin.y + DESIGN_SCREEN_HEIGHT - 40 ));
+    mTimeLabel->setTextColor(Color4B(255, 195, 0, 255));
+    this->addChild(mTimeLabel);
+    
 
 #pragma region menu
 	cocos2d::Vector<MenuItem*> items;
@@ -71,15 +78,27 @@ void MainGameScene::initWithTestGame(std::string mapText,Layer *Parentlayer)
 	
 	auto testGamePlayLayer = new TestGamePlayLayer();
 	testGamePlayLayer->init(mapText, Parentlayer);
+    testGamePlayLayer->setDelegate(this);
 	this->addChild(testGamePlayLayer);
 }
 
 void MainGameScene::initWithRealGame(std::string mapText,Layer *Parentlayer)
 {
-	
 	auto realGamePlayLayer = new RealGamePlayLayer();
 	realGamePlayLayer->init(mapText,Parentlayer);
+    realGamePlayLayer->setDelegate(this);
+    
 	this->addChild(realGamePlayLayer);
+}
+
+void MainGameScene::testUpdateTime(float time)
+{
+    mTimeLabel->setString(StringUtils::format("%f",time));
+}
+
+void MainGameScene::realUpdateTime(float time)
+{
+    mTimeLabel->setString(StringUtils::format("%f",time));
 }
 
 void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)
