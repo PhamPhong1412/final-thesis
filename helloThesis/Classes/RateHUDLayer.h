@@ -45,7 +45,7 @@ private:
     void menuReplayCallback();
     void menuNextCallback();
     void menuBackCallback();
-    bool init(float x, float y);
+    bool init(float x, float y, float time);
 public:
     RateHUDLayer(Layer* parent, float time);
     ~RateHUDLayer();

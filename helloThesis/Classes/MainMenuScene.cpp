@@ -90,11 +90,8 @@ void MainMenuScene::initButton()
 
 void MainMenuScene::menuPlayCallback(cocos2d::Ref *pSender)
 {
-	//auto rankScene = RankingScene::createScene();
-	//Director::getInstance()->replaceScene(rankScene);
-	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("mid", "0_ft8") };
-	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::GET_MAP_INFO);
-	HttpServices::inst->setDelegate(this);
+	auto rankScene = RankingScene::createScene();
+	Director::getInstance()->replaceScene(rankScene);
 }
 
 void MainMenuScene::transitionToGameScene()

@@ -94,6 +94,11 @@ void HttpServices::hideLoading(bool isSucess, HttpRequestMethod method)
 		{
 		case HttpRequestMethod::UPLOAD_MAP:
 			MessageBox("Upload map sucess", "Sucess");
+			break;
+		case HttpRequestMethod::RATE_MAP:
+			MessageBox("Rate map sucess", "Sucess");
+			break;
+
 		default:
 			break;
 		}
@@ -103,8 +108,12 @@ void HttpServices::hideLoading(bool isSucess, HttpRequestMethod method)
 		//show network fail message
 		switch (method)
 		{
-		case HttpRequestMethod::UPLOAD_MAP: 
+		case HttpRequestMethod::UPLOAD_MAP:
 			MessageBox("Cant upload map", "Failed");
+			break;
+		case HttpRequestMethod::RATE_MAP:
+			MessageBox("Cant rate map", "Failed");
+			break;
 		default:
 			break;
 		}
@@ -120,6 +129,7 @@ std::string HttpServices::getMethodName(HttpRequestMethod method){
 	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: return "getMapUploadTimeRank";
 	case HttpRequestMethod::GET_MAP_RATING_RANK: return "getMapRatingRank";
 	case HttpRequestMethod::GET_MAP_INFO: return "getMapInfo";
+	case HttpRequestMethod::RATE_MAP: return "rateMap";
 	default:
 		break;
 	}
@@ -137,7 +147,7 @@ inline std::vector<HttpShortMapInfo> deserMapUploadTimeRank(std::map<std::string
 		if (key.find(tmp) != std::string::npos){
 			std::vector<string> res = Utility::splitString(iter->second, delim);
 			string dm = res[0] + res[1];
-			HttpShortMapInfo  t = HttpShortMapInfo(res[0], res[1], res[2], res[3], res[4], res[5]);
+			HttpShortMapInfo  t = HttpShortMapInfo(res[0], res[1], res[2], res[3], res[4], res[5], res[6]);
 			result.push_back(t);
 		}
 	}
@@ -151,6 +161,7 @@ void HttpServices::returnDelegate(HttpRequestMethod method, std::map<std::string
 	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
 	case HttpRequestMethod::GET_MAP_RATING_RANK: mDelegate->getMapUploadTimeRank(deserMapUploadTimeRank(response)); break;
 	case HttpRequestMethod::GET_MAP_INFO: mDelegate->getMapInfo(deserMapUploadTimeRank(response).at(0)); break;
+	case HttpRequestMethod::RATE_MAP: mDelegate->rateMap(); break;
 	default:
 		break;
 	}

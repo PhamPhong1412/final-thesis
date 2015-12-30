@@ -21,16 +21,22 @@ typedef struct HttpShortMapInfo
 	std::string data;
 	std::string uploadTime;
 	std::string rateCounter;
+	std::string playTime;
 
 	HttpShortMapInfo(std::string mapID, std::string creator, std::string rate,
-		std::string timeUpload, std::string ratecount, std::string dataOfMap)
+		std::string timeUpload, std::string ratecount, std::string dataOfMap, std::string timePlay)
 		:mid(mapID),
 		creatorID(creator),
 		rating(rate),
 		uploadTime(timeUpload),
 		data(dataOfMap),
+		playTime(timePlay),
 		rateCounter(ratecount)
 	{}
+	HttpShortMapInfo()
+	{
+		
+	}
 };
 
 class HttpServicesDelegate
@@ -57,6 +63,7 @@ public:
 
 	virtual void getMapInfo(HttpShortMapInfo result) {};
 
+	virtual void rateMap() {};
 };
 
 #endif // __HELLOWORLD_SCENE_H__

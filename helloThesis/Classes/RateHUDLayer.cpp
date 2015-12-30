@@ -11,7 +11,7 @@
 
 // on "init" you need to initialize your instance
 RateHUDLayer::RateHUDLayer(Layer* parent, float time) : HUDLayer(parent, false, -53,-18){
-    this->init(-53,-18);
+    this->init(-53,-18, time);
 }
 
 RateHUDLayer::~RateHUDLayer(){
@@ -19,7 +19,7 @@ RateHUDLayer::~RateHUDLayer(){
 }
 
 // on "init" you need to initialize your instance
-bool RateHUDLayer::init(float x, float y)
+bool RateHUDLayer::init(float x, float y, float time)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
@@ -29,7 +29,7 @@ bool RateHUDLayer::init(float x, float y)
     background->setScale(0.5,0.7);
     this->addChild(background);
     
-    auto infoLabel = Label::createWithTTF("Time", "Marker Felt.ttf", 30);
+    auto infoLabel = Label::createWithTTF(StringUtils::format("Time: %f", time), "Marker Felt.ttf", 30);
     infoLabel->setAnchorPoint(Vec2(0.5, 0.5));
     // position the label on the center of the screen
     infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2 + x , origin.y + visibleSize.height/2 + 100 + y));

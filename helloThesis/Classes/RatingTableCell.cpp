@@ -14,7 +14,7 @@ RatingTableCell::RatingTableCell():_cellBackground(NULL), _lbNickName(NULL), _lb
     const float gapLeft = 50.0f;
     const float gapRight = 10.0f;
     
-    const float fontSize = 18.0f;
+    const float fontSize = 15.0f;
     
     const float widthPlayCount  = 40.0f;
     const float widthTotalScore = 80.0f;
@@ -29,11 +29,11 @@ RatingTableCell::RatingTableCell():_cellBackground(NULL), _lbNickName(NULL), _lb
     sprite->setScale(GameConfig::RANK_TABLE_WIDTH/spriteSize.width,GameConfig::RANK_TABLE_CELL_HEIGHT/spriteSize.height);
     this->addChild(sprite);
 
-	auto *star = Sprite::create("Star3.png");
-	star->setAnchorPoint(Vec2(1, 0.5));
-	star->setPosition(Vec2(GameConfig::RANK_TABLE_WIDTH - 10, GameConfig::RANK_TABLE_CELL_HEIGHT / 2));
-	star->setScale(0.5);
-	this->addChild(star);
+	_lbStarSprite = Sprite::create("Star3.png");
+	_lbStarSprite->setAnchorPoint(Vec2(1, 0.5));
+	_lbStarSprite->setPosition(Vec2(GameConfig::RANK_TABLE_WIDTH - 10, GameConfig::RANK_TABLE_CELL_HEIGHT / 2));
+	_lbStarSprite->setScale(0.5);
+	this->addChild(_lbStarSprite);
 
 	// Text : Index
 	_lbIndex = Label::createWithTTF("", "arial.ttf", fontSize);

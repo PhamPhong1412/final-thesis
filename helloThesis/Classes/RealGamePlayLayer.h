@@ -9,7 +9,7 @@
 #include "RunnerController.h"
 #include "GroundObject.h"
 #include "RateHUDLayer.h"
-
+#include "HttpServices.h"
 #include "GameConfig.h"
 USING_NS_CC;
 
@@ -29,7 +29,7 @@ public:
     
 };
 
-class RealGamePlayLayer : public b2Layer, public RateHUDLayerDelegate
+class RealGamePlayLayer : public b2Layer, public RateHUDLayerDelegate, public HttpServicesDelegate
 {
 private:
     Layer *mParentLayer;
@@ -47,8 +47,9 @@ private:
 	set<string>* currentObjectList;
 	vector<QuadNode*>* currentQuadNode;
 	void updateQuadTree();
+	HttpShortMapInfo mMapInfo;
 public:
-	virtual bool init(std::string map,Layer *parentLayer);
+	virtual bool init(std::string map, Layer *parentLayer, HttpShortMapInfo mapInfo);
     virtual void exitBack();
     virtual void ratePress(int Number);
     
@@ -73,6 +74,8 @@ public:
 	Runner* mRunner;
     
     void setDelegate(RealGamePlayLayerDelegate* pDelegate) { mDelegate = pDelegate; }
+
+	virtual void rateMap();
 	//CREATE_FUNC(GamePlayLayer);
 	//CC_SYNTHESIZE(Runner*, mRunner, Runner);
 

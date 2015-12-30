@@ -15,18 +15,25 @@
 #include "GameConfig.h"
 #include "RatingTableCell.h"
 #include "MainMenuScene.h"
+#include "HttpServices.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
 
-class RankingScene : public Layer,public cocos2d::extension::TableViewDelegate,cocos2d::extension::TableViewDataSource
+class RankingScene : public Layer,public cocos2d::extension::TableViewDelegate,cocos2d::extension::TableViewDataSource, public HttpServicesDelegate
 {
 private:
 	MenuItemImage *mNewButton;
 	MenuItemImage *mTopRateButton;
 
+	std::vector<HttpShortMapInfo> listMap;
     cocos2d::Size visibleSize;
     cocos2d::Vec2 origin;
+	TableView* tableView;
+
+	bool mIsStopLoad;
+	int currentSize;
+	int pageSize;
 public:
     
     static cocos2d::Scene* createScene();
@@ -48,7 +55,13 @@ public:
     virtual void tableCellTouched(TableView *table, TableViewCell *cell);
     
     virtual void scrollViewDidScroll(cocos2d::extension::ScrollView *view) {};
-    
+
+	virtual void getMapRatingRank(std::vector<HttpShortMapInfo> result);
+	virtual void getMapUploadTimeRank(std::vector<HttpShortMapInfo> result);
+	virtual void getMapInfo(HttpShortMapInfo result);
+
+	void loadNew();
+	void loadTop();
     CREATE_FUNC(RankingScene);
 };
 #endif /* defined(__GameRun__RankingScene__) */

@@ -19,15 +19,16 @@ class MainGameScene : public Layer, public TestGamePlayLayerDelegate, public Rea
 private:
 	bool isPause;
     Label *mTimeLabel;
+	
 public:
 
-	static cocos2d::Scene* createScene(bool isTestMap, std::string mapText);
+	static cocos2d::Scene* createScene(bool isTestMap, std::string mapText, HttpShortMapInfo mapInfo);
 
 	virtual bool init();
 
 	void initWithTestGame(std::string mapText,Layer *ParentLayer);
-	void initWithRealGame(std::string mapText,Layer *ParentLayer);
-
+	void initWithRealGame(std::string mapText, Layer *ParentLayer, HttpShortMapInfo mapInfo);
+	
 	void menuPlayCallback(cocos2d::Ref* pSender);
 
 	void menuBackCallback(cocos2d::Ref* pSender);

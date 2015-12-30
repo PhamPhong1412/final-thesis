@@ -1,7 +1,7 @@
 ﻿#include "MainGameScene.h"
 #include "RankingScene.h"
 
-Scene* MainGameScene::createScene(bool isTestMap,std::string mapText)
+Scene* MainGameScene::createScene(bool isTestMap, std::string mapText, HttpShortMapInfo mapInfo)
 {
 	// 'scene' is an autorelease object
 	auto scene = Scene::create();
@@ -17,7 +17,7 @@ Scene* MainGameScene::createScene(bool isTestMap,std::string mapText)
 	}
 	else
 	{
-		layer->initWithRealGame(mapText, layer);
+		layer->initWithRealGame(mapText, layer, mapInfo);
 	}
 	// add layer as a child to scene
 	scene->addChild(layer);
@@ -51,6 +51,7 @@ bool MainGameScene::init()
     // position the label on the center of the screen
     mTimeLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2  , origin.y + DESIGN_SCREEN_HEIGHT - 40 ));
     mTimeLabel->setTextColor(Color4B(255, 195, 0, 255));
+	mTimeLabel->setZOrder(100);
     this->addChild(mTimeLabel);
     
 
@@ -82,10 +83,10 @@ void MainGameScene::initWithTestGame(std::string mapText,Layer *Parentlayer)
 	this->addChild(testGamePlayLayer);
 }
 
-void MainGameScene::initWithRealGame(std::string mapText,Layer *Parentlayer)
+void MainGameScene::initWithRealGame(std::string mapText, Layer *Parentlayer, HttpShortMapInfo mapInfo)
 {
 	auto realGamePlayLayer = new RealGamePlayLayer();
-	realGamePlayLayer->init(mapText,Parentlayer);
+	realGamePlayLayer->init(mapText,Parentlayer, mapInfo);
     realGamePlayLayer->setDelegate(this);
     
 	this->addChild(realGamePlayLayer);
@@ -93,12 +94,12 @@ void MainGameScene::initWithRealGame(std::string mapText,Layer *Parentlayer)
 
 void MainGameScene::testUpdateTime(float time)
 {
-    mTimeLabel->setString(StringUtils::format("%f",time));
+    mTimeLabel->setString(StringUtils::format("%.2f",time));
 }
 
 void MainGameScene::realUpdateTime(float time)
 {
-    mTimeLabel->setString(StringUtils::format("%f",time));
+    mTimeLabel->setString(StringUtils::format("%.2f",time));
 }
 
 void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)

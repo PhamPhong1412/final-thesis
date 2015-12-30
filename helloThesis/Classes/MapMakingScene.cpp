@@ -678,7 +678,7 @@ void MapMakingScene::saveMap(cocos2d::Ref *pSender)
     cocos2d::log("%s", mMapSave.c_str());
 	DBContext::set("map_test", mMapSave.c_str());
     std::string test = DBContext::get("map_test");
-	auto gameScene = MainGameScene::createScene(true,test);
+	auto gameScene = MainGameScene::createScene(true, test, HttpShortMapInfo());
 	Director::getInstance()->replaceScene(gameScene);
 }
 

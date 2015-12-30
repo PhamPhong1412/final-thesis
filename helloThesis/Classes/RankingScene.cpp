@@ -31,7 +31,14 @@ bool RankingScene::init()
     {
         return false;
     }
-    
+	pageSize = 5;
+	currentSize = 0;
+	mIsStopLoad = false;
+
+	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("start", StringUtils::format("%i", currentSize)), HttpRequestParameter("end", StringUtils::format("%i", currentSize + pageSize))};
+	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK);
+	HttpServices::inst->setDelegate(this);
+
     visibleSize = Director::getInstance()->getVisibleSize();
     origin = Director::getInstance()->getVisibleOrigin();
     auto background = Sprite::create("bg3.png");
@@ -58,6 +65,7 @@ bool RankingScene::init()
 	
 	auto menu = Menu::createWithArray(items);
 	menu->setPosition(Vec2::ZERO);
+	menu->setTag(TAG_BUTTON_LAYER);
 	this->addChild(menu, 1);
 
     auto RankTableBG = Sprite::create("Rank.png");
@@ -100,8 +108,13 @@ void RankingScene::newPress(cocos2d::Ref *pSender)
 	}
 	else
 	{
+		pageSize = 5;
+		currentSize = 0;
+		mIsStopLoad = false;
+		listMap._Pop_back_n(listMap.size());
 		mNewButton->selected();
 		mTopRateButton->unselected();
+		loadNew();
 	}
 	
 	CCLOG("new");
@@ -115,11 +128,80 @@ void RankingScene::topRatePress(cocos2d::Ref *pSender)
 	}
 	else
 	{
+		pageSize = 5;
+		currentSize = 0;
+		mIsStopLoad = false;
+		listMap._Pop_back_n(listMap.size());
 		mTopRateButton->selected();
 		mNewButton->unselected();
+		loadTop();
+	}
+
+	CCLOG("top");
+}
+
+void RankingScene::loadNew()
+{
+	if (!mIsStopLoad)
+	{
+		std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("start", StringUtils::format("%i", currentSize)), HttpRequestParameter("end", StringUtils::format("%i", currentSize + pageSize)) };
+		HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK);
 	}
 	
-	CCLOG("top");
+}
+
+void RankingScene::loadTop()
+{
+	if (!mIsStopLoad)
+	{
+		std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("start", StringUtils::format("%i", currentSize)), HttpRequestParameter("end", StringUtils::format("%i", currentSize + pageSize)) };
+		HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::GET_MAP_RATING_RANK);
+	}
+}
+
+void RankingScene::getMapUploadTimeRank(std::vector<HttpShortMapInfo> result)
+{
+	if (result.size() < pageSize)
+	{
+		mIsStopLoad = true;
+	}
+	bool isFirst = false;
+	if (listMap.size() == 0)
+	{
+		isFirst = true;
+	}
+	currentSize += result.size();
+	
+	for (int i = 0; i < result.size(); i++)
+	{
+		listMap.push_back(result[i]);
+	}
+	Point pos = tableView->minContainerOffset();
+
+	tableView->reloadData();
+	if (!isFirst)
+	{
+		tableView->getContainer()->setPosition(pos);
+	}
+
+}
+
+void RankingScene::getMapRatingRank(std::vector<HttpShortMapInfo> result)
+{
+	if (result.size() < pageSize)
+	{
+		mIsStopLoad = true;
+	}
+
+	currentSize += result.size();
+	for (int i = 0; i < result.size(); i++)
+	{
+		listMap.push_back(result[i]);
+	}
+	Point pos = tableView->getContainer()->getPosition();
+	tableView->getContainer()->setPosition(pos);
+	tableView->reloadData();
+
 }
 
 void RankingScene::initButton()
@@ -140,7 +222,7 @@ void RankingScene::initTableView()
     GameConfig::RANK_TABLE_WIDTH = visibleSize.width/2 - 50;
     GameConfig::RANK_TABLE_CELL_HEIGHT = DESIGN_SCREEN_HEIGHT/5;
     
-    TableView* tableView = TableView::create(this, Size(GameConfig::RANK_TABLE_WIDTH,visibleSize.height - 150));
+    tableView = TableView::create(this, Size(GameConfig::RANK_TABLE_WIDTH,visibleSize.height - 150));
     
     tableView->setDirection(cocos2d::extension::ScrollView::Direction::VERTICAL);
     
@@ -158,7 +240,7 @@ void RankingScene::initTableView()
 TableViewCell* RankingScene::tableCellAtIndex(TableView *table, ssize_t idx) {
     CC_UNUSED_PARAM(table);
     
-    auto string = cocos2d::StringUtils::format("%i", idx);
+    auto string = cocos2d::StringUtils::format("%i", idx+1);
     
     RatingTableCell *cell = (RatingTableCell*)table->dequeueCell();
     
@@ -168,18 +250,68 @@ TableViewCell* RankingScene::tableCellAtIndex(TableView *table, ssize_t idx) {
         
         cell->setContentSize(Size(GameConfig::RANK_TABLE_WIDTH,GameConfig::RANK_TABLE_CELL_HEIGHT));
     }
+	HttpShortMapInfo mapInfo = listMap[idx];
+	/*std::string mid;
+	std::string creatorID;
+	std::string rating;
+	std::string data;
+	std::string uploadTime;
+	std::string rateCounter;
+	std::string playTime;*/
+
+	std::string year = mapInfo.uploadTime.substr(0, 4);
+	std::string mounth = mapInfo.uploadTime.substr(4,2);
+	std::string day = mapInfo.uploadTime.substr(6, 2);
+	if (mNewButton->isSelected())
+	{
+		std::string text = "Uploaded: " +day+"/" + mounth +"/"+year;
+		cell->getPlayCountLabel()->setString(text);
+	}
+	else
+	{
+		cell->getPlayCountLabel()->setString("Rated: " + mapInfo.rateCounter);
+	}
+
+	if (stoi(mapInfo.rating) == 1)
+	{
+		cell->getStarSprite()->setTexture("Star.png");
+	}
+	else if (stoi(mapInfo.rating) == 2)
+	{
+		cell->getStarSprite()->setTexture("Star2.png");
+	}
+	else if (stoi(mapInfo.rating) >= 3)
+	{
+		cell->getStarSprite()->setTexture("Star3.png");
+	}
+	else if (stoi(mapInfo.rating) == 0)
+	{
+		cell->getStarSprite()->setTexture("Star.png");
+	}
+	
 	cell->getIndexLabel()->setString(string);
     cell->getNickNameLabel()->setString("Creater: Thien");
-    cell->getPlayCountLabel()->setString("Played: 56");
-    cell->getTotalScoreLabel()->setString("Best time: 1m30s");
     
+    cell->getTotalScoreLabel()->setString("Best: " + mapInfo.playTime);
+    
+	if (idx == listMap.size() - 1)
+	{
+		if (mNewButton->isSelected())
+		{
+			loadNew();
+		}
+		else
+		{
+			loadTop();
+		}
+	}
     return cell;
 }
 
 ssize_t RankingScene::numberOfCellsInTableView(TableView *table) {
     CC_UNUSED_PARAM(table);
-    
-    return 20;
+
+	return listMap.size();
 }
 
 Size RankingScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
@@ -191,8 +323,17 @@ Size RankingScene::tableCellSizeForIndex(TableView *table, ssize_t idx) {
 void RankingScene::tableCellTouched(TableView *table, TableViewCell *cell)
 {
     CCLOG("%zd",cell->getIdx());
-	std::string test = DBContext::get("map_test");
-	auto gameScene = MainGameScene::createScene(false,test);
+	HttpShortMapInfo mapInfo = listMap[cell->getIdx()];
+
+	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("mid", mapInfo.mid) };
+	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::GET_MAP_INFO);
+	/*HttpServices::inst->setDelegate(this);*/
+}
+
+void RankingScene::getMapInfo(HttpShortMapInfo result)
+{
+	std::string test = result.data;
+	auto gameScene = MainGameScene::createScene(false, test, result);
 	Director::getInstance()->replaceScene(gameScene);
 }
 

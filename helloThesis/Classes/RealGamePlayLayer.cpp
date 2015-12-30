@@ -1,12 +1,16 @@
 #include "RealGamePlayLayer.h"
+#include "RankingScene.h"
 
 // on "init" you need to initialize your instance
-bool RealGamePlayLayer::init(std::string map,Layer *parentLayer)
+bool RealGamePlayLayer::init(std::string map, Layer *parentLayer, HttpShortMapInfo mapInfo)
 {
 	if (!b2Layer::init())
 	{
 		//		return false;
 	}
+
+	mMapInfo = mapInfo;
+	time = 0;
 	mCanRate = false;
 	Size visibleSize = Director::getInstance()->getVisibleSize();
     this->mParentLayer = parentLayer;
@@ -97,7 +101,17 @@ void RealGamePlayLayer::exitBack()
 
 void RealGamePlayLayer::ratePress(int Number)
 {
+	std::string info = mMapInfo.mid;
+	std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("mid", mMapInfo.mid), HttpRequestParameter("rate", StringUtils::format("%i", Number)) };
+	HttpServices::inst->sendRequest(this, resData, HttpRequestMethod::RATE_MAP);
+	HttpServices::inst->setDelegate(this);
     CCLOG("%i", Number);
+}
+
+void RealGamePlayLayer::rateMap()
+{
+	auto mainMenuScene = MainMenuScene::createScene();
+	Director::getInstance()->replaceScene(mainMenuScene);
 }
 
 void RealGamePlayLayer::addTile(std::string tileName, float xLoc, float yLoc){

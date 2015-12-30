@@ -22,8 +22,10 @@ class RatingTableCell : public TableViewCell {
 public:
     RatingTableCell();
     ~RatingTableCell();
-    
+	
     CC_SYNTHESIZE(cocos2d::Sprite*, _cellBackground, CellBackground);
+	CC_SYNTHESIZE(Sprite*, _lbStarSprite, StarSprite);
+
 	CC_SYNTHESIZE(Label*, _lbIndex, IndexLabel);
     CC_SYNTHESIZE(Label*, _lbNickName, NickNameLabel);
 	CC_SYNTHESIZE(Label*, _lbPlayCount, PlayCountLabel);
