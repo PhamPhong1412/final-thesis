@@ -76,7 +76,6 @@ bool MainGameScene::init()
 
 void MainGameScene::initWithTestGame(std::string mapText,Layer *Parentlayer)
 {
-	
 	auto testGamePlayLayer = new TestGamePlayLayer();
 	testGamePlayLayer->init(mapText, Parentlayer);
     testGamePlayLayer->setDelegate(this);

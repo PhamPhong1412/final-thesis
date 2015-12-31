@@ -32,7 +32,7 @@ private:
 	Layer* mCurrentLayer;
 
 	LoadingHUDLayer *mLoadingHUD;
-	void showLoading(Layer* layer);
+	void showLoading(Layer* layer, HttpRequestMethod method);
 	void hideLoading(bool isSucess, HttpRequestMethod method);
 
 	inline bool checkValid(bool ass, HttpRequestMethod method);

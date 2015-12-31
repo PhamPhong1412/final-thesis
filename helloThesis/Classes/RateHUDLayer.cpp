@@ -29,7 +29,7 @@ bool RateHUDLayer::init(float x, float y, float time)
     background->setScale(0.5,0.7);
     this->addChild(background);
     
-    auto infoLabel = Label::createWithTTF(StringUtils::format("Time: %f", time), "Marker Felt.ttf", 30);
+    auto infoLabel = Label::createWithTTF(StringUtils::format("Time: %.2f", time), "Marker Felt.ttf", 30);
     infoLabel->setAnchorPoint(Vec2(0.5, 0.5));
     // position the label on the center of the screen
     infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2 + x , origin.y + visibleSize.height/2 + 100 + y));

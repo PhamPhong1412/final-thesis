@@ -176,11 +176,14 @@ void RankingScene::getMapUploadTimeRank(std::vector<HttpShortMapInfo> result)
 	{
 		listMap.push_back(result[i]);
 	}
-	Point pos = tableView->minContainerOffset();
+	//Vec2 pos = tableView->minContainerOffset();
 
 	tableView->reloadData();
+	Vec2 pos = tableView->getContainer()->getPosition();
+	
 	if (!isFirst)
 	{
+		
 		tableView->getContainer()->setPosition(pos);
 	}
 

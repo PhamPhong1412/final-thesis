@@ -76,19 +76,29 @@ bool RealGamePlayLayer::init(std::string map, Layer *parentLayer, HttpShortMapIn
 }
 
 void RealGamePlayLayer::update(float delta){
-    time+= delta;
-    this->mDelegate->realUpdateTime(time);
+    
 	if (mRunner->mModel->finish() && !mCanRate)
 	{
+		
+		long upTime = time * 1000;
 		mCanRate = true;
 		//mRunner->mModel->setFinish(false);
 		rateLayer = new RateHUDLayer(this->mParentLayer, time);
 		rateLayer->setDelegate(this);
 		//this->removeChild(menu);
 		this->addChild(rateLayer);
+
+		if (stol(mMapInfo.playTime) == 0 || stol(mMapInfo.playTime) > upTime)
+		{
+			std::vector<HttpRequestParameter> resData{ HttpRequestParameter(phoneKey, "test"), HttpRequestParameter("mid", mMapInfo.mid), HttpRequestParameter("playTime", StringUtils::format("%ld", upTime)) };
+			HttpServices::inst->sendRequest(rateLayer, resData, HttpRequestMethod::UP_TIME);
+			HttpServices::inst->setDelegate(this);
+		}
 	}
 	else
 	{
+		time += delta;
+		this->mDelegate->realUpdateTime(time);
 		updateQuadTree();
 		b2Layer::update(delta);
 	}

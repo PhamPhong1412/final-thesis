@@ -51,7 +51,7 @@ void HttpServices::onHttpRequestCompleted(HttpClient *sender, HttpResponse *resp
 
 void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestParameter> RequestParameter, HttpRequestMethod method, bool isImmediate)
 {
-	showLoading((Layer*)sender);
+	showLoading((Layer*)sender, method);
 
 	HttpRequest* request = new (std::nothrow) HttpRequest();
 	request->setUrl("192.168.1.74:9999/runner");
@@ -80,10 +80,33 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 	request->release();
 }
 
-void HttpServices::showLoading(Layer* layer)
+void HttpServices::showLoading(Layer* layer, HttpRequestMethod method)
 {
 	mCurrentLayer = layer;
-	mLoadingHUD = new LoadingHUDLayer(layer, -53, -18);
+	switch (method)
+	{
+	case HttpRequestMethod::UPLOAD_MAP:
+		mLoadingHUD = new LoadingHUDLayer(layer, -53, -18);
+		break;
+	case HttpRequestMethod::RATE_MAP:
+		mLoadingHUD = new LoadingHUDLayer(layer, -53, -18);
+		break;
+	case HttpRequestMethod::GET_MAP_UPLOAD_TIME_RANK: 
+		mLoadingHUD = new LoadingHUDLayer(layer, 0, 0);
+		break;
+	case HttpRequestMethod::GET_MAP_RATING_RANK:
+		mLoadingHUD = new LoadingHUDLayer(layer, 0, 0);
+		break;
+	case HttpRequestMethod::GET_MAP_INFO:
+		mLoadingHUD = new LoadingHUDLayer(layer, 0, 0);
+		break;
+	case HttpRequestMethod::UP_TIME:
+		mLoadingHUD = new LoadingHUDLayer(layer, -53, -18);
+		break;
+	default:
+		break;
+	}
+	
 	layer->addChild(mLoadingHUD);
 }
 
@@ -130,6 +153,7 @@ std::string HttpServices::getMethodName(HttpRequestMethod method){
 	case HttpRequestMethod::GET_MAP_RATING_RANK: return "getMapRatingRank";
 	case HttpRequestMethod::GET_MAP_INFO: return "getMapInfo";
 	case HttpRequestMethod::RATE_MAP: return "rateMap";
+	case HttpRequestMethod::UP_TIME: return "returnPlayGameResult";
 	default:
 		break;
 	}
