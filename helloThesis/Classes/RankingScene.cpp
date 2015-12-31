@@ -166,6 +166,7 @@ void RankingScene::getMapUploadTimeRank(std::vector<HttpShortMapInfo> result)
 		mIsStopLoad = true;
 	}
 	bool isFirst = false;
+
 	if (listMap.size() == 0)
 	{
 		isFirst = true;
@@ -176,14 +177,13 @@ void RankingScene::getMapUploadTimeRank(std::vector<HttpShortMapInfo> result)
 	{
 		listMap.push_back(result[i]);
 	}
-	//Vec2 pos = tableView->minContainerOffset();
 
+	Vec2 pos = tableView->minContainerOffset();
 	tableView->reloadData();
-	Vec2 pos = tableView->getContainer()->getPosition();
+	
 	
 	if (!isFirst)
 	{
-		
 		tableView->getContainer()->setPosition(pos);
 	}
 
@@ -275,6 +275,7 @@ TableViewCell* RankingScene::tableCellAtIndex(TableView *table, ssize_t idx) {
 		cell->getPlayCountLabel()->setString("Rated: " + mapInfo.rateCounter);
 	}
 
+	cell->getStarSprite()->setVisible(true);
 	if (stoi(mapInfo.rating) == 1)
 	{
 		cell->getStarSprite()->setTexture("Star.png");
@@ -289,13 +290,14 @@ TableViewCell* RankingScene::tableCellAtIndex(TableView *table, ssize_t idx) {
 	}
 	else if (stoi(mapInfo.rating) == 0)
 	{
-		cell->getStarSprite()->setTexture("Star.png");
+		cell->getStarSprite()->setVisible(false);
 	}
 	
 	cell->getIndexLabel()->setString(string);
     cell->getNickNameLabel()->setString("Creater: Thien");
     
-    cell->getTotalScoreLabel()->setString("Best: " + mapInfo.playTime);
+	float playtime = stof(mapInfo.playTime) / 1000;
+    cell->getTotalScoreLabel()->setString(StringUtils::format("Best: %.2fs" , playtime));
     
 	if (idx == listMap.size() - 1)
 	{

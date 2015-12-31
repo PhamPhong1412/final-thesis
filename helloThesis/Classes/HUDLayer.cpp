@@ -45,19 +45,22 @@ bool HUDLayer::init(Layer* parent,bool canExitTouchOnSite, float x, float y)
 }
 
 void HUDLayer::exit(){
-	parent->resume();
-	for (auto node : parent->getChildren()){
-		if (node->getTag() == TAG_NORMAL_LAYER){
-			node->resume();
-//			node->resumeSchedulerAndActions();
+	if (parent != NULL)
+	{
+		parent->resume();
+		for (auto node : parent->getChildren()){
+			if (node->getTag() == TAG_NORMAL_LAYER){
+				node->resume();
+				//			node->resumeSchedulerAndActions();
+			}
+			else if (node->getTag() == TAG_BUTTON_LAYER)
+			{
+				node->setVisible(true);
+			}
+
 		}
-		else if (node->getTag() == TAG_BUTTON_LAYER)
-		{
-			node->setVisible(true);
-		}
-        
+		parent->removeChild(this);
 	}
-	parent->removeChild(this);
 }
 
 bool HUDLayer::onTouchBegan(Touch *touch, Event *event){
