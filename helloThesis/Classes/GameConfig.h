@@ -7,7 +7,7 @@
 
 
 #define PTM_RATIO 32
-#define SET_DEBUG 0
+#define SET_DEBUG 1
 
 #define BUTTON_SIZE 60
 

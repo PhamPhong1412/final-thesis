@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>jack/Jump (4).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{3211,439},{456,632}}</string>
+				<key>offset</key>
+				<string>{-31,37}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (1).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1868,0},{443,703}}</string>
+				<key>offset</key>
+				<string>{13,-7}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (2).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1429,0},{439,721}}</string>
+				<key>offset</key>
+				<string>{5,-15}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (3).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2748,0},{463,663}}</string>
+				<key>offset</key>
+				<string>{-18,14}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (4).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{3211,0},{439,691}}</string>
+				<key>offset</key>
+				<string>{5,-1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (5).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2311,0},{437,704}}</string>
+				<key>offset</key>
+				<string>{16,-11}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (6).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{506,0},{463,715}}</string>
+				<key>offset</key>
+				<string>{-6,-14}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (7).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{506,676}}</string>
+				<key>offset</key>
+				<string>{-36,5}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+			<key>jack/Run (8).png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{969,0},{460,697}}</string>
+				<key>offset</key>
+				<string>{-4,-4}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{579,763}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>jack.png</string>
+			<key>realTextureFileName</key>
+			<string>jack.png</string>
+			<key>size</key>
+			<string>{3902,895}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>3902</integer>
+			<key>height</key>
+			<integer>895</integer>
+		</dict>
+	</dict>
+</plist>
