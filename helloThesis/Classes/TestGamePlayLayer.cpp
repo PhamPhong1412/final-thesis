@@ -53,9 +53,10 @@ void TestGamePlayLayer::update(float delta){
     
 	if (mRunner->mModel->finish() && !mCanUpMap)
 	{
+        this->mDelegate->testUpdateTime(0);
 		mCanUpMap = true;
 		//mRunner->mModel->setFinish(false);
-		chooseLayer = new GameHUDLayer(this->mParentLayer);
+		chooseLayer = new GameHUDLayer(this->mParentLayer, time);
 		chooseLayer->setDelegate(this);
 		//this->removeChild(menu);
 		this->addChild(chooseLayer);

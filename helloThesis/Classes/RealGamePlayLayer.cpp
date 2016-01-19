@@ -79,7 +79,7 @@ void RealGamePlayLayer::update(float delta){
     
 	if (mRunner->mModel->finish() && !mCanRate)
 	{
-		
+		this->mDelegate->realUpdateTime(0);
 		long upTime = time * 1000;
 		mCanRate = true;
 		//mRunner->mModel->setFinish(false);

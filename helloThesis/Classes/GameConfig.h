@@ -19,6 +19,7 @@
 #define TAG_OBJECT_BARSLOPE         102
 #define TAG_OBJECT_BACK             103
 #define TAG_OBJECT_END           104
+#define TAG_OBJECT_SLOW           105
 
 #define TAG_OBJECT_MAP              300
 

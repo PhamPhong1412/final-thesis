@@ -44,6 +44,11 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 		createNormalPhysicBody(sprite);
 		this->setTag(TAG_OBJECT_END);
 	}
+    else if (tType == "7")
+    {
+        createNormalPhysicBody(sprite);
+        this->setTag(TAG_OBJECT_SLOW);
+    }
 	/*else
 	{
 		type = GroundType::END;

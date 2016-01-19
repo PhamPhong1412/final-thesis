@@ -54,7 +54,7 @@ bool MapMakingScene::init()
 void MapMakingScene::initListItem()
 {
     vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2,1.png","2,1.png","2,2,1.png","1,3.png","2,3.png","1,4,1.png","2,4,1.png"};
-    vector<string> tTemp1 = {"signExit.png", "boxItem.png","boxCoin_disabled.png","boxCoin.png","boxCoinAlt.png","boxEmpty.png","boxExplosive.png","boxWarning.png","lock_blue.png","lock_green.png","lock_red.png","lock_yellow.png"};
+    vector<string> tTemp1 = {"signExit.png", "1,7"};
     vector<string> tTemp2 = {"signExit.png", "fence.png","door_closedMid.png","door_closedTop.png","fenceBroken.png","door_openTop.png","door_openMid.png","ladder_top.png","ladder_mid.png"};
     vector<string> tTemp3 = {"signExit.png", "1,6.png","1,5.png"};
     vector<string> tTemp4 = {"signExit.png", "tochLit.png","torch.png","tochLit2.png","window.png"};
@@ -62,8 +62,8 @@ void MapMakingScene::initListItem()
     vector<string> tTemp6 = {"signExit.png", "stoneHalf.png","stoneHalfLeft.png","stoneHalfMid.png","stoneHalfRight.png","stoneHillLeft2.png","stoneHillRight2.png","stoneMid.png"};
     
     mMapNameItem.push_back(tTemp0);
-   /* mMapNameItem.push_back(tTemp1);
-    mMapNameItem.push_back(tTemp2);
+    mMapNameItem.push_back(tTemp1);
+    /* mMapNameItem.push_back(tTemp2);
     mMapNameItem.push_back(tTemp3);
     mMapNameItem.push_back(tTemp4);
     mMapNameItem.push_back(tTemp5);
@@ -442,7 +442,7 @@ string MapMakingScene::getNameWithNumber(int number)
             rName ="1,1.png";
             break;
         case 1:
-            rName ="boxItem.png";
+            rName ="1,7.png";
             break;
         case 2:
             rName ="fence.png";

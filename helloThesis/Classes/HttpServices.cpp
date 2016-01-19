@@ -53,12 +53,28 @@ void HttpServices::sendRequest(cocos2d::Ref *sender, std::vector<HttpRequestPara
 {
 	showLoading((Layer*)sender, method);
 
-	HttpRequest* request = new (std::nothrow) HttpRequest();
-	request->setUrl("192.168.1.74:9999/runner");
+//    cocos2d::network::HttpRequest* request = new cocos2d::network::HttpRequest();
+//    request->setUrl("httpbin.org/post");
+//    request->setRequestType(cocos2d::network::HttpRequest::Type::POST);
+//    request->setResponseCallback( CC_CALLBACK_2(HttpServices::onHttpRequestCompleted, this,method));
+//    
+//    // write the post data
+//    const char* postData = "visitor=cocos2d&TestSuite=Extensions Test/NetworkTest";
+//    request->setRequestData(postData, strlen(postData));
+//    
+//    request->setTag("POST test1");
+//    cocos2d::network::HttpClient::getInstance()->send(request);
+//    request->release();
+    
+	cocos2d::network::HttpRequest* request = new cocos2d::network::HttpRequest();
+    
+//    request->setUrl("http://www.httpbin.org/post");
+    
+	request->setUrl("http://192.168.1.19:9999/runner");
 	request->setRequestType(HttpRequest::Type::POST);
 	request->setResponseCallback(CC_CALLBACK_2(HttpServices::onHttpRequestCompleted, this, method));
 
-	// write the post data
+//	 write the post data
 	std::string methodName = getMethodName(method);
 	std::string phoneID = Utility::getPhoneID();
 

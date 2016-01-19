@@ -111,7 +111,7 @@ void RankingScene::newPress(cocos2d::Ref *pSender)
 		pageSize = 5;
 		currentSize = 0;
 		mIsStopLoad = false;
-		listMap._Pop_back_n(listMap.size());
+        listMap.clear();
 		mNewButton->selected();
 		mTopRateButton->unselected();
 		loadNew();
@@ -131,7 +131,7 @@ void RankingScene::topRatePress(cocos2d::Ref *pSender)
 		pageSize = 5;
 		currentSize = 0;
 		mIsStopLoad = false;
-		listMap._Pop_back_n(listMap.size());
+        listMap.clear();
 		mTopRateButton->selected();
 		mNewButton->unselected();
 		loadTop();

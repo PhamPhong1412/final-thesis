@@ -93,12 +93,25 @@ void MainGameScene::initWithRealGame(std::string mapText, Layer *Parentlayer, Ht
 
 void MainGameScene::testUpdateTime(float time)
 {
-    mTimeLabel->setString(StringUtils::format("%.2f",time));
+    if (time == 0) {
+        mTimeLabel->setString("");
+    }
+    else
+    {
+       mTimeLabel->setString(StringUtils::format("%.2f",time));
+    }
+    
 }
 
 void MainGameScene::realUpdateTime(float time)
 {
-    mTimeLabel->setString(StringUtils::format("%.2f",time));
+    if (time == 0) {
+        mTimeLabel->setString("");
+    }
+    else
+    {
+        mTimeLabel->setString(StringUtils::format("%.2f",time));
+    }
 }
 
 void MainGameScene::menuBackCallback(cocos2d::Ref *pSender)

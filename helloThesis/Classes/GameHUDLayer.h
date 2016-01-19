@@ -28,9 +28,9 @@ private:
 	GameHUDLayerDelegate *mDelegate;
 	void menuNextCallback();
 	void menuBackCallback();
-	bool init(float x, float y);
+	bool init(float x, float y, float time);
 public:
-	GameHUDLayer(Layer* parent);
+	GameHUDLayer(Layer* parent, float time);
 	~GameHUDLayer();
 	void setDelegate(GameHUDLayerDelegate* pDelegate) { mDelegate = pDelegate; }
 	//touches event

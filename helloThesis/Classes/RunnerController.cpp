@@ -102,7 +102,11 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 				}
 				break;
 			}
-			
+            case TAG_OBJECT_SLOW:
+            {
+                
+                break;
+            }
             default:
                 break;
     	}

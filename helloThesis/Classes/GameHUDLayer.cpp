@@ -1,8 +1,8 @@
 #include "GameHUDLayer.h"
 
 // on "init" you need to initialize your instance
-GameHUDLayer::GameHUDLayer(Layer* parent) : HUDLayer(parent, false, -53,-18){
-	this->init(-53,-18);
+GameHUDLayer::GameHUDLayer(Layer* parent, float time) : HUDLayer(parent, false, -53,-18){
+	this->init(-53,-18,time);
 }
 
 GameHUDLayer::~GameHUDLayer(){
@@ -10,7 +10,7 @@ GameHUDLayer::~GameHUDLayer(){
 }
 
 // on "init" you need to initialize your instance
-bool GameHUDLayer::init(float x, float y)
+bool GameHUDLayer::init(float x, float y, float time)
 {
     auto visibleSize = Director::getInstance()->getVisibleSize();
     auto origin = Director::getInstance()->getVisibleOrigin();
@@ -20,10 +20,10 @@ bool GameHUDLayer::init(float x, float y)
 	background->setScale(0.5);
 	this->addChild(background);
 
-	auto infoLabel = Label::createWithTTF("Do u want to upload \n      this map...", "Marker Felt.ttf", 30);
+	auto infoLabel = Label::createWithTTF(StringUtils::format("Do u want to upload \n      this map...\n   Time: %f", time), "Marker Felt.ttf", 30);
 	infoLabel->setAnchorPoint(Vec2(0.5, 0.5));
 	// position the label on the center of the screen
-	infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2 + x , origin.y + visibleSize.height/2 + 15 + y));
+	infoLabel->setPosition(Vec2(origin.x + DESIGN_SCREEN_WIDTH / 2 + x , origin.y + visibleSize.height/2 + 30 + y));
 	infoLabel->setTextColor(Color4B(255, 195, 0, 255));
 	this->addChild(infoLabel);
 
