@@ -216,6 +216,9 @@
     <ClCompile Include="..\Classes\RateHUDLayer.cpp">
       <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\SnowFlake.cpp">
+      <Filter>src\GameObject\Ground</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -346,6 +349,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\RateHUDLayer.h">
       <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SnowFlake.h">
+      <Filter>src\GameObject\Ground</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

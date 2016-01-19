@@ -3,7 +3,7 @@
 
 #define NORMAL_JUMP_SPEED 30.0f
 #define BOOSTED_JUMP_SPEED 60.0f
-
+#define FREEZEE_TIME 2.0f
 
 #include "b2Node.h"
 
@@ -25,6 +25,7 @@ private:
 	int jumpSpeedBoostCharges = 0;
 	bool isFinish = false;
 public:
+	float freezeeTime;
 	bool isMultiJump = false;
 	virtual bool init();
 

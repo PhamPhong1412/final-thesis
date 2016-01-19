@@ -4,7 +4,7 @@
 #include "cocos2d.h"
 
 #include "b2Layer.h"
-
+#include "SnowFlake.h"
 //#include "b2Layer.h"
 #include "QuadNode.h"
 #include "RunnerController.h"

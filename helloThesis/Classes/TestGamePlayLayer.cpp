@@ -136,15 +136,25 @@ void TestGamePlayLayer::BeginContact(b2Contact* contact)
 
 		if (aTag == TAG_OBJECT_PLAYER)
 		{
-			this->mRunner->BeginContact(nodeB, contact);
-
+			if (bTag == TAG_OBJECT_SLOW){
+				GroundObject* snow = (GroundObject*)contact->GetFixtureB()->GetBody()->GetUserData();
+				mRunner->collideSnowTile(snow);
+			}
+			else{
+				this->mRunner->BeginContact(nodeB, contact);
+			}
 		}
 		else
 		{
 			if (bTag == TAG_OBJECT_PLAYER)
 			{
-				this->mRunner->BeginContact(nodeA, contact);
-
+				if (aTag == TAG_OBJECT_SLOW){
+					GroundObject* snow = (GroundObject*)contact->GetFixtureA()->GetBody()->GetUserData();
+					mRunner->collideSnowTile(snow);
+				}
+				else{
+					this->mRunner->BeginContact(nodeA, contact);
+				}
 			}
 		}
 	}
@@ -173,15 +183,13 @@ void TestGamePlayLayer::EndContact(b2Contact* contact)
 
 		if (aTag == TAG_OBJECT_PLAYER)
 		{
-			this->mRunner->EndContact(nodeB, contact);
-
+				this->mRunner->EndContact(nodeB, contact);
 		}
 		else
 		{
 			if (bTag == TAG_OBJECT_PLAYER)
 			{
-				this->mRunner->EndContact(nodeA, contact);
-
+					this->mRunner->EndContact(nodeA, contact);
 			}
 		}
 	}

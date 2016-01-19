@@ -47,6 +47,10 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
     else if (tType == "7")
     {
         createNormalPhysicBody(sprite);
+		this->removeChild(sprite);
+		auto snow = SnowFlake::create();
+		snow->setTag(6969);
+		this->addChild(snow);
         this->setTag(TAG_OBJECT_SLOW);
     }
 	/*else
@@ -198,4 +202,12 @@ void GroundObject::createEndlPhysicBody(Sprite* sprite){
 GroundType GroundObject::getType()
 {
 	return type;
+}
+
+void GroundObject::snowTileExplode(){
+	SnowFlake* snowTile = (SnowFlake*)getChildByTag(6969);
+	if (!snowTile->exploded){
+		snowTile->explode();
+		this->setTag(TAG_OBJECT_SLOW_EXLODED);
+	}
 }

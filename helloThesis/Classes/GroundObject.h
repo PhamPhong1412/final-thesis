@@ -4,6 +4,7 @@
 #include "cocos2d.h"
 
 #include "b2Node.h"
+#include "SnowFlake.h"
 
 #include "Utility.h"
 
@@ -32,6 +33,7 @@ public:
 	GroundType getType();
 	static std::vector<GroundObject*> changeDirectionTiles;
 	
+	void snowTileExplode();
 };
 
 

@@ -32,6 +32,7 @@ bool RunnerModel::init(){
 	this->direction = 1;
 	this->changeDirectionCooldown = 1;
 	this->scheduleUpdate();
+	freezeeTime = 0;
 	return true;
 }
 
@@ -66,6 +67,9 @@ float RunnerModel::getJumpSpeed(){
 	else{
 		bool isJumpingMulti = isMultiJump;
 		float x = this->getPositionX();
+		if (freezeeTime > 0){
+			return NORMAL_JUMP_SPEED* (FREEZEE_TIME - freezeeTime) / FREEZEE_TIME;
+		}
 		//if (isJumpingMulti)
 		return isJumpingMulti ? NORMAL_JUMP_SPEED/2 : NORMAL_JUMP_SPEED;
 	}

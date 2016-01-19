@@ -1,5 +1,5 @@
-#ifndef __RUNNER_VIEW_H__
-#define __RUNNER_VIEW_H__
+#ifndef _SNOWFLAKE_
+#define _SNOWFLAKE_
 
 #include "cocos2d.h"
 
@@ -13,30 +13,26 @@
 #include "cocostudio\ActionTimeline\CCActionTimelineCache.h"
 #endif
 
-#include "RunnerModel.h"
+#include "GroundObject.h"
 
-USING_NS_CC;
-
-class RunnerView : public Node
+class SnowFlake : public b2Node
 {
 private:
 
 	Node* mBody;
 	cocostudio::timeline::ActionTimeline* mAnimation;
 
-
-public:
-	void runOnGround();
-	void runOnAir();
-	void jump();
-	void setDirection(int dir);
-
-	virtual bool init();
-
-	void update(float delta);
 	
-	void freezee(bool isFreezee, float speed);
-	CREATE_FUNC(RunnerView);
+public:
+	bool exploded;
+	void update(float delta);
+	virtual bool init();
+	void explode();
+	void jump();
+
+
+
+	CREATE_FUNC(SnowFlake);
 	
 };
 

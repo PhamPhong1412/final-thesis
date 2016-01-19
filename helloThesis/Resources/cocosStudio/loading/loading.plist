@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>loading/frame00.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,909},{66,68}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,68}</string>
+			</dict>
+			<key>loading/frame01.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,71},{70,68}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{70,68}</string>
+			</dict>
+			<key>loading/frame02.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,349},{70,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{70,66}</string>
+			</dict>
+			<key>loading/frame03.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,419},{70,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{70,66}</string>
+			</dict>
+			<key>loading/frame05.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,141},{68,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{68,70}</string>
+			</dict>
+			<key>loading/frame06.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,489},{66,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,70}</string>
+			</dict>
+			<key>loading/frame07.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,559},{66,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,70}</string>
+			</dict>
+			<key>loading/frame08.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{66,908},{64,68}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{64,68}</string>
+			</dict>
+			<key>loading/frame09.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,211},{69,68}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{69,68}</string>
+			</dict>
+			<key>loading/frame10.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,629},{70,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{70,66}</string>
+			</dict>
+			<key>loading/frame11.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,699},{70,66}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{70,66}</string>
+			</dict>
+			<key>loading/frame12.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{65,839},{69,64}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{69,64}</string>
+			</dict>
+			<key>loading/frame13.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,280},{68,69}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{68,69}</string>
+			</dict>
+			<key>loading/frame14.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{68,71}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{68,71}</string>
+			</dict>
+			<key>loading/frame15.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,769},{66,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{66,70}</string>
+			</dict>
+			<key>loading/frame16.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,839},{65,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{65,70}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>loading.png</string>
+			<key>realTextureFileName</key>
+			<string>loading.png</string>
+			<key>size</key>
+			<string>{130,977}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>130</integer>
+			<key>height</key>
+			<integer>977</integer>
+		</dict>
+	</dict>
+</plist>

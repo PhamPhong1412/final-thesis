@@ -38,3 +38,14 @@ void RunnerView::setDirection(int dir){
 	this->setRotationY(dir*180.0f);
 }
 
+
+void RunnerView::freezee(bool isFreezee, float speed){
+	if (isFreezee){
+		mBody->setColor(Color3B(50, 50, 200));
+		mAnimation->setTimeSpeed(speed);
+	}
+	else{
+		mBody->setColor(Color3B(255, 255, 255));
+		mAnimation->setTimeSpeed(1.0f);
+	}
+}

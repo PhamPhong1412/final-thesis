@@ -30,7 +30,7 @@ public:
 	//Physics event
 	void BeginContact(b2Node* node, b2Contact* contact);
 	void EndContact(b2Node* node, b2Contact* contact);
-
+	void collideSnowTile(GroundObject* snowFlake);
 	CREATE_FUNC(Runner);
 };
 

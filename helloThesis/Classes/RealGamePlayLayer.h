@@ -5,6 +5,7 @@
 
 #include "b2Layer.h"
 
+#include "SnowFlake.h"
 #include "QuadNode.h"
 #include "RunnerController.h"
 #include "GroundObject.h"

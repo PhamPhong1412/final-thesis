@@ -23,6 +23,8 @@ void Runner::update(float delta){
 	case PlayerState::ON_AIR: this->mView->runOnAir(); break;
 	default:this->mView->runOnGround(); break;
 	}
+	mModel->freezeeTime -= delta;
+	mView->freezee(mModel->freezeeTime > 0, (FREEZEE_TIME - mModel->freezeeTime) / FREEZEE_TIME);
 }
 
 void Runner::BeginContact(b2Node* node, b2Contact* contact){
@@ -102,9 +104,9 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 				}
 				break;
 			}
-            case TAG_OBJECT_SLOW:
+            case TAG_OBJECT_SLOW_EXLODED:
             {
-                
+											 contact->SetEnabled(false);
                 break;
             }
             default:
@@ -131,7 +133,11 @@ void Runner::EndContact(b2Node* node, b2Contact* contact){
 }
 
 void Runner::runNormal(){
-	this->mModel->setVelocityX(15.0f*this->mModel->getDirection());
+	float freezee = 1.0f;
+	if (mModel->freezeeTime > 0){
+		freezee = (FREEZEE_TIME - mModel->freezeeTime) / FREEZEE_TIME;
+	}
+	this->mModel->setVelocityX(freezee*15.0f*this->mModel->getDirection());
 	//this->mModel->setState(PlayerState::ON_GROUND);
 	this->mModel->isMultiJump = false;
 }
@@ -148,5 +154,11 @@ void Runner::jump(){
 		this->mModel->setState(PlayerState::ON_AIR);
 		this->mModel->setVelocityY(this->mModel->getJumpSpeed());
 	}
+}
+
+void Runner::collideSnowTile(GroundObject* snowObject){
+	mModel->freezeeTime = FREEZEE_TIME;
+	snowObject->snowTileExplode();
+	mModel->setVelocityX(0.0f);
 }
 
