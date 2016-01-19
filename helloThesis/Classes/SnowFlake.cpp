@@ -3,7 +3,7 @@
 bool SnowFlake::init(){
 	mBody = CSLoader::createNode(FileUtils::getInstance()->fullPathForFilename("snowflake.csb"));
 	mAnimation = CSLoader::createTimeline(FileUtils::getInstance()->fullPathForFilename("snowflake.csb"));
-	mAnimation->play("normal", false);
+	mAnimation->play("normal", true);
 	mBody->runAction(mAnimation);
 	mBody->setPosition(0, 0);
 	this->addChild(mBody);
@@ -17,7 +17,7 @@ bool SnowFlake::init(){
 
 void SnowFlake::update(float delta){
 	if (exploded){
-		if (mAnimation->getCurrentFrame() == 10){
+		if (mAnimation->getCurrentFrame() == 22){
 
 			this->removeAllChildren();
 			this->pauseSchedulerAndActions();
