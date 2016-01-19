@@ -54,7 +54,7 @@ bool MapMakingScene::init()
 void MapMakingScene::initListItem()
 {
     vector<string> tTemp0 = {"signExit.png", "1,1.png","1,2,1.png","2,1.png","2,2,1.png","1,3.png","2,3.png","1,4,1.png","2,4,1.png"};
-    vector<string> tTemp1 = {"signExit.png", "1,7"};
+    vector<string> tTemp1 = {"signExit.png", "1,7.png"};
     vector<string> tTemp2 = {"signExit.png", "fence.png","door_closedMid.png","door_closedTop.png","fenceBroken.png","door_openTop.png","door_openMid.png","ladder_top.png","ladder_mid.png"};
     vector<string> tTemp3 = {"signExit.png", "1,6.png","1,5.png"};
     vector<string> tTemp4 = {"signExit.png", "tochLit.png","torch.png","tochLit2.png","window.png"};
