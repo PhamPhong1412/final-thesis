@@ -442,7 +442,7 @@ string MapMakingScene::getNameWithNumber(int number)
             rName ="1,1.png";
             break;
         case 1:
-            rName ="1,7.png";
+            rName ="boom.png";
             break;
         case 2:
             rName ="fence.png";

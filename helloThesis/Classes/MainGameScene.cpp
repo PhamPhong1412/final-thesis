@@ -39,10 +39,11 @@ bool MainGameScene::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	GameBackgroundLayer* backgroundLayder = new GameBackgroundLayer();
-	//backgroundLayder->init(gameMap->backgroundName, gameMap->background);
-	backgroundLayder->init();
-	//this->addChild(backgroundLayder);
+	auto mBackGround = Sprite::create("background.png");
+	mBackGround->setScale(visibleSize.width / mBackGround->getContentSize().width, visibleSize.height / mBackGround->getContentSize().height);
+	mBackGround->setAnchorPoint(Vec2(0.5, 0.5));
+	mBackGround->setPosition(origin.x + (visibleSize.width) / 2, origin.y + (visibleSize.height) / 2);
+	addChild(mBackGround);
 
 	//auto gamePlayLayer = GamePlayLayer::create();
     
