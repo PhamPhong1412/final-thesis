@@ -1,0 +1,362 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="win32">
+      <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="resource">
+      <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util">
+      <UniqueIdentifier>{cf9329dc-c826-447c-a4af-efef954303cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\File">
+      <UniqueIdentifier>{acb00f08-3c79-4911-8677-cb52b556f837}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\Language">
+      <UniqueIdentifier>{f6c7145c-8891-47dc-8e13-d9e6a0aa8cc3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\database">
+      <UniqueIdentifier>{7471202f-db09-48c5-89a7-ee49d370e76c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameMap">
+      <UniqueIdentifier>{d9a81e2a-0530-47dd-9e03-fef7b5fd11b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\box2d">
+      <UniqueIdentifier>{188c30df-dead-40a4-83b8-932f6a648f9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject">
+      <UniqueIdentifier>{9d176073-072d-473a-a399-7fdcadaa5635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Runner">
+      <UniqueIdentifier>{80302e3a-c7c0-49dd-bb07-4382e4ee9126}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes">
+      <UniqueIdentifier>{2a139b42-f07a-4682-bb58-90bef3bff881}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame">
+      <UniqueIdentifier>{de49f96d-7b03-47c7-a3d2-2a73dc30f756}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game">
+      <UniqueIdentifier>{3a6cb97a-91ff-4c6e-8bc3-64d60f54c8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers">
+      <UniqueIdentifier>{8b964ded-1df2-4124-94c6-37a97c15b373}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\background">
+      <UniqueIdentifier>{f83844cd-acdf-4d33-98a2-c033f1c135cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\object">
+      <UniqueIdentifier>{6e6644a0-7d8c-42cd-bf03-438e5c71dc3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Menu">
+      <UniqueIdentifier>{cbe50f88-35b5-48ad-8c16-df40cbdf5398}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Menu\StartMenu">
+      <UniqueIdentifier>{27a6fb9a-97a0-4f9f-99a9-fdae3fad52b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\MapMaking">
+      <UniqueIdentifier>{b4039de4-4dd1-4d56-b3bc-02028be20c8f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\Sound">
+      <UniqueIdentifier>{08345f24-4f9e-4242-802f-c266c5b19fe6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Login">
+      <UniqueIdentifier>{e0a0a049-07c7-4a84-9a2d-920cff95a44a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\Ground">
+      <UniqueIdentifier>{0f709c0d-d74c-4752-a86a-dba92bc57454}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\Shop">
+      <UniqueIdentifier>{b6655a1d-7f0b-4c07-824a-01dc326d3fa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\HUD">
+      <UniqueIdentifier>{af65bb46-cb51-42ee-bc85-dbdfefcde307}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\HUD">
+      <UniqueIdentifier>{55c3f6cc-2823-46b1-b2fc-6d6cbcd9dc75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\GameObject\quadtree">
+      <UniqueIdentifier>{803d9eb6-51f3-4dbf-a6b5-45182b536c2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\HttpServices">
+      <UniqueIdentifier>{90bd5baf-f0b4-4a15-89a9-39beac5590f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Scenes\PlayGame\main game\layers\setting">
+      <UniqueIdentifier>{7d9af1b1-336f-453b-a6c8-d6fddb439172}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Util\Json">
+      <UniqueIdentifier>{bafb0ffa-7250-4c3b-b16e-9c75958878a4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\AppDelegate.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DBContext.cpp">
+      <Filter>src\Util\database</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainMenuScene.cpp">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SoundManager.cpp">
+      <Filter>src\Util\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FileUtil.cpp">
+      <Filter>src\Util\File</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Translator.cpp">
+      <Filter>src\Util\Language</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MapMakingScene.cpp">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Utility.cpp">
+      <Filter>src\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MainGameScene.cpp">
+      <Filter>src\Scenes\PlayGame\main game</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameBackgroundLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\background</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMap.cpp">
+      <Filter>src\GameMap</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Runner.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameConfig.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoginScene.cpp">
+      <Filter>src\Scenes\Login</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GroundObject.cpp">
+      <Filter>src\GameObject\Ground</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ShopScene.cpp">
+      <Filter>src\Scenes\Shop</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RatingTableCell.cpp">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RunnerModel.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RunnerView.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RunnerController.cpp">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameHUDLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HUDLayer.cpp">
+      <Filter>src\Scenes\PlayGame\HUD</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\QuadNode.cpp">
+      <Filter>src\GameObject\quadtree</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\WidthHeightChooseHUD.cpp">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RankingScene.cpp">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HttpServices.cpp">
+      <Filter>src\HttpServices</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RealGamePlayLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TestGamePlayLayer.cpp">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\InGameSettingLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\setting</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\util\json\Json.cpp">
+      <Filter>src\Util\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\util\json\extension.cpp">
+      <Filter>src\Util\Json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TimeHUDLayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Global.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Integration.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Layer.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2Node.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\b2PhysicsBody.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GLES-Render.cpp">
+      <Filter>src\box2d</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\LoadingHUDLayer.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\RateHUDLayer.cpp">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\SnowFlake.cpp">
+      <Filter>src\GameObject\Ground</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h">
+      <Filter>win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\AppDelegate.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DBContext.h">
+      <Filter>src\Util\database</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainMenuScene.h">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SoundManager.h">
+      <Filter>src\Util\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FileUtil.h">
+      <Filter>src\Util\File</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Translator.h">
+      <Filter>src\Util\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MapMakingScene.h">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Utility.h">
+      <Filter>src\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LangDefine.h">
+      <Filter>src\Util\Language</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MainGameScene.h">
+      <Filter>src\Scenes\PlayGame\main game</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameBackgroundLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\background</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMap.h">
+      <Filter>src\GameMap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameConfig.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Runner.h">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoginScene.h">
+      <Filter>src\Scenes\Login</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GroundObject.h">
+      <Filter>src\GameObject\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ShopScene.h">
+      <Filter>src\Scenes\Shop</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RatingTableCell.h">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RunnerModel.h">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RunnerView.h">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RunnerController.h">
+      <Filter>src\GameObject\Runner</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameHUDLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HUDLayer.h">
+      <Filter>src\Scenes\PlayGame\HUD</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\QuadNode.h">
+      <Filter>src\GameObject\quadtree</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\WidthHeightChooseHUD.h">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RankingScene.h">
+      <Filter>src\Scenes\Menu\StartMenu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HttpServices.h">
+      <Filter>src\HttpServices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TestGamePlayLayer.h">
+      <Filter>src\Scenes\MapMaking</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\InGameSettingLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\setting</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RealGamePlayLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HttpServicesDelegate.h">
+      <Filter>src\HttpServices</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\util\json\Json.h">
+      <Filter>src\Util\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\util\json\extension.h">
+      <Filter>src\Util\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TimeHUDLayer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Global.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Integration.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Layer.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2Node.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\b2PhysicsBody.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GLES-Render.h">
+      <Filter>src\box2d</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\LoadingHUDLayer.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\RateHUDLayer.h">
+      <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SnowFlake.h">
+      <Filter>src\GameObject\Ground</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="game.rc">
+      <Filter>resource</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
