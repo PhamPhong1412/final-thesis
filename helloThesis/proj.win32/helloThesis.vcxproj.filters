@@ -219,6 +219,9 @@
     <ClCompile Include="..\Classes\SnowFlake.cpp">
       <Filter>src\GameObject\Ground</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Bomb.cpp">
+      <Filter>src\GameObject\Ground</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -351,6 +354,9 @@
       <Filter>src\Scenes\PlayGame\main game\layers\object</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\SnowFlake.h">
+      <Filter>src\GameObject\Ground</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Bomb.h">
       <Filter>src\GameObject\Ground</Filter>
     </ClInclude>
   </ItemGroup>

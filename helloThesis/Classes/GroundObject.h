@@ -5,6 +5,7 @@
 
 #include "b2Node.h"
 #include "SnowFlake.h"
+#include "Bomb.h"
 
 #include "Utility.h"
 
@@ -34,6 +35,7 @@ public:
 	static std::vector<GroundObject*> changeDirectionTiles;
 	
 	void snowTileExplode();
+	void bombTileExplode();
 };
 
 

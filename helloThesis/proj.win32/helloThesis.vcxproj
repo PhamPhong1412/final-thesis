@@ -150,6 +150,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClCompile Include="..\Classes\b2Layer.cpp" />
     <ClCompile Include="..\Classes\b2Node.cpp" />
     <ClCompile Include="..\Classes\b2PhysicsBody.cpp" />
+    <ClCompile Include="..\Classes\Bomb.cpp" />
     <ClCompile Include="..\Classes\GameBackgroundLayer.cpp" />
     <ClCompile Include="..\Classes\DBContext.cpp" />
     <ClCompile Include="..\Classes\FileUtil.cpp" />
@@ -194,6 +195,7 @@ xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
     <ClInclude Include="..\Classes\b2Layer.h" />
     <ClInclude Include="..\Classes\b2Node.h" />
     <ClInclude Include="..\Classes\b2PhysicsBody.h" />
+    <ClInclude Include="..\Classes\Bomb.h" />
     <ClInclude Include="..\Classes\GameBackgroundLayer.h" />
     <ClInclude Include="..\Classes\DBContext.h" />
     <ClInclude Include="..\Classes\FileUtil.h" />

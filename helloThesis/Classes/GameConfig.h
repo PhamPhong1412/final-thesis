@@ -21,8 +21,10 @@
 #define TAG_OBJECT_END           104
 #define TAG_OBJECT_SLOW           105
 #define TAG_OBJECT_SLOW_EXLODED           106
-#define TAG_OBJECT_8           107
-#define TAG_OBJECT_9           108
+#define TAG_OBJECT_BOMB           107
+#define TAG_OBJECT_BOMB_EXLODED           108
+//#define TAG_OBJECT_SLOW           105
+//#define TAG_OBJECT_SLOW_EXLODED           106
 #define TAG_OBJECT_MAP              300
 
 #define TAG_NORMAL_LAYER              200

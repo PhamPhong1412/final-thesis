@@ -105,8 +105,9 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 				break;
 			}
             case TAG_OBJECT_SLOW_EXLODED:
+			case TAG_OBJECT_BOMB_EXLODED:
             {
-											 contact->SetEnabled(false);
+				contact->SetEnabled(false);
                 break;
             }
             default:

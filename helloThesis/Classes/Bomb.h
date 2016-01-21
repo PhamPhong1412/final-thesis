@@ -1,5 +1,5 @@
-#ifndef _SNOWFLAKE_
-#define _SNOWFLAKE_
+#ifndef _BOMB_
+#define _BOMB_
 
 #include "cocos2d.h"
 
@@ -15,7 +15,7 @@
 
 #include "GroundObject.h"
 
-class SnowFlake : public b2Node
+class Bomb : public b2Node
 {
 private:
 
@@ -32,7 +32,7 @@ public:
 
 
 
-	CREATE_FUNC(SnowFlake);
+	CREATE_FUNC(Bomb);
 	
 };
 

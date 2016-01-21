@@ -56,12 +56,16 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 	else if (tType == "8")
 	{
 		createNormalPhysicBody(sprite);
-		this->setTag(TAG_OBJECT_8);
+		this->removeChild(sprite);
+		auto bomb = Bomb::create();
+		bomb->setTag(6969);
+		this->addChild(bomb);
+		this->setTag(TAG_OBJECT_BOMB);
 	}
 	else if (tType == "9")
 	{
-		createNormalPhysicBody(sprite);
-		this->setTag(TAG_OBJECT_9);
+		//createNormalPhysicBody(sprite);
+		//this->setTag(TAG_OBJECT_9);
 	}
 	/*else
 	{
@@ -219,5 +223,13 @@ void GroundObject::snowTileExplode(){
 	if (!snowTile->exploded){
 		snowTile->explode();
 		this->setTag(TAG_OBJECT_SLOW_EXLODED);
+	}
+}
+
+void GroundObject::bombTileExplode(){
+	Bomb* bombTile = (Bomb*)getChildByTag(6969);
+	if (!bombTile->exploded){
+		bombTile->explode();
+		this->setTag(TAG_OBJECT_BOMB_EXLODED);
 	}
 }
