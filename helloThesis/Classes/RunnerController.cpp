@@ -24,7 +24,12 @@ void Runner::update(float delta){
 	default:this->mView->runOnGround(); break;
 	}
 	mModel->freezeeTime -= delta;
+	mModel->bombTime -= delta;
 	mView->freezee(mModel->freezeeTime > 0, (FREEZEE_TIME - mModel->freezeeTime) / FREEZEE_TIME);
+	
+	if (mModel->bombTime > 0){
+		//mModel->
+	}
 }
 
 void Runner::BeginContact(b2Node* node, b2Contact* contact){
@@ -160,6 +165,12 @@ void Runner::jump(){
 void Runner::collideSnowTile(GroundObject* snowObject){
 	mModel->freezeeTime = FREEZEE_TIME;
 	snowObject->snowTileExplode();
+	mModel->setVelocityX(0.0f);
+}
+
+void Runner::collideBombTile(GroundObject* bomb){
+	mModel->freezeeTime = FREEZEE_TIME;
+	bomb->bombTileExplode();
 	mModel->setVelocityX(0.0f);
 }
 

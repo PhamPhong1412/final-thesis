@@ -33,6 +33,7 @@ bool RunnerModel::init(){
 	this->changeDirectionCooldown = 1;
 	this->scheduleUpdate();
 	freezeeTime = 0;
+	bombTime = 0;
 	return true;
 }
 

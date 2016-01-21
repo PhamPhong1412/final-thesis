@@ -25,7 +25,7 @@ private:
 	int jumpSpeedBoostCharges = 0;
 	bool isFinish = false;
 public:
-	float freezeeTime;
+	float freezeeTime, bombTime;
 	bool isMultiJump = false;
 	virtual bool init();
 
