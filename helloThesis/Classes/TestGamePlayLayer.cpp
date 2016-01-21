@@ -140,6 +140,12 @@ void TestGamePlayLayer::BeginContact(b2Contact* contact)
 				GroundObject* snow = (GroundObject*)contact->GetFixtureB()->GetBody()->GetUserData();
 				mRunner->collideSnowTile(snow);
 			}
+
+			if (bTag == TAG_OBJECT_BOMB){
+				GroundObject* bomb = (GroundObject*)contact->GetFixtureB()->GetBody()->GetUserData();
+				mRunner->collideBombTile(bomb);
+			}
+
 			else{
 				this->mRunner->BeginContact(nodeB, contact);
 			}
@@ -155,7 +161,7 @@ void TestGamePlayLayer::BeginContact(b2Contact* contact)
 
 				if (aTag == TAG_OBJECT_BOMB){
 					GroundObject* bomb = (GroundObject*)contact->GetFixtureA()->GetBody()->GetUserData();
-					mRunner->collide(snow);
+					mRunner->collideBombTile(bomb);
 				}
 
 				this->mRunner->BeginContact(nodeA, contact);

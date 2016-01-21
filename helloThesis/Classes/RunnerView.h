@@ -37,6 +37,7 @@ public:
 	
 	void freezee(bool isFreezee, float speed);
 	CREATE_FUNC(RunnerView);
+	void bomPause(bool isBombarded);
 	
 };
 

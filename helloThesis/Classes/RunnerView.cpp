@@ -49,3 +49,14 @@ void RunnerView::freezee(bool isFreezee, float speed){
 		mAnimation->setTimeSpeed(1.0f);
 	}
 }
+
+void RunnerView::bomPause(bool isBombarded){
+	if (isBombarded){
+		mBody->setColor(Color3B(0, 0, 0));
+		mAnimation->pause();
+	}
+	else{
+		mBody->setColor(Color3B(255, 255, 255));
+		mAnimation->resume();
+	}
+}

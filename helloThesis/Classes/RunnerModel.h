@@ -3,7 +3,8 @@
 
 #define NORMAL_JUMP_SPEED 30.0f
 #define BOOSTED_JUMP_SPEED 60.0f
-#define FREEZEE_TIME 2.0f
+#define FREEZEE_TIME 3.0f
+#define BOMB_TIME 2.0f
 
 #include "b2Node.h"
 

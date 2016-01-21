@@ -28,7 +28,12 @@ void Runner::update(float delta){
 	mView->freezee(mModel->freezeeTime > 0, (FREEZEE_TIME - mModel->freezeeTime) / FREEZEE_TIME);
 	
 	if (mModel->bombTime > 0){
-		//mModel->
+		mModel->setVelocityX(0);
+		mView->bomPause(true);
+	}
+	if (mModel->bombTime + delta > 0){
+		mModel->setVelocityX(10.0f);
+		mView->bomPause(false);
 	}
 }
 
@@ -139,6 +144,8 @@ void Runner::EndContact(b2Node* node, b2Contact* contact){
 }
 
 void Runner::runNormal(){
+	if (mModel->bombTime > 0)
+		return;
 	float freezee = 1.0f;
 	if (mModel->freezeeTime > 0){
 		freezee = (FREEZEE_TIME - mModel->freezeeTime) / FREEZEE_TIME;
@@ -169,7 +176,7 @@ void Runner::collideSnowTile(GroundObject* snowObject){
 }
 
 void Runner::collideBombTile(GroundObject* bomb){
-	mModel->freezeeTime = FREEZEE_TIME;
+	mModel->bombTime = BOMB_TIME;
 	bomb->bombTileExplode();
 	mModel->setVelocityX(0.0f);
 }
