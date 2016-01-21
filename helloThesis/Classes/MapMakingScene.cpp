@@ -289,7 +289,7 @@ void MapMakingScene::initListChild()
     mListButtonChild->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemChildListEvent, this));
     mListButtonChild->setBackGroundColorType(cocos2d::ui::LayoutBackGroundColorType::SOLID);
     mListButtonChild->setScrollBarEnabled(false);
-    mListButtonChild->setBackGroundColor(Color3B( 0, 255, 0));
+	mListButtonChild->setBackGroundColor(Color3B(190, 225, 237));
     mListButtonChild->setVisible(false);
     addChild(mListButtonChild);
 }
@@ -312,7 +312,7 @@ void MapMakingScene::initListRoot()
     mListButonRoot->addEventListener((ui::ListView::ccListViewCallback)CC_CALLBACK_2(MapMakingScene::selectedItemRootListEvent, this));
     mListButonRoot->setBackGroundColorType(cocos2d::ui::LayoutBackGroundColorType::SOLID);
     mListButonRoot->setScrollBarEnabled(false);
-    mListButonRoot->setBackGroundColor(Color3B( 0, 255, 0));
+	mListButonRoot->setBackGroundColor(Color3B(190, 225, 237));
     addChild(mListButonRoot);
 
 }
@@ -439,7 +439,7 @@ string MapMakingScene::getNameWithNumber(int number)
     string rName="";
     switch (number) {
         case 0:
-            rName ="1,1.png";
+            rName ="brick.png";
             break;
         case 1:
             rName ="boom.png";
