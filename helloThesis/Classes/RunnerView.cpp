@@ -52,7 +52,7 @@ void RunnerView::freezee(bool isFreezee, float speed){
 
 void RunnerView::bomPause(bool isBombarded){
 	if (isBombarded){
-		mBody->setColor(Color3B(0, 0, 0));
+		mBody->setColor(Color3B(69, 69, 69));
 		mAnimation->pause();
 	}
 	else{

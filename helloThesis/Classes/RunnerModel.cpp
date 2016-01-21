@@ -51,7 +51,7 @@ void RunnerModel::update(float delta){
 bool RunnerModel::canJump(){
 	bool onGround = isOnGround();
 	float y = this->getVelocityY();
-	return onGround || (this->getVelocityY()<1 && isMultiJump);
+	return bombTime<0&&( onGround || (this->getVelocityY()<1 && isMultiJump));
 }
 
 bool RunnerModel::isOnGround(){

@@ -31,10 +31,13 @@ void Runner::update(float delta){
 		mModel->setVelocityX(0);
 		mView->bomPause(true);
 	}
-	if (mModel->bombTime + delta > 0){
-		mModel->setVelocityX(10.0f);
-		mView->bomPause(false);
+	else{
+		if (mModel->bombTime + delta > 0){
+			mModel->setVelocityX(10.0f);
+			mView->bomPause(false);
+		}
 	}
+
 }
 
 void Runner::BeginContact(b2Node* node, b2Contact* contact){
