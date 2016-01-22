@@ -41,8 +41,11 @@ void RunnerView::setDirection(int dir){
 
 void RunnerView::freezee(bool isFreezee, float speed){
 	if (isFreezee){
-		mBody->setColor(Color3B(50, 50, 200));
-		mAnimation->setTimeSpeed(speed);
+		if (!isRollingBack()){
+			mAnimation->setTimeSpeed(speed);
+			mBody->setColor(Color3B(50, 50, 200));
+		}
+		
 	}
 	else{
 		mBody->setColor(Color3B(255, 255, 255));
@@ -59,4 +62,26 @@ void RunnerView::bomPause(bool isBombarded){
 		mBody->setColor(Color3B(255, 255, 255));
 		mAnimation->resume();
 	}
+}
+
+
+bool RunnerView::isRollingBack(){
+	int curFrame = mAnimation->getCurrentFrame();
+
+	return curFrame >= 45 && curFrame <= 145;
+}
+
+void RunnerView::rollbackDisappear(){
+	mBody->setColor(Color3B(255, 255, 255));
+	mAnimation->play("disappear", false);
+	//mAnimation->setTimeSpeed(0.05f);
+}
+
+void RunnerView::rollbackAppear(){
+	mAnimation->play("appear", false);
+	//mAnimation->setTimeSpeed(0.05f);
+}
+
+int RunnerView::getCurFrame(){
+	return mAnimation->getCurrentFrame();
 }

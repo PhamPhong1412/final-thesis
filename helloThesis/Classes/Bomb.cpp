@@ -26,4 +26,5 @@ void Bomb::explode(){
 	exploded = true;
 	mAnimation->play("explode", false);
 	this->setScale(2.0f);
+
 }

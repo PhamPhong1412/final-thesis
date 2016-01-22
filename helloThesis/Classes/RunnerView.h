@@ -22,10 +22,10 @@ class RunnerView : public Node
 private:
 
 	Node* mBody;
-	cocostudio::timeline::ActionTimeline* mAnimation;
 
 
 public:
+	cocostudio::timeline::ActionTimeline* mAnimation;
 	void runOnGround();
 	void runOnAir();
 	void jump();
@@ -38,6 +38,11 @@ public:
 	void freezee(bool isFreezee, float speed);
 	CREATE_FUNC(RunnerView);
 	void bomPause(bool isBombarded);
+	bool isRollingBack();
+
+	void rollbackDisappear();
+	void rollbackAppear();
+	int getCurFrame();
 	
 };
 

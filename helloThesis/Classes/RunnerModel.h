@@ -27,6 +27,8 @@ private:
 	bool isFinish = false;
 public:
 	float freezeeTime, bombTime;
+	bool didRollBacked;
+
 	bool isMultiJump = false;
 	virtual bool init();
 

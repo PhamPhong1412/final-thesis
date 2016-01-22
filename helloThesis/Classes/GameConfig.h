@@ -23,7 +23,7 @@
 #define TAG_OBJECT_SLOW_EXLODED           106
 #define TAG_OBJECT_BOMB           107
 #define TAG_OBJECT_BOMB_EXLODED           108
-//#define TAG_OBJECT_SLOW           105
+#define TAG_OBJECT_ROLL_BACK           109
 //#define TAG_OBJECT_SLOW_EXLODED           106
 #define TAG_OBJECT_MAP              300
 

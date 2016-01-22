@@ -34,6 +34,7 @@ bool RunnerModel::init(){
 	this->scheduleUpdate();
 	freezeeTime = 0;
 	bombTime = 0;
+	didRollBacked = false;
 	return true;
 }
 

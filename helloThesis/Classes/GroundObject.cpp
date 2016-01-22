@@ -64,8 +64,8 @@ GroundObject::GroundObject(float xLoc, float yLoc, std::string tileName){
 	}
 	else if (tType == "9")
 	{
-		//createNormalPhysicBody(sprite);
-		//this->setTag(TAG_OBJECT_9);
+		createNormalPhysicBody(sprite);
+		this->setTag(TAG_OBJECT_ROLL_BACK);
 	}
 	/*else
 	{

@@ -16,7 +16,7 @@ bool TestGamePlayLayer::init(std::string map, Layer *parentLayer)
     this->mParentLayer = parentLayer;
 	mRunner = Runner::create();
 	mRunner->mModel->setb2Position(50, 300);
-	mRunner->setPosition(50, 300);
+	//mRunner->setPosition(50, 300);
 	this->addChild(mRunner);
 	mRunner->mModel->setVelocityX(15.0f);
 	vector<int>* t = new vector<int>();
@@ -64,7 +64,10 @@ void TestGamePlayLayer::update(float delta){
 	else
 	{
 		updateQuadTree();
-		b2Layer::update(delta);
+		if (!mRunner->mView->isRollingBack()){
+
+			b2Layer::update(delta);
+		}
 	}
 	
 }

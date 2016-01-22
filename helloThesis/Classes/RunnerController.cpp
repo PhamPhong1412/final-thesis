@@ -6,7 +6,7 @@ bool Runner::init(){
 	this->mModel = new RunnerModel();
 	this->mModel->init();
 	this->addChild(mModel);
-	this->mModel->getb2PhysicsBody()->setb2Position(100, 100);
+	//this->mModel->getb2PhysicsBody()->setb2Position(100, 100);
 	this->setb2PhysicsBody(this->mModel->getb2PhysicsBody());
 	this->mView = RunnerView::create();
 	this->addChild(mView);
@@ -35,6 +35,26 @@ void Runner::update(float delta){
 		if (mModel->bombTime + delta > 0){
 			mModel->setVelocityX(10.0f);
 			mView->bomPause(false);
+		}
+	}
+
+	if (mView->isRollingBack()){
+		mModel->setVelocityX(0);
+		if (mView->getCurFrame() == 145 && !mModel->didRollBacked){
+			int randValue = RandomHelper::random_int(200, 250);
+			this->setPositionX(getPosition().x - randValue*mModel->getDirection());
+			this->getb2PhysicsBody()->setb2TransformX(this->getb2PhysicsBody() ->getb2Position().x- randValue*mModel->getDirection());
+			this->lastX = this->getPositionX();
+			mModel->didRollBacked = true;
+			mView->rollbackAppear();
+		}
+
+		if (mView->getCurFrame() == 70){
+			mModel->setVelocityX(10);
+			mView->mAnimation->gotoFrameAndPlay(5);
+			mView->mAnimation->setTimeSpeed(1.0f);
+			mView->runOnGround();
+			mModel->didRollBacked = false;
 		}
 	}
 
@@ -117,6 +137,9 @@ void Runner::collideGround(b2Node* groundNode, b2Contact* contact){
 				}
 				break;
 			}
+			case TAG_OBJECT_ROLL_BACK:{
+										  StartRollBack();
+			}
             case TAG_OBJECT_SLOW_EXLODED:
 			case TAG_OBJECT_BOMB_EXLODED:
             {
@@ -160,7 +183,7 @@ void Runner::runNormal(){
 
 void Runner::jump(){
 
-	if (this->mModel->canJump()){
+	if (this->mModel->canJump() &&!mView->isRollingBack()){
 		float x = this->getPositionX();
 		float y = this-> mModel->getVelocityY();
 		if (std::abs(x - lastX) < 0.5f && y !=0.0f)
@@ -182,5 +205,13 @@ void Runner::collideBombTile(GroundObject* bomb){
 	mModel->bombTime = BOMB_TIME;
 	bomb->bombTileExplode();
 	mModel->setVelocityX(0.0f);
+}
+
+
+void Runner::StartRollBack(){
+	if (mView->isRollingBack())
+		return;
+	mView->rollbackDisappear();
+	mModel->setVelocityX(0);
 }
 

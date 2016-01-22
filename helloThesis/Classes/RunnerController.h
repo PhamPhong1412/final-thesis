@@ -32,6 +32,7 @@ public:
 	void EndContact(b2Node* node, b2Contact* contact);
 	void collideSnowTile(GroundObject* snowFlake);
 	void collideBombTile(GroundObject* bomb);
+	void StartRollBack();
 	CREATE_FUNC(Runner);
 };
 

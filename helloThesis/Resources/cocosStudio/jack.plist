@@ -7,51 +7,51 @@
 			<key>jack/Jump (4).png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3211,439},{456,632}}</string>
+				<string>{{3556,0},{456,632}}</string>
 				<key>offset</key>
 				<string>{-31,37}</string>
 				<key>rotated</key>
-				<true />
+				<false />
 				<key>sourceSize</key>
 				<string>{579,763}</string>
 			</dict>
 			<key>jack/Run (1).png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1868,0},{443,703}}</string>
+				<string>{{1305,460},{443,703}}</string>
 				<key>offset</key>
 				<string>{13,-7}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{579,763}</string>
 			</dict>
 			<key>jack/Run (2).png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{1429,0},{439,721}}</string>
+				<string>{{584,580},{439,721}}</string>
 				<key>offset</key>
 				<string>{5,-15}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{579,763}</string>
 			</dict>
 			<key>jack/Run (3).png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2748,0},{463,663}}</string>
+				<string>{{2008,437},{463,663}}</string>
 				<key>offset</key>
 				<string>{-18,14}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{579,763}</string>
 			</dict>
 			<key>jack/Run (4).png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{3211,0},{439,691}}</string>
+				<string>{{2671,365},{439,691}}</string>
 				<key>offset</key>
 				<string>{5,-1}</string>
 				<key>rotated</key>
@@ -62,11 +62,11 @@
 			<key>jack/Run (5).png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{2311,0},{437,704}}</string>
+				<string>{{1918,0},{437,704}}</string>
 				<key>offset</key>
 				<string>{16,-11}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{579,763}</string>
 			</dict>
@@ -77,7 +77,7 @@
 				<key>offset</key>
 				<string>{-6,-14}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{579,763}</string>
 			</dict>
@@ -95,13 +95,68 @@
 			<key>jack/Run (8).png</key>
 			<dict>
 				<key>frame</key>
-				<string>{{969,0},{460,697}}</string>
+				<string>{{1221,0},{460,697}}</string>
 				<key>offset</key>
 				<string>{-4,-4}</string>
 				<key>rotated</key>
-				<false />
+				<true />
 				<key>sourceSize</key>
 				<string>{579,763}</string>
+			</dict>
+			<key>jack/frame0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{506,463},{117,686}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{117,686}</string>
+			</dict>
+			<key>jack/frame1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,676},{234,584}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{234,584}</string>
+			</dict>
+			<key>jack/frame2.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{2622,0},{365,467}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{365,467}</string>
+			</dict>
+			<key>jack/frame3.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{3362,632},{438,379}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{438,379}</string>
+			</dict>
+			<key>jack/frame4.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{3089,0},{467,263}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{467,263}</string>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -113,14 +168,14 @@
 			<key>realTextureFileName</key>
 			<string>jack.png</string>
 			<key>size</key>
-			<string>{3902,895}</string>
+			<string>{4012,1019}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
-			<integer>3902</integer>
+			<integer>4012</integer>
 			<key>height</key>
-			<integer>895</integer>
+			<integer>1019</integer>
 		</dict>
 	</dict>
 </plist>
