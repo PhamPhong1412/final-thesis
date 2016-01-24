@@ -100,7 +100,10 @@ void RealGamePlayLayer::update(float delta){
 		time += delta;
 		this->mDelegate->realUpdateTime(time);
 		updateQuadTree();
-		b2Layer::update(delta);
+		if (!mRunner->mView->isRollingBack()){
+
+			b2Layer::update(delta);
+		}
 	}
 }
 
@@ -173,6 +176,12 @@ void RealGamePlayLayer::BeginContact(b2Contact* contact)
 				GroundObject* snow = (GroundObject*)contact->GetFixtureB()->GetBody()->GetUserData();
 				mRunner->collideSnowTile(snow);
 			}
+
+			if (bTag == TAG_OBJECT_BOMB){
+				GroundObject* bomb = (GroundObject*)contact->GetFixtureB()->GetBody()->GetUserData();
+				mRunner->collideBombTile(bomb);
+			}
+
 			else{
 				this->mRunner->BeginContact(nodeB, contact);
 			}
@@ -185,9 +194,13 @@ void RealGamePlayLayer::BeginContact(b2Contact* contact)
 					GroundObject* snow = (GroundObject*)contact->GetFixtureA()->GetBody()->GetUserData();
 					mRunner->collideSnowTile(snow);
 				}
-				else{
-					this->mRunner->BeginContact(nodeA, contact);
+
+				if (aTag == TAG_OBJECT_BOMB){
+					GroundObject* bomb = (GroundObject*)contact->GetFixtureA()->GetBody()->GetUserData();
+					mRunner->collideBombTile(bomb);
 				}
+
+				this->mRunner->BeginContact(nodeA, contact);
 			}
 		}
 	}
